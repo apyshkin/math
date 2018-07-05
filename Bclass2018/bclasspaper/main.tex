@@ -107,12 +107,17 @@
 \newcommand\bigzero{\makebox(10, 10){\text{\Huge 0}}}
 \newcommand{\seq}[1]{\{{#1}_n\}_{n=1}^\infty}
 \newcommand{\fsys}{\mathrm{F}}
-\newcommand{\wt}{\mathcal{W}}
+\newcommand{\sgnwt}{\mathrm{W}^{sgn}}
+\newcommand{\wt}{\mathrm{W}}
 \newcommand{\flow}{\mathcal{F}}
+\newcommand{\flowpos}{\mathcal{F^+}}
 \newcommand{\flowsgn}{\mathcal{F}_{sgn}}
 \newcommand{\source}{\mathit{source}}
 \newcommand{\sink}{\mathit{sink}}
+\renewcommand{\root}{\mathit{root}}
 \newcommand{\scal}[2]{\langle {#1}, {#2} \rangle}
+\newcommand{\net}{\Delta}
+\newcommand{\onet}{\vec{\Delta}}
 
 \numberwithin{remark}{section}
 \numberwithin{theorem}{section}
@@ -156,10 +161,10 @@
     B-class has an interesting property we are going to exploit later.
     \begin{prop}
         A vector system which belongs to the B-class could be associated with a 
-        weighted bipartite graph $B(\{f_k\}) = (V, E, w)$, where $w$ is real-valued function on the $V\times V$ such that
-        $w(v, u) = -w(u, v)$.
-        Also the inverse is true: for each bipartite graph $(V, E, w)$ for which the weight function
-        $w$ satisifies the conditions above there is a vector system from the B-class.
+        weighted bipartite graph $B(\{f_k\}) = (V, E, \sgnwt)$, where $\sgnwt$ is real-valued function on the $V\times V$ such that
+        $\sgnwt(v, u) = -\sgnwt(u, v)$.
+        Also the inverse is true: for each bipartite graph $(V, E, \sgnwt)$ for which the weight function
+        $\sgnwt$ satisifies the conditions above there is a vector system from the B-class.
     \end{prop}
     \begin{proof}
         For each index $l > 0$ such that $f^*_l = e_l$ we put a vertex $v_l$ in the first part of the bipartite graph.
@@ -170,12 +175,12 @@
         We put an edge between two vertices $v_l$ and $v_r$ from the left and right parts respectively,
         whenever the scalar product $\langle f_l, e_r \rangle$ is not zero.
         For such two vertices we have $\langle f_l, e_r \rangle$ = $-\langle f_r, e_l \rangle$.
-        Denote by $w_{lr}$ the expression $w_{lr} = \langle f_l, e_r \rangle^{-1}$.
-        Obviously $w_{lr} = -w_{rl}$.
+        Denote by $\sgnwt_{lr}$ the expression $\sgnwt_{lr} = \langle f_l, e_r \rangle^{-1}$.
+        Obviously $\sgnwt_{lr} = -\sgnwt_{rl}$.
         //todo inverse
     \end{proof}
-    We are going to find the necessary and sufficient condition for the $k$-completeness property for the B-class vector system. In order to pursue that
-    we need to investigate the conditions, under which the B-class system admits a linear summation method.
+    We are going to find the necessary and sufficient condition for the $k$-completeness property for the B-class vector system.
+    In order to pursue that we need to investigate the conditions, under which the B-class system admits a linear summation method.
     First of all we intend to demonstrate an elegant reformulation of the linear summation method existence problem for
     the B-class vector systems.
     Recall that there exists a linear summation method for the system $\{f_n\}, \{f^*_n\}$
@@ -192,69 +197,103 @@
         \label{right-eqn}
         \sum_j T_{jn} \langle f^*_n, e_j \rangle = 0.
     \end{equation}
-    Now consider an auxilary function $\cal{F}_{aux}(T): E \to \mathbb{R}$ 
+    Now consider an auxilary function $\flowsgn(T): E \to \mathbb{R}$ 
     on the edges of the graph $B(\fsys)$.
     \begin{equation*}
-        \cal{F}_{aux}(v_l, v_r) := T_{lr} \langle f_l, e_r \rangle,\\
-        \cal{F}_{aux}(v_r, v_l) := T_{lr} \langle f^*_r, e_l \rangle.
+        \flowsgn(v_l, v_r) := T_{lr} \langle f_l, e_r \rangle,\\
+        \flowsgn(v_r, v_l) := T_{lr} \langle f^*_r, e_l \rangle.
     \end{equation*}
-    Observe that $\cal{F}_{aux}(T)$ is a skew-symmetric function.
+    Observe that $\flowsgn(T)$ is a skew-symmetric function.
     Moreover, the equalities~\eqref{left-eqn} and~\eqref{right-eqn} are reduced to the simple
     \begin{equation}
       \label{almost-flow-eqn}
-      \sum_{u \in V} \cal{F}_{aux}(v, u) + T_{vv} = 0
+      \sum_{u \in V} \flowsgn(v, u) + T_{vv} = 0
     \end{equation}
     for each vertex $v$ from the graph $B(\fsys)$.
     \begin{remark}
-      Notice how the function $\cal{F}$ defined on the graph $B(\fsys)$ resembles
+      Notice how the function $\flow$ defined on the graph $B(\fsys)$ resembles
       a \emph{flow} function defined on the edges of the $B(\fsys)$ graph.
       One might also see that the equation~\eqref{almost-flow-eqn} describes the total flow (sum of the outgoing flow and incoming flow) 
       for each vertex $v$ in the graph $B(\fsys)$
       In order to formalize this observation we are going to build a flow function
       on a slightly modified graph $BG(\fsys)$.
     \end{remark}
-    Befory we could proceed we are going to introduce a few basic definitions from the graph theory.
+    Befory we proceed we are going to introduce a few basic definitions.
     \begin{definition}
-        Consider a directed graph $G = (V, E)$ with two vertices $\mathit{source}$ and
-        $\mathit{sink}$, and a positive function $\cal{F}: E\to R^{+}$.
-        The graph $G$ we will call a \textit{network}.
-        The vertices in the \textit{network} might be called \textit{nodes}, however we will use these terms interchangeably.
-        The function $\cal{F}$ will be called a \textit{pseudo-flow}.
+        \textit{Network} $\net$ is a quadruple $(G, \wt, s, t)$, where $G = (V, E)$ is weighted graph 
+        with a positive weight function $\wt$ on $E$ and two vertices $s, t \in V$, which
+        we will call $\source$ and $\sink$ of the network respectively.
     \end{definition}
     \begin{definition}
-        Let $\cal{N} = (V, E)$ be a \textit{network}. For each vertex $v \in V$
-        we take $IN(v)$ as the set of incoming edges and $OUT(v)$ as the set of outgoing edges in the
-        graph $N$.
-        Also denote by $d_{+}(v)$ the sum of the flows \textit{leaving} the node $v$ and by
-        $d_{-}(v)$ the sum of the flows \textit{entering} $v$:
-        \begin{equation*}
-            d_{+}(v) = \sum_{u \in OUT(v)} \cal{F}(vu),
-            d_{-}(v) = \sum_{u \in IN(v)} \cal{F}(uv).
-        \end{equation*}
-        Also let $d(v)$ be equal to $d_{+}(v) - d_{-}(v)$. Sometimes we will refer to this value as
-        a \textit{total flow} of the vertex $v$.
-        The vertex is called $deficient$ iff $d(v)$ is less than zero,
-        $active$ iff $d(v)$ is greater than zero and
-        $preserving$ iff $d(v)$ is precisely zero, meaning that the total incoming flow
-        is equal to the total outcoming flow of the vertex $v$.
+        Look at the skew-symmetric function $\flow: V \times V \to R$.
+        The function $\flow$ will be called a \textit{pseudo-flow}.
     \end{definition}
     \begin{definition}
-        Given a network $\cal{N} = (V, E)$ and a pseudo-flow function $\cal{F}$ we will name $\cal{F}$ a flow function iff 
-        any vertex $v\in V\setminus (\mathit{source}\cup\mathit{sink})$ \textit{preserves} the flow, namely
-        $d(v) = 0$.
+      Let $\net = (G, \wt, s, t)$ be a network.
+      For each vertex $v \in V$ we take $IN(v)$ as the set of incoming edges
+      and $OUT(v)$ as the set of outgoing edges in the graph $G$.
+      Also denote by $d_{+}(v)$ the sum of the flows \textit{leaving} the node $v$ and by
+      $d_{-}(v)$ the sum of the flows \textit{entering} $v$:
+      \begin{align*}
+          d_{+}(v) = \sum_{u \in OUT(v)} \flow(vu),\\
+          d_{-}(v) = \sum_{u \in IN(v)} \flow(uv).
+      \end{align*}
+      Also let $d(v)$ be equal to $d_{+}(v) - d_{-}(v)$. Sometimes we will refer to this value as
+      a \textit{total flow} of the vertex $v$.
+      The vertex is called $deficient$ iff $d(v)$ is less than zero,
+      $active$ iff $d(v)$ is greater than zero and
+      $preserving$ iff $d(v)$ is precisely zero, meaning that the total incoming flow
+      is equal to the total outcoming flow of the vertex $v$.
     \end{definition}
     \begin{definition}
-        For an \textit{network} $\mathcal{N} =  (V, E)$ and a flow $\cal{F}$ we will say,
-        that the flow $\cal{F}$ is \textit{preserving} if $d(\mathit{sink}) = -d(\mathit{source})$ vertex, which
-        in simple words means that the total flow coming out of the \textit{source} is equal to the total flow
-        coming into the \textit{sink}.
+      Given a network $\net = (V, E, \wt, s, t)$ and a pseudo-flow function $\flow$ we will name $\flow$ a flow function iff 
+      any vertex $v \in V \setminus \{s,t\}$ \textit{preserves} the flow, namely $d(v) = 0$.
+    \end{definition}
+    \begin{definition}
+      For a \textit{network} $\net = (G, \wt, s, t)$ and a flow $\flow$ we will say,
+      that the flow $\flow$ is \textit{preserving} if $d(\mathit{sink}) = -d(\mathit{source})$ vertex.
+    \end{definition}
+    \begin{note}
+      In simple words this network property suggests, 
+      that the total flow coming out of the \textit{source} is equal to the total flow
+      coming into the \textit{sink}.
+    \end{note}
+    \begin{definition}
+        \textit{Oriented network} $\onet$ is a quadruple $(\vec{G}, \wt, s, t)$, where
+        $\vec{G} = (V, \vec{E})$ is weighted oriented graph 
+        with a positive weight function $\wt$ on $\vec{E}$ and two vertices $s, t \in V$, which
+        we will call $\source$ and $\sink$ of the network respectively.
+    \end{definition}
+    Suppose $\net = (V, E, \wt, s, t)$ is a network and $\flow$~--- is a skew-symmetric function defined
+    on $\net$.
+    Naturally, we might instead consider an oriented network $\onet = (V, \vec{E}, \wt, s, t)$, where
+    the set of vertices is the same.
+    We set the direction of the edge $(uv)$ is as follows:
+    \begin{itemize}
+      \item $(uv) \in \vec{E}$ if $\flow(uv) > 0$,
+      \item $(vu) \in \vec{E}$ if $\flow(uv) < 0$.
+    \end{itemize}
+    This way only one of the edges $(uv)$ and $(vu)$ stays in the $\vec{G} = (V, \vec{E})$.
+    Also we set up the positive flow function $\flowpos: E \to \mathbb{R}^+$ such that 
+    for any edge $\vec{e} = (uv) \in \vec{G}$
+    $$
+      \flowpos(uv) = |\flow(uv)|.
+    $$
+    \begin{definition}
+      The \emph{oriented} network $\onet$ we will call an orientation of the network $\net$.
+    \end{definition}
+    \begin{definition}
+      Consider a network $\net = (G, \wt, s, t)$ such that
+      the degree of each vertex in $V \setminus \{s, t\} $ is finite,
+      and the weight of each edge incident to $\source$ or to $\sink$ is equal to one.
+      We will call such network a \it{B-class network}.
     \end{definition}
     
     Now we are ready to continue with the set up.
     Our aim is to set up a network from the graph $BG(\fsys)$.
     We are to construct the \emph{oriented} graph $BG(\fsys) = (V, E)$ from the graph $B(\fsys)$,
     positive weight function $\wt: E \to R^{+}$ and a positive flow function
-    $\cal{F}: E \to R^{+}$.
+    $\flow: E \to R^{+}$.
     Firstly we consider the vertices and the edges of the graph $B(\fsys)$.
     Let us start from all the vertices in the graph $B(\fsys)$,
     all of which we incorporate into the graph $BG(\fsys)$.
@@ -263,17 +302,17 @@
     refer to the vertices as the vertices from the \textit{left} part of the graph and the vertices from the 
     \textit{right} part of the graph.
     The graph $BG(\fsys)$ will contain all the edges from the graph $B(\fsys)$ as well.
-    For each of these edges we are going to choose an orientation, assign a flow function $\cal{F}$ and
+    For each of these edges we are going to choose an orientation, assign a flow function $\flow$ and
     establish a new positive weight function $\wt$.
     Each edge $e = (v_l v_r)$ from the graph $B(\fsys)$ we include in the graph $BG(\fsys)$ with such a direction:
-    if an auxilary function $\cal{F}_{aux}(v_r, v_l) [= T_{lr} \langle f^*_r, e_l \rangle]$ is greater than zero, then
+    if an auxilary function $\flowsgn(v_r, v_l) [= T_{lr} \langle f^*_r, e_l \rangle]$ is greater than zero, then
     we orient the edge from $v_r$ to $v_l$, if not -- then we choose the other orientation.
     Now we fix the flow function and the weight function on the edge $e = (v_l v_r)$:
     \begin{align*}
-      \cal{F}(e) = \left| \cal{F}_{aux}(v_r, v_l) \right|,\\
-      \wt(e) = \left| w(e)\right|.
+      \flow(e) = \left| \flowsgn(v_r, v_l) \right|,\\
+      \wt(e) = \left| \sgnwt(e)\right|.
     \end{align*}
-    Due to the skew-symmetry of the original weight function $w$ and auxilary function $\cal{F}_{aux}$
+    Due to the skew-symmetry of the original weight function $\sgnwt$ and auxilary function $\flowsgn$
     these definitions are correct.
     
     Now we put two additional vertices to the already constructed graph:
@@ -284,23 +323,23 @@
     is greater than zero. Namely, for such edges $e_k$ we set:
     \begin{align*}
       \flow(l_k \source) = T_{l_k l_k}, \quad \text{ if } T_{l_k}{l_k} > 0,\\
-      \flow(\source l_k) = -T_{l_k l_k}, \quad \text { if } T_{l_k}{l_k} < 0,\\
+      \flow(\source l_k) = -T_{l_k l_k}, \quad \text { if } T_{l_k}{l_k} < 0,
     \end{align*}
-    In the first case we orient the edge from the $l_k$ vertex to \source and in the second case from the 
-    \source vertex to $l_k$.
+    In the first case we orient the edge from the $l_k$ vertex to $\source$ and in the second case from the 
+    $\source$ vertex to $l_k$.
     We assign the weight equal to one for such edges: $\wt(e) = 1$.
     As we added the edges ${e_k}$, the flow became \emph{preserved} at each vertex of the left part of the graph $BG(\fsys)$.
     In the similar manner we will transform the right part of the graph.
-    Assuming we have the vertices from the right part of the graph $B(\{f_n\})$ in the form of the sequence $\{r_k\}_{k=1}^\infty$,
+    Assuming we have the vertices from the right part of the graph $B(\fsys)$ in the form of the sequence $\seq{r}$,
     for each $k > 0$ we connect the $r_k$ vertex to the $\sink$ with the edge $e'_k$
     and set the flow equal to:
     \begin{align*}
-      \flow(r_k \sink) = T_{r_k r_k}, \quad \text{ if } T_{r_k}{r_k} > 0,\\
-      \flow(\sink r_k) = -T_{r_k r_k}, \quad \text { if } T_{r_k}{r_k} < 0,\\
+      \flow(r_k \sink) = T_{r_k r_k}, \quad \text{ if } T_{r_k r_k} > 0,\\
+      \flow(\sink r_k) = -T_{r_k r_k}, \quad \text { if } T_{r_k r_k} < 0,
     \end{align*}
     For these edges we put weight equal to one as well.
-    The network $BG(\fsys)$ is built up.
-    Indeed $BG(\fsys)$ is a network since each of the vertex preserves
+    The graph $BG(\fsys)$ is built up, and the pair $\net(\fsys, T) = (BG(\fsys), \flow)$ is a network.
+    Indeed, $\net(\fsys, T)$ is a network since each of the vertex preserves
     the flow due to the equation~\eqref{almost-flow-eqn}.
     \begin{remark}
       Sometimes it might be useful to consider slightly different definition of the network.
@@ -311,10 +350,10 @@
       Formally there is a isomophism between these two types of objects.
     \end{remark}
     \begin{definition}
-      Let $N=(V,E,\flow)$ be a network -- an oriented graph with a positive flow function $\flow$ on it.
+      Let $\net=(V,E,\flow)$ be a network -- an oriented graph with a positive flow function $\flow$ on it.
       Consider an undirected graph $G=(V,E')$ such that $e=(vu)$ belongs to $E'$ iff
       either $(vu) \in E$ or $(uv) \in E$.
-      Such undirected graph we will call the \it{frame} of the network $N$.
+      Such undirected graph we will call the \it{frame} of the network $\net$.
       Also define a function $\flowsgn$ on the $V \times V$:
       \begin{align*}
         \flowsgn(vu) = \flow(vu), \quad \text{if edge } (vu) \in E,\\
@@ -322,35 +361,142 @@
       \end{align*}
       Such function we will call \it{sign-flow} function.
     \end{definition}
-    Now let us turn back on the network we constructed from the biorthogonal system $\fsys$ and
-    a trace operator $T$.
     \begin{remark}
-      Pay you attention to the fact that the network itself
+      Notice that the frame for the contstructed network $\net(\fsys, T)$ is the weighted graph $B(\fsys)$
+      we considered in the first place.
+      Hence the built network might be considered as the weighted graph $B(\fsys)$ with a sign-flow function
+      $\flowsgn$ defined on it.
+    \end{remark}
+    \begin{remark}
+      Pay you attention to the fact that the frame of the network $\net(\fsys, T)$, which is precisely $B(\fsys)$,
       depends only on the biorthogonal system $\fsys$ and not on the operator $T$.
       Only the sign-flow function depends on the operator $T$.
+      This way me are able to separate the graph structure and the flow defined on it.
     \end{remark}
-    What can we say about the total flow in each of the vertex in the constructed graph $BG(\fsys)$?
+    What can we say about the total flow in each of the vertex in the constructed network $\net(\fsys, T)$?
     Due to the the trick above, the total flow became zero in each of the vertices from the left and the right parts.
-    The total flow $d(\source)$ in the $\source$ vertex is equal to $\sum T_{l_k l_k}$, and the total flow in the
-    $\sink$ vertex is now equal to $\sum T_{r_k r_k}$.
+    The total flow $d(\source)$ in the $\source$ vertex is equal to the $\sum T_{l_k l_k}$, and the total flow in the
+    $\sink$ vertex is now equal to the $\sum T_{r_k r_k}$.
     Now one can see that the built network preserves the flow if and only if the trace of the operator $T$ is equal to
     zero.
-      Consider a network $N = (V = \seq{v}, E, F)$
     \begin{definition}
+      Consider a weighted network $\net = (V, E, \flow, \wt)$.
+      We introduce a positive function $\|\flow\|$, which we call the \it{mass of the flow} $\flow$.
+      $$
+        \|\flow\| = \sum_{e \in E} \flow(e) \wt(e).
+      $$
+      We allow it to be equal $\infty$ as well.
     \end{definition}
-
-    
-    \begin{prop}
-        A B-class system $\seq{f}$ admits a linear summation method if and only if for a graph $BG(\fsys)$
-    \end{prop}
-    
     \begin{theorem}
-        Such flow is defined correctly 
+      \label{thm-graph-eq}
+        A B-class system $\seq{f}$ admits a linear summation method if and only if for any 
+        B-class network $\net = (BG(\fsys), \flow, \wt)$, such that the flow $\flow$ is of the finite mass:
+        $$
+          \|\flow\| = \sum_{e \in E} \flow(e) \wt(e) < \infty,
+        $$
+        preserves the flow.
     \end{theorem}
     \begin{proof}
-        
+      First we shortly repeat the sufficiency proof we sketched before.
+      Suppose there is no summation method for the system $\seq{f}$.
+      We already mentioned, that it implies, that there exists a trace class operator $T$ with
+      the trace equal to one, such that $\scal{Tf_n}{f_n^*} = 0$ for any $n$.
+      Using the operator $T$, we were able to built up the weighted network
+      $\net(\fsys, T, \wt)$ which does NOT preserve the flow. 
+      It is a B-class network since all the edges incident to $\source$ or $\sink$ have the weight
+      equal to one.
+      The only thing left to check is that the flow we constructed has a finite mass.
+      However it easy follows from the the fact that the operator matrix is finite band and has a finite trace.
+      Thus we arrived to contradiction and the sufficiency is proved.
+      Now suppose there is a B-class system $\seq{f}$ and it admits a linear summation method.
+      Assume there is also a B-class network $\net = (BG(\fsys), \flow, \wt)$ which does not preserve the flow.
+      Now we are going to construct the operator $T$ with non-zero trace, which annihilates all the rank-one
+      operators $f_n \otimes f^*_n$, thus coming to the contradiction with our initial assumption.
+      First consider the edges to the $\source$ vertex. Having all the vertices already enumerated
+      we will consider the vertices in the left part $v_{l_k}$.
+      Recall that each vertex $v_s$ (except $\source$ and $\sink$) matches to the basis element $e_s$.
+      Assign the diagonal elements of $T$:
+      $$
+        T_{l_k l_k} := \flow(l_k, \source) \wt(l_k l_k) = \flow(l_k, \source) \quad k > 0.
+      $$
+      Now we repeat the same procedure for the right part of the graph $BG(\fsys)$, thus having
+      $$
+        T_{r_k r_k} := \flow(r_k, \sink) \wt(r_k r_k) = \flow(r_k, \sink) \quad k > 0.
+      $$
+      Now consider two connected vertices $v_l$, $v_r$ from the left and right part
+      respectively. Assign
+      $$
+        T_{lr} := \flowsgn(v_l, v_r) * \wt(v_l, v_r).
+      $$
+      Let all the other matrix elements of the operator matrix $T_{ij}$ be zero.
+      Then observe that we got a finite-band operator matrix $T_{ij}$ with the sum of diagonal elements
+      equal to one.
+      Due to the finite mass of the flow $\flow$ the $T_{ij}$ is an absolute summable sequence.
+      Then the operator $T$ we obtained is compact and acquires a finite non-zero trace.
+      Due to the fact, that the flow was preserved at each vertex of the network $\net(\fsys, \flow, \wt)$,
+      we see that the operator $T$ annihilates all the rank one operators $f_n \otimes f^*_n$,
+      which leads to a contradiction.
     \end{proof}
+    
+    \subsection{B-class networks characterisation}
+    Due to the theorem~\ref{label-graph-eq} we intend to analyze the B-class networks
+    $BG(\fsys), \flow, \wt)$ in order to understand the conditions under which a linear
+    summation method exists for $\fsys$.
+    In this section we are not going to address the initial Hilbert space setup at all,
+    we will use only the reformulation we obtained in the last theorem.
+    Remember that
+    \begin{definition}
+      Let $G = (V, E)$ be an infinite (oriented) graph.
+      An infinite path $r = \seq(v)$ is called a \it{ray} iff
+      $r$ is a path, meaning there is an edge $e = (v_k v_{k+1})$ for each $k > 0$ in $G$.
+    \end{definition}
+    The main result of this section is a following
+    \begin{theorem}
+      Let $BG = (V, E)$ be a B-class network frame with a skew-symmetric weight function $\sgnwt : V \times V \to \mathbb{R}$.
+      Then there exist such signed flow $\flowsgn$ that the network $\net = (BG, \flowsgn, \wt)$ has the following properties:
+      \begin{itemize}
+        \item the flow $\flowsgn$ has a finite mass,
+        \item the network $\net$ does not preserve the flow,
+      \end{itemize}
+      if and only if there exists a ray $r = \seq{v}$, starting from the vertex $\source$
+        in the network $\net$ such that it has a finite weight:
+      $$
+        \sum \wt(v_k v_{k+1}) < \infty.
+      $$
+    \end{theorem}
+    \begin{proof}
+      In order to make our proof easier we merge the $\source$ vertex with the $\sink$ vertex and call this a
+      new $\source$ vertex.
+      This way we obtain a network with a single $\source$ for which $d(\source) = 1$.
+      %We might take any other vertex as a new \sink vertex in order for this new graph b
+      All the other vertices in the graph preserve the flow after this procedure.
+      Also since all the edges incident to the $\source$ vertex have a weight equal to one
+      (see the definition of the B-class networks) the existence of the ray with a finite total weight
+      in the transformed network is equivalent to the existence of such ray in the original network.
+      First we prove the sufficiency.
+      Suppose that there is a ray of a finite total weight. 
+      In that case we set the resulting flow function $\flow(v_k v_{k+1})$ to one, creating an elusive flow
+      from the $\source$ to infinity. All the other edges will not carry any flow, hence the flow is preserved
+      at each vertex but not preserved by the network $\net$.
+      Now let us turn to the more difficult part, where we prove the necessity.
+      In this part we are going to view this network as a rooted graph with the root at the $\source$ vertex.
 
+      Firstly, let us get rid of all the flow circuits in the oriented graph $G$.
+
+      Namely, we will reason by induction and at each step $n$ construct a subnetwork
+      $\net_n = (G_n, \flow_n, \wt)$, such that $\flow_n(e) \leq \flow(e)$ for any $e \in E_n$ for any $n$
+      and $\flow_{n+1}(e) < \flow_n(e)$.
+      consider the subnetwork $G_n = (V_n, E_n)$, where the vertices
+      $V_n = {v_k}_{k=1}^n$ and the edges $E_n$ is the edges incident to the $V_n$.
+      Let there be a circuit $C_1$ in the graph $G_n$.
+      At this point we can decrease the flow on the edges of $C_1$ in such a way, that the total mass
+      of the flow will not increase.
+      Let $m_1 = \min_{e \in C_1}(\flow(e))$.
+      Consider a new flow
+
+    \end{proof}
+    \subsection{Application of the B-class networks characterisation}
+    %----------------------------------------------------------------------------------------
     \pagebreak
     \begin{prop}
         The given system is an $M$-basis if the coefficients satisfy the restrictions above.
