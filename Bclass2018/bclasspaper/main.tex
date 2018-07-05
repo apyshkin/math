@@ -106,9 +106,9 @@
 \newcommand\bigmatrixzero{\raisebox{-0.25\height}{\textnormal{\Huge 0}}}
 \newcommand\bigzero{\makebox(10, 10){\text{\Huge 0}}}
 \newcommand{\seq}[1]{\{{#1}_n\}_{n=1}^\infty}
-\newcommand{\fsys}{\mathrm{F}}
-\newcommand{\sgnwt}{\mathrm{W}^{sgn}}
-\newcommand{\wt}{\mathrm{W}}
+\newcommand{\fsys}{\mathfrak{F}}
+\newcommand{\sgnwt}{\mathrm{w}^{sgn}}
+\newcommand{\wt}{\mathrm{w}}
 \newcommand{\flow}{\mathcal{F}}
 \newcommand{\flowpos}{\mathcal{F^+}}
 \newcommand{\flowsgn}{\mathcal{F}_{sgn}}
@@ -229,7 +229,7 @@
         The function $\flow$ will be called a \textit{pseudo-flow}.
     \end{definition}
     \begin{definition}
-      Let $\net = (G, \wt, s, t)$ be a network.
+      Let $\net = (G, \wt, s, t)$ be a network, and $\flow$ a psuedo-flow function.
       For each vertex $v \in V$ we take $IN(v)$ as the set of incoming edges
       and $OUT(v)$ as the set of outgoing edges in the graph $G$.
       Also denote by $d_{+}(v)$ the sum of the flows \textit{leaving} the node $v$ and by
@@ -275,7 +275,7 @@
     \end{itemize}
     This way only one of the edges $(uv)$ and $(vu)$ stays in the $\vec{G} = (V, \vec{E})$.
     Also we set up the positive flow function $\flowpos: E \to \mathbb{R}^+$ such that 
-    for any edge $\vec{e} = (uv) \in \vec{G}$
+    for any edge $\vec{e} = (uv) \in \vec{E}$
     $$
       \flowpos(uv) = |\flow(uv)|.
     $$
@@ -289,57 +289,49 @@
       We will call such network a \it{B-class network}.
     \end{definition}
     
-    Now we are ready to continue with the set up.
+    Now we are ready to continue with the network construction.
     Our aim is to set up a network from the graph $BG(\fsys)$.
-    We are to construct the \emph{oriented} graph $BG(\fsys) = (V, E)$ from the graph $B(\fsys)$,
-    positive weight function $\wt: E \to R^{+}$ and a positive flow function
-    $\flow: E \to R^{+}$.
+    We are to construct the graph $BG(\fsys) = (V, E)$ from the graph $B(\fsys)$,
+    positive weight function $\wt: E \to R^{+}$ and a real skew-symmeteric flow function $\flow: w \times V \to R$.
     Firstly we consider the vertices and the edges of the graph $B(\fsys)$.
-    Let us start from all the vertices in the graph $B(\fsys)$,
-    all of which we incorporate into the graph $BG(\fsys)$.
+    Let us start from all the vertices in the graph $B(\fsys)$, all of which we incorporate into the graph $BG(\fsys)$.
     Since the vertex set of the new graph is a superset of vertices of the graph $B(\fsys)$,
     we will continue using the partition we made earlier among the vertices of the graph $B(\fsys)$, and
     refer to the vertices as the vertices from the \textit{left} part of the graph and the vertices from the 
     \textit{right} part of the graph.
     The graph $BG(\fsys)$ will contain all the edges from the graph $B(\fsys)$ as well.
-    For each of these edges we are going to choose an orientation, assign a flow function $\flow$ and
+    For each of these edges we are going to assign the flow function $\flow$ and
     establish a new positive weight function $\wt$.
-    Each edge $e = (v_l v_r)$ from the graph $B(\fsys)$ we include in the graph $BG(\fsys)$ with such a direction:
-    if an auxilary function $\flowsgn(v_r, v_l) [= T_{lr} \langle f^*_r, e_l \rangle]$ is greater than zero, then
-    we orient the edge from $v_r$ to $v_l$, if not -- then we choose the other orientation.
-    Now we fix the flow function and the weight function on the edge $e = (v_l v_r)$:
+    Each edge $e = (v_l v_r)$, connected in the graph $B(\fsys)$, we include in the graph $BG(\fsys)$.
+    We set the flow and the weight functions on the edge $e$:
     \begin{align*}
-      \flow(e) = \left| \flowsgn(v_r, v_l) \right|,\\
-      \wt(e) = \left| \sgnwt(e)\right|.
+      \flow(e) = \flowsgn(v_r, v_l) = T_{lr} \langle f^*_r, e_l \rangle,\\
+      \wt(e) = \left| \sgnwt(e) \right|.
     \end{align*}
-    Due to the skew-symmetry of the original weight function $\sgnwt$ and auxilary function $\flowsgn$
-    these definitions are correct.
+    Thus on this kind of edges the flow functions $\flowsgn$ and $\flow$ agree.
     
     Now we put two additional vertices to the already constructed graph:
-    the vertex $\source$ and the vertex $\sink$.
-    Suppose we have enumerated the vertices from the left part of the graph, for instance $\{l_k\}_{k=1}^\infty$.
+    the $\source$ vertex $s$ and the $\sink$ vertex $t$.
+    Suppose we have enumerated the vertices from the left part of the graph, for instance $\seq{l}$.
     Then for each $k > 0$ we connect the $\source$ vertex and the $l_k$ vertex with
-    the edge $e_k = (\source l_k)$, which is oriented in such a way that the $\flowsgn$ function
-    is greater than zero. Namely, for such edges $e_k$ we set:
+    the edge $e_k = (s l_k)$, and put a flow:
     \begin{align*}
-      \flow(l_k \source) = T_{l_k l_k}, \quad \text{ if } T_{l_k}{l_k} > 0,\\
-      \flow(\source l_k) = -T_{l_k l_k}, \quad \text { if } T_{l_k}{l_k} < 0,
+      \flow(l_k s) = T_{l_k l_k},\\
+      \flow(s l_k) = -T_{l_k l_k}.
     \end{align*}
-    In the first case we orient the edge from the $l_k$ vertex to $\source$ and in the second case from the 
-    $\source$ vertex to $l_k$.
     We assign the weight equal to one for such edges: $\wt(e) = 1$.
     As we added the edges ${e_k}$, the flow became \emph{preserved} at each vertex of the left part of the graph $BG(\fsys)$.
     In the similar manner we will transform the right part of the graph.
     Assuming we have the vertices from the right part of the graph $B(\fsys)$ in the form of the sequence $\seq{r}$,
-    for each $k > 0$ we connect the $r_k$ vertex to the $\sink$ with the edge $e'_k$
+    for each $k > 0$ we connect the $r_k$ vertex to the $\sink$ with the edge $e'_k=(r_k t)$
     and set the flow equal to:
     \begin{align*}
-      \flow(r_k \sink) = T_{r_k r_k}, \quad \text{ if } T_{r_k r_k} > 0,\\
-      \flow(\sink r_k) = -T_{r_k r_k}, \quad \text { if } T_{r_k r_k} < 0,
+      \flow(r_k t) = T_{r_k r_k},\\
+      \flow(t r_k) = -T_{r_k r_k}.
     \end{align*}
     For these edges we put weight equal to one as well.
-    The graph $BG(\fsys)$ is built up, and the pair $\net(\fsys, T) = (BG(\fsys), \flow)$ is a network.
-    Indeed, $\net(\fsys, T)$ is a network since each of the vertex preserves
+    The graph $BG(\fsys)$ is built up, and the quadruple $\net(\fsys) = (BG(\fsys), \wt, s, t)$ is a network.
+    Indeed, $\net(\fsys)$ is a network since each of the vertex preserves
     the flow due to the equation~\eqref{almost-flow-eqn}.
     \begin{remark}
       Sometimes it might be useful to consider slightly different definition of the network.
