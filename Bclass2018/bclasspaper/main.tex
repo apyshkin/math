@@ -269,9 +269,9 @@
       \end{align*}
       Also let $d(v)$ be equal to $d_{+}(v) - d_{-}(v)$. Sometimes we will refer to this value as
       a \emph{total flow} of the vertex $v$.
-      The vertex is called $deficient$ iff $d(v)$ is less than zero,
-      $active$ iff $d(v)$ is greater than zero and
-      $preserving$ iff $d(v)$ is precisely zero, meaning that the total incoming flow
+      The vertex is called \emph{$\flow$-active} iff $d(v)$ is less than zero,
+      \emph{$\flow$-deficient} iff $d(v)$ is greater than zero and
+      \emph{$\flow$-preserving} iff $d(v)$ is precisely zero, meaning that the total incoming flow
       is equal to the total outgoing flow of the vertex $v$.
     \end{definition}
     \begin{definition}
@@ -280,7 +280,7 @@
     \end{definition}
     \begin{definition}
       For a network $\net = (G, \wtp, s, t)$ and a flow $\flow$ we will say,
-      that the flow $\flow$ is \emph{preserving} if $d(\sink) = -d(\source)$ vertex.
+      that the flow $\flow$ is \emph{$\flow$-preserving} if $d(\sink) = -d(\source)$ vertex.
     \end{definition}
     \begin{note}
       In simple words this property suggests
@@ -374,7 +374,7 @@
     For these edges we put the weight equal to one as well.
     The network $\net(\fsys)$ is built up, and it is a B-class network.
     The defined function $\flow$ is a flow, since each of the vertex preserves
-      the flow due to the equation~\eqref{almost-flow-eqn}.
+      $\flow$ due to the equation~\eqref{almost-flow-eqn}.
     %\begin{remark}
       %Sometimes it might be useful to consider slightly different definition of the network.
       %Instead of studying an oriented graph with a positive flow function on it we might consider
@@ -405,7 +405,7 @@
     Due to the the trick we performde the total flow became zero in each of the vertices from the \textit{left} and the \textit{right} parts.
     The total flow $d(\source)$ in the $\source$ vertex is equal to the $\sum T_{l_k l_k}$, and the total flow in the
     $\sink$ vertex is now equal to the $\sum T_{r_k r_k}$.
-    Now one can see that the network $\net(\fsys)$ preserves the flow if and only if the trace of the operator $T$ is equal to
+    Now one can see that the network $\net(\fsys)$ is $\flow$-preserving if and only if the trace of the operator $T$ is equal to
     zero.
     \begin{definition}
       Consider a weighted network $\net = (V, E, \flow, \wtp)$.
@@ -519,7 +519,7 @@
       Formally we are left without the $\sink$ vertex but we are going to choose any vertex $v \in V$ which
         is not equal to the new $\source$ and declare this $v$ a new $\sink$ vertex.
       All the vertices in the graph still preserve the flow after this procedure, except the $\source$ vertex
-        which is now \emph{active} since its total flow $d(\source)$ equal to one.
+        which is now \emph{$\flowpos$-active} since its total flow $d(\source)$ equal to one.
         %the existence of the ray with a finite total weight
         %in the transformed network is equivalent to the existence of such ray in the original network.
       \alex{todo}
@@ -733,14 +733,41 @@
       and zero otherwise.
       We are going to change it gradually in order to satisfy all the properties from~\ref{p1} to~\ref{p5}.
       
-      At the first step we will propagate the flow, incoming to the $n-1$ layer, one edge further.
-      Namely, consider the vertex $u \in L_{n-1}$. Since $d^{\cal{G}}_{-}(u) \leq d^{\flowpos}_{-}(u)$ (incoming flow
-        in
-      for the edge $e \in \eout(L_{n-1})$ we set the preflow function $\flowposn{n}$ in such a way that:
-      \[
-        \flowposn{n}(e) := \flowpos(e) \quad \forall e \in \eout(L_{n-1}).
-      \]
       \alex{here we so very need a picture}
+      Notice how all the vertices except the root and the last layer $L_{n-1}$ are $\cal{G}$-preserving.
+      The root is $\cal{G}$-deficient and the $n-1$ layer is currently $\cal{G}$-active.
+      At the first step our desire is to expand this property onto the $L_{n-1}$.
+      In order to do such expansion we will propagate the flow $\cal{G}$, incoming to the $n-1$ layer, one edge further.
+      Namely, consider the vertex $u \in L_{n-1}$.
+      Since $d^{\cal{G}}_{-}(u) \leq d^{\flowpos}_{-}(u)$ (incoming flow $\cal{G}$ is bounded above by the original flow $\flowpos$),
+        we are able to set the flow $\cal{G}$ on the outgoing edges of $u$ in such a way that:
+      \begin{itemize}
+        \item each outcoming edge has a positive flow: $\cal{G}(e) > 0$ for any $e \in \eout(u)$,
+        \item the $\cal{G}$ is still bounded from above: 
+        \[
+          \cal{G}(e) \leq \flowpos(e) \quad \forall e \in \eout(u),
+        \]
+        \item the vertex $u$ becomes $\cal{G}$-preserving (meaning that $d^{\cal{G}}(u) = 0$).
+      \end{itemize}
+      \begin{note}
+        Literally, here we are pushing the flow out of the vertex $u \in L_{n-1}$ spreading it among all the outcoming edges
+          $\eout_G(u)$.
+        Since the preflow $\cal{G}$ is bounded above by the flow $\flowpos$ which is preserved at each vertex of the graph $G$,
+          particularly, at each vertex of the graph $G_n$, it is trivial that such expansion exists.
+      \end{note}
+      So if we had no back edges, the function $\cal{G}$ would be our next preflow function $\flowposn{n}$, and this step would be accomplished,
+        since all the properties~\ref{p1}--\ref{p2} would be complied by $\cal{G}$.
+      However we ought to solve the problem we created while pushing the flow from the $(n-1)$-th layer via the back edges.
+      Notice that the end vertices of such edges $\eback_{n}$ now became $\cal{G}$-active, since for such vertices
+        the total incoming flow now exceeds the total outcoming flow.
+      Thus we have reached the step number two, when we are going to carry out the \emph{relaxation} procedure in order to alleviate those $\cal{G}-active$
+        vertices.
+
+      Consider a $\cal{G}$-active vertex $s \in \ter{\eback_n}$ such that $d^{\cal{G}}_{-} > d^{\cal{G}}_{+}$.
+      Let there exist such path $p \in \gpaths(s, L_n)$, connecting the vertex $s$ and the $n$-th layer, that
+        $\cal{G}$ could be         
+      \begin{definition}
+      
 
       
     \end{proof}
