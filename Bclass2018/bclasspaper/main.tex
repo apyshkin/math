@@ -605,7 +605,9 @@
       Also we prune the edges of the network $\onet$ for which the flow $\flowpos$ is zero.
       Now we are going to have the following
       \begin{definition}
-        Let $\vec{G} = (V,\vec{E},\wtpos)$ be a weighted directed graph.
+        The graph $\vec{G} = (V,\vec{E},\wtpos, \root)$ be a weighted directed graph with a positive
+          weight function $\wtpos$ defined on $\vec{E}$ and a root vertex $\root \in V$.
+          Then let the function $\phi_{\vec{G}}: V \to \mathbb{R}^{+}$
 
       \end{definition}
       %Firstly we assume that all the edges carry a non-zero flow.
