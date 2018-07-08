@@ -112,6 +112,7 @@
 \newcommand{\wtp}{\mathrm{w}^{+}}
 \newcommand{\flow}{\mathcal{F}}
 \newcommand{\flowpos}{\mathcal{F}^{+}}
+\newcommand{\preflow}{\mathcal{F}^{pre}}
 \newcommand{\flowposn}[1]{\mathcal{F}_{#1}^{+}}
 \newcommand{\flowsgn}{\flow}
 \newcommand{\source}{\mathit{source}}
@@ -136,8 +137,9 @@
 % поддержки молодых российских учёных -- докторов наук МД-5758.2015.1.}}
 % \date{}
 
-\section{<Simplified Azoff-shehada construction}
-\section{B-class of the vector system}
+\section{Simplified Azoff-Shehada system analysis}
+
+\section{B-class of vector systems}
   \subsection{From vector system to the countable network: linear summation problem}
     We are interested in the completeness properties of the minimal vector system $\fsys = \seq{f}$
       in a separable real [TODO complex] Hilbert space $\cal{H}$.
@@ -154,7 +156,7 @@
     \end{definition}
     This class of vector systems is the subject of this text.
     \begin{prop}
-        The definition given above guarantess the biorthogonality of the $f_n$ and $f^*_n$.
+        The definition given above guarantees the biorthogonality of the $f_n$ and $f^*_n$.
     \end{prop}
     \begin{proof}
         Straightforward check.
@@ -165,11 +167,11 @@
     
     B-class has an interesting property we are going to exploit later.
     \begin{prop}
-        A vector system which belongs to the B-class could be associated with a 
+        A vector system which belongs to the B-class could be associated with a
         weighted bipartite graph $B(\{f_k\}) = (V, E, \wt)$, where $\wt$ is a
         real-valued function on the $V\times V$ such that $\wt(v, u) = -\wt(u, v)$.
         Also the inverse is true: for each bipartite graph $(V, E, \wt)$ for which the weight function
-        $\wt$ satisifies the conditions above there is a vector system from the B-class.
+        $\wt$ satisfies the conditions above there is a vector system from the B-class.
     \end{prop}
     \begin{proof}
         For each index $l > 0$ such that $f^*_l = e_l$ we put a vertex $v_l$ in the first part of the bipartite graph.
@@ -251,7 +253,7 @@
       The vertex is called $deficient$ iff $d(v)$ is less than zero,
       $active$ iff $d(v)$ is greater than zero and
       $preserving$ iff $d(v)$ is precisely zero, meaning that the total incoming flow
-      is equal to the total outcoming flow of the vertex $v$.
+      is equal to the total outgoing flow of the vertex $v$.
     \end{definition}
     \begin{definition}
       Given a network $\net = (V, E, \wtp, s, t)$ and a pseudo-flow function $\flow$ we will name $\flow$ a
@@ -301,7 +303,7 @@
     \end{definition}
     \begin{remark}
       As shown, the flow functions on the networks and the positive flow functions on the oriented networks
-        are interchangable and describe the same object.
+        are interchangeable and describe the same object.
       The notion of the direction of the positive flow over the particular edge $(uv)$ in the oriented network
         is incorporated into the sign of the flow function on the same edge $(uv)$ in the non-oriented network.
     \end{remark}
@@ -315,7 +317,7 @@
     Now we are ready to continue with the linear summation method problem.
     Our aim is to build up a network from the graph $B(\fsys)$.
     We plan to construct the network $\net(\fsys) = (V, E, \wtp, s, t)$,
-    positive weight function $\wtp: E \to R^{+}$ and a real skew-symmeteric flow function $\flow: V \times V \to R$.
+    positive weight function $\wtp: E \to R^{+}$ and a real skew-symmetric flow function $\flow: V \times V \to R$.
     Firstly we consider the vertices and the edges of the graph $B(\fsys)$.
     All the vertices in the graph $B(\fsys)$ we incorporate into the network $\net(\fsys)$.
     The vertex set of the new graph is a superset of vertices of the graph $B(\fsys)$,
@@ -360,7 +362,7 @@
       %an undirected graph with a skew-symmetric flow function on the edges.
       %Intuitively, the direction of the flow could be expressed either via the direction of the edge
       %or with the sign of the flow function, and these two definitions describe the same objects.
-      %Formally there is a isomophism between these two types of objects.
+      %Formally there is a isomorphism between these two types of objects.
     %\end{remark}
     %\begin{definition}
       %Let $\net=(V,E,\flow)$ be a network -- an oriented graph with a positive flow function $\flow$ on it.
@@ -499,9 +501,8 @@
         is not equal to the new $\source$ and declare this $v$ a new $\sink$ vertex.
       All the vertices in the graph still preserve the flow after this procedure, except the $\source$ vertex
         which is now \emph{active} since its total flow $d(\source)$ equal to one.
-
-        the existence of the ray with a finite total weight
-        in the transformed network is equivalent to the existence of such ray in the original network.
+        %the existence of the ray with a finite total weight
+        %in the transformed network is equivalent to the existence of such ray in the original network.
       //todo
       \noindent\textit{Sufficiency}
       Suppose that there is a ray of a finite total weight. 
@@ -513,54 +514,100 @@
       Now let us turn to the more difficult part.
       In this part we are going to view this network as a rooted graph with the root at the $\source$ vertex.
       Consequently sometimes we will employ the term $\root$.
-      For a start we get rid of all the flow cycles in the oriented graph $G$.
-
-      Namely, we will reason by the transfinite induction and at each step $n \in \mathbb{N}$ construct a subnetwork
-        $\onet_n = (\vec{G}_n, \wtp, \root, \root)$ and a subflow $\flowposn{n}$, namely such that for each $n$ greater than zero 
-        $\flowposn{n}$ is bounded above by the original flow: $\flowposn{n}(e) \leq \flowpos(e)$ for any $e \in E_n$.
-      Also we require that $\flowposn{n+1}(e) \leq \flowposn{n}(e)$.
-      At the induction step $n$ we consider the subnetwork $\vec{G}_n = (V_n, \vec{E}_n)$, where the vertices
-        $V_n = {v_k}_{k=1}^n$ and the edges $E_n$ is the edges from $\vec{E}$ incident to the $V_n$.
-      The base is $n = 1$ is trivial: the network $\onet_1$ contains only the root vertex.
-      Suppose that for the finite network $\onet_n$ and a flow function $\flowposn{n}: \vec{E}_n \to R^{+}$ 
-        all the conditions above are satisfied.
-      Let $\cal{G}_0(e)$ be a flow function on the graph $\vec{G}_{n+1}$.
-      Initially put 
-      \begin{equation*}
-        \cal{G}_0(e) =
-        \begin{cases}
-          \flowposn{n}(e) \quad \text{if } e \in \vec{G}_n,\\
-          \flowpos(e) \quad \text{otherwise}.
-        \end{cases}
-      \end{equation*}
-      Let there be a simple cycle $C$ in the graph $\vec{G}_n$ such that each edge $e \in C$ carries
+      For a start we get rid of all the non-zero flow cycles in the oriented graph $G$.
+      Non-zero flow cycle is a cycle in the network such that non-zero flow circulates through this cycle,
+      meaning that for each cycle's edge the flow along the edge is strictly greater than zero.
+      In order to accomplish that we will present a sequence of the flows on the $\onet$.
+      At each step $n \in \mathbb{N}$ we examine a subgraph $\vec{G}_n$ and present a flow function $\flowposn{n}$
+        such that $\flowposn{n}$ is monotone: for any edge $e \in \vec{E}$ the following inequality holds:
+      \[
+        \flowposn{n+1}(e) \leq \flowposn{n}(e)
+      \]
+      for any positive integer $n$.
+      The main property of the subflow $\flowposn{n}$ is that there will be no non-zero flow cycles in the induced subgraph
+      $G_n$.
+      We start with the flow $\flowposn{0}$ equal to the flow $\flowpos$.
+      The first step $n = 1$ is trivial: the graph $\vec{G}_1$ contains only the root vertex.
+      The flow $\flowposn{1}$ is equal to $\flowposn{0}$.
+      At the step $n$ we consider the subgraph $\vec{G}_n = (V_n, \vec{E}_n) \subset \vec{G}$, where the vertices
+        $V_n = {v_k}_{k=1}^n$ and the edges $E_n$ are the edges from $\vec{E}$ incident to the $V_n$.
+      At the step $n$ suppose we have already established the flow function $\flowposn{n}: \vec{E}_{n} \to R^{+}$ for which
+        all the inequalities above are satisfied.
+      We are aiming to construct the flow function $\flowposn{n+1}$.
+      Let $\cal{E}_0(e)$ be an other flow function  equal to the flow function $\flowposn{n}$
+      Let there be a simple cycle $C_1$ in the graph $\vec{E}_n$ such that each edge $e \in C_1$ carries
         a strictly positive flow.
-      At this point we can decrease the flow $\cal{G}_0$ on the edges of $C$ in such a way, that the total mass
-        of the flow will not increase, all the other condition will stay intact.
-      Take the minimal value flow function attains on the edges of the cycle: $\displaystyle\min(C) = \min_{e \in C}\left(\cal{G}_0(e)\right)$.
-      Consider a adjusted flow:
+      At this point we can decrease the flow $\cal{E}_0$ on the edges of $C_1$ in such a way, that the total mass
+        of the flow will not increase, and all the other properties will stay intact.
+      Take the minimal value, the flow function $\cal{E}_0$
+        attains on the edges of the cycle: $\displaystyle\min(C_1) = \min_{e \in C_1}\left(\cal{E}_0(e)\right)$.
+      Consider a adjusted flow $\cal{E}_1$:
       \begin{equation*}
-        \cal{G}_1(e) =
+        \cal{E}_1(e) =
         \begin{cases}
-          \cal{G}_0(e) - \min(C) \quad \text{if } e \in C,\\
-          \cal{G}_0(e) \quad \text{otherwise}.
+          \cal{E}_0(e) - \min(C_1) \quad \text{if } e \in C_1,\\
+          \cal{E}_0(e) \quad \text{otherwise}.
         \end{cases}
       \end{equation*}
-      Since $C$ is a cycle, the $\cal{G}_1$ is indeed a flow function.
-      After this positive flow cycle disappears, leaving us with a strictly lesser flow than we had before this step:
+      Since $C_1$ is a cycle, we reduced the flow on each edge by the same value,
+        the $\cal{E}_1$ is indeed a flow function.
+      After this procedure the positive flow cycle $C_1$ disappears,
+        leaving us with a strictly lesser flow than we had before this step:
       \begin{align*}
-        \cal{G}_1(e) \leq \flowpos(e) \quad \forall e \in \vec{G}_{n+1},\\
-        \cal{G}_1(e) \leq \cal{G}_0(e) \quad \forall e \in \vec{G}_n.
+        \cal{E}_1(e) \leq \flowpos(e) \quad \forall e \in \vec{E}_{n+1},\\
+        \cal{E}_1(e) \leq \cal{E}_0(e) \quad \forall e \in \vec{E}_n.
       \end{align*}
-      In this manner we remove all the simple positive-flow cycles from the finite graph $\vec{G}_n$. 
+      In this manner we remove all the simple positive-flow cycles from the finite graph $\vec{E}_n$.
       It is achievable since at each step we turn at least one edge into a zero-flow edge.
-      Put $\flowposn{w+1}$ equal to the flow function $\cal{G}_K$ we got after we remove $K$ cycles from the flow network $\onet_{n+1}$.
+      Put $\flowposn{n+1}$ equal to the flow function $\cal{E}_K$ we got after we removed $K$ cycles from the flow graph $\vec{E}_{n+1}$.
       We have
       \begin{align*}
         \flowposn{n+1}(e) \leq \flowpos(e) \quad \forall e \in \vec{G}_{n+1},\\
-        \flowposn{n+1}(e) \leq \flowpos{n}(e) \quad \forall e \in \vec{G}_n.
+        \flowposn{n+1}(e) \leq \flowposn{n}(e) \quad \forall e \in \vec{G}_n.
       \end{align*}
+      Consider the preflow function $\preflow$ defined as a pointwise limit of $\flowposn{n}$:
+      \[
+        \preflow(e) = \lim_{n\to \infty}\flowposn{n}(e)
+      \]
+        for each edge $e \in \vec{E}$.
+      Such limit exists since the $\flowposn$ function is decreasing and bounded below.
+      \begin{prop}
+        The preflow $\preflow$ is a flow.
+        Also $d_{\preflow}(\root) = d_{\flowpos}(\root)$.
+      \end{prop}
+      \begin{proof}
+        First look at the non-root vertex $v \neq \root$.
+        Since there are finite number of edges in $\vec{E}$ incident with $v$ the limit of
+        $d_{\flowposn{n}}(v)$ is equal to $d_{\preflow}(v)$.
+        The vertex $v$ is not a root, so $d_{\flowposn{n}}(v) = 0$ for any $n$ so the limit is zero as well.
+        Conclusively, the function $\preflow$ is the flow on the network $\onet$.
+        Now we discuss the root vertex.
+        The quantity $d_{\preflow}(\root)$ is defined correctly.
+        Indeed, each summand is positive and due to the monotonicity of $\flowposn{n}$ the series
+          $d^{+}_{\preflow}(\root)$ and $d^{-}_{\preflow}(\root)$ absolutely converge.
+        Since $d_{\flowposn{n}}(\root) \to \flowpos(\root)$ when $n$ tends to infinity,
+          the limit $d_{\preflow}(\root)$ is equal to $d_{\flowpos}(\root)$ as well.
+      \end{proof}
+      \begin{prop}
+        Consider the flow function $\preflow$ on the network $\onet$.
+        Then there are no non-zero flow cycles of $\preflow$.
+      \end{prop}
+      \begin{proof}
+        Assume the contrary: there is some cycle $C$ such that $\preflow(e) > 0$ for
+          each edge $e \in C$.
+        Obviously there exists such $n$ that the cycle $C$ lies within the graph $G_n$.
+        Since on each step $k$ the flow $\flowposn{k}$ decreases, at the step $n$
+          the cycle $C$ was a positive flow cycle as well: $\flowposn_{n}(e) > 0$ for each edge $e \in C$.
+        But at the end of the step $n$ due to our assumption there could be no positive flow cycles in $G_n$.
+        That is the contradiction~--- there could be no such positive flow cycles $C$ in the network $\onet$.
+      \end{proof}
+      Suppose we had such flow in the first place~--- $\flowpos$ contains no positive flow cycles.
+      Also we prune the edges of the network $\onet$ for which the flow $\flowpos$ is zero.
+      Now we are going to have the following
+      \begin{definition}
+        Let $\vec{G} = (V,\vec{E},\wtpos)$ be a weighted directed graph.
 
+      \end{definition}
       %Firstly we assume that all the edges carry a non-zero flow.
       %Otherwise we are able to consider a subnetwork without all zero-flow-edges and prove the implication for the
         %subnetwork.
@@ -583,279 +630,7 @@
             \mu_n = \min(1/|a_n| + 1/|b_n|, (1 + |b_n|)/|d_n|, (1 + |a_n|)/|c_n|)
         $$ belongs to $l^1$.
     \end{theorem}
-    \begin{proof}
-        Let us consider a $k$-dimensional operator $T$ such that 
-        $Tr(TR) = 0$ for each $R \in \cal{R}_1(\cal{A})$ which essentially means that
-        $\inner{Tf_n}{f_n^*} = 0$ for any $n$. 
-        Notice that the partial sums of the fourier series for the given system are somehow close to the
-        partial sums of the canonical fourier series (using the orthonormal basis $e_n$). Define
-        $$
-          \Xi_n := \sum_1^n \inner{Tf_s}{f_s^*} - \sum_1^n \inner{Te_s}{e_s} = -\sum_1^n \inner{Te_s}{e_s}.
-        $$
-        where the $\inner{\cdot}{\cdot}$ denotes a standard scalar product in $\cal{H}$.
-        These residuals has also a concise form:
-        \begin{align*}
-            \Xi_{4j} = a_{2j} T_{4j+1, 4j} + c_{2j} T_{4j+2, 4j},\\
-            \Xi_{4j + 1} = -d_{2j} T_{4j+2, 4j} + b_{2j} T_{4j+2, 4j+1},\\
-            \Xi_{4j + 2} = a_{2j+1} T_{4j+2, 4j+3} + c_{2j+1} T_{4j+2, 4j+4},\\
-            \Xi_{4j + 3} = -d_{2j+1} T_{4j+2, 4j+4} + b_{2j+1} T_{4j+3, 4j+4},
-        \end{align*}
-        having $T_{ij}$ equal to the $\inner{Te_j}{e_i}$.
-        \begin{prop}
-            \label{inf-dim-statement}
-            There exists an operator $T$ with trace equal to $1$ such that
-            $\inner{Tf_n}{f_n^*} = 0$ for any $n$ if and only if the
-            sequence from the statement of the theorem $\mu_n$ belong to $l^1$.
-        \end{prop}
-        \begin{proof}
-            Assume $\mu_n$ is a $l^1$ sequence. We will construct a required operator $T$.
-            Let $T_{11}$ be equal to $-1$, and $T_{jj}$ be equal to zero for any other $j$.
-            Then for each $n$ we have three cases:
-            1. Suppose $\mu_n = 1/|a_n| + 1/|b_n|$. Then if $n$ is $2j$ for some integer $j$, then
-            let:
-            \begin{align*}
-                T_{4j+1,4j}&=1/a_n & \quad T_{4j+2,4j} = 0,\\
-                T_{4j+2,4j+1}&=1/b_n.
-            \end{align*}
-            That guarantees an equality $\Xi_{4j} = \Xi_{4j+1} = 1$.
-            If $n$ is $2j+1$ then let:
-            \begin{align*}
-                T_{4j+2,4j+3}&=1/a_n & \quad T_{4j+2,4j+4} = 0,\\
-                T_{4j+3,4j+4}&=1/b_n,
-            \end{align*}
-            which provides an equality $\Xi_{4j+2} = \Xi_{4j+3} = 1$.
-            2. Consider the case when $\mu_n$ is equal to $(1 + |b_n|)/|d_n|$. 
-            Suppose $n = 2j$ for some natural $j$.
-            Here we assign
-            \begin{align*}
-                T_{4j+1,4j} &= b_{2j}/d_{2j} & \quad T_{4j+2,4j} = -1/d_{2j},\\
-                T_{4j+2,4j+1} &= 0.
-            \end{align*}
-            The case $n = 2j + 1$ is essentially the same.
-            3. Consider the case when $\mu_n$ is equal to $(1 + |a_n|)/|c_n|$. 
-            Suppose $n = 2j + 1$ for some natural $j$.
-            Here we assign
-            \begin{align*}
-                T_{4j+2,4j+3} &= 0 & \quad T_{4j+2,4j+4} = 1/c_{2j+1},\\
-                T_{4j+3,4j+4} &= a_{2j+1}/c_{2j+1}.
-            \end{align*}
-            The case $n = 2j$ is essentially the same.
-            All the other entries $T_{ij}$ we are setting to zero.
-            The constructed operator $T$ obviously belongs to the trace class (since all the non-zero elements are summable 
-            on the assumption that $\mu_n$ is a $l^1$ sequence).
-            These assignments ensure that all the $\Xi_n$ are equal to $1$ for any $n > 1$.
-            Since the trace of the operator $T$ is equal to
-            $1$ and it annihilates all the rank one operators $f_n \otimes f^*_n$, the sufficiency is proved.
-            \medskip\\
-            Now assume that there exists a trace class operator $T$ with all the properties we require.
-            Then obviously all the $T_{nn}, T_{n, n+1}, T_{n, n+2}$ elements are summable (simple property of
-            a trace class operator matrix).
-            As we know $\Xi_n$ tends to $1$ since the trace of the operator is $1$. Let us consider a sum
-            $|T_{4j+1, 4j}| + |T_{4j+2,4j}| + |T_{4j+2,4j+1}|$. It depends linearly on $T_{4j+2, 4j}$ and the minimum
-            is obtained on the boundary of the domain. The minimum value is greater than $\mu_{2j}/2$ whenever $j$ is
-            sufficiently large.
-            The second pair of equalities gives out the minimum value greater than $\mu_{2j+1}/2$ when $j$ is large,
-            which shows that the stated condition is necessary for the existence of operator $T$.
-        \end{proof}
-        Now consider the case of the $k$-dimensional operator $T$.
-        Let us put the operator $T$ as a sum of $k$ rank one operators:
-        $$
-            T = \sum_1^k y^s \otimes x^s,
-        $$
-        where $x^s, y^s \in \cal{H}$
-        Therefore $T_{ij} = \sum {y^s_j x^s_i}$.
-        Let us define vectors $v_n$ and $u_n$ which lie within $\mathbb{R}^k$ as follows:
-        \begin{align*}
-            v_{2j} &= (y^1_{4j}, y^2_{4j}, \dots ,y^k_{4j}) \quad
-            &v^*_{2j} = (x^1_{4j}, x^2_{4j}, \dots ,x^k_{4j}) \\
-            v_{2j+1} &= (x^1_{4j+2}, x^2_{4j+2}, \dots ,x^k_{4j+2}) \quad
-            &v^*_{2j+1} = (y^1_{4j+2}, y^2_{4j+2}, \dots ,y^k_{4j+2}) \\
-            u_{2j} &= (x^1_{4j+1}, x^2_{4j+1}, \dots ,x^k_{4j+1}) \quad
-            &u^*_{2j} = (y^1_{4j+1}, y^2_{4j+1}, \dots ,y^k_{4j+1}) \\
-            u_{2j+1} &= (y^1_{4j+3}, y^2_{4j+3}, \dots ,y^k_{4j+3}) \quad
-            &u^*_{2j+1} = (x^1_{4j+3}, x^2_{4j+3}, \dots ,x^k_{4j+3}) 
-        \end{align*}
-        Note that the sequences $|v_n|$, $|u_n|$ belong to $l^2$. Also $u_n$ and $v_n$ are defined for all $n > 0$.
-        We can rewrite the previous equations using the introduced vectors:
-        \begin{align*}
-            \Xi_{4j} &= a_{2j} \inner{u_{2j}}{v_{2j}} + c_{2j} \inner{v_{2j+1}}{v_{2j}},\\
-            \Xi_{4j + 1} &= -d_{2j} \inner{v_{2j+1}}{v_{2j}} + b_{2j} \inner{v_{2j+1}}{u_{2j}},\\
-            \Xi_{4j + 2} &= a_{2j+1} \inner{v_{2j+1}}{u_{2j+1}} + c_{2j+1} \inner{v_{2j+1}}{v_{2j+2}},\\
-            \Xi_{4j + 3} &= -d_{2j+1} \inner{v_{2j+1}}{v_{2j+2}} + b_{2j+1} \inner{u_{2j+1}}{v_{2j+2}}.
-        \end{align*}
-        Here the $\inner{\cdot}{\cdot}$ denotes a standard scalar product in $\mathbb{R}^k$.
-        \begin{note}
-        Observe that in such setup we always have $\Xi_n = 0$ for any $n \leq 1$.
-        \end{note}
-        Since the vectors are in the $R^k$ we are able to reduce the system to
-        \begin{align*}
-            \Xi_{2j} &= a_{j} \inner{u_{j}}{v_{j}}  + c_{j} \inner{v_{j+1}}{v_{j}},\\
-            \Xi_{2j + 1} &= -d_{j} \inner{v_{j+1}}{v_{j}} + b_{j} \inner{v_{j+1}}{u_{j}}.
-        \end{align*}
-        We get that the existence of an operator $T$
-        might be reduced to the existence of vectors $u_n$, $v_n$ in the $\mathbb{R}^k$ which
-        respects the conditions given above.
-        Given that the sequences of vectors $u_n$, $v_n$ lie in the $\mathbb{R}^k$ we might think of the scalar product as
-        the usual product of the vector lengths and the cosinus of the angle between the vectors.
-        \begin{prop}
-            \label{k-dim-statement}
-            If $\mu_n$ belongs to $l^1$ then it is possible to construct such vectors $u_n$ and $v_n$ that the equations above are true and for any $n > 1$ we have $\Xi_n = 1$.
-        \end{prop}
-        \begin{proof}
-            The operator matrix is going to look very similar to one we built in the previous proposition.
-            Again we are going to look at three possible values of the $\mu_n$.
-            For each $n$ we are going to find $V_n = |v_n|$, $U_n = |u_n|$ and three angles:
-            $\alpha_n$~--- is the angle between $v_n$ and $v_{n + 1}$, and
-            $\beta_n$~--- is the angle between $v_n$ and $u_n$.
-            $\gamma_n$~--- is the angle between $v_{n + 1}$ and $u_n$.
-            Let $V_1$ be equal to one.
-            We choose the $v^*_1$ vector such that $\inner{v_1}{v^*_1} = -1$ and set all
-            the other $u^*_n$, $v^*_n$ to zero. That guarantees that the trace of the constructed operator (if it
-            will fall within the trace class) is equal to $-1$.\\
-            Within the construction we are going to set all the $V_n$ inductively. In order to do
-            that we are going to define an auxiliary sequence $M_n \in l^2$ such that for any $n$ greater than zero
-            $V_n \geq M_n$. On each step $n$ we are going to define $V_n$ and $M_{n+1}$.
-            
-            So let us start the construction with the setting $M_1 = 1$.\\
-            \textbf{Case 1:} $\mu_n = 1/|a_n| + 1/|b_n|$\\
-                Here we want to have $v_n$ orthogonal to $v_{n+1}$.
-                Set
-                \begin{align*}
-                    V_n &:= \max\left(M_n, \frac{1}{\sqrt{\smash[b]{|a_n|}}}\right),\\
-                    U_n &:= \left(\frac{1}{a_n^2 V_n^2} + \frac{1}{b_n^2 V_{n+1}^2}\right)^\frac{1}{2},\\
-                    M_{n+1} &:= \frac{1}{\sqrt{\smash[b]{|b_n|}}}.
-                \end{align*}
-                \begin{prop}
-                    The following inequalities are true:
-                    \begin{align*}
-                        M_{n+1} &\leq \sqrt{\mu_n},\\
-                        U_n &\leq \sqrt{\mu_n},\\
-                        V_n &\leq \max(\sqrt{\mu_n}, M_n).
-                    \end{align*}
-                    There exist such angles $\beta_n$, $\gamma_n$ that with the values $U_n$, $V_n$ defined like this the following is true:
-                    \begin{align*}
-                        \inner{u_n}{v_n} &= 1/a_n,\\
-                        \inner{u_n}{v_{n+1}} &= 1/b_n,\\
-                        \inner{v_n}{v_{n+1}} &= 0.
-                    \end{align*}
-                \end{prop}
-                \begin{proof}
-                    First part of the proposition is a simple exercise.\\
-                    Now we want to understand why there exist such $\beta_n$ and $\gamma_n$ that all the scalar products of
-                    $v_n$, $v_{n+1}$, $u_n$ satisfy the conditions above.
-                    Now observe that the chosen $U_n$, $1/(|a_n| V_n)$ and $1/(|b_n| V_{n+1})$ 
-                    comprise a right triangle with $U_n$ as a hypotenuse.
-                    As a result there always be such $\beta_n$ and $\gamma_n$ that
-                    \begin{align*}
-                        |U_n \cos{\beta_n}| &= \frac{1}{|a_n|V_n},\\
-                        \left|U_n \cos{\gamma_n}\right| &= \left|U_n \sin{\beta_n}\right| = \frac{1}{|b_n|V_{n+1}}.
-                    \end{align*}
-                \end{proof}
-            \noindent\textbf{Case 2:} $\mu_n = (1 + |a_n|)/|c_n|$\\
-                Here we will have $u_n$ orthogonal to $v_n$.
-                Assign:
-                \begin{align*}
-                    M_{n+1} &:= \max\biggl(\smash[b]{\frac{\sqrt{|a_n|}}{\sqrt{|c_n|}}}, \frac{1}{\sqrt{\smash[b]{|c_n|}}}\biggr),\\
-                    V_n &:= \max\left(M_n, \frac{2}{\sqrt{\smash[b]{|c_n|}}}\right),\\
-                    \alpha_n &:= \arccos{\frac{1}{c_n V_n V_{n+1}}},\\
-                    \gamma_n &:= \frac{\pi}{2} \pm \alpha_n,\\
-                    U_n &:= \frac{a_n}{c_n \cos{\gamma_n} V_{n+1}}.
-                \end{align*}
-                \begin{remark*}
-                    We choose plus or minus in the expression of $\gamma_n$ in order to make the $a_n/(c_n \cos{\gamma_n})$ always positive.
-                \end{remark*}
-                \begin{prop}
-                    The angle $\alpha_n$ is defined correctly and the following inequalities are true:
-                    \begin{align*}
-                        M_{n+1} &\leq \sqrt{\mu_n},\\
-                        V_n &\leq \max(2\sqrt{\mu_n}, M_n),\\
-                        U_n &\leq \sqrt{\mu_n}.
-                    \end{align*}
-                    With the values $U_n$, $V_n$, $\gamma_n$, $\alpha_n$ defined like this the following is true:
-                    \begin{align*}
-                        \inner{u_n}{v_n} &= 0,\\
-                        \inner{u_n}{v_{n+1}} &= a_n/c_n,\\
-                        \inner{v_n}{v_{n+1}} &= 1/c_n.
-                    \end{align*}
-                \end{prop}
-                \begin{proof}
-                    Firstly $\alpha_n$ is defined correctly, since
-                    $$
-                    V_n V_{n+1} \geq V_n M_{n+1} \geq \frac{2}{\sqrt{\smash[b]{|c_n|}}} \frac{1}{\sqrt{\smash[b]{|c_n|}}}
-                     = \frac{2}{|c_n|}
-                    $$
-                    which means that the absolute value of the arccosinus argument is always less than $1/2$. Now taking into
-                    account that $|\cos{\alpha_n}|$ is less than or equal to $1/2$, we have that $|\cos{\gamma_n}| = |\sin{\alpha_n}|$ is always greater than $1/2$. It is the fact which will use later on in this proof.
-                    
-                    Trivially $M_{n+1} \leq \sqrt{\mu_n}$ and $V_n \leq \max(2\sqrt{\mu_n}, M_n)$. Next
-                    $$
-                        U_n = |U_n| \leq 2 \frac{|a_n|}{|c_n|} \frac{1}{V_{n+1}} \leq 2 \frac{\sqrt{|a_n|}}{\sqrt{|c_n|}} \leq \sqrt{\mu_n}.
-                    $$
-                    It is easy to notice that the angles and $U_n$ are chosen in such way that the scalar product conditions are 
-                    satisfied.
-                    Finally, we are able to lay out the vectors $v_n$, $u_n$ and $v_{n+1}$ with the prescribed angles 
-                    since we have $\beta_n = \pi/2 = (\pi/2 \pm \alpha_n) \mp \alpha_n = \gamma_n \mp \alpha_n$,
-                    where we choose the '$\mp$' sign accordingly to our choice in the expression of the $\gamma_n$ angle.
-                \end{proof}
-            \noindent\textbf{Case 3:} $\mu_n = (1 + |b_n|)/|d_n|$\\
-                This case is almost identical to the previous one.\\
-                Here we will have $u_n$ orthogonal to $v_{n+1}$.
-                Assign:
-                \begin{align*}
-                    M_{n+1} &:= \max\biggl(\smash[t]{\frac{\sqrt{|b_n|}}{\sqrt{|d_n|}}}, \frac{1}{\sqrt{\smash[b]{|d_n|}}}\biggr),\\
-                    V_n &:= \max\left(M_n, \frac{2}{\sqrt{\smash[b]{|d_n|}}}\right),\\
-                    \alpha_n &:= \arccos{\frac{1}{-d_n V_n V_{n+1}}},\\
-                    \beta_n &:= \frac{\pi}{2} \pm \alpha_n,\\
-                    U_n &:= \frac{b_n}{d_n \cos{\beta_n} V_n}.
-                \end{align*}
-                \begin{remark*}
-                    We choose plus or minus in the expression of $\beta_n$ in order to make the $b_n/(d_n \cos{\beta_n})$ always positive.
-                \end{remark*}
-                \begin{prop}
-                    The angle $\alpha_n$ is defined correctly and the following inequalities are true:
-                    \begin{align*}
-                        M_{n+1} &\leq \sqrt{\mu_n},\\
-                        V_n &\leq \max(2\sqrt{\mu_n}, M_n),\\
-                        U_n &\leq \sqrt{\mu_n}.
-                    \end{align*}
-                    With the values $U_n$, $V_n$, $\beta_n$, $\alpha_n$ defined like this the following is true:
-                    \begin{align*}
-                        \inner{u_n}{v_n} &= b_n/d_n,\\
-                        \inner{u_n}{v_{n+1}} &= 0,\\
-                        \inner{v_n}{v_{n+1}} &= -1/d_n.
-                    \end{align*}
-                \end{prop}
-                \begin{proof}
-                    Firstly $\alpha_n$ is defined correctly, since
-                    $$
-                    V_n V_{n+1} \geq V_n M_{n+1} \geq \frac{2}{\sqrt{\smash[b]{|d_n|}}} \frac{1}{\sqrt{\smash[b]{|d_n|}}}
-                     = \frac{2}{|d_n|}
-                    $$
-                    which means that the absolute value of the arccosinus argument is always less than $1/2$. Now taking into
-                    account that $|\cos{\alpha_n}|$ is less than or equal to $1/2$, we always have $|\cos{\beta_n}| > 1/2$.
-                    
-                    Trivially $M_{n+1} \leq \sqrt{\mu_n}$ and $V_n \leq \max(2\sqrt{\mu_n}, M_n)$. Next
-                    $$
-                        U_n = |U_n| \leq 2 \frac{|b_n|}{|d_n|} \frac{1}{V_n} \leq 2 \frac{\sqrt{|b_n|}}{\sqrt{|d_n|}} \leq \sqrt{\mu_n}.
-                    $$
-                    It is easy to notice that the angles and $U_n$ are chosen in such way that the scalar product conditions are 
-                    satisfied.
-                    Finally, we are able to lay out the vectors $v_n$, $u_n$ and $v_{n+1}$ with the prescribed angles 
-                    since we have $\gamma_n = \pi/2 = (\pi/2 \pm \alpha_n) \mp \alpha_n = \beta_n \mp \alpha_n$,
-                    where we choose the '$\mp$' sign accordingly to our choice in the expression of the $\beta_n$ angle.
-                \end{proof}
-            In each of three cases we guaranteed that $M_{n+1} \leq \sqrt{\mu_n}$ and
-            that $V_n \leq \max(M_n, 2\sqrt{\mu_n})$. Hence we get that $V_n$ is bounded up to some constant by the $\max(\sqrt{\mu_{n-1}}, \sqrt{\mu_n})$. Due to all three propositions we also have an estimated bound for $U_n$: we always get
-            $U_n \leq \sqrt{\mu_n}$. Thus the constructed vector lenghs sequences $V_n$ and $U_n$ belong to $l^2$.\\
-            In the end let us choose such $v_1^*$ that $\inner{v_1}{v_1^*}$ is equal to $-1$.
-            It is possible since we earlier set $M_1 = 1$ which means that the vector $v_1$ is not trivial, because it has
-            a length greater than zero.
-            Additionally we set all the other $v^*_n$ and $u^*_n$ to zero in order to guarantee that for any $n > 1$ we have $\Xi_n$ equal to $1$. The trace of such operator is obviously equal to $-1$. The proposition is proven.
-        \end{proof}
         The proof of the theorem is finished with the proof of the statements~\ref{inf-dim-statement} and~\ref{k-dim-statement}.
-    \end{proof}
-    
-    
 \medskip
 % E-mail: aapyshkin@gmail.com
 \bigskip
@@ -865,7 +640,7 @@
     \emph{Algebras generated by mutually orthogonal idempotent operators}.
     J. Oper. Theory, 29 (1993), 2, 249--267.
     \bibitem{bbb} 
-    A. Baranov, Yu. Belov, A. Borichev,                                       
+    A. Baranov, Yu. Belov, A. Borichev,
     \emph{Hereditary completeness for systems of exponentials and reproducing kernels},
     Adv. Math., 235 (2013), 1, 525--554.
     \bibitem{bbb1}
