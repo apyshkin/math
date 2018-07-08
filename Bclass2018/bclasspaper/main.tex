@@ -57,16 +57,15 @@
 \newlength{\widecommentlength}
 \setlength{\widecommentlength}{5in}
 % \newcommand{\widecommentbox}[2]{\def#1##1{\strut\newline\noindent\colorbox{#2}{\linespread{1}\parbox{.95\textwidth}{\small ##1}}\newline}}
-% \usepackage{pgfplots}
+\usepackage{pgfplots}
 \newcommand{\widecommentbox}[3]{\def#1##1{\strut\newline\noindent\colorbox{#3}{\linespread{1}\parbox{.95\textwidth}{\small {\bf [#2]} ##1}}\newline}}
 \def\commentsep{\noindent\dotfill}
-\newcommand\inner[2]{\langle #1, #2 \rangle}
 
 % To temporarily omit all comments, enable these two lines:
 % \renewcommand{\widecommentbox}[3]{\def#1##1{}}
 % \let\commentsep\relax
 
-\widecommentbox{\alex}{Alex}{green!20!white}
+\widecommentbox{\alex}{AP}{green!20!white}
 \widecommentbox{\ad}{AD}{red!20!white}
 
 \usepackage{enumitem}
@@ -92,6 +91,8 @@
 \renewcommand{\leq}{\leqslant}
 \renewcommand{\geq}{\geqslant}
 \renewcommand{\phi}{\varphi}
+\newcommand\inner[2]{\langle #1, #2 \rangle}
+\newcommand{\gfi}{\varphi_{G}}
 \newtheorem{theorem}{Theorem}
 \newtheorem{prop}{Proposition}
 \newtheorem{prop_under_lemma}{Утверждение}
@@ -110,18 +111,26 @@
 \newcommand{\fstarsys}{\mathfrak{F^{*}}}
 \newcommand{\wt}{\mathrm{w}}
 \newcommand{\wtp}{\mathrm{w}^{+}}
+\newcommand{\depth}{\operatorname{depth}}
 \newcommand{\flow}{\mathcal{F}}
 \newcommand{\flowpos}{\mathcal{F}^{+}}
 \newcommand{\preflow}{\mathcal{F}^{pre}}
 \newcommand{\flowposn}[1]{\mathcal{F}_{#1}^{+}}
+\newcommand{\flown}{\mathcal{F}_{n}}
 \newcommand{\flowsgn}{\flow}
 \newcommand{\source}{\mathit{source}}
 \newcommand{\sink}{\mathit{sink}}
-\renewcommand{\root}{\mathit{root}}
+\newcommand{\init}{init}
+\newcommand{\ter}{ter}
+\newcommand{\ein}{in}
+\newcommand{\eout}{out}
+\newcommand{\eback}{E^{back}}
+\newcommand{\efor}{E^{for}}
+\renewcommand{\root}{\mathbf{r}}
 \newcommand{\scal}[2]{\langle {#1}, {#2} \rangle}
 \newcommand{\net}{\Delta}
 \newcommand{\onet}{\vec{\Delta}}
-
+\newcommand{\gpaths}{\cal{P}_{G}}
 \numberwithin{remark}{section}
 \numberwithin{theorem}{section}
 \numberwithin{prop}{section}
@@ -184,7 +193,7 @@
         For such two vertices we have $\inner{f_l}{e_r}$ = $-\inner{f_r}{e_l}$.
         Denote by $\wt_{lr}$ the expression $\wt_{lr} = \inner{f_l}{e_r}^{-1}$.
         Obviously $\wt_{lr} = -\wt_{rl}$.
-        //todo inverse
+        \alex{todo inverse}
     \end{proof}
     We are going to find the necessary and sufficient condition for the $k$-completeness property for the B-class vector system.
     In order to pursue that we need to investigate the conditions, under which the B-class system admits a linear summation method.
@@ -239,14 +248,24 @@
         The function $\flow$ will be called a \emph{pseudo-flow}.
     \end{definition}
     \begin{definition}
+      Let $G = (V, \vec{E})$ be an oriented graph.
+      For each vertex $v \in V$ we take $\ein(v)$ as the set of incoming edges
+      and $\eout(v)$ as the set of outgoing edges in the graph $G$.
+      For each edge $e=(uv) \in \vec{E}$ we are going to denote by $\init(e)$ the starting vertex
+      $u$ and by $\ter(e)$ the ending vertex $v$.
+      For the set of edges $E_0$ similarly we denote
+      \[
+        \init(E_0) = \{\init(e) \mid e\in E_0\},\\
+        \ter(E_0) = \{\ter(e) \mid e\in E_0\}.
+      \]
+    \end{definition}
+    \begin{definition}
       Let $\net = (G, \wtp, s, t)$ be a network, and $\flow$ be a pseudo-flow function.
-      For each vertex $v \in V$ we take $IN(v)$ as the set of incoming edges
-      and $OUT(v)$ as the set of outgoing edges in the graph $G$.
       Also denote by $d_{+}(v)$ the sum of the flows \emph{leaving} the node $v$ and by
       $d_{-}(v)$ the sum of the flows \emph{entering} $v$:
       \begin{align*}
-          d_{+}(v) = \sum_{u \in OUT(v)} \flow(vu),\\
-          d_{-}(v) = \sum_{u \in IN(v)} \flow(uv).
+          d_{+}(v) = \sum_{u \in \eout(v)} \flow(vu),\\
+          d_{-}(v) = \sum_{u \in \ein(v)} \flow(uv).
       \end{align*}
       Also let $d(v)$ be equal to $d_{+}(v) - d_{-}(v)$. Sometimes we will refer to this value as
       a \emph{total flow} of the vertex $v$.
@@ -503,7 +522,7 @@
         which is now \emph{active} since its total flow $d(\source)$ equal to one.
         %the existence of the ray with a finite total weight
         %in the transformed network is equivalent to the existence of such ray in the original network.
-      //todo
+      \alex{todo}
       \noindent\textit{Sufficiency}
       Suppose that there is a ray of a finite total weight. 
       In that case we set the resulting flow function $\flowpos(v_k v_{k+1})$ to one, creating an elusive flow
@@ -570,7 +589,7 @@
         \preflow(e) = \lim_{n\to \infty}\flowposn{n}(e)
       \]
         for each edge $e \in \vec{E}$.
-      Such limit exists since the $\flowposn$ function is decreasing and bounded below.
+      Such limit exists since the $\flowposn{n}$ function is decreasing and bounded below.
       \begin{prop}
         The preflow $\preflow$ is a flow.
         Also $d_{\preflow}(\root) = d_{\flowpos}(\root)$.
@@ -597,22 +616,133 @@
           each edge $e \in C$.
         Obviously there exists such $n$ that the cycle $C$ lies within the graph $G_n$.
         Since on each step $k$ the flow $\flowposn{k}$ decreases, at the step $n$
-          the cycle $C$ was a positive flow cycle as well: $\flowposn_{n}(e) > 0$ for each edge $e \in C$.
+          the cycle $C$ was a positive flow cycle as well: $\flowposn{n}(e) > 0$ for each edge $e \in C$.
         But at the end of the step $n$ due to our assumption there could be no positive flow cycles in $G_n$.
         That is the contradiction~--- there could be no such positive flow cycles $C$ in the network $\onet$.
       \end{proof}
-      Suppose we had such flow in the first place~--- $\flowpos$ contains no positive flow cycles.
+      Suppose we had such flow in the first place, that is $\flowpos$ contains no positive flow cycles.
       Also we prune the edges of the network $\onet$ for which the flow $\flowpos$ is zero.
       Now we are going to have the following
       \begin{definition}
-        The graph $\vec{G} = (V,\vec{E},\wtpos, \root)$ be a weighted directed graph with a positive
-          weight function $\wtpos$ defined on $\vec{E}$ and a root vertex $\root \in V$.
-          Then let the function $\phi_{\vec{G}}: V \to \mathbb{R}^{+}$
-
+        The graph $G = (V, \vec{E},\wtp, \root)$ is a weighted directed graph with a positive
+          weight function $\wtp$ defined on $\vec{E}$ and a root vertex $\root \in V$.
+        Let $\gpaths(u, v)$ be a set of paths from vertex $u$ to vertex $v$ in the graph $G$.
+        Sometimes we will omit the first argument and then we refer to the paths from the root vertex
+          $\gpaths(v) := \gpaths(\root, v)$.
+        The function $\gfi: \gpaths \to \mathbb{R}^{+}$ is settled as follows:
+        \[
+          \gfi(p) := \sum_{e \in p} \wtp(e)
+        \]
+        for any path $w \in \gpaths(\operatorname{\operatorname{end}(p)})$, where $\operatorname{end}(p)$ is the last vertex in the path.
+        Also we extend this function to take values on the set of the vertices $\gfi: V \to \mathbb{R}^{+}$ in this fashion:
+        \[
+          \gfi(v) := \inf_{p \in \gpaths(v)} \gfi(p).
+        \]
       \end{definition}
-      %Firstly we assume that all the edges carry a non-zero flow.
-      %Otherwise we are able to consider a subnetwork without all zero-flow-edges and prove the implication for the
-        %subnetwork.
+      \begin{remark}
+        The introduced function $\gfi$ is in essence the distance function on the vertex set $V$.
+        Let $\depth: V \to \mathbb{N}$ be a \emph{depth} function,--- defined at the vertex $v$ as the length of the shortest path connecting the root vertex with
+          $v$.
+        Our ambition in the following paragraphs is virtually to provide an estimate on the values of this function on the vertices
+          located ''far'' from the root vertex $\root$, meaning for which the $\depth$ function is ''big''. \alex{todo reformulate}
+      \end{remark}
+      Here we are about to put up the main construction of the proof.
+      But before that we scale our flow function: suppose the total outgoing flow of the root vertex $\root$ is strictly greater than one:
+        $d_{\onet}(\root) > 1$.
+      In a few moments it will become apparent why we did so.
+      We are going to define the finite subgraphs $G_n = (V_n, \vec{E}_n)$ of the network $\onet$ such that
+        $G_{n} = G_{n-1} \cup L_n$ where $L_n$ is a set of vertices and edges from $\onet$ which we also name by
+        the \emph{$n$-th layer} of the network $\onet$.
+      \begin{note}
+        Essentially we will be performing a breadth-first-search in the infinite graph $G$, so the $L_n$ is
+          almost all the vertices located not deeper than $n$: $\depth(v) \leq n$ for each $v \in L_n$.
+        The word ''almost'' is here because we ought to deal with the possibly infinite degree of the root vertex.
+        Otherwise for $n > 1$ the $L_n$ will be all the outgoing edges and their ends of $L_{n-1}$, $L_{n+1}$ will be
+          all the outgoing edges and their ends of $L_n$ and so on.
+        \alex{here we need a picture}
+      \end{note}
+      Besides we are going to establish a sequence of the positive preflow functions $\flowposn{n}: \vec{E}_n \to \mathbb{R}^{+}$,
+        pertaining the following properties:
+        \begin{enumerate}[label=\textbf{P\arabic*}]
+          \item \label{p1} $\flowposn{n}$ is increasing: one has $\flowposn{n+1}(e) \geq \flowposn{n}(e)$ for each $e \in \vec{E}_n, n > 0$,
+          \item \label{p2} $\flowposn{n}$ is dominated by $\flowpos$: one has $\flowposn{n}(e) \leq \flowpos(e)$ for each $e \in \vec{E}_n, n> 0$,
+          \item \label{p3} the total flow of $\flowposn{n}$ is equal to one at the root vertex $\root$: $d_{G_n} = 1$,
+          \item \label{p4} the total flow of $\flowposn{n}$ is equal to zero at any non-root vertex $v \in G_{n-1}\setminus \root$: $d_{G_n}(v) = 0$ for any $n > 1$,
+          \item \label{p5} the total flow of $\flowposn{n}$ at the vertices of the $n$-th layer $L_n$ is strictly negative: $d_{G_n} \leq 0$.
+        \end{enumerate}
+      Let $G_0$ be the trivial subgraph containing from the root vertex only.
+      In the first step we are to build the \emph{finite} graph $G_1$.
+      We choose such set of the edges $E_1 \subset \eout(\root)$ that the total flow on this set is equal to one:
+      \[
+        \sum_{e \in E_1} \flowpos(e) = 1.
+      \]
+      It is possible since we earlier requested a $\flowpos$ function such that its total outgoing flow in the root vertex
+        $\root$ is strictly greater than one: $d^{+}_{G} > 1$.
+
+      Then we define the \emph{first layer} $L_1$ as
+      \[
+        L_1 = E_1 \cup \ter(E_1).
+      \]
+      Along with the graph $G_1 = G_0 \cup L_1$ we appoint the preflow function $\flowposn{1}: E_1 \to \mathbb{R}^{+}$ in a trivial way:
+      \[
+        \flowposn{1}(e) = \flowpos(e).
+      \]
+      \begin{prop}
+        The preflow $\flowposn{1}$ satisfies all of the declared properties from~\ref{p1}--\ref{p5}.
+      \end{prop}
+      \begin{proof}
+        The only check we intend to clarify here is the check of the property~\ref{p5}.
+
+        Importantly, we included the ends of the $E_1$ edges without any additional edges.
+        So each vertex in $L_1$ has only incoming edges which makes their total flow strictly negative (recall that we removed all zero-flow edges).
+      \end{proof}
+      \begin{note}
+        We dealt with the generally infinite degree of the root vertex by abandoning some of the chilren of the root.
+        We need $G_n$ to be finite since this way we could analyze the $\gfi$ function on them without trouble.
+      \end{note}
+      For each further step $n > 1$ the construction will be the same.
+      Suppose that $G_{n-1}$, $L_{n-1}$ and the preflow function $\flowposn{n-1}$ are already established.
+      Let us enlarge upon the outgoing edges of the vertex $v \in L_{n-1}$.
+      Some of them might lead to some new vertices which do not belong to $G_{n-1}$.
+      Such edges we will denominate by $\efor_n$:
+      \[
+        \efor_n = \Big\{ e = (uv) \mid u \in L_{n-1} \text{ and } v \notin G_{n-1}\Big\}.
+      \]
+      Others might lead to the already visited vertices of $G$, namely the ones residing in the graph $G_{n-1}$.
+      Such edges we will address as the \emph{back} edges of $L_{n-1}$ and denominate them by $\eback_n$:
+      \[
+        \eback_n = \Big\{e = (us) \mid u \in L_{n-1} \text{ and } s \in G_{n-1}\Big\}.
+      \]
+      \begin{remark}
+        Pay your attention that a \emph{back} edge could never lead to the root vertex since that
+          would yield an existence of a positive flow cycle for the flow function $\flowpos$,
+          which is impossible.
+      \end{remark}
+      Then we will have $L_n$ as the set of outgoing edges and their ends of the vertices in $L_{n-1}$, leading to the new vertices of $G$:
+      \[
+        L_n := \efor_n \cup \ter(\efor_n).
+      \]
+      Accordingly, we prescribe the graph $G_n$ as $G_n := G_{n-1} \cup L_n \cup \eback_n$.
+      
+      \noindent\textbf{Setting a preflow function.}\\
+      \noindent Here we split the procedure in two steps.
+      Take the preflow function $\cal{G}: E_n \to \mathbb{R}^{+}$ initially equal to $\flowposn{n-1}$:
+      \[
+        \cal{G}(e) = \flowposn{n-1} \quad \forall e \in E_{n-1},
+      \]
+      and zero otherwise.
+      We are going to change it gradually in order to satisfy all the properties from~\ref{p1} to~\ref{p5}.
+      
+      At the first step we will propagate the flow, incoming to the $n-1$ layer, one edge further.
+      Namely, consider the vertex $u \in L_{n-1}$. Since $d^{\cal{G}}_{-}(u) \leq d^{\flowpos}_{-}(u)$ (incoming flow
+        in
+      for the edge $e \in \eout(L_{n-1})$ we set the preflow function $\flowposn{n}$ in such a way that:
+      \[
+        \flowposn{n}(e) := \flowpos(e) \quad \forall e \in \eout(L_{n-1}).
+      \]
+      \alex{here we so very need a picture}
+
+      
     \end{proof}
     \subsection{Application of the B-class networks characterisation}
     %----------------------------------------------------------------------------------------
