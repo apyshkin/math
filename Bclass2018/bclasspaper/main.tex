@@ -429,12 +429,11 @@
     \end{definition}
     \begin{theorem}
       \label{thm-graph-eq}
-        Let $\net(\fsys) = (B(\fsys, \wtp, s, t)$ be a B-class network constructed
+        Let $\net(\fsys) = B(\fsys, \wtp, s, t)$ be a B-class network constructed
           from the B-class system $\fsys = \seq{f}$.
-        Then $\fsys$ admits a linear summation method if and only if for any 
-          flow function $\flow$ defined on $\net(\fsys)$ such that
-          the mass of the flow $\flow$ is finite,
-          the network $\net$ \emph{preserves} the flow $\flow$.
+        Then $\fsys$ admits a linear summation method if and only if
+          the network $\net(\fsys)$ is $\flow$-preserving for any
+          finite-mass flow $\flow$.
     \end{theorem}
     \begin{proof}
       First we briefly repeat the sufficiency proof we studied earlier.
@@ -470,13 +469,13 @@
       Now consider two connected vertices $v_l$, $v_r$ from the left and right part
       respectively. Assign
       $$
-        T_{lr} := \flowsgn(v_l, v_r) * \wtp(v_l, v_r).
+        T_{lr} := \flowsgn(v_l, v_r) \wtp(v_l, v_r).
       $$
       Let all the other matrix elements of the operator matrix $T_{ij}$ be zero.
       Then observe that we got a finite-band operator matrix $T_{ij}$ with the sum of diagonal elements
       equal to one.
-      Due to the finite mass of the flow $\flow$ the $T_{ij}$ is an absolute summable sequence, since the
-        $l^1$-norm of $T_{ij}$ is precisely the mass of $\flow$.
+      Since the mass of the flow $\flow$ is finite, the $T_{ij}$ is an absolute summable sequence, considering that
+        the $l^1$-norm of $T_{ij}$ is exactly the mass of $\flow$.
       Then the operator $T$ we obtained is compact.
       It acquires a finite non-zero trace, since $Tr(T) = d(\sink) + d(\source)$ which is not zero
         by the assumption we made.
