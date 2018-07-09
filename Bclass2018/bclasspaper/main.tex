@@ -132,6 +132,7 @@
 \newcommand{\net}{\Delta}
 \newcommand{\onet}{\vec{\Delta}}
 \newcommand{\gpaths}{\cal{P}_{G}}
+\newcommand{\gnpaths}{\cal{P}_{G_n}}
 \numberwithin{remark}{section}
 \numberwithin{theorem}{section}
 \numberwithin{prop}{section}
@@ -275,8 +276,8 @@
       Also denote by $d_{+}(v)$ the sum of the flows \emph{leaving} the node $v$ and by
       $d^{-}(v)$ the sum of the flows \emph{entering} $v$:
       \begin{align*}
-          d^{+}(v) = \sum_{u \in \eout(v)} \flow(vu),\\
-          d^{-}(v) = \sum_{u \in \ein(v)} \flow(uv).
+        d^{+}_{\flow}(v) = d^{+}(v) := \sum_{u \in \eout(v)} \flow(vu),\\
+        d^{-}_{\flow}(v) = d^{-}(v) := \sum_{u \in \ein(v)} \flow(uv).
       \end{align*}
       Also let $d(v)$ be equal to $d^{+}(v) - d^{-}(v)$. Sometimes we will refer to this value as
       a \emph{total flow} of the vertex $v$.
@@ -640,6 +641,8 @@
         Let $\gpaths(u, v)$ be a set of paths from vertex $u$ to vertex $v$ in the graph $G$.
         Sometimes we will omit the first argument and then we refer to the paths from the root vertex
           $\gpaths(v) := \gpaths(\root, v)$.
+        Also we could expand the function onto the vertices sets: $\gpaths(U,V)$ is a set of paths
+          from the set of vertices $U$ to the set of vertices $V$ in the graph $G$.
         The function $\gfi: \gpaths \to \mathbb{R}^{+}$ is settled as follows:
         \[
           \gfi(p) := \sum_{e \in p} \wtp(e)
@@ -647,7 +650,7 @@
         for any path $w \in \gpaths(\operatorname{\operatorname{end}(p)})$, where $\operatorname{end}(p)$ is the last vertex in the path.
         Also we extend this function to take values on the set of the vertices $\gfi: V \to \mathbb{R}^{+}$ in this fashion:
         \[
-          \gfi(v) := \inf_{p \in \gpaths(v)} \gfi(p).
+        \gfi(v) := \smashoperator{\inf_{p \in \gpaths(v)}} \gfi(p).
         \]
       \end{definition}
       \begin{remark}
@@ -658,8 +661,8 @@
           located ''far'' from the root vertex $\root$, meaning for which the $\depth$ function is ''big''. \alex{todo reformulate}
       \end{remark}
       Here we are about to put up the main construction of the proof.
-      But before that we scale our flow function: suppose the total outgoing flow of the root vertex $\root$ is strictly greater than one:
-        $d_{\onet}(\root) > 1$.
+      But before that we scale our flow function $\flowpos$: suppose the total outgoing flow of the root vertex $\root$ is strictly greater than one:
+        $d_{\flowpos}(\root) > 1$.
       In a few moments it will become apparent why we did so.
       We are going to define the finite subgraphs $G_n = (V_n, \vec{E}_n)$ of the network $\onet$ such that
         $G_{n} = G_{n-1} \cup L_n$ where $L_n$ is a set of vertices and edges from $\onet$ which we also name by
@@ -677,9 +680,9 @@
         \begin{enumerate}[label=\textbf{P\arabic*}]
           \item \label{p1} $\flowposn{n}$ is increasing: one has $\flowposn{n+1}(e) \geq \flowposn{n}(e)$ for each $e \in \vec{E}_n, n > 0$,
           \item \label{p2} $\flowposn{n}$ is dominated by $\flowpos$: one has $\flowposn{n}(e) \leq \flowpos(e)$ for each $e \in \vec{E}_n, n> 0$,
-          \item \label{p3} the total flow of $\flowposn{n}$ is equal to one at the root vertex $\root$: $d_{G_n} = 1$,
-          \item \label{p4} the total flow of $\flowposn{n}$ is equal to zero at any non-root vertex $v \in G_{n-1}\setminus \root$: $d_{G_n}(v) = 0$ for any $n > 1$,
-          \item \label{p5} the total flow of $\flowposn{n}$ of the vertex $v \in L_n$ : $d_{G_n}(v) = -d^{-}_{G_n}(v) < 0$.
+          \item \label{p3} the total flow of $\flowposn{n}$ is equal to one at the root vertex: $d_{\flowposn{n}}(\root) = 1$,
+          \item \label{p4} the total flow of $\flowposn{n}$ is equal to zero at any non-root vertex $v \in G_{n-1}\setminus \root$: $d_{\flowposn{n}}(v) = 0$ for any $n > 1$,
+          \item \label{p5} the total flow of $\flowposn{n}$ of the vertex $v \in L_n$ is negative: $d_{\flowposn{n}}(v) = -d^{-}_{\flowposn{n}}(v) < 0$.
         \end{enumerate}
       Let $G_0$ be the trivial subgraph containing from the root vertex only.
       In the first step we are to build the \emph{finite} graph $G_1$.
@@ -750,14 +753,12 @@
       At the first step our desire is to expand this property onto the $L_{n-1}$.
       In order to do such expansion we will propagate the flow $\cal{G}$, incoming to the $n-1$ layer, one edge further.
       Namely, consider the vertex $u \in L_{n-1}$.
-      Since $d^{\cal{G}}_{-}(u) \leq d^{\flowpos}_{-}(u)$ (incoming flow $\cal{G}$ is bounded above by the original flow $\flowpos$),
+      Since $d_{\cal{G}}^{-}(u) \leq d_{\flowpos}^{-}(u)$ (incoming flow $\cal{G}$ is bounded above by the original flow $\flowpos$),
         we are able to set the flow $\cal{G}$ on the outgoing edges of $u$ in such a way that:
-      \begin{enumerate}
+      \begin{enumerate}[label=\textbf{(\roman*)}]
         \item\label{posprop} each outgoing edge has a positive flow: $\cal{G}(e) > 0$ for any $e \in \eout(u)$,
         \item the $\cal{G}$ is still bounded from above: 
-        \[
-          \cal{G}(e) \leq \flowpos(e) \quad \forall e \in \eout(u),
-        \]
+          $\cal{G}(e) \leq \flowpos(e) \quad \forall e \in \eout(u)$,
         \item the vertex $u$ becomes $\cal{G}$-preserving (meaning that $d^{\cal{G}}(u) = 0$).
       \end{enumerate}
       \begin{note}
@@ -775,7 +776,7 @@
         vertices.
 
       Consider a $\cal{G}$-active vertex $s \in \ter(\eback_n)$ such that $d_{\cal{G}}^{-}(s) > d_{\cal{G}}^{+}(s)$.
-      Let there exist such path $p \in \gpaths(s, L_n)$, connecting the vertex $s$ and the $n$-th layer, that
+      Let there exist such path $p \in \gnpaths(s, L_n)$, connecting the vertex $s$ and the $n$-th layer, that
         the preflow $\cal{G}$ could be increased along this path by some constant
         $\delta \leq d_{\cal{G}}^{-}(s) - d_{\cal{G}}^{+}(s) = -d_{\cal{G}}(s)$.
       \begin{definition}
@@ -786,7 +787,10 @@
       \begin{definition}
         The edge $e$ is called a \emph{$\cal{G}$-saturated} edge if $\cal{G}(e) = \flowpos(e)$.
       \end{definition}
-      For each path $p \in \gpaths(s, L_n)$ we raise the preflow $\cal{G}$ at every edge of the path $p$
+      \begin{definition}
+        The path $p$ is called \emph{$\cal{G}$-saturated} if there exists such an edge $e \in p$ that $e$ is $\cal{G}$-saturated.
+      \end{definition}
+      For each path $p \in \gnpaths(s, L_n)$ we raise the preflow $\cal{G}$ at every edge of the path $p$
       by $\delta > 0$.
       The described procedure we call as \emph{$\cal{G}$-relaxation} of the vertex $s$, strictly speaking, the \emph{$\cal{G}$-relaxation}
         of the vertex $s$ means reduction of the preflow $\cal{G}$ excess in the vertex $s$.
@@ -795,31 +799,28 @@
         will be enough to make the vertex $s$ preserving the preflow $\cal{G}$.
       On the other hand if $\delta_{max} < -d_{\cal{G}}(s)$ then pushing the flow of the size $\delta_{max}$ along the path $p$ is not enough
         in order to make the vertex $\cal{G}$-preserving.
-      In this case we push the flow $\delta$ along the path $p$ and look for the other augmenting in $\gpaths(s, L_n)$.
+      In this case we push the flow $\delta$ along the path $p$ and look for the other augmenting paths in $\gnpaths(s, L_n)$.
       We will repeat the outlined procedure until we finally relax the vertex $s$.
       \begin{prop}
         The vertex $s$ will be $\cal{G}$-relaxed in a finite number of steps.
       \end{prop}
       \begin{proof}
-        Firstly, we have a finite graph $G_{n}$ so there are only a finite number of paths in the $\gpaths(s, L_n)$.
+        Firstly, we have a finite graph $G_{n}$, and so there are only a finite number of paths in the $\gnpaths(s, L_n)$.
         Secondly, each time we push the flow along the augmenting path $p$ either we successfully relax the vertex $s$
           or we saturate at least one edge, lying on the chosen path $p$.
-        Since the number of the edges is finite this must stop after some number of steps.
+        Since the number of the edges is finite the procedure halts exhausts all the edges after a finite number of steps.
 
-        Suppose that at this time the vertex $s$ is not $\cal{G}$-relaxed.
-        Examine the set of vertices in the graph $G_n$ which are reachable by non-saturated paths from the vertex $s$
-        (non-saturated path here is the path on which there is no $\cal{G}$-saturated edge).
-        Entitle this set $V_s$.
+        Suppose that the vertex $s$ is not yet $\cal{G}$-relaxed.
+        Examine the set of vertices $V_s \subseteq G_n$ which are reachable by non-saturated paths from the vertex $s$
         Obviously $V_s \cap L_n = \emptyset$.
         Now observe the subgraph $U \subseteq G_n$:
         \[
-          U := \bigcup \left\{p \in \gpaths(s, V_s) \mid \text{$p$ is not $\cal{G}$-saturated})\right\},
+          U := \bigcup \left\{p \in \gnpaths(s, V_s) \mid \text{$p$ is not $\cal{G}$-saturated})\right\},
         \]
-        where $p$ is a non-saturated path from $s$ to $V_s$.
         Such subgraph has no outgoing non-saturated edges in the graph $G_n$.
         It also does not have outgoing non-saturated edges in the whole graph $G$ since all the outgoing edges it had in $G$
-          ought to have been included into the graph $G_n$.
-        Having a vertex $u \in V_u$ we certainly have that $d_{\cal{G}}(u) = d^{+}_{\cal{G}}(u) - d^{-}_{\cal{G}}(u) \leq 0$ because
+          ought to have been appended to the graph $G_n$.
+        Having a vertex $u \in V_s$ we certainly have that $d_{\cal{G}}(u) = d^{+}_{\cal{G}}(u) - d^{-}_{\cal{G}}(u) \leq 0$ because
           the only $\cal{G}$-deficient vertex in the graph $G_n$ is the root vertex $\root$ which is not in $U$ (we removed all positive-flow
           cycles).
         Also for the vertex $s$ itself we have a strict inequality $d_{\cal{G}}(s) < 0$.
@@ -837,9 +838,9 @@
         So we deduced that $0 > D \geq 0$, and that is a contradiction.
       \end{proof}
       It follows that we could relax all the end vertices of the back edges in $\eback_n$.
-      Suppose we got an updated preflow function $\cal{G}$ on the network $\net_N = (G_n, \wt, \root)$.
+      We study the evolved preflow function $\cal{G}$ we got after all the relaxations.
       \begin{prop}
-        The properties~\ref{p1}--\ref{p5} are satisfied.
+        The properties~\ref{p1}--\ref{p5} are satisfied for the resulting preflow function $\cal{G}$ on the network $\onet_N = (G_n, \wt, \root)$.
       \end{prop}
       \begin{proof}
         The monotonicity property~\ref{p1} is true since during the relaxation step $n$ we
@@ -848,7 +849,7 @@
         The boundness property~\ref{p2} is also true since we chose the flow values in such a way
           that the bound $\flowposn{n}(e) \leq \flowpos(e)$ holds for each edge $e\in G_n$.
 
-        The root vertex was could not be affected during the step $n > 1$, so~\ref{p3} holds.
+        The root vertex was not be affected during the step $n > 1$, so~\ref{p3} holds.
 
         The flow $\cal{G}$ was redesigned in such fashion that each non-root vertex $v \in G_{n} \setminus 
           \left(L_n \cup \{\root\}\right)$ became $\cal{G}$-preserving.
@@ -862,7 +863,7 @@
       \begin{lemma}
         For each $G_n$ where $n > 1$ the following inequality remains true:
         \[
-          \sum_{v\in L_n}(d_{G_n}^{-}(v) \phi_{G_n}(v) \leq \sum_{e \in E_n} \wt(e) \flowpos(e).
+          \sum_{v\in L_n}d_{G_n}^{-}(v) \phi_{G_n}(v) \leq \sum_{e \in E_n} \wt(e) \flowpos(e).
         \]
       \end{lemma}
       \begin{proof}
