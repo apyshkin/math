@@ -78,6 +78,7 @@
 \@addtoreset{prop}{section}
 \makeatother
 
+\theoremstyle{definition}
 %\newcommand{\sectionbreak}{\clearpage}
 \usepackage[square,numbers,sort&compress]{natbib}
 \usepackage{mathtools}
@@ -93,31 +94,28 @@
 \renewcommand{\geq}{\geqslant}
 \renewcommand{\phi}{\varphi}
 \newcommand\inner[2]{\langle #1, #2 \rangle}
-\newcommand{\gfi}{\varphi_{G}}
 \newtheorem{theorem}{Theorem}
 \newtheorem{prop}{Proposition}
-\newtheorem{prop_under_lemma}{Утверждение}
 \newtheorem{lemma}{Lemma}
-\theoremstyle{definition}
 \newtheorem{corol}{Corollary}
+\newtheorem{definition}{Definition}
+\theoremstyle{remark}
 \newtheorem{remark}{Remark}
 \newtheorem*{remark*}{Remark}
 \newtheorem*{note}{Note}
-\newtheorem{definition}{Definition}
-\newtheorem{example}{Пример}
 \newcommand\bigmatrixzero{\raisebox{-0.25\height}{\textnormal{\Huge 0}}}
 \newcommand\bigzero{\makebox(10, 10){\text{\Huge 0}}}
 \newcommand{\seq}[1]{\{{#1}_n\}_{n=1}^\infty}
 \newcommand{\fsys}{\mathfrak{F}}
 \newcommand{\fstarsys}{\mathfrak{F^{*}}}
-\newcommand{\wt}{\mathrm{w}}
-\newcommand{\wtp}{\mathrm{w}^{+}}
+\newcommand{\wt}{\mathrm{\hat{w}}}
+\newcommand{\wtp}{\mathrm{w}}
 \newcommand{\depth}{\operatorname{depth}}
-\newcommand{\flow}{\mathcal{F}}
-\newcommand{\flowpos}{\mathcal{F}^{+}}
-\newcommand{\preflow}{\mathcal{F}^{pre}}
-\newcommand{\flowposn}[1]{\mathcal{F}_{#1}^{+}}
-\newcommand{\flown}{\mathcal{F}_{n}}
+\newcommand{\flow}{\mathcal{\hat{F}}}
+\newcommand{\flowpos}{\mathcal{F}}
+\newcommand{\preflow}{\mathcal{\hat{F}}_{pre}}
+\newcommand{\flowposn}[1]{\mathcal{F}_{#1}}
+\newcommand{\flown}{\mathcal{\hat{F}}_{n}}
 \newcommand{\flowsgn}{\flow}
 \newcommand{\source}{\mathit{source}}
 \newcommand{\sink}{\mathit{sink}}
@@ -125,20 +123,22 @@
 \newcommand{\ter}{ter}
 \newcommand{\ein}{in}
 \newcommand{\eout}{out}
-\newcommand{\eback}{E^{back}}
-\newcommand{\efor}{E^{for}}
+\newcommand{\eback}{\mathbf{back}}
+\newcommand{\efor}{\mathbf{forward}}
 \renewcommand{\root}{\mathbf{r}}
 \newcommand{\scal}[2]{\langle {#1}, {#2} \rangle}
 \newcommand{\net}{\Delta}
 \newcommand{\onet}{\vec{\Delta}}
 \newcommand{\gpaths}{\cal{P}_{G}}
-\newcommand{\gnpaths}{\cal{P}_{G_n}}
+\newcommand{\gnpaths}{\cal{P}_n}
+\newcommand{\gstar}{G^{*}}
+\newcommand{\gfi}{\varphi_{G}}
+\newcommand{\phistar}{\phi_{*}}
 \numberwithin{remark}{section}
 \numberwithin{theorem}{section}
 \numberwithin{prop}{section}
 \numberwithin{equation}{section}
 \numberwithin{lemma}{section}
-\numberwithin{prop_under_lemma}{lemma}
 
 \begin{document}
 % \title{Методы суммирования ряда Фурье \\
@@ -152,6 +152,7 @@
 
 \section{B-class of vector systems}
   \subsection{From vector system to the countable network: linear summation problem}
+    \label{fsys2graphs}
     We are interested in the completeness properties of the minimal vector system $\fsys = \seq{f}$
       in a separable real [TODO complex] Hilbert space $\cal{H}$.
     Suppose that $\cal{H}$ has an orthonormal basis $\seq{e}$.
@@ -179,7 +180,7 @@
     B-class has an interesting property we are going to exploit later.
     \begin{prop}
         A vector system which belongs to the B-class could be associated with a
-        weighted bipartite graph $B(\{f_k\}) = (V, E, \wt)$, where $\wt$ is a
+        weighted bipartite graph $B(\fsys) = (V, E, \wt)$, where $\wt$ is a
         real-valued function on the $V\times V$ such that $\wt(v, u) = -\wt(u, v)$.
         Also the inverse is true: for each bipartite graph $(V, E, \wt)$ for which the weight function
         $\wt$ satisfies the conditions above there is a vector system from the B-class.
@@ -219,8 +220,8 @@
     Now consider a real function $\flowsgn(T): E \to \mathbb{R}$ 
     on the edges of the graph $B(\fsys)$.
     \begin{align*}
-        \flowsgn(v_l, v_r) := T_{lr} \inner{f_l}{e_r} = T_{lr} \wt_{lr}^{-1},\\
-        \flowsgn(v_r, v_l) := T_{lr} \inner{f^*_r}{e_l} = T_{lr} \wt_{rl}^{-1}.
+        &\flowsgn(v_l, v_r) := T_{lr} \inner{f_l}{e_r} = T_{lr} \wt_{lr}^{-1},\\
+        &\flowsgn(v_r, v_l) := T_{lr} \inner{f^*_r}{e_l} = T_{lr} \wt_{rl}^{-1}.
     \end{align*}
     Observe that $\flowsgn(T)$ is a skew-symmetric function.
     Moreover, two equalities~\eqref{left-eqn} and~\eqref{right-eqn} correspond to the \textit{left} and \textit{right}
@@ -276,8 +277,8 @@
       Also denote by $d_{+}(v)$ the sum of the flows \emph{leaving} the node $v$ and by
       $d^{-}(v)$ the sum of the flows \emph{entering} $v$:
       \begin{align*}
-        d^{+}_{\flow}(v) = d^{+}(v) := \sum_{u \in \eout(v)} \flow(vu),\\
-        d^{-}_{\flow}(v) = d^{-}(v) := \sum_{u \in \ein(v)} \flow(uv).
+        &d^{+}_{\flow}(v) = d^{+}(v) := \sum_{u \in \eout(v)} \flow(vu),\\
+        &d^{-}_{\flow}(v) = d^{-}(v) := \sum_{u \in \ein(v)} \flow(uv).
       \end{align*}
       Also let $d(v)$ be equal to $d^{+}(v) - d^{-}(v)$. Sometimes we will refer to this value as
       a \emph{total flow} of the vertex $v$.
@@ -324,8 +325,8 @@
     Also we set up the weight and the positive flow function $\flowpos: E \to \mathbb{R}^{+}$ so that
     for any edge $\vec{e} = (uv) \in \vec{E}$
     \begin{align*}
-      \flowpos(uv) = |\flow(u,v)|,\\
-      \wtp_{*}(uv) = \wtp(u,v).
+      &\flowpos(uv) = |\flow(u,v)|,\\
+      &\wtp_{*}(uv) = \wtp(u,v).
     \end{align*}
     \begin{definition}
       The oriented network $\onet$ is called an \emph{orientation} of the network $\net$.
@@ -496,20 +497,23 @@
     Remember some other notions from the graph theory:
     \begin{definition}
       Let $G$ be an oriented graph.
-      A sequence of vertices $\{v_k\}_{k=1}^N$ is called a \emph{cycle} if 
+      A sequence of vertices $\{v_k\}_{k=1}^N$ is called a \emph{path} (simple path) if each consequtive vertices
+        $v_k$ and $v_{k+1}$ are connected by an edge $\vec{e} = (v_k, v_{k+1})$ and no edges or vertices are repeated twice in the sequence.
     \end{definition}
     \begin{definition}
-      Let $G$ be a oriented graph.
-      A sequence of vertices $\{v_k\}_{k=1}^N$ is called a \emph{simple cycle} if 
+      Let $G$ be an oriented graph.
+      A sequence of vertices $\{v_k\}_{k=1}^N$ is called a \emph{cycle} (simple cycle) if it is
+        a path and there is an edge $\vec{e} = (v_N, v_1)$ connecting the last vertex to the first vertex of the sequence.
     \end{definition}
     \begin{definition}
       Let $G = (V, E)$ be an infinite (oriented) graph.
-      An infinite path $r = \seq(v)$ is called a \it{ray} iff
-      $r$ is a path, meaning there is an edge $e = (v_k v_{k+1})$ for each $k > 0$ in $G$.
+      An infinite path $r = \seq{v}$ is called a \textit{ray} iff
+      $r$ is a path, meaning that the edge $\vec{e} = (v_k, v_{k+1})$ for each $k > 0$ is present in the graph $G$.
     \end{definition}
 
     The main result of this section is a following
     \begin{theorem}
+      \label{ray-thm}
       Let $\onet = (\vec{G}, \wtp, s, t)$ be an oriented B-class network.
       Then there exist such a positive flow function $\flowpos: \vec{E} \to R^{+}$ that
       \begin{itemize}
@@ -517,7 +521,7 @@
         \item the network $\onet$ does not preserve the flow,
       \end{itemize}
         if and only if there exists a ray $r = \seq{v}$ ($=sv_2v_3\dots$)
-        in the network $\net$, which weight is bounded:
+        in the network $\onet$, which weight is bounded:
         $$
           \sum_{k=1}^\infty \wtp(v_k v_{k+1}) < \infty.
         $$
@@ -584,16 +588,16 @@
       After this procedure the positive flow cycle $C_1$ disappears,
         leaving us with a strictly lesser flow than we had before this step:
       \begin{align*}
-        \cal{E}_1(e) \leq \flowpos(e) \quad \forall e \in \vec{E}_{n+1},\\
-        \cal{E}_1(e) \leq \cal{E}_0(e) \quad \forall e \in \vec{E}_n.
+        &\cal{E}_1(e) \leq \flowpos(e) \quad \forall e \in \vec{E}_{n+1},\\
+        &\cal{E}_1(e) \leq \cal{E}_0(e) \quad \forall e \in \vec{E}_n.
       \end{align*}
       In this manner we remove all the simple positive-flow cycles from the finite graph $\vec{E}_n$.
       It is achievable since at each step we turn at least one edge into a zero-flow edge.
       Put $\flowposn{n+1}$ equal to the flow function $\cal{E}_K$ we got after we removed $K$ cycles from the flow graph $\vec{E}_{n+1}$.
       We have
       \begin{align*}
-        \flowposn{n+1}(e) \leq \flowpos(e) \quad \forall e \in \vec{G}_{n+1},\\
-        \flowposn{n+1}(e) \leq \flowposn{n}(e) \quad \forall e \in \vec{G}_n.
+        &\flowposn{n+1}(e) \leq \flowpos(e) \quad \forall e \in \vec{G}_{n+1},\\
+        &\flowposn{n+1}(e) \leq \flowposn{n}(e) \quad \forall e \in \vec{G}_n.
       \end{align*}
       Consider the preflow function $\preflow$ defined as a pointwise limit of $\flowposn{n}$:
       \[
@@ -649,7 +653,7 @@
         for any path $w \in \gpaths(\operatorname{\operatorname{end}(p)})$, where $\operatorname{end}(p)$ is the last vertex in the path.
         Also we extend this function to take values on the set of the vertices $\gfi: V \to \mathbb{R}^{+}$ in this fashion:
         \[
-        \gfi(v) := \smashoperator{\inf_{p \in \gpaths(v)}} \gfi(p).
+          \gfi(v) := {\inf_{\gpaths(v)}} \gfi(p).
         \]
       \end{definition}
       \begin{remark}
@@ -774,6 +778,9 @@
       Thus we have reached the step number two, when we are going to carry out the \emph{relaxation} procedure in order to alleviate those $\cal{G}$-active
         vertices.
 
+      \begin{definition}
+        Denote $\gnpaths(\makebox[1ex]{$\cdot$}, \makebox[1ex]{$\cdot$}) := \cal{P}_{G_n}(\makebox[1ex]{$\cdot$},\makebox[1ex]{$\cdot$})$.
+      \end{definition}
       Consider a $\cal{G}$-active vertex $s \in \ter(\eback_n)$ such that $d_{\cal{G}}^{-}(s) > d_{\cal{G}}^{+}(s)$.
       Let there exist such path $p \in \gnpaths(s, L_n)$, connecting the vertex $s$ and the $n$-th layer, that
         the preflow $\cal{G}$ could be increased along this path by some constant
@@ -839,7 +846,7 @@
       It follows that we could relax all the end vertices of the back edges in $\eback_n$.
       We study the evolved preflow function $\cal{G}$ we got after all the relaxations.
       \begin{prop}
-        The properties~\ref{p1}--\ref{p5} are satisfied for the resulting preflow function $\cal{G}$ on the network $\onet_N = (G_n, \wt, \root)$.
+        The properties~\ref{p1}--\ref{p5} are satisfied for the resulting preflow function $\cal{G}$ on the network $\onet_N = (G_n, \wtp, \root)$.
       \end{prop}
       \begin{proof}
         The monotonicity property~\ref{p1} is true since during the relaxation step $n$ we
@@ -859,44 +866,199 @@
       \end{proof}
       Conclusively, we set the preflow function $\flowposn{n}$ equal to the result flow $\cal{G}$.
       The flow construction is completed.
+      Now we would like to introduce some simpler notations.
+      \begin{definition}
+        The function $\phi_n: G_n \to \mathbb{R}^{+}$ will stand for the distance function on the $n$-th graph $G_n$:
+        \[
+          \phi_n(v) := \phi_{G_n}(v).
+        \]
+      \end{definition}
+      \begin{definition}
+        The function $d_n: G_n \to \mathbb{R}$ will stand for the total flow function on the $n$-th graph $G_n$:
+        \[
+          d_n(v) := d_{\flowposn{n}}(v).
+        \]
+        The function $d^{-}_n: G_n \to \mathbb{R}^{+}$ will stand for the incoming flow function on the $n$-th graph $G_n$:
+        \[
+          d^{-}_n(v) := d^{-}_{\flowposn{n}}(v).
+        \]
+        The function $d^{+}_n: G_n \to \mathbb{R}^{+}$ will stand for the outgoing flow function on the $n$-th graph $G_n$:
+        \[
+          d^{+}_n(v) := d^{+}_{\flowposn{n}}(v).
+        \]
+      \end{definition}
       \begin{lemma}
         For each $G_n$ where $n > 1$ the following inequality remains true:
-        \[
-          \sum_{v\in L_n}d_{G_n}^{-}(v) \phi_{G_n}(v) \leq \sum_{e \in E_n} \wt(e) \flowpos(e).
-        \]
+        \begin{equation}
+          \label{main-ineq}
+          \sum_{v\in L_n}d_{\flowposn{n}}^{-}(v) \phi_n(v) \leq \sum_{e \in E_n} \wtp(e) \flowpos(e).
+        \end{equation}
       \end{lemma}
       \begin{proof}
+        First denote the left hand side by $LS$
+        \[
+          LS := \sum\limits_{v \in L_n} d_n(v) \phi_n(v).
+        \]
+        Since $\phi_n(\root) = 0$ and for all vertices $u \in G_{n} \setminus \left(L_n \cup \{\root\}\right)$
+          we have $d_n(u) = 0$ we could study the sum over the whole $G_n$ instead of $L_n$.
+
+        Also recall that $d_n^{+}(v) = 0$ for each vertex $v \in L_n$, hence $d_n(v) = d_n^{-}(v)$ whenever $v$ is in the $n$-th layer.
+          
+        Next we regroup the summation in order to have a sum over the edges of $G_n$, not vertices:
+        \begin{align*}
+          LS = \sum\limits_{v \in L_n} d_n(v) \phi_n(v) = \sum\limits_{v \in V_n} d_n(v) \phi_n(v) =\\
+          =\sum_{v \in V_n} \left(\sum_{\eout(v)} \flowposn{n}(e) - \sum_{\ein(v)}\flowposn{n}(e) \right) \phi_n(v)=\\
+          =\sum_{(vu) \in E_n} \flowposn{n}(vu) \big(\phi_n(u) - \phi_n(v)\big).
+        \end{align*}
+        Let $(uv)$ be an edge in $E_n$. Recollect that
+        \[
+          \phi_n(u) = \inf_{p \in \gnpaths(u)} \phi_n(p) \leq \phi_n(v) + \wtp(vu).
+        \]
+        That implies
+        \[
+          LS\leq \sum_{(vu) \in E_n} \flowposn{n}(vu) \wtp(vu) = \sum_{e \in E_n} \flowposn{n}(e) \wtp(e).
+        \]
+        Due to the property~\ref{p2} which essentially says that the built flows $\flowposn{n}$ do not exceed the initial flow $\flowpos$ 
+          we also acquire that
+        \[
+          LS\leq \sum_{e \in E_n} \flowposn{n}(e) \wtp(e) \leq \sum_{e \in E_n} \flowpos(e) \wtp(e).
+        \]
+        The inequality is proven.
       \end{proof}
+      Due to this lemma the following fact turns out transparent
       \begin{prop}
-        For each $n > 0$ there exist such $v \in L_n$ that $\phi(v) \leq \|\flowpos\|$.
+        For each $n > 0$ there exist such vertex $r_n \in L_n$ that $\phi_n(r_n) \leq \|\flowpos\|$.
       \end{prop}
       \begin{proof}
+        Consider the inequality we have just proven.
+        Again we have $LS$ standing for the left hand side of the inequality~\eqref{main-ineq}.
+        Remark that
+        \[
+          LS = \sum_{v \in L_n}d^{-}_n(v) \phi_n(v) \geq \min_{v \in L_n}\phi_n(v) \sum_{v \in L_n} d^{-}_n(v).
+        \]
+        Since $\sum\limits_{v \in L_n} d^{-}_n(v)$ is the total amount of the flow incoming to the deepest layer $L_n$, and the only
+          active vertex in $G_n$ is the root, which produces the flow which size is precisely equal to $1$, the following is true:
+        \[
+          \sum_{v \in L_n} d^{-}_n(v) = d^{+}_n(\root) = 1.
+        \]
+        The latter yields
+        \[
+          LS \geq \min_{L_n} \phi_n(v).
+        \]
+
+        Furthermore we remark that the right hand side of~\eqref{main-ineq} denoted $RS$ satisfies the next inequality
+        \[
+          LS \leq RS := \sum_{e \in E_n} \wtp(e) \flowpos(e) \leq \|\flowpos\|.
+        \]
+        Seeing that $L_n$ contains a finite number of vertices, there exists such vertex $r_n \in L_n$ that
+        \[
+          \phi_n(r_n) \leq \|\flowpos\|.
+        \]
       \end{proof}
-      Notice that if for some $n$ and vertex $v \in L_n$ we have $\phi(v) \leq \|\flowpos\|$
-      then there is some path $p \in \gpaths(v)$ such that each of the vertices
-      Let us 
+      \begin{prop}
+        There exists such a ray $R=(R_0, R_1, R_2,\dots)$, where $R_n \in L_n$, such that $\sum\limits_{k=1}^\infty \wtp(R_{k-1}R_k) < \infty$.
+      \end{prop}
+      \begin{note}
+        The ray $R$ always starts with the root vertex $R_0 = \root$, since $L_0 = \{\root\}$.
+      \end{note}
+      \begin{proof}
+        We will seek for the ray $R$ in the graph 
+        \[
+          \gstar = \bigcup G_n.
+        \]
+        Unlike $G$ this graph is locally finite which is a crucial property for our solution.
+        Also we need a distance function in the graph $\gstar$:
+        \[
+          \phistar(v):=\phi_{\gstar}(v).
+        \]
+        Note that $\phi_n(v) \geq \phistar(v)$ for any $v \in G_n$ since $G_n$ is a subgraph of $\gstar$.
+        Owing to the previous proposition there is always a vertex $r_n \in L_n$ that $\phi_n(r_n) \leq \|\flowpos\|$.
+        Consider the set of vertices $U_n$:
+        \[
+          U_n:= \{u \in L_n \mid \phi_n(u) \leq \|\flowpos\|\}.
+        \]
+        Let $\cal{P}$ be a set of paths $p = (p_1,p_2, \dots)$, such that $p_k \in U_k$.
+        Presume $\cal{P}$ consists only of finite paths.
+        We are going to build a ray $R$ lying in the $\cal{P}$, arriving to a contradiction.
+        Let us build $R$ consequtively.
+        We will build $R$ in such a way that for every path $p_k:= (R_0, R_1, \dots R_k)$ there is an infinite number of paths 
+          in $\cal{P}$ which start with $p_k$.
+        
+        We start from $k = 0$.
+        Trivially, $R_0$ is set to the root vertex:
+        \[
+          R_0 := \root.
+        \]
+        Each $U_n$ is non-empty and if a vertex $u$ belongs to $U_n$ then there always exists
+          a path $p_n$ which belongs to $\cal{P}$.
+        So we have an infinite set of paths $\bigcup\limits_n p_n$ starting from the root vertex $\root$.
+        
+        Suppose we already have made the path $p_k:= (R_0, R_1,\dots R_{k-1})$. 
+        By the assumption there is an infinite number of paths in $\cal{P}$ starting with $p_k$.
+        Address these paths as $\cal{P}_k$.
+        Let us look at the \emph{forward} edges $\efor(R_{k-1})$ of the vertex $R_{k-1} \in U_{k-1} \subseteq L_{k-1}$:
+        \[
+          \efor(R_{k-1}):=\left\{(R_{k-1} u) \mid u \in L_k\right\}.
+        \]
+        Now inspect the path $q \in \cal{P}_k \setminus p_k$ which has the prefix $p_k$:
+        \[
+          q:=(R_0,R_1,\dots,R_{k-1},q_k,q_{k+1} \dots).
+        \]
+        Evidently for such path we have the vertex $q_k$ being equal to be one of the end vertices of the edges $\efor(R_{k-1})$.
+        Remember that the graph $\gstar$ is locally finite and in particular the degree of the vertex $R_{k-1}$ is finite.
+        Moreover recall that the number of the paths such as $q$ itself (namely, $\cal{P}_k$) is infinite,
+          as a result of the previous construction step.
+        Consequently we are able to choose such $R_k \in \efor(R_{k-1})$ that the number of paths in $\cal{P}_k$ starting from
+          the path $p_{k+1}:= (p_k, R_k)$ is infinite as well.
+        The ray $R := (R_0, R_1 \dots) \in \cal{P}$ is constructed.
+        The sum $\sum \wtp(R_k, R_{k+1}$ is bounded since the partial sums are bounded by the values of the $\phi_n$ function which are bounded
+          by the definition of the $U_n$ classes.
+      \end{proof}
+      In the end we found a finite-weight ray in the network $\onet$.
+      Hence the neccessity is proved as well as the theorem itself.
     \end{proof}
-    \subsection{Application of the B-class networks characterisation}
-    %----------------------------------------------------------------------------------------
-    \pagebreak
-    \begin{prop}
-        The given system is an $M$-basis if the coefficients satisfy the restrictions above.
-    \end{prop}
-    \begin{proof}
-        The equality $c_n + d_n = a_n b_n$ guarantees the bi\-orthogonality,
-        while the completeness of the $\{f_n\}$ and $\{f_n^*\}$ is
-        easy to check.
-    \end{proof}
-    
+  \subsection{Application of the B-class networks characterisation}
+    In this section our aim is to apply the knowledge we gathered in the previous section to
+    the net $\net(\fsys)$, we created in the section~\ref{fsys2graphs}.
     \begin{theorem}
-        The given system is NOT $k$-complete for any $k > 1$ iff the sequence
-        $$
-            \mu_n = \min(1/|a_n| + 1/|b_n|, (1 + |b_n|)/|d_n|, (1 + |a_n|)/|c_n|)
-        $$ belongs to $l^1$.
+      \label{completeness-thm}
+      Let $\fsys$ be a minimal sequence of vectors in the Hilbert space $\cal{H}$.
+      Then $\fsys$ is $2$-complete when and only when $\fsys$ admits a linear summation method.
     \end{theorem}
-        The proof of the theorem is finished with the proof of the statements~\ref{inf-dim-statement} and~\ref{k-dim-statement}.
-\medskip
-% E-mail: aapyshkin@gmail.com
+    \begin{proof}
+      The necessity is trivial.
+
+      \noindent\textit{Sufficiency}
+      Pretend $\fsys$ admits a linear summation method.
+      Let $\onet = \onet(\fsys) = (G, \wtp, \source, \sink)$ be an orientation of the network $\net(\fsys)$.
+      Applying the theorem~\ref{thm-graph-eq} and then the theorem~\ref{ray-thm}
+        we recognize that any ray $r \subseteq \onet$ taking its origin
+        in the source vertex \source has an infinite weight.
+      Suppose $r = \sys{r}$ such that $r_0 = \source$ and $r_k$ are some vertices in the graph $G$.
+      %Recall that in the theorem~\ref{ray-thm} in view of existence of the ray $r$ we were able to push
+        %a flow of the size one along this ray:
+      %\[
+        %\flow(r_k, r_{k+1}) = 1.
+      %\]
+      Consider the basis vectors $e_{s_k}$ which correspond to the vertices $r_k$.
+      Split the Hilbert space $\cal{H}$ in two smaller subspaces:
+      \[
+        \cal{H} = \cal{H}_1 \oplus \cal{H}_2,
+      \]
+      such that $\cal{H}_1 = \span(\bigcup\limits_k e_{s_k})$.
+      So, virtually the operator $T$ is going to be zero on the $\cal{H}_2$:
+      \[
+        T\vert_{\cal{H}_2} \equiv 0.
+      \]
+      We will reuse the $e_k$ notation for the basis vectors $e_{s_k}$ (since we work now in the subspace $\cal{H}_1$
+        such plot is allowed).
+      We are meaning to look for a two-dimensional operator in such a form:
+      \begin{align*}
+        &T_{11} = 1,\\
+        &T_{k k+1} = \wtp(f_k, f_{k+1}),
+      \end{align*}
+      
+    \end{proof}
 \bigskip
 \begin {thebibliography}{20}
     \bibitem{azoff}
