@@ -2,9 +2,7 @@
 \input{preamble}
 \usepackage{tikz}
 \usepackage{tkz-berge}
-\usetikzlibrary {positioning}
-%\usepackage {xcolor}
-\definecolor {processblue}{cmyk}{0.96,0,0,0}
+\usetikzlibrary{positioning, chains, fit, shapes, calc}
 
 \begin{document}
 % \title{Методы суммирования ряда Фурье \\
@@ -37,49 +35,88 @@
     \begin{proof}
         Straightforward check.
     \end{proof}
-    \begin{remark}
-        Note that the Azoff-Shehada example~\cite{azoff} lies in the B-class.
-    \end{remark}
-    \begin{example}
-      \begin{tikzpicture}[-latex ,auto ,node distance =4 cm and 5cm ,on grid ,
-      semithick ,
-      state/.style ={ circle ,top color =white , bottom color = processblue!20 ,
-      draw,processblue , text=blue , minimum width =1 cm}]
-      \node[state] (C)
-      {$1$};
-      \node[state] (A) [above left=of C] {$0$};
-      \node[state] (B) [above right =of C] {$2$};
-      \path (A) edge [loop left] node[left] {$1/4$} (A);
-      \path (C) edge [bend left =25] node[below =0.15 cm] {$1/2$} (A);
-      \path (A) edge [bend right = -15] node[below =0.15 cm] {$1/2$} (C);
-      \path (A) edge [bend left =25] node[above] {$1/4$} (B);
-      \path (B) edge [bend left =15] node[below =0.15 cm] {$1/2$} (A);
-      \path (C) edge [bend left =15] node[below =0.15 cm] {$1/2$} (B);
-      \path (B) edge [bend right = -25] node[below =0.15 cm] {$1/2$} (C);
-      \end{tikzpicture}
-    \end{example}
-    
     B-class has an interesting property we are going to exploit later.
     \begin{prop}
-        A vector system which belongs to the B-class could be associated with a
-        weighted bipartite graph $B(\fsys) = (V, E, \wt)$, where $\wt$ is a
-        real-valued function on the $V\times V$ such that $\wt(v, u) = -\wt(u, v)$.
-        Also the inverse is true: for each bipartite graph $(V, E, \wt)$ for which the weight function
-        $\wt$ satisfies the conditions above there is a vector system from the B-class.
+      A vector system which belongs to the B-class could be associated with a
+      weighted bipartite graph $B(\fsys) = (V, E, \wt)$, where $\wt$ is a
+      real-valued function on the $V\times V$ such that $\wt(v, u) = -\wt(u, v)$.
+      Also the inverse is true: for each bipartite graph $(V, E, \wt)$ for which the weight function
+      $\wt$ satisfies the conditions above there is a vector system from the B-class.
     \end{prop}
     \begin{proof}
-        For each index $l > 0$ such that $f^*_l = e_l$ we put a vertex $v_l$ in the first part of the bipartite graph.
-        We will call this part from now on the \emph{left} part of the graph $B(\fsys)$.
-        For any other index $r > 0$ we construct a vertex in the other part of the graph.
-        Evidently, for such indices $r > 0$ the condition $f_r = e_r$ holds due to the definition of the B-class vector systems.
-        The second part of the graph will be referred as the \emph{right} part of the graph $B(\fsys)$.
-        We put an edge between two vertices $v_l$ and $v_r$ from the left and right parts respectively,
-        whenever the scalar product $\inner{f_l}{e_r}$ is not zero.
-        For such two vertices we have $\inner{f_l}{e_r}$ = $-\inner{f_r}{e_l}$.
-        Denote by $\wt_{lr}$ the expression $\wt_{lr} = \inner{f_l}{e_r}^{-1}$.
-        Obviously $\wt_{lr} = -\wt_{rl}$.
-        \alex{todo inverse}
+      For each index $l > 0$ such that $f^*_l = e_l$ we put a vertex $v_l$ in the first part of the bipartite graph.
+      We will call this part from now on the \emph{left} part of the graph $B(\fsys)$.
+      For any other index $r > 0$ we construct a vertex in the other part of the graph.
+      Evidently, for such indices $r > 0$ the condition $f_r = e_r$ holds due to the definition of the B-class vector systems.
+      The second part of the graph will be referred as the \emph{right} part of the graph $B(\fsys)$.
+      We put an edge between two vertices $v_l$ and $v_r$ from the left and right parts respectively,
+      whenever the scalar product $\inner{f_l}{e_r}$ is not zero.
+      For such two vertices we have $\inner{f_l}{e_r}$ = $-\inner{f_r}{e_l}$.
+      Denote by $\wt_{lr}$ the expression $\wt_{lr} = \inner{f_l}{e_r}^{-1}$.
+      Obviously $\wt_{lr} = -\wt_{rl}$.
+
+      Conversely,
     \end{proof}
+    \begin{remark}
+      Note that the Azoff-Shehada vector system~\cite{azoff} lies in the B-class.
+    \end{remark}
+    \begin{example}
+      The graph $B(\fsys_{AS})$ for the AS system looks like this:
+      \definecolor{myblue}{RGB}{80,80,160}
+      \definecolor{mygreen}{RGB}{80,160,80}
+      \begin{center}
+      \begin{tikzpicture}[thick,
+                          every node/.style={draw,circle},
+                          lnode/.style={draw,fill=black,shade},
+                          rnode/.style={draw,fill=mygreen},
+                          every fit/.style={ellipse,draw,inner sep=-1pt,text width=2cm},
+                          ]
+
+        \begin{scope}[start chain=going below,node distance=7mm]
+          \foreach \i in {1,3,5,7}
+          \node[lnode,on chain] (l\i) [label=left: $v_{l_\i}$] {$e_{\i}$};
+          \node[draw=none,on chain, yshift=7mm]{$\vdots$};
+        \end{scope}
+        \begin{scope}[xshift=4cm,yshift=-0.5cm,start chain=going below,node distance=7mm]
+          \foreach \i in {2,4,6,8}
+          \node[rnode,on chain] (r\i) [label=right: $v_{r_\i}$] {$e_\i$};
+          \node[draw=none,on chain, yshift=7mm]{$\vdots$};
+        \end{scope}
+
+        % the set U
+        %\node [fit=(l1) (l5),label=above:\emph{left}] {};
+        % the set V
+        %\node [fit=(r6) (r9),label=above:\emph{right}] {};
+
+        % the edges
+        \draw (l1) -- (r2);
+        \draw (r2) -- (l3);
+        \draw (l3) -- (r4);
+        \draw (r4) -- (l5);
+        \draw (l5) -- (r6);
+        \draw (r6) -- (l7);
+        \draw (l7) -- (r8);
+      \end{tikzpicture}
+      \end{center}
+              
+      %\begin{tikzpicture}[-latex,
+                          %semithick ,
+                          %state/.style ={ circle ,top color =white , bottom color = processblue!20 ,
+                          %draw,processblue , text=blue , minimum width =1 cm}]
+        
+        %{$1$};
+        %\node[state] (A) [above left=of C] {$0$};
+        %\node[state] (B) [above right =of C] {$2$};
+        %\path (A) edge [loop left] node[left] {$1/4$} (A);
+        %\path (C) edge [bend left =25] node[below =0.15 cm] {$1/2$} (A);
+        %\path (A) edge [bend right = -15] node[below =0.15 cm] {$1/2$} (C);
+        %\path (A) edge [bend left =25] node[above] {$1/4$} (B);
+        %\path (B) edge [bend left =15] node[below =0.15 cm] {$1/2$} (A);
+        %\path (C) edge [bend left =15] node[below =0.15 cm] {$1/2$} (B);
+        %\path (B) edge [bend right = -25] node[below =0.15 cm] {$1/2$} (C);
+      %\end{tikzpicture}
+    \end{example}
+    
     We are going to find the necessary and sufficient condition for the $k$-completeness property for the B-class vector system.
     In order to pursue that we need to investigate the conditions, under which the B-class system admits a linear summation method.
     First of all we intend to demonstrate an elegant reformulation of the linear summation method existence problem for
