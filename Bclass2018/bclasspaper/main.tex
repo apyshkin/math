@@ -18,13 +18,6 @@
 \usepackage{dsfont}
 \usepackage{calc}
 \usepackage{bm}
-%\usepackage [a4paper,% other options: a3paper, a5paper, etc
-%  left=3cm,
-%  right=1.5cm,
-%  top=2cm,
-%  bottom=2cm,
-%]{geometry}
-
 \usepackage{tocloft}
 %\renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth} \bfseries}
 %\renewcommand{\cftbeforetoctitleskip}{-1em}
@@ -133,6 +126,7 @@
 \newcommand{\gnpaths}{\cal{P}_n}
 \newcommand{\gstar}{G^{*}}
 \newcommand{\gfi}{\varphi_{G}}
+\newcommand{\vspan}[1]{span\left(#1\right)}
 \newcommand{\phistar}{\phi_{*}}
 \numberwithin{remark}{section}
 \numberwithin{theorem}{section}
@@ -217,7 +211,7 @@
         \label{right-eqn}
         \sum_j T_{jn} \inner{f^*_n}{e_j} = 0.
     \end{equation}
-    Now consider a real function $\flowsgn(T): E \to \mathbb{R}$ 
+    Now consider a real function $\flowsgn(T): E \to \mathbb{R}$
     on the edges of the graph $B(\fsys)$.
     \begin{align*}
         &\flowsgn(v_l, v_r) := T_{lr} \inner{f_l}{e_r} = T_{lr} \wt_{lr}^{-1},\\
@@ -1026,15 +1020,14 @@
       Then $\fsys$ is $2$-complete when and only when $\fsys$ admits a linear summation method.
     \end{theorem}
     \begin{proof}
-      The necessity is trivial.
-
-      \noindent\textit{Sufficiency}
+      The necessity is trivial.\\
+      \noindent\textit{Sufficiency.}
       Pretend $\fsys$ admits a linear summation method.
-      Let $\onet = \onet(\fsys) = (G, \wtp, \source, \sink)$ be an orientation of the network $\net(\fsys)$.
+      Let $\onet = \onet(\fsys) = (G, \wtp, s, t)$ be an orientation of the network $\net(\fsys)$.
       Applying the theorem~\ref{thm-graph-eq} and then the theorem~\ref{ray-thm}
         we recognize that any ray $r \subseteq \onet$ taking its origin
-        in the source vertex \source has an infinite weight.
-      Suppose $r = \sys{r}$ such that $r_0 = \source$ and $r_k$ are some vertices in the graph $G$.
+        in the source vertex $\source$ has an infinite weight.
+      Suppose $r = \seq{r}$ such that $r_0 = \source$ and $r_k$ are some vertices in the graph $G$.
       %Recall that in the theorem~\ref{ray-thm} in view of existence of the ray $r$ we were able to push
         %a flow of the size one along this ray:
       %\[
@@ -1045,7 +1038,7 @@
       \[
         \cal{H} = \cal{H}_1 \oplus \cal{H}_2,
       \]
-      such that $\cal{H}_1 = \span(\bigcup\limits_k e_{s_k})$.
+      such that $\cal{H}_1 = \bigoplus\limits_k e_{s_k}$.
       So, virtually the operator $T$ is going to be zero on the $\cal{H}_2$:
       \[
         T\vert_{\cal{H}_2} \equiv 0.
@@ -1055,9 +1048,8 @@
       We are meaning to look for a two-dimensional operator in such a form:
       \begin{align*}
         &T_{11} = 1,\\
-        &T_{k k+1} = \wtp(f_k, f_{k+1}),
+        &T_{k k+1} = \wtp^{-1}(f_k, f_{k+1}),
       \end{align*}
-      
     \end{proof}
 \bigskip
 \begin {thebibliography}{20}
