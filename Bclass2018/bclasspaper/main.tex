@@ -30,10 +30,10 @@
     \end{definition}
     This class of vector systems is the subject of this section.
     \begin{prop}
-        The definition given above guarantees the biorthogonality of the $f_n$ and $f^*_n$.
+      The definition given above guarantees the biorthogonality of the $f_n$ and $f^*_n$.
     \end{prop}
     \begin{proof}
-        Straightforward check.
+      Straightforward check.
     \end{proof}
     B-class has an interesting property we are going to exploit later.
     \begin{prop}
@@ -41,7 +41,7 @@
       weighted bipartite graph $B(\fsys) = (V, E, \wt)$, where $\wt$ is a
       real-valued function on the $V\times V$ such that $\wt(v, u) = -\wt(u, v)$.
       Also the inverse is true: for each bipartite graph $(V, E, \wt)$ for which the weight function
-      $\wt$ satisfies the conditions above there is a vector system from the B-class.
+      $\wt$ (or later it becomes the \emph{length} function) satisfies the conditions above there is a vector system from the B-class.
     \end{prop}
     \begin{proof}
       For each index $l > 0$ such that $f^*_l = e_l$ we put a vertex $v_l$ in the first part of the bipartite graph.
@@ -65,9 +65,10 @@
       \definecolor{myblue}{RGB}{80,80,160}
       \definecolor{mygreen}{RGB}{80,160,80}
       \begin{center}
-      \begin{tikzpicture}[thick,
+      \begin{tikzpicture}[auto,
+                          thick,
                           every node/.style={draw,circle},
-                          lnode/.style={draw,fill=black},
+                          lnode/.style={draw,fill=gray},
                           rnode/.style={draw},
                           every fit/.style={ellipse,draw,inner sep=-1pt,text width=2cm},
                           ]
@@ -143,8 +144,8 @@
     \end{remark}
     Before we proceed we are going to introduce a few basic definitions.
     \begin{definition}
-        \emph{Network} $\net$ is a quadruple $(G, \wtp, s, t)$, where $G = (V, E)$ is weighted graph 
-        with a positive weight function $\wtp$ on $E$ and two vertices $s, t \in V$, which
+        \emph{Network} $\net$ is a quadruple $(G, \wtp, s, t)$, where $G = (V, E)$ is weighted graph
+        with a positive length function $\wtp$ on $E$ and two vertices $s, t \in V$, which
         we will call $\source$ and $\sink$ of the network respectively.
     \end{definition}
     \begin{definition}
@@ -203,8 +204,8 @@
     \end{note}
     \begin{definition}
       \emph{Oriented network} $\onet$ is a quadruple $(\vec{G}, \wtp, s, t)$, where
-        $\vec{G}$ is an oriented weighted graph with 
-        a positive weight function $\wtp$ on $\vec{E}$ and two vertices $s, t \in V$, which
+        $\vec{G}$ is an oriented weighted graph with
+        a positive length function $\wtp$ on $\vec{E}$ and two vertices $s, t \in V$, which
         we will call $\source$ and $\sink$ of the oriented network respectively.
     \end{definition}
     \begin{note}
@@ -216,14 +217,14 @@
     Naturally, we might instead consider an oriented network $\onet = (V, \vec{E}, \wtp_{*}, s, t)$ and a 
       positive flow function $\flowpos: \vec{E} \to \mathbb{R}^{+}$, where
       the set of vertices $V$, $\source$ and $\sink$ vertices are the same.
-    The weight function $\wtp_{*}$ will be also positive but will be redefined since the edges set $\vec{E}$ is a different one.
+    The length function $\wtp_{*}$ will be also positive but will be redefined since the edges set $\vec{E}$ is a different one.
     First we provide a direction of the edge $(uv)$ is as follows:
     \begin{itemize}
       \item $(uv) \in \vec{E}$ if $\flow(u, v) > 0$,
       \item $(vu) \in \vec{E}$ if $\flow(u, v) < 0$.
     \end{itemize}
     This way only one of the edges $(uv)$ and $(vu)$ is present in the graph $\vec{G} = (V, \vec{E})$.
-    Also we set up the weight and the positive flow function $\flowpos: E \to \mathbb{R}^{+}$ so that
+    Also we set up the edge length and the positive flow function $\flowpos: E \to \mathbb{R}^{+}$ so that
     for any edge $\vec{e} = (uv) \in \vec{E}$
     \begin{align*}
       &\flowpos(uv) = |\flow(u,v)|,\\
@@ -243,14 +244,14 @@
     \begin{definition}
       Consider a network $\net = (G, \wtp, s, t)$ such that
         the degree of each vertex in $V \setminus \{s, t\} $ is finite,
-        and the weight of each edge incident to $\source$ or to $\sink$ is equal to one.
+        and the length of each edge incident to $\source$ or to $\sink$ is equal to one.
       We will call such network a \emph{B-class network}.
     \end{definition}
     
     Now we are ready to continue with the linear summation method problem.
     Our aim is to build up a network from the graph $B(\fsys)$.
     We plan to construct the network $\net(\fsys) = (V, E, \wtp, s, t)$,
-    positive weight function $\wtp: E \to R^{+}$ and a real skew-symmetric flow function $\flow: V \times V \to R$.
+    positive length function $\wtp: E \to R^{+}$ and a real skew-symmetric flow function $\flow: V \times V \to R$.
     Firstly we consider the vertices and the edges of the graph $B(\fsys)$.
     All the vertices in the graph $B(\fsys)$ we incorporate into the network $\net(\fsys)$.
     The vertex set of the new graph is a superset of vertices of the graph $B(\fsys)$,
@@ -258,9 +259,9 @@
     the \emph{left} part of the graph and the vertices from the \emph{right} part of the graph.
     The network $\net(\fsys)$ will contain all the edges from the graph $B(\fsys)$ as well.
     For each of these edges we are going to assign the flow function $\flow$ and
-    establish a new positive weight function $\wtp$.
+    establish a new positive length function $\wtp$.
     Each edge $e = (v_l v_r)$ which belongs to the graph $B(\fsys)$ we include in the graph of $\net(\fsys)$.
-    We set the flow and the weight functions on the edge $e$:
+    We set the flow and the length functions on the edge $e$:
     \begin{align*}
       &\flow(v_l, v_r) = \flowsgn(v_r, v_l) = T_{lr} \inner{f^*_r}{e_l},\\
       &\wtp(e) = \left| \wt(e) \right|.
@@ -275,7 +276,7 @@
       &\flow(l_k, s) = T_{l_k l_k},\\
       &\flow(s, l_k) = -T_{l_k l_k}.
     \end{align*}
-    We have the weight equal to one for such edges: $\wtp(e) = 1$.
+    We have the length equal to one for such edges: $\wtp(e) = 1$.
     As we added the edges ${e_k}$, the flow became \emph{preserved} at each vertex of the left part of the network $\net(\fsys)$.
     In the similar manner we will transform the right part of the graph.
     Assuming we have the vertices from the right part of the graph $B(\fsys)$ in the form of the sequence $\seq{r}$,
@@ -285,7 +286,7 @@
       &\flow(r_k, t) = T_{r_k r_k},\\
       &\flow(t, r_k) = -T_{r_k r_k}.
     \end{align*}
-    For these edges we put the weight equal to one as well.
+    For these edges we put the length equal to one as well.
     The network $\net(\fsys)$ is built up, and it is a B-class network.
     The defined function $\flow$ is a flow, since each of the vertex preserves
       $\flow$ due to the equation~\eqref{almost-flow-eqn}.
@@ -329,7 +330,7 @@
       \]
       We allow it to be equal $+\infty$ as well.
     \end{definition}
-    \begin{definition*}
+    \begin{definition}
       If $\flowpos$ is an oriented flow on the oriented networks $\onet = (V,\vec{E},\wtp)$ 
         we can introduce the same term for the \emph{mass} of the flow:
       \[
@@ -340,7 +341,7 @@
       \[
         \|\flowpos\| = \sum_{e \in \vec{E}} \flow(e) \wtp(e).
       \]
-    \end{deifinition*}
+    \end{definition}
     \begin{theorem}
       \label{thm-graph-eq}
         Let $\net(\fsys) = B(\fsys, \wtp, s, t)$ be a B-class network constructed
@@ -434,7 +435,7 @@
         \item the network $\onet$ does not preserve the flow,
       \end{itemize}
         if and only if there exists a ray $r = \seq{v}$ ($=sv_2v_3\dots$)
-        in the network $\onet$, which weight is bounded:
+        in the network $\onet$, which total length is bounded:
         \[
           \sum_{k=1}^\infty \wtp(v_k v_{k+1}) < \infty.
         \]
@@ -448,11 +449,11 @@
         is not equal to the new $\source$ and declare this $v$ a new $\sink$ vertex.
       All the vertices in the graph still preserve the flow after this procedure, except the $\source$ vertex
         which is now \emph{$\flowpos$-active} since its total flow $d(\source)$ equal to one.
-        %the existence of the ray with a finite total weight
+        %the existence of the ray with a finite total length
         %in the transformed network is equivalent to the existence of such ray in the original network.
       \alex{todo}
       \noindent\textbf{Sufficiency}
-      Suppose that there is a ray of a finite total weight. 
+      Suppose that there is a ray of a finite total length. 
       In that case we set the resulting flow function $\flowpos(v_k v_{k+1})$ to one, creating an elusive flow
         from the $\source$ to infinity. All the other edges will not carry any flow, hence the flow is preserved
         at each vertex but not preserved by the network $\onet$.
@@ -553,7 +554,7 @@
       Now we are going to have the following
       \begin{definition}
         The graph $G = (V, \vec{E},\wtp, \root)$ is a weighted directed graph with a positive
-          weight function $\wtp$ defined on $\vec{E}$ and a root vertex $\root \in V$.
+          length function $\wtp$ defined on $\vec{E}$ and a root vertex $\root \in V$.
         Let $\gpaths(u, v)$ be a set of paths from vertex $u$ to vertex $v$ in the graph $G$.
         Sometimes we will omit the first argument and then we refer to the paths from the root vertex
           $\gpaths(v) := \gpaths(\root, v)$.
@@ -926,7 +927,7 @@
         The sum $\sum \wtp(R_k, R_{k+1}$ is bounded since the partial sums are bounded by the values of the $\phi_n$ function which are bounded
           by the definition of the $U_n$ classes.
       \end{proof}
-      In the end we found a finite-weight ray in the network $\onet$.
+      In the end we found a finite-length ray in the network $\onet$.
       Hence the necessity is proved as well as the theorem itself.
     \end{proof}
   \subsection{Application of the B-class networks criterion}
@@ -945,15 +946,15 @@
       The sequences $\{f_j\}$, $\{f^*_j\}$ are biorthogonal and both are complete in $\cal{H}$ (thus it is an $M$-basis).
       Also due to~\cite{katavolos} the next theorem is accurate
       \begin{theorem}
-        \label{thm_katavolos}
+        \label{thm-katavolos}
         The following three cases fully resolve the $k$-completeness problem for the AS-system:
         \begin{enumerate}[label=(\alph*)]
           \item The system $\fsys_{AS}$ is $1$-complete (a strong $M$-basis) iff the following sequence
             \begin{equation*}
               \mu_n = \frac{a_{n-1} a_{n-3} \dots}{a_{n} a_{n-2} \dots }
             \end{equation*}
-              does not belong to $l^2$.
-          \item \label{pt2} $\fsys_{AS}$ admits a linear summation method if and only if the system is $2$-complete.
+              does not belong to $l^2$,
+          \item \label{pt2} $\fsys_{AS}$ admits a linear summation method if and only if the system is $2$-complete,
           \item \label{pt3} $\fsys_{AS}$ admits a linear summation method when and only when
             the sequence $\left\{1/a_n\right\}_{n=1}^\infty$ does not belong to $l^1$.
         \end{enumerate}
@@ -981,17 +982,31 @@
           flow $\flowpos: \vec{E} \to R^{+}$ with a finite mass which is not preserved in
           the network $\onet(\fsys)$
           if and only if there exists a ray $r \subseteq \onet $ originating in the $\source$ vertex
-          which total weight is bounded:
+          which total length is bounded:
           \[
-            \sum_{k=1}^\infty \wtp(v_k v_{k+1}) < \infty.
+            \sum_{k=1}^\infty \wtp(v_k, v_{k+1}) < \infty.
           \]
+          Hence, the system does NOT admit a linear summation method when and only when there is such ray $r$
+            with the properties specified up above.
+          How does look the ray of a finite length in the network like $\onet(\fsys)$?
+          It is obvious that it cannot include infinite number of the edges incident to the
+            $\source$ and $\sink$ vertices, since such edges have the length exactly one.
+          Now look at the outline of the network $\onet(\fsys)$ (~\ref{AS-net}).
+          It clearly demonstrates that
+            the existence of the finite-length ray in the network $\onet(\fsys)$ implies
+            the finite length of the ray $R:=(e_1,e_2,e_3\dots)$ which is marked in the picture with the red color.
+          However this ray has length equal to
+          \[
+            \sum \wtp(e_k, e_{k+1}) = \sum \frac{1}{|a_k|} = \|\frac{1}{a_k}\|_{l^1},
+          \]
+          which ends the proof immediately.
       \end{proof}
-      Let us analyze the exact form of the network $\net(\fsys_{AS})$ constructed from the Azoff--Shehada system.(see the~\ref{AS-net}).
-
+      Let us analyze the second statement of the theorem~\ref{thm-katavolos}.
+      Essentially it says that whenever the AS system does not possess a linear summation method
+        there is such an operator $T$ of rank $2$ that has non-zero trace and annihilates all the
+        rank one operators $f_k \otimes f^*_k$.
       \pagebreak
       \begin{figure}
-        \definecolor{myblue}{RGB}{80,80,160}
-        \definecolor{mygreen}{RGB}{80,160,80}
         \begin{center}
         \begin{tikzpicture}[thick,
                             every node/.style={draw,circle},
@@ -999,7 +1014,7 @@
                             rnode/.style={draw},
                             every fit/.style={ellipse,draw,inner sep=-1pt,text width=2cm},
                             ]
-          \draw[help lines,step=9mm,gray!70] (0,-6) grid (6,0);
+          %\draw[help lines,step=9mm,gray!70] (0,-6) grid (6,0);
           \node[fill=gray,draw, xshift=-3cm, yshift=-3.5cm] (source) {$s$};
           \begin{scope}[start chain=going below,node distance=7mm]
             \foreach \i in {1,3,5,7}
@@ -1051,7 +1066,7 @@
         Let $\onet(\fsys) = (G, \wtp, s, t)$ be an orientation of the network $\net(\fsys)$.
         Applying the theorem~\ref{thm-graph-eq} and then the theorem~\ref{ray-thm} to the network $\onet(\fsys)$
           we recognize that there is such a ray $r \subseteq \onet$ taking its origin
-          in the source vertex $\source$ which has a finite weight.
+          in the source vertex $\source$ which has a finite length.
         Suppose $r = \seq{r}$ such that $r_0 = \source$ and $r_k$ are some vertices in the graph $G$.
         Recall that in the theorem~\ref{ray-thm} in view of existence of the ray $r$ we were able to push
           a flow of the size one along this ray:
