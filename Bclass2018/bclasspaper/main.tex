@@ -67,8 +67,8 @@
       \begin{center}
       \begin{tikzpicture}[thick,
                           every node/.style={draw,circle},
-                          lnode/.style={draw,fill=black,shade},
-                          rnode/.style={draw,fill=mygreen},
+                          lnode/.style={draw,fill=black},
+                          rnode/.style={draw},
                           every fit/.style={ellipse,draw,inner sep=-1pt,text width=2cm},
                           ]
 
@@ -98,25 +98,7 @@
         \draw (l7) -- (r8);
       \end{tikzpicture}
       \end{center}
-              
-      %\begin{tikzpicture}[-latex,
-                          %semithick ,
-                          %state/.style ={ circle ,top color =white , bottom color = processblue!20 ,
-                          %draw,processblue , text=blue , minimum width =1 cm}]
-        
-        %{$1$};
-        %\node[state] (A) [above left=of C] {$0$};
-        %\node[state] (B) [above right =of C] {$2$};
-        %\path (A) edge [loop left] node[left] {$1/4$} (A);
-        %\path (C) edge [bend left =25] node[below =0.15 cm] {$1/2$} (A);
-        %\path (A) edge [bend right = -15] node[below =0.15 cm] {$1/2$} (C);
-        %\path (A) edge [bend left =25] node[above] {$1/4$} (B);
-        %\path (B) edge [bend left =15] node[below =0.15 cm] {$1/2$} (A);
-        %\path (C) edge [bend left =15] node[below =0.15 cm] {$1/2$} (B);
-        %\path (B) edge [bend right = -25] node[below =0.15 cm] {$1/2$} (C);
-      %\end{tikzpicture}
     \end{example}
-    
     We are going to find the necessary and sufficient condition for the $k$-completeness property for the B-class vector system.
     In order to pursue that we need to investigate the conditions, under which the B-class system admits a linear summation method.
     First of all we intend to demonstrate an elegant reformulation of the linear summation method existence problem for
@@ -340,13 +322,25 @@
     Now one can see that the network $\net(\fsys)$ is $\flow$-preserving if and only if the trace of the operator $T$ is equal to
     zero.
     \begin{definition}
-      Consider a weighted network $\net = (V, E, \flow, \wtp)$.
+      Consider a network $\net = (V, E, \wtp)$ and a flow function $\flow$ on it.
       We introduce a non-negative function $\|\flow\|$ which we call the \emph{mass} of the flow $\flow$.
-      $$
-        \|\flow\| = \sum_{e \in E} \flow(e) \wtp(e).
-      $$
+      \[
+        \|\flow\| := \sum_{e \in E} \left|\flow(e) \wtp(e)\right|.
+      \]
       We allow it to be equal $+\infty$ as well.
     \end{definition}
+    \begin{definition*}
+      If $\flowpos$ is an oriented flow on the oriented networks $\onet = (V,\vec{E},\wtp)$ 
+        we can introduce the same term for the \emph{mass} of the flow:
+      \[
+        \|\flowpos\| := \sum_{e \in \vec{E}} \left|\flow(e) \wtp(e)\right|.
+      \]
+      Though in the oriented case the flow function is always positive
+        so we are allowed to omite the modulus signs:
+      \[
+        \|\flowpos\| = \sum_{e \in \vec{E}} \flow(e) \wtp(e).
+      \]
+    \end{deifinition*}
     \begin{theorem}
       \label{thm-graph-eq}
         Let $\net(\fsys) = B(\fsys, \wtp, s, t)$ be a B-class network constructed
@@ -441,9 +435,9 @@
       \end{itemize}
         if and only if there exists a ray $r = \seq{v}$ ($=sv_2v_3\dots$)
         in the network $\onet$, which weight is bounded:
-        $$
+        \[
           \sum_{k=1}^\infty \wtp(v_k v_{k+1}) < \infty.
-        $$
+        \]
     \end{theorem}
     \begin{proof}
       Without loss of generality we might assume that $d(\sink) + d(\source)$ is precisely one.
@@ -668,7 +662,6 @@
       \]
       and zero otherwise.
       We are going to change it gradually in order to satisfy all the properties from~\ref{p1} to~\ref{p5}.
-      
       \alex{here we so very need a picture}
       Notice how all the vertices except the root and the last layer $L_{n-1}$ are $\cal{G}$-preserving.
       The root is $\cal{G}$-deficient and the $n-1$ layer is currently $\cal{G}$-active.
@@ -934,12 +927,12 @@
           by the definition of the $U_n$ classes.
       \end{proof}
       In the end we found a finite-weight ray in the network $\onet$.
-      Hence the neccessity is proved as well as the theorem itself.
+      Hence the necessity is proved as well as the theorem itself.
     \end{proof}
   \subsection{Application of the B-class networks criterion}
     \subsubsection{Application of the B-class networks criterion to the Azoff--Shehada example.}
       Let us begin with the exposition of the Azoff--Shehada~\cite{azoff} vector system.
-      The AS system is given as follows:
+      The AS system $\fsys_{AS}$ is given as follows:
       \begin{equation}
         \label{as-system}
         \begin{aligned}
@@ -949,30 +942,98 @@
         \end{aligned}
       \end{equation}
         for some real parameters $a_n > 0$, where $n > 1$.
+      The sequences $\{f_j\}$, $\{f^*_j\}$ are biorthogonal and both are complete in $\cal{H}$ (thus it is an $M$-basis).
       Also due to~\cite{katavolos} the next theorem is accurate
       \begin{theorem}
-        \label{thm_as}
-        Firstly, the sequences $\{f_j\}$, $\{f^*_j\}$ are biorthogonal and both are complete in $\cal{H}$ (thus it is an $M$-basis).
-        Secondly, the following statements are true:
-        \begin{itemize}
-          \item The system~\eqref{as-system} is NOT $1$-complete (a strong $M$-basis) iff the following sequence
+        \label{thm_katavolos}
+        The following three cases fully resolve the $k$-completeness problem for the AS-system:
+        \begin{enumerate}[label=(\alph*)]
+          \item The system $\fsys_{AS}$ is $1$-complete (a strong $M$-basis) iff the following sequence
             \begin{equation*}
               \mu_n = \frac{a_{n-1} a_{n-3} \dots}{a_{n} a_{n-2} \dots }
             \end{equation*}
-              belongs to $l^2$.
-          \item The AS system~\eqref{as-system} is NOT $k$-complete (for any $k > 1$) when and only when
-            the sequence $\left\{1/a_n\right\}_{n=1}^\infty$ belongs to $l^1$.
-        \end{itemize}
+              does not belong to $l^2$.
+          \item \label{pt2} $\fsys_{AS}$ admits a linear summation method if and only if the system is $2$-complete.
+          \item \label{pt3} $\fsys_{AS}$ admits a linear summation method when and only when
+            the sequence $\left\{1/a_n\right\}_{n=1}^\infty$ does not belong to $l^1$.
+        \end{enumerate}
       \end{theorem}
-      \begin{note}
-        The AS system admits the linear summation method (which is equivalent to the
-          ultraweak density of rank one elements of the corresponding operator algebra for the sequence) 
-          if and only if the system holds the $k$-completeness property for any $k>0$.
-      \end{note}
-      
-      Consider the network $\net(\fsys)$ constructed from the Azoff--Shehada system $\seq{f}$.
+      The first statement does not interest us for now.
+      The third statement is criteria for a linear summation method existence.
+      Now we would like to present another proof of the statement~\ref{pt3} of the theorem~\ref{thm-katavolos}:
+      \begin{prop}
+          The vector system $\fsys_{AS}$ admits a linear summation method when and only when
+            the sequence $\left\{1/a_n\right\}_{n=1}^\infty$ does not belong to $l^1$.
+          %theorems~\ref{thm-graph-eq} and~\ref{ray-thm}.
+      \end{prop}
+      \begin{proof}
+        The AS system belongs to the B-class as we mentioned before.
+        Here we will narrow our thinking to the AS system only: $\fsys := \fsys_{AS}$.
+        Thus $\fsys$ is applicable to the theorem~\ref{thm-graph-eq}, which asserts
+          that $\fsys$ admits a linear summation method if and only if
+          the network $\net(\fsys)$ is $\flow$-preserving for any
+          finite-mass flow $\flow$.
+        We could reformulate the conclusion in the terms of \emph{oriented} networks.
+        The system $\fsys$ admits a linear summation method if and only if
+          the oriented network $\onet(\fsys)$ is $\flowpos$-preserving for any
+          finite-mass flow $\flowpos$.
+        After that we utilize the theorem~\ref{ray-thm}, which states that there exist such
+          flow $\flowpos: \vec{E} \to R^{+}$ with a finite mass which is not preserved in
+          the network $\onet(\fsys)$
+          if and only if there exists a ray $r \subseteq \onet $ originating in the $\source$ vertex
+          which total weight is bounded:
+          \[
+            \sum_{k=1}^\infty \wtp(v_k v_{k+1}) < \infty.
+          \]
+      \end{proof}
+      Let us analyze the exact form of the network $\net(\fsys_{AS})$ constructed from the Azoff--Shehada system.(see the~\ref{AS-net}).
 
+      \pagebreak
+      \begin{figure}
+        \definecolor{myblue}{RGB}{80,80,160}
+        \definecolor{mygreen}{RGB}{80,160,80}
+        \begin{center}
+        \begin{tikzpicture}[thick,
+                            every node/.style={draw,circle},
+                            lnode/.style={draw,fill=gray},
+                            rnode/.style={draw},
+                            every fit/.style={ellipse,draw,inner sep=-1pt,text width=2cm},
+                            ]
+          \draw[help lines,step=9mm,gray!70] (0,-6) grid (6,0);
+          \node[fill=gray,draw, xshift=-3cm, yshift=-3.5cm] (source) {$s$};
+          \begin{scope}[start chain=going below,node distance=7mm]
+            \foreach \i in {1,3,5,7}
+            \node[lnode,on chain] (l\i) [] {$e_{\i}$};
+            \node[draw=none,on chain, yshift=7mm]{$\vdots$};
+          \end{scope}
+          \begin{scope}[xshift=3cm,yshift=-0.5cm,start chain=going below,node distance=7mm]
+            \foreach \i in {2,4,6,8}
+            \node[rnode,on chain] (r\i) [] {$e_\i$};
+            \node[draw=none,on chain, yshift=7mm]{$\vdots$};
+          \end{scope}
+          \node[xshift=6cm,yshift=-3.5cm,draw] (sink) {$t$};
 
+          % the set U
+          %\node [fit=(l1) (l5),label=above:\emph{left}] {};
+          % the set V
+          %\node [fit=(r6) (r9),label=above:\emph{right}] {};
+
+          % the edges
+          \foreach [evaluate={\k=int(\i*2 + 1)}] \i in {0,...,3}
+          \draw(source)--(l\k);
+          \foreach [evaluate={\k=int(\i*2 + 2)}] \i in {0,...,3}
+          \draw(sink)--(r\k);
+          \draw (l1) -- (r2);
+          \draw (r2) -- (l3);
+          \draw (l3) -- (r4);
+          \draw (r4) -- (l5);
+          \draw (l5) -- (r6);
+          \draw (r6) -- (l7);
+          \draw (l7) -- (r8);
+        \end{tikzpicture}
+        \caption{The network $\net$ built based on the AS-system $\fsys_{AS}$} \label{AS-net}
+        \end{center}
+      \end{figure}
 
     \subsubsection{Application of the B-class networks criterion to the B-class vector systems}
       In this section our aim is to apply the knowledge we gathered in the previous section to
@@ -1020,8 +1081,6 @@
         while the other elements of $T$ are set to zero.\\
         Owing to the theorem~\ref{thm-graph-eq} we know as fact that such operator $T$ is
           a trace class operator with trace equal to 1 and annihilates rank one operators $f_n \otimes f^{*}_n$.
-      
-
     \end{proof}
 
 \bigskip
