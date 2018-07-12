@@ -3,6 +3,9 @@
 \usepackage{tikz}
 \usepackage{tkz-berge}
 \usetikzlibrary{positioning, chains, fit, shapes, calc}
+        \tikzset{lnode/.style={auto, circle, draw,fill=gray!50},
+                 rnode/.style={auto, circle, draw},
+                 wnode/.style={sloped,above}}
 
 \begin{document}
 % \title{Методы суммирования ряда Фурье \\
@@ -97,22 +100,19 @@
     \begin{example}
       Now look at the bipartite graph $B(\fsys_{AS})$ built from the Azoff--Shehada system:
       \begin{center}
-      \begin{tikzpicture}[auto,
-                          thick,
-                          every node/.style={draw,circle},
-                          lnode/.style={draw,fill=gray},
-                          rnode/.style={draw},
-                          every fit/.style={ellipse,draw,inner sep=-1pt,text width=2cm},
+      \begin{tikzpicture}[thick,
+                          every node/.style={draw},
+                          %every fit/.style={ellipse,draw,inner sep=-1pt,text width=1cm},
                           ]
 
-        \begin{scope}[start chain=going below,node distance=7mm]
-          \foreach \i in {1,3,5,7}
-          \node[lnode,on chain] (l\i) [label=left: $v_{l_\i}$] {$e_{\i}$};
+        \begin{scope}[start chain=going below,node distance=12mm]
+          \foreach [evaluate={\k=int(\i*2 + 1)}] \i in {0,...,3}
+          \node[lnode,on chain] (l\k) [label=left: $v_{l_\k}$] {$e_{\k}$};
           \node[draw=none,on chain, yshift=7mm]{$\vdots$};
         \end{scope}
-        \begin{scope}[xshift=4cm,yshift=-0.5cm,start chain=going below,node distance=7mm]
-          \foreach \i in {2,4,6,8}
-          \node[rnode,on chain] (r\i) [label=right: $v_{r_\i}$] {$e_\i$};
+        \begin{scope}[xshift=4cm,yshift=-0.7cm,start chain=going below,node distance=12mm]
+          \foreach [evaluate={\k=int(\i*2 + 2)}] \i in {0,...,3}
+          \node[rnode,on chain] (r\k) [label=right: $v_{r_\k}$] {$e_\k$};
           \node[draw=none,on chain, yshift=7mm]{$\vdots$};
         \end{scope}
 
@@ -122,13 +122,12 @@
         %\node [fit=(r6) (r9),label=above:\emph{right}] {};
 
         % the edges
-        \draw (l1) -- (r2);
-        \draw (r2) -- (l3);
-        \draw (l3) -- (r4);
-        \draw (r4) -- (l5);
-        \draw (l5) -- (r6);
-        \draw (r6) -- (l7);
-        \draw (l7) -- (r8);
+        \begin{scope}[wnode]
+          \foreach [evaluate={\l=int(\i*2 + 1);\r=int(\i*2 + 2)}] \i in {0,...,3}
+          \draw (l\l) to node[draw=none, color=black!40!green] {\footnotesize $w_{\l\r}=a_{\r}$} (r\r);
+          \foreach [evaluate={\l=int(\i*2 + 3);\r=int(\i*2 + 2)}] \i in {0,...,2}
+          \draw (l\l) to node[draw=none,color=blue] {\footnotesize $w_{\r\l}=a_{\l}$} (r\r);
+        \end{scope}
       \end{tikzpicture}
       \end{center}
     \end{example}
@@ -212,11 +211,11 @@
       Also denote by $d_{+}(v)$ the sum of the flows \emph{leaving} the node $v$ and by
       $d^{-}(v)$ the sum of the flows \emph{entering} $v$:
       \begin{align*}
-        &d^{+}_{\flow}(v) = d^{+}(v) := \sum_{u \mid \flow(vu) > 0} \flow(vu),\\
-        &d^{-}_{\flow}(v) = d^{-}(v) := \sum_{u \mid \flow(vu) < 0} \flow(uv).
+        &d^{+}_{\flow}(v) := \sum_{\flow(vu) > 0} \flow(vu),\\
+        &d^{-}_{\flow}(v) := \sum_{\flow(uv) > 0} \flow(uv).
       \end{align*}
-      Also let $d(v)$ be equal to $d^{+}(v) - d^{-}(v)$. Sometimes we will refer to this value as
-      a \emph{total flow} of the vertex $v$.
+      Also let $d_{\flow}(v)$ be equal to $d^{+}_{\flow}(v) - d^{-}_{\flow}(v)$.
+      Sometimes we will refer to this value as a \emph{total flow} of the vertex $v$.
       The vertex is called \emph{$\flow$-active} iff $d(v)$ is less than zero,
       \emph{$\flow$-deficient} iff $d(v)$ is greater than zero and
       \emph{$\flow$-preserving} iff $d(v)$ is precisely zero, meaning that the total incoming flow
@@ -265,10 +264,11 @@
     \end{align*}
     The total flow functions $d_\flowpos$, $d^{+}_\flowpos$, $d^{-}_\flowpos$ do not change their value and could be written as
     \begin{align*}
-      &d^{+}_{\flowpos}(v) = d^{+}(v) := \sum_{u \in \eout(v)} \flowpos(vu),\\
-      &d^{-}_{\flowpos}(v) = d^{-}(v) := \sum_{u \in \ein(v)} \flowpos(uv),\\
-      &d_{\flowpos}(v) = d(v) := d^{+}(v) - d^{-}(v).
+      &d^{+}_{\flowpos}(v) := \sum_{u \in \eout(v)} \flowpos(vu),\\
+      &d^{-}_{\flowpos}(v) := \sum_{u \in \ein(v)} \flowpos(uv),\\
+      &d_{\flowpos}(v) := d^{+}_\flowpos(v) - d^{-}_\flowpos(v).
     \end{align*}
+    Sometimes we will omit the flow from the notation.
     \begin{definition}
       The oriented network $\onet$ is called an \emph{orientation} of the network $\net$.
       For the positive flow function $\flowpos$ we will exploit the same term:
@@ -342,15 +342,15 @@
     %\end{remark}
     \begin{remark}
       Pay your attention to the fact that the network $\net(\fsys)$
-      depends only on the biorthogonal system $\fsys$ and not on the operator $T$.
+        depends only on the biorthogonal system $\fsys$ and not on the operator $T$.
       Only the constructed flow function $flow$ depends on the operator $T$.
     \end{remark}
     What can one say about the total flow in each of the vertex of the constructed network $\net(\fsys)$?
     Due to the trick we performed the total flow became zero in each of the vertices from the \emph{left} and the \emph{right} parts.
     The total flow $d(\source)$ in the $\source$ vertex is equal to the $\sum T_{l_k l_k}$, and the total flow in the
-    $\sink$ vertex is now equal to the $\sum T_{r_k r_k}$.
+      $\sink$ vertex is now equal to the $\sum T_{r_k r_k}$.
     Now one can see that the network $\net(\fsys)$ is $\flow$-preserving if and only if the trace of the operator $T$ is equal to
-    zero.
+      zero.
     \begin{definition}
       Consider a network $\net = (V, E, \wtp)$ and a flow function $\flow$ on it.
       We introduce a non-negative function $\|\flow\|$ which we call the \emph{mass} of the flow $\flow$.
@@ -389,9 +389,9 @@
       One thing to check is that the flow we constructed has a finite mass.
       It easy follows from the condition that the operator matrix is finite band and has a finite trace.
       Finally, one can acknowledge the fact that this network does NOT preserve the flow, since
-      $$
+      \[
         d(s) + d(t) = \sum T_{l_k l_k} + \sum T_{r_k r_k} = Tr(T) = 1,
-      $$
+      \]
       thus $d(\sink) \neq -d(\source)$.
       We arrived to contradiction and the sufficiency is proved.
 
@@ -403,23 +403,23 @@
       Having all the vertices already enumerated we will consider the vertices in the left part $v_{l_k}$.
       Recall that each vertex $v_i$ (except $\source$ and $\sink$) matches to the basis element $e_i$.
       Assign the diagonal elements of $T$:
-      $$
+      \[
         T_{l_k l_k} := \flow(l_k, \source) \wtp(l_k l_k) = \flow(l_k, \source) \quad k > 0.
-      $$
+      \]
       Now we repeat the same procedure for the right part of the graph $\net(\fsys)$, thus having
-      $$
+      \[
         T_{r_k r_k} := \flow(r_k, \sink) \wtp(r_k r_k) = \flow(r_k, \sink) \quad k > 0.
-      $$
+      \]
       Now consider two connected vertices $v_l$, $v_r$ from the left and right part
-      respectively. Assign
-      $$
-        T_{lr} := \flowsgn(v_l, v_r) \wtp(v_l, v_r).
-      $$
+        respectively. Assign
+      \[
+        T_{lr} := \flow(v_l, v_r) \wtp(v_l, v_r).
+      \]
       Let all the other matrix elements of the operator matrix $T_{ij}$ be zero.
       Then observe that we got a finite-band operator matrix $T_{ij}$ with the sum of diagonal elements
       equal to one.
       Since the mass of the flow $\flow$ is finite, the $T_{ij}$ is an absolute summable sequence, considering that
-        the $l^1$-norm of $T_{ij}$ is exactly the mass of $\flow$.
+        the $\ell^1$-norm of $T_{ij}$ is exactly the mass of $\flow$.
       Then the operator $T$ we obtained is compact.
       It acquires a finite non-zero trace, since $Tr(T) = d(\sink) + d(\source)$ which is not zero
         by the assumption we made.
@@ -427,7 +427,7 @@
         we see that the operator $T$ annihilates all the rank one operators $f_n \otimes f^*_n$,
         which leads to a contradiction.
     \end{proof}
-    
+
   \subsection{B-class networks characterisation}
     Due to the theorem~\ref{thm-graph-eq} we intend to analyze the flows on the B-class network
       $\net(\fsys)$ in order to understand the conditions under which a linear
@@ -441,17 +441,17 @@
     \begin{definition}
       Let $G$ be an oriented graph.
       A sequence of vertices $\{v_k\}_{k=1}^N$ is called a \emph{path} (simple path) if each consecutive vertices
-        $v_k$ and $v_{k+1}$ are connected by an edge $\vec{e} = (v_k, v_{k+1})$ and no edges or vertices are repeated twice in the sequence.
+        $v_k$ and $v_{k+1}$ are connected by an edge $\vec{e} = (v_k v_{k+1})$ and no edges or vertices are repeated twice in the sequence.
     \end{definition}
     \begin{definition}
       Let $G$ be an oriented graph.
       A sequence of vertices $\{v_k\}_{k=1}^N$ is called a \emph{cycle} (simple cycle) if it is
-        a path and there is an edge $\vec{e} = (v_N, v_1)$ connecting the last vertex to the first vertex of the sequence.
+        a path and there is an edge $\vec{e} = (v_N v_1)$ connecting the last vertex to the first vertex of the sequence.
     \end{definition}
     \begin{definition}
       Let $G = (V, E)$ be an infinite (oriented) graph.
-      An infinite path $r = \seq{v}$ is called a \emph{ray} iff
-      $r$ is a path, meaning that the edge $\vec{e} = (v_k, v_{k+1})$ for each $k > 0$ is present in the graph $G$.
+      An infinite path $r = \seq{v}$ is called a \emph{ray} if
+      $r$ is a path, meaning that the edge $\vec{e} = (v_k v_{k+1})$ for each $k > 0$ is present in the graph $G$.
     \end{definition}
 
     The main result of this section is a following
@@ -982,10 +982,10 @@
             \begin{equation*}
               \mu_n = \frac{a_{n-1} a_{n-3} \dots}{a_{n} a_{n-2} \dots }
             \end{equation*}
-              does not belong to $l^2$,
+              does not belong to $\ell^2$,
           \item \label{pt2} $\fsys_{AS}$ admits a linear summation method if and only if the system is $2$-complete,
           \item \label{pt3} $\fsys_{AS}$ admits a linear summation method when and only when
-            the sequence $\left\{1/a_n\right\}_{n=1}^\infty$ does not belong to $l^1$.
+            the sequence $\left\{1/a_n\right\}_{n=1}^\infty$ does not belong to $\ell^1$.
         \end{enumerate}
       \end{theorem}
       The first statement does not interest us for now.
@@ -993,7 +993,7 @@
       Now we would like to present another proof of the statement~\ref{pt3} of the theorem~\ref{thm-katavolos}:
       \begin{prop}
           The vector system $\fsys_{AS}$ admits a linear summation method when and only when
-            the sequence $\left\{1/a_n\right\}_{n=1}^\infty$ does not belong to $l^1$.
+            the sequence $\left\{1/a_n\right\}_{n=1}^\infty$ does not belong to $\ell^1$.
           %theorems~\ref{thm-graph-eq} and~\ref{ray-thm}.
       \end{prop}
       \begin{proof}
@@ -1026,7 +1026,7 @@
             the finite length of the ray $R:=(e_1,e_2,e_3\dots)$ which is marked in the picture with the red color.
           However this ray has length equal to
           \[
-            \sum \wtp(e_k, e_{k+1}) = \sum \frac{1}{|a_k|} = \|\frac{1}{a_k}\|_{l^1},
+            \sum \wtp(e_k, e_{k+1}) = \sum \frac{1}{|a_k|} = \|\frac{1}{a_k}\|_{\ell^1},
           \]
           which ends the proof immediately.
       \end{proof}
@@ -1039,9 +1039,7 @@
         \begin{center}
         \begin{tikzpicture}[thick,
                             every node/.style={draw,circle},
-                            lnode/.style={draw,fill=gray},
-                            rnode/.style={draw},
-                            every fit/.style={ellipse,draw,inner sep=-1pt,text width=2cm},
+                            %every fit/.style={ellipse,draw,inner sep=-1pt,text width=2cm},
                             ]
           %\draw[help lines,step=9mm,gray!70] (0,-6) grid (6,0);
           \node[fill=gray,draw, xshift=-3cm, yshift=-3.5cm] (source) {$s$};
