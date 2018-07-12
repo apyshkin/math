@@ -85,17 +85,18 @@
 \renewcommand{\leq}{\leqslant}
 \renewcommand{\geq}{\geqslant}
 \renewcommand{\phi}{\varphi}
-\newcommand\inner[2]{\langle #1, #2 \rangle}
 \newtheorem{theorem}{Theorem}
 \newtheorem{prop}{Proposition}
 \newtheorem{lemma}{Lemma}
 \newtheorem{corol}{Corollary}
 \newtheorem{definition}{Definition}
+\newtheorem*{definition*}{Definition}
 \newtheorem{example}{Example}
 \theoremstyle{remark}
 \newtheorem{remark}{Remark}
 \newtheorem*{remark*}{Remark}
 \newtheorem*{note}{Note}
+\newcommand\inner[2]{\langle #1, #2 \rangle}
 \newcommand\bigmatrixzero{\raisebox{-0.25\height}{\textnormal{\Huge 0}}}
 \newcommand\bigzero{\makebox(10, 10){\text{\Huge 0}}}
 \newcommand{\seq}[1]{\{{#1}_n\}_{n=1}^\infty}
@@ -106,10 +107,10 @@
 \newcommand{\depth}{\operatorname{depth}}
 \newcommand{\flow}{\mathcal{\hat{F}}}
 \newcommand{\flowpos}{\mathcal{F}}
-\newcommand{\preflow}{\mathcal{\hat{F}}_{pre}}
+\newcommand{\preflow}{\mathcal{\tilde{F}}}
 \newcommand{\flowposn}[1]{\mathcal{F}_{#1}}
 \newcommand{\flown}{\mathcal{\hat{F}}_{n}}
-\newcommand{\flowsgn}{\flow}
+\newcommand{\flowsgn}{\cal{\tilde{F}}}
 \newcommand{\source}{\mathit{source}}
 \newcommand{\sink}{\mathit{sink}}
 \newcommand{\init}{init}

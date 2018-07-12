@@ -12,36 +12,50 @@
 % поддержки молодых российских учёных -- докторов наук МД-5758.2015.1.}}
 % \date{}
 
+\section{Motivation}
+  \subsection{Azoff--Shehada and simple examples}
+      The AS system $\fsys_{AS}$ is given as follows:
+      \begin{equation}
+        \label{as-sys}
+        \begin{aligned}
+          &f_1 = e_1 + a_2 e_2, \qquad &f_{2j}=e_{2j}, \quad&j \geq 1,&\\
+          &f_{2j-1}=-a_{2j-1}e_{2j-2} + e_{2j-1} + a_{2j}e_{2j}, \qquad &\makebox[5em]{} \quad&j \geq 2,&\\
+          &f^*_{2j}=-a_{2j}e_{2j-1}+e_{2j}+a_{2j+1}e_{2j+1}, \qquad &f^*_{2j-1}=e_{2j-1}, \quad&j \geq 1&
+        \end{aligned}
+      \end{equation}
+      define $k$-completeness, talk about summ method.
+  \alex{todo}
 \section{B-class of vector systems}
   \subsection{From vector system to the countable network: linear summation problem}
     \label{fsys2graphs}
     We are interested in the completeness properties of the minimal vector system $\fsys = \seq{f}$
       in a separable real [TODO complex] Hilbert space $\cal{H}$.
+    The Hilbert spaces are infinite-dimensional throughout the paper.
     Suppose that $\cal{H}$ has an orthonormal basis $\seq{e}$.
-    Let $\fstarsys = \seq{f^*}$ be a biorthogonal vector system to the original system $\seq{f}$.
+    Let $\fstarsys = \{f_n^{*}\}_{n=1}^\infty$ be a biorthogonal vector system to the original system $\seq{f}$.
     \begin{definition}
         The vector system $\fsys$ belongs to the \emph{B-class} whenever the following conditions are satisfied:
         \begin{itemize}
+            \item both $\fsys$ and $\fstarsys$ are complete,
             \item either $f_n = e_n$ or $f^*_n = e_n$ for any $n > 0$,
             \item $\inner{f_n}{e_n} = \inner{f^*_n}{e_n} = 1$ for any $n > 0$,
             \item $\inner{f_n}{e_k} = -\inner{f^*_k}{e_n}$ for any $n, k > 0$,
             \item the matrices $\{\inner{f_n}{e_k}\}$ and $\{\inner{f^*_n}{e_k}\}$ are both finite-band.
         \end{itemize}
     \end{definition}
-    This class of vector systems is the subject of this section.
     \begin{prop}
       The definition given above guarantees the biorthogonality of the $f_n$ and $f^*_n$.
     \end{prop}
     \begin{proof}
       Straightforward check.
     \end{proof}
+    The B-class of vector systems is the main subject of this section.
+    It is a natural extension of the Azoff--Shehada system~\eqref{as-sys}.
     B-class has an interesting property we are going to exploit later.
     \begin{prop}
-      A vector system which belongs to the B-class could be associated with a
-      weighted bipartite graph $B(\fsys) = (V, E, \wt)$, where $\wt$ is a
-      real-valued function on the $V\times V$ such that $\wt(v, u) = -\wt(u, v)$.
-      Also the inverse is true: for each bipartite graph $(V, E, \wt)$ for which the weight function
-      $\wt$ (or later it becomes the \emph{length} function) satisfies the conditions above there is a vector system from the B-class.
+      A vector system which belongs to the B-class could be associated with an
+        infinite weighted bipartite graph $B(\fsys) = (V, E, \wt)$, where $\wt$ is a
+        real-valued function on $V\times V$ such that $\wt(v, u) = -\wt(u, v)$.
     \end{prop}
     \begin{proof}
       For each index $l > 0$ such that $f^*_l = e_l$ we put a vertex $v_l$ in the first part of the bipartite graph.
@@ -55,15 +69,33 @@
       Denote by $\wt_{lr}$ the expression $\wt_{lr} = \inner{f_l}{e_r}^{-1}$.
       Obviously $\wt_{lr} = -\wt_{rl}$.
 
-      Conversely,
+      %Conversely, we enumerate the vertices in the graph $B = (V, E, \wt)$ as $v_k$.
+      %Each of them belongs either to the left part or to the right part of the graph:
+        %let the vertices of the left part be indexed with $L:=\seq{l}$ and the vertex from
+        %the right part be indexed with $R:=\seq{r}$.
+      %This way we have $\mathbb{N} = L \bigsqcup R$.
+      %Take an arbitrary vertex $v_l$ from the left part of the graph.
+      %Set corresponding $f_l$ and $f_l^*$ as
+      %\begin{align*}
+        %&f^*_l := e_l,\\
+        %&f_l := \sum_{(v_l, v_r) \in E} \wt_{lr}^{-1} e_r.
+      %\end{align*}
+      %For a vertex from the right part $v_r$ from the right part of the graph put
+      %\begin{align*}
+        %&f^_r := e_r,\\
+        %&f^*_r := \sum_{(v_r, v_l) \in E} \wt_{rl}^{-1} e_l.
+      %\end{align*}
+      %The biorthogonality is a simple corollary from the skew-symmetry property of $\wt$.
     \end{proof}
     \begin{remark}
-      Note that the Azoff-Shehada vector system~\cite{azoff} lies in the B-class.
+      Note that there might be several vector systems for a single weighted bipartite graph $B$.
+    \end{remark}
+    \begin{remark}
+      Observe that due to the completeness property both parts of the bipartite graph must
+        contain an infinite number of vertices.
     \end{remark}
     \begin{example}
-      The graph $B(\fsys_{AS})$ for the AS system looks like this:
-      \definecolor{myblue}{RGB}{80,80,160}
-      \definecolor{mygreen}{RGB}{80,160,80}
+      Now look at the bipartite graph $B(\fsys_{AS})$ built from the Azoff--Shehada system:
       \begin{center}
       \begin{tikzpicture}[auto,
                           thick,
@@ -100,27 +132,28 @@
       \end{tikzpicture}
       \end{center}
     \end{example}
-    We are going to find the necessary and sufficient condition for the $k$-completeness property for the B-class vector system.
-    In order to pursue that we need to investigate the conditions, under which the B-class system admits a linear summation method.
-    First of all we intend to demonstrate an elegant reformulation of the linear summation method existence problem for
-      the B-class vector systems.
+    Suppose we have a B-class vector system $\fsys=\seq{f}$.
+    We are going to analyze the $k$-completeness of $\fsys$.
+    Before we pursue that, we need to investigate the conditions under which the B-class system admits a linear summation method.
+    First of all we intend to demonstrate a reformulation of the linear summation method existence problem for
+      the B-class vector systems in terms of infinite networks.
+
     Recall that there exists a linear summation method for the system $\seq{f}$
       iff there is no trace class operator $T: \cal{H} \to \cal{H}$ with the trace equal to $1$,
       such that $\inner{Tf_n}{f_n^*} = 0$ for any $n$.
-    Suppose that there is such an operator $T$ such that $\inner{Tf_n}{f_n^*} = 0$ for any $n$.
+    Suppose that there is an operator $T$ such that $\inner{Tf_n}{f_n^*} = 0$ for any $n$.
     There are two cases: either $f^*_n = e_n$ or $f_n = e_n$.
     In the first case the condition $\inner{Tf_n}{f_n^*} = 0$ turns into
     \begin{equation}
         \label{left-eqn}
         \sum_j T_{nj} \inner{f_n}{e_j} = 0,
     \end{equation}
-    and in the second case it is equivalent to 
+    and in the second case it is equivalent to
     \begin{equation}
         \label{right-eqn}
         \sum_j T_{jn} \inner{f^*_n}{e_j} = 0.
     \end{equation}
-    Now consider a real function $\flowsgn(T): E \to \mathbb{R}$
-    on the edges of the graph $B(\fsys)$.
+    Now consider an auxiliary function $\flowsgn: V \otimes V \to \mathbb{R}$ defined as follows
     \begin{align*}
         &\flowsgn(v_l, v_r) := T_{lr} \inner{f_l}{e_r} = T_{lr} \wt_{lr}^{-1},\\
         &\flowsgn(v_r, v_l) := T_{lr} \inner{f^*_r}{e_l} = T_{lr} \wt_{rl}^{-1}.
@@ -135,12 +168,12 @@
     \end{equation}
       for each vertex $v$ in the graph $B(\fsys)$.
     \begin{remark}
-      Notice how the function $\flow$ defined on the graph $B(\fsys)$ resembles
-      a \emph{flow} defined on the edges of the $B(\fsys)$ graph.
+      Notice how the function $\flowsgn$ defined on the graph $B(\fsys)$ resembles
+        a \emph{flow} defined on the edges of the $B(\fsys)$ graph.
       One might also see that the equation~\eqref{almost-flow-eqn} describes the total flow (sum of the outgoing flow and incoming flow) 
-      for each vertex $v$ in the graph $B(\fsys)$
+        for each vertex $v$ in the graph $B(\fsys)$.
       In order to formalize this observation we are going to build a flow function
-      after a few changes are made to the graph $B(\fsys)$.
+        after a few changes are made to the graph $B(\fsys)$.
     \end{remark}
     Before we proceed we are going to introduce a few basic definitions.
     \begin{definition}
@@ -179,8 +212,8 @@
       Also denote by $d_{+}(v)$ the sum of the flows \emph{leaving} the node $v$ and by
       $d^{-}(v)$ the sum of the flows \emph{entering} $v$:
       \begin{align*}
-        &d^{+}_{\flow}(v) = d^{+}(v) := \sum_{u \in \eout(v)} \flow(vu),\\
-        &d^{-}_{\flow}(v) = d^{-}(v) := \sum_{u \in \ein(v)} \flow(uv).
+        &d^{+}_{\flow}(v) = d^{+}(v) := \sum_{u \mid \flow(vu) > 0} \flow(vu),\\
+        &d^{-}_{\flow}(v) = d^{-}(v) := \sum_{u \mid \flow(vu) < 0} \flow(uv).
       \end{align*}
       Also let $d(v)$ be equal to $d^{+}(v) - d^{-}(v)$. Sometimes we will refer to this value as
       a \emph{total flow} of the vertex $v$.
@@ -230,9 +263,15 @@
       &\flowpos(uv) = |\flow(u,v)|,\\
       &\wtp_{*}(uv) = \wtp(u,v).
     \end{align*}
+    The total flow functions $d_\flowpos$, $d^{+}_\flowpos$, $d^{-}_\flowpos$ do not change their value and could be written as
+    \begin{align*}
+      &d^{+}_{\flowpos}(v) = d^{+}(v) := \sum_{u \in \eout(v)} \flowpos(vu),\\
+      &d^{-}_{\flowpos}(v) = d^{-}(v) := \sum_{u \in \ein(v)} \flowpos(uv),\\
+      &d_{\flowpos}(v) = d(v) := d^{+}(v) - d^{-}(v).
+    \end{align*}
     \begin{definition}
       The oriented network $\onet$ is called an \emph{orientation} of the network $\net$.
-      For the positive flow function $\flowpos$ we will use the same term:
+      For the positive flow function $\flowpos$ we will exploit the same term:
         $\flowpos$ is an \emph{orientation} of the flow $\flow$.
     \end{definition}
     \begin{remark}
@@ -247,15 +286,14 @@
         and the length of each edge incident to $\source$ or to $\sink$ is equal to one.
       We will call such network a \emph{B-class network}.
     \end{definition}
-    
     Now we are ready to continue with the linear summation method problem.
-    Our aim is to build up a network from the graph $B(\fsys)$.
+    Our aim is to build up a B-class network from the graph $B(\fsys)$.
     We plan to construct the network $\net(\fsys) = (V, E, \wtp, s, t)$,
     positive length function $\wtp: E \to R^{+}$ and a real skew-symmetric flow function $\flow: V \times V \to R$.
     Firstly we consider the vertices and the edges of the graph $B(\fsys)$.
     All the vertices in the graph $B(\fsys)$ we incorporate into the network $\net(\fsys)$.
-    The vertex set of the new graph is a superset of vertices of the graph $B(\fsys)$,
-    so we will continue referring to the vertices as the vertices from 
+    The vertex set of the new graph will be a superset of vertices of the graph $B(\fsys)$,
+    so we will continue referring to the vertices as the vertices from
     the \emph{left} part of the graph and the vertices from the \emph{right} part of the graph.
     The network $\net(\fsys)$ will contain all the edges from the graph $B(\fsys)$ as well.
     For each of these edges we are going to assign the flow function $\flow$ and
@@ -263,25 +301,29 @@
     Each edge $e = (v_l v_r)$ which belongs to the graph $B(\fsys)$ we include in the graph of $\net(\fsys)$.
     We set the flow and the length functions on the edge $e$:
     \begin{align*}
-      &\flow(v_l, v_r) = \flowsgn(v_r, v_l) = T_{lr} \inner{f^*_r}{e_l},\\
-      &\wtp(e) = \left| \wt(e) \right|.
+      &\flow(v_l, v_r) := T_{lr} \inner{f^*_r}{e_l},\\
+      &\flow(v_r, v_l) := T_{lr} \inner{f_l}{e_r} = -\flow(v_l, v_r),\\
+      &\wtp(e) = \left| \wt(v_l, v_r) \right| =  \left|\inner{f_l}{e_r}\right|^{-1}.
     \end{align*}
-    Evidently on this kind of edges the flow functions $\flowsgn$ and $\flow$ agree.
-    
+    \begin{note}
+      Evidently on this kind of edges the flow function $\flow$ agrees with the function $\flowsgn$
+        we examined a few paragraphs before.
+    \end{note}
+
     Now we add the $\source$ vertex $s$ and the $\sink$ vertex $t$ to the constructed graph.
     Suppose we have enumerated the vertices from the left part of the graph, for instance $\seq{l}$.
-    Then for each $k > 0$ we connect the $\source$ vertex and the $l_k$ vertex with
+    Then for each $k > 0$ we connect the $\source$ vertex $s$ and the $l_k$ vertex with
       the edge $e_k = (s l_k)$, and put a flow:
     \begin{align*}
       &\flow(l_k, s) = T_{l_k l_k},\\
       &\flow(s, l_k) = -T_{l_k l_k}.
     \end{align*}
     We have the length equal to one for such edges: $\wtp(e) = 1$.
-    As we added the edges ${e_k}$, the flow became \emph{preserved} at each vertex of the left part of the network $\net(\fsys)$.
+    As we added the edges $\seq{e}$, the flow became \emph{preserved} at each vertex of the left part of the network $\net(\fsys)$.
     In the similar manner we will transform the right part of the graph.
     Assuming we have the vertices from the right part of the graph $B(\fsys)$ in the form of the sequence $\seq{r}$,
       for each $k > 0$ we connect the $r_k$ vertex to the $\sink$ with the edge $e'_k=(r_k t)$
-      and set the flow equal to:
+      and set the flow $\flow$ equal to:
     \begin{align*}
       &\flow(r_k, t) = T_{r_k r_k},\\
       &\flow(t, r_k) = -T_{r_k r_k}.
@@ -298,19 +340,6 @@
       %or with the sign of the flow function, and these two definitions describe the same objects.
       %Formally there is a isomorphism between these two types of objects.
     %\end{remark}
-    %\begin{definition}
-      %Let $\net=(V,E,\flow)$ be a network -- an oriented graph with a positive flow function $\flow$ on it.
-      %Consider an undirected graph $G=(V,E')$ such that $e=(vu)$ belongs to $E'$ iff
-      %either $(vu) \in E$ or $(uv) \in E$.
-      %Such undirected graph we will call the \it{frame} of the network $\net$.
-      %Also define a function $\flowsgn$ on the $V \times V$:
-      %\begin{align*}
-        %\flowsgn(vu) = \flow(vu), \quad \text{if edge } (vu) \in E,\\
-        %\flowsgn(vu) = -\flow(vu), \quad \text{if edge } (uv) \in E.
-      %\end{align*}
-      %Such function we will call \it{sign-flow} function.
-    %\end{definition}
-    %Regard the orientation $\onet = (\vec{B}(\fsys), \wtp, s, t)$ of the established network $\net(\fsys)$.
     \begin{remark}
       Pay your attention to the fact that the network $\net(\fsys)$
       depends only on the biorthogonal system $\fsys$ and not on the operator $T$.
@@ -334,12 +363,12 @@
       If $\flowpos$ is an oriented flow on the oriented networks $\onet = (V,\vec{E},\wtp)$ 
         we can introduce the same term for the \emph{mass} of the flow:
       \[
-        \|\flowpos\| := \sum_{e \in \vec{E}} \left|\flow(e) \wtp(e)\right|.
+        \|\flowpos\| := \sum_{e \in \vec{E}} \left|\flowpos(e) \wtp(e)\right|.
       \]
       Though in the oriented case the flow function is always positive
-        so we are allowed to omite the modulus signs:
+        so we are allowed to omit the modulus signs:
       \[
-        \|\flowpos\| = \sum_{e \in \vec{E}} \flow(e) \wtp(e).
+        \|\flowpos\| = \sum_{e \in \vec{E}} \flowpos(e) \wtp(e).
       \]
     \end{definition}
     \begin{theorem}
@@ -734,7 +763,7 @@
         Obviously $V_s \cap L_n = \emptyset$.
         Now observe the subgraph $U \subseteq G_n$:
         \[
-          U := \bigcup \left\{p \in \gnpaths(s, V_s) \mid \text{$p$ is not $\cal{G}$-saturated})\right\},
+          U := \big\{p \in \gnpaths(s, V_s) \mid \text{$p$ is not $\cal{G}$-saturated}\big\},
         \]
         Such subgraph has no outgoing non-saturated edges in the graph $G_n$.
         It also does not have outgoing non-saturated edges in the whole graph $G$ since all the outgoing edges it had in $G$
