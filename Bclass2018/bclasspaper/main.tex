@@ -1,10 +1,12 @@
 \documentclass[12pt]{article}
 \input{preamble}
+\usepackage{caption}
 \usepackage{tikz}
 \usepackage{tkz-berge}
 \usetikzlibrary{positioning, chains, fit, shapes, calc}
         \tikzset{lnode/.style={auto, circle, draw,fill=gray!50},
                  rnode/.style={auto, circle, draw},
+                 mnode/.style={auto, circle, draw, fill=gray!25},
                  wnode/.style={sloped,above}}
 
 \begin{document}
@@ -178,7 +180,7 @@
     \begin{definition}
         \emph{Network} $\net$ is a quadruple $(G, \wtp, s, t)$, where $G = (V, E)$ is weighted graph
         with a positive length function $\wtp$ on $E$ and two vertices $s, t \in V$, which
-        we will call $\source$ and $\sink$ of the network respectively.
+        we will call \emph{source} and \emph{sink} of the network respectively.
     \end{definition}
     \begin{definition}
         Look at the skew-symmetric function $\flow: V \times V \to R$.
@@ -208,7 +210,7 @@
     \end{definition}
     \begin{definition}
       Let $\net = (G, \wtp, s, t)$ be a network, and $\flow$ be a pseudo-flow function.
-      Also denote by $d_{+}(v)$ the sum of the flows \emph{leaving} the node $v$ and by
+      Also denote by $d_{+}(v)$ the sum of the flows \emph{leaving} the vertex $v$ and by
       $d^{-}(v)$ the sum of the flows \emph{entering} $v$:
       \begin{align*}
         &d^{+}_{\flow}(v) := \sum_{\flow(vu) > 0} \flow(vu),\\
@@ -231,22 +233,22 @@
     \end{definition}
     \begin{note}
       In simple words this property suggests
-        that the total flow coming out of the $\source$ is equal to the total flow
-        coming into the $\sink$.
+        that the total flow coming out of the source is equal to the total flow
+        coming into the sink.
     \end{note}
     \begin{definition}
-      \emph{Oriented network} $\onet$ is a quadruple $(\vec{G}, \wtp, s, t)$, where
+      \emph{Oriented network} $\onet$ is a quadruple $(\vec{G}, \wtp, \source, \sink)$, where
         $\vec{G}$ is an oriented weighted graph with
-        a positive length function $\wtp$ on $\vec{E}$ and two vertices $s, t \in V$, which
-        we will call $\source$ and $\sink$ of the oriented network respectively.
+        a positive length function $\wtp$ on $\vec{E}$ and two vertices $\source, \sink \in V$, which
+        we will call \emph{source} and \emph{sink} of the oriented network respectively.
     \end{definition}
     \begin{note}
       The flow functions could be defined on the oriented networks in the similar manner
       we defined on the non-oriented networks.
     \end{note}
-    Suppose $\net = (V, E, \wtp, s, t)$ is a network and $\flow$ is a skew-symmetric function defined
+    Suppose $\net = (V, E, \wtp, \source, \sink)$ is a network and $\flow$ is a skew-symmetric function defined
     on $\net$.
-    Naturally, we might instead consider an oriented network $\onet = (V, \vec{E}, \wtp_{*}, s, t)$ and a 
+    Naturally, we might instead consider an oriented network $\onet = (V, \vec{E}, \wtp_{*}, \source, \sink)$ and a 
       positive flow function $\flowpos: \vec{E} \to \mathbb{R}^{+}$, where
       the set of vertices $V$, $\source$ and $\sink$ vertices are the same.
     The length function $\wtp_{*}$ will be also positive but will be redefined since the edges set $\vec{E}$ is a different one.
@@ -281,14 +283,15 @@
         is incorporated into the sign of the flow function on the same edge $(uv)$ in the non-oriented network.
     \end{remark}
     \begin{definition}
-      Consider a network $\net = (G, \wtp, s, t)$ such that
-        the degree of each vertex in $V \setminus \{s, t\} $ is finite,
-        and the length of each edge incident to $\source$ or to $\sink$ is equal to one.
+      Consider a network $\net = (G, \wtp, \source, \sink)$ such that
+        the degree of each vertex in $V \setminus \{\source, \sink\} $ is finite,
+        and the length of each edge incident to source or to sink is equal to one.
+      Also we demand that the vertices $\source$ and $\sink$ are connected by the finite path.
       We will call such network a \emph{B-class network}.
     \end{definition}
     Now we are ready to continue with the linear summation method problem.
     Our aim is to build up a B-class network from the graph $B(\fsys)$.
-    We plan to construct the network $\net(\fsys) = (V, E, \wtp, s, t)$,
+    We plan to construct the network $\net(\fsys) = (V, E, \wtp, \source, \sink)$,
     positive length function $\wtp: E \to R^{+}$ and a real skew-symmetric flow function $\flow: V \times V \to R$.
     Firstly we consider the vertices and the edges of the graph $B(\fsys)$.
     All the vertices in the graph $B(\fsys)$ we incorporate into the network $\net(\fsys)$.
@@ -310,23 +313,23 @@
         we examined a few paragraphs before.
     \end{note}
 
-    Now we add the $\source$ vertex $s$ and the $\sink$ vertex $t$ to the constructed graph.
+    Now we add the source vertex $\source$ and the sink vertex $\sink$ to the constructed graph.
     Suppose we have enumerated the vertices from the left part of the graph, for instance $\seq{l}$.
-    Then for each $k > 0$ we connect the $\source$ vertex $s$ and the $l_k$ vertex with
-      the edge $e_k = (s l_k)$, and put a flow:
+    Then for each $k > 0$ we connect the vertex $\source$ and the $l_k$ vertex with
+      the edge $e_k = (\source l_k)$, and put a flow:
     \begin{align*}
-      &\flow(l_k, s) = T_{l_k l_k},\\
-      &\flow(s, l_k) = -T_{l_k l_k}.
+      &\flow(l_k, \source) = T_{l_k l_k},\\
+      &\flow(\source, l_k) = -T_{l_k l_k}.
     \end{align*}
     We have the length equal to one for such edges: $\wtp(e) = 1$.
     As we added the edges $\seq{e}$, the flow became \emph{preserved} at each vertex of the left part of the network $\net(\fsys)$.
     In the similar manner we will transform the right part of the graph.
     Assuming we have the vertices from the right part of the graph $B(\fsys)$ in the form of the sequence $\seq{r}$,
-      for each $k > 0$ we connect the $r_k$ vertex to the $\sink$ with the edge $e'_k=(r_k t)$
+      for each $k > 0$ we connect the $r_k$ vertex to the $\sink$ vertex with the edge $e'_k=(r_k t)$
       and set the flow $\flow$ equal to:
     \begin{align*}
-      &\flow(r_k, t) = T_{r_k r_k},\\
-      &\flow(t, r_k) = -T_{r_k r_k}.
+      &\flow(r_k, \sink) = T_{r_k r_k},\\
+      &\flow(\sink, r_k) = -T_{r_k r_k}.
     \end{align*}
     For these edges we put the length equal to one as well.
     The network $\net(\fsys)$ is built up, and it is a B-class network.
@@ -347,12 +350,12 @@
     \end{remark}
     What can one say about the total flow in each of the vertex of the constructed network $\net(\fsys)$?
     Due to the trick we performed the total flow became zero in each of the vertices from the \emph{left} and the \emph{right} parts.
-    The total flow $d(\source)$ in the $\source$ vertex is equal to the $\sum T_{l_k l_k}$, and the total flow in the
-      $\sink$ vertex is now equal to the $\sum T_{r_k r_k}$.
+    The total flow $d(\source)$ in the source vertex is equal to the $\sum T_{l_k l_k}$, and the total flow in the
+      sink vertex is now equal to the $\sum T_{r_k r_k}$.
     Now one can see that the network $\net(\fsys)$ is $\flow$-preserving if and only if the trace of the operator $T$ is equal to
       zero.
     \begin{definition}
-      Consider a network $\net = (V, E, \wtp)$ and a flow function $\flow$ on it.
+      Consider a network $\net = (V, E, \wtp, \source, \sink)$ and a flow function $\flow$ on it.
       We introduce a non-negative function $\|\flow\|$ which we call the \emph{mass} of the flow $\flow$.
       \[
         \|\flow\| := \sum_{e \in E} \left|\flow(e) \wtp(e)\right|.
@@ -360,7 +363,7 @@
       We allow it to be equal $+\infty$ as well.
     \end{definition}
     \begin{definition}
-      If $\flowpos$ is an oriented flow on the oriented networks $\onet = (V,\vec{E},\wtp)$ 
+      If $\flowpos$ is an oriented flow on the oriented networks $\onet = (V,\vec{E},\wtp, \source, \sink)$ 
         we can introduce the same term for the \emph{mass} of the flow:
       \[
         \|\flowpos\| := \sum_{e \in \vec{E}} \left|\flowpos(e) \wtp(e)\right|.
@@ -373,14 +376,14 @@
     \end{definition}
     \begin{theorem}
       \label{thm-graph-eq}
-        Let $\net(\fsys) = B(\fsys, \wtp, s, t)$ be a B-class network constructed
+        Let $\net(\fsys) = B(\fsys, \wtp, \source, \sink)$ be a B-class network constructed
           from the B-class system $\fsys = \seq{f}$.
         Then $\fsys$ admits a linear summation method if and only if
           the network $\net(\fsys)$ is $\flow$-preserving for any
           finite-mass flow $\flow$.
     \end{theorem}
     \begin{proof}
-      First we briefly repeat the sufficiency proof we studied earlier.
+      First we briefly repeat the sufficiency proof we sketched previously.
       Suppose there is no summation method for the system $\seq{f}$.
       As we said before, it implies that there exists a trace class operator $T : \cal{H} \to \cal{H}$ with
       the trace equal to one, such that $\inner{Tf_n}{f_n^*} = 0$ for any $n$.
@@ -388,20 +391,20 @@
       $\net(\fsys)$.
       One thing to check is that the flow we constructed has a finite mass.
       It easy follows from the condition that the operator matrix is finite band and has a finite trace.
-      Finally, one can acknowledge the fact that this network does NOT preserve the flow, since
+      Finally, one can acknowledge the fact that this network does not preserve the flow, since
       \[
-        d(s) + d(t) = \sum T_{l_k l_k} + \sum T_{r_k r_k} = Tr(T) = 1,
+        d(\source) + d(\sink) = \sum T_{l_k l_k} + \sum T_{r_k r_k} = Tr(T) = 1,
       \]
       thus $d(\sink) \neq -d(\source)$.
       We arrived to contradiction and the sufficiency is proved.
 
       Now suppose that the system $\fsys$ admits a linear summation method.
       Assume there is also a flow $\flow$ on the network $\net(\fsys)$ such that $d(\sink) + d(\source) \neq 0$.
-      Now we are going to construct the operator $T$ with non-zero trace, which annihilates all the rank-one
+      Now we are going to put up an operator $T$ with a non-zero trace, which annihilates all the rank-one
       operators $f_n \otimes f^*_n$, thus coming to the contradiction with our initial assumption.
-      First consider the edges incident to the $\source$ vertex.
+      First consider the edges incident to the source vertex.
       Having all the vertices already enumerated we will consider the vertices in the left part $v_{l_k}$.
-      Recall that each vertex $v_i$ (except $\source$ and $\sink$) matches to the basis element $e_i$.
+      Recall that each vertex $v_i$ (except source and sink) matches to the basis element $e_i$.
       Assign the diagonal elements of $T$:
       \[
         T_{l_k l_k} := \flow(l_k, \source) \wtp(l_k l_k) = \flow(l_k, \source) \quad k > 0.
@@ -449,7 +452,7 @@
         a path and there is an edge $\vec{e} = (v_N v_1)$ connecting the last vertex to the first vertex of the sequence.
     \end{definition}
     \begin{definition}
-      Let $G = (V, E)$ be an infinite (oriented) graph.
+      Let $G = (V, \vec{E})$ be an infinite (oriented) graph.
       An infinite path $r = \seq{v}$ is called a \emph{ray} if
       $r$ is a path, meaning that the edge $\vec{e} = (v_k v_{k+1})$ for each $k > 0$ is present in the graph $G$.
     \end{definition}
@@ -457,46 +460,125 @@
     The main result of this section is a following
     \begin{theorem}
       \label{ray-thm}
-      Let $\onet = (\vec{G}, \wtp, s, t)$ be an oriented B-class network.
+      Let $\onet = (\vec{G}, \wtp, \source, \sink)$ be an oriented B-class network.
       Then there exist such a positive flow function $\flowpos: \vec{E} \to R^{+}$ that
       \begin{itemize}
         \item the flow $\flowpos$ has a finite mass,
         \item the network $\onet$ does not preserve the flow,
       \end{itemize}
-        if and only if there exists a ray $r = \seq{v}$ ($=sv_2v_3\dots$)
-        in the network $\onet$, which total length is bounded:
+        if and only if there exists a ray $r = \seq{v}$ in the network $\onet$, taking its start in the vertex $\source$,
+          which total length is finite:
         \[
           \sum_{k=1}^\infty \wtp(v_k v_{k+1}) < \infty.
         \]
     \end{theorem}
+    \begin{remark}
+      \label{inner-ray-rmk}
+      Notice that the definition of the B-class network implies that the weight of any edge
+        incident to the source or the sink vertices is equal to one.
+      Suppose we found a ray $r$ described in the theorem.
+      The ray has a finite length and thus it follows that only a finite number of edges $(v_k v_{k+1})$ might
+        be incident either to the source or to sink vertices.
+      This way the existence of the ray $r$ suggests that there also exists a ray $r_0 \in V \setminus \left\{\source, \sink\right\}$.
+    \end{remark}
     \begin{proof}
       Without loss of generality we might assume that $d(\sink) + d(\source)$ is precisely one.
-      In order to make our proof easier we merge the $\source$ vertex with the $\sink$ vertex and call this a
-        new $\source$ vertex.
-      This way we obtain a network with a single source such that $d(\source) = 1$.
-      Formally we are left without the $\sink$ vertex but we are going to choose any vertex $v \in V$ which
-        is not equal to the new $\source$ and declare this $v$ a new $\sink$ vertex.
-      All the vertices in the graph still preserve the flow after this procedure, except the $\source$ vertex
-        which is now \emph{$\flowpos$-active} since its total flow $d(\source)$ equal to one.
-        %the existence of the ray with a finite total length
-        %in the transformed network is equivalent to the existence of such ray in the original network.
-      \alex{todo}
-      \noindent\textbf{Sufficiency}
-      Suppose that there is a ray of a finite total length. 
-      In that case we set the resulting flow function $\flowpos(v_k v_{k+1})$ to one, creating an elusive flow
-        from the $\source$ to infinity. All the other edges will not carry any flow, hence the flow is preserved
-        at each vertex but not preserved by the network $\onet$.
+      In order to make our proof easier we consider a slightly modified network $\onet' = (V', E', \source', \source')$.
+      Namely, we merge the source vertex $\source$ with the sink vertex $\sink$ and call this a
+        new source vertex $\source'$.
+      This way we obtain a network $\onet'$ with a single source such that $d(\source') = 1$.
+      Formally we are left without the sink vertex but we could always set the sink vertex to be the same as the source vertex: $\mathit(sink)=\source'$.
+      The flow function $\flowpos$ as well as the length function $\wtp$ stay exactly the same (being defined on the edges set $E$).
+      All the vertices in the graph keep preserving the flow after this procedure, except for the source vertex $\source'$
+        which is now \emph{$\flowpos$-active} since its total flow $d(\source')$ equal to one.
+      Thus $\onet'$ is a network with a function $\flowpos$ being a flow function as required.
+      Obviously the mass of the flow does not change since we did not change the edges weights.
+      Furethermore the flow $\flowpos$ does not preserve the flow by the definition.
 
-      \noindent\textbf{Necessity}
+      Now pretend we proved the existence of a ray $r'$ of a finite length in the modified network $\onet'$, starting with $\source'$.
+      Then since the weight of any edge incident to the source vertex is equal to one (see the remark~\ref{inner-ray-rml})
+        there is a subray of $r'$ which does not include source.
+      Suppose the subray starts with some vertex $v' \in V' \setminus \source'$.
+      Now consider the corresponding vertex $v \in V \setminus \left\{\source, \sink\right\}$ in the original network $\onet$.
+      Obviously $v$ is either connected to the source or to the sink vertices by the finite path.
+      However by the definition of B-class networks the sink is also connected to the source with the path of the finite length.
+      Thus it is connected to the source, and we have found the ray $r$ in $\onet$.
+
+      On the contrary, if there is a ray $r$ in the given network $\onet$, which starts with the vertex $\source$
+        then trivially there is a ray $r^*$ in the modified network $\onet^*$, starting from the vertex $\source$.
+      This way we will rather be proving the following reformulation of the theorem~\ref{ray-thm}.
+      \begin{theorem*}
+        Let $\onet = (G, \wtp, \source, \sink = \source)$ be an oriented B-class network which has
+          the source vertex equal to the sink vertex.
+        Then there exist such a positive flow function $\flowpos: E \to R^{+}$ that
+        \begin{itemize}
+          \item $\onet$ does not preserve $\flowpos$ meaning that $d(\source) \neq 0$,
+          \item the flow $\flowpos$ has a finite mass,
+        \end{itemize}
+          if and only if there exists a ray $r = \seq{v}$ in the network $\onet$, starting from the source vertex, which total length is finite:
+          \[
+            \sum_{k=1}^\infty \wtp(v_k v_{k+1}) < \infty.
+          \]
+      \end{theorem*}
+      %First we prove the simpler implication.
+      \subsubsection*{Sufficiency}
+      Suppose that there is a ray of a finite total length $r=(v_1 v_2 \dots)$. 
+      In that case we set the resulting flow function $\flowpos(v_k v_{k+1})$ to one, creating an elusive flow
+        from $\source$ to infinity. All the other edges will not carry any flow, hence the flow is preserved
+        at each vertex but not preserved by the network $\onet$.
+      \subsubsection*{Necessity}
       Now let us turn to the more difficult part.
       In this part we are going to view this network as a rooted graph with the root at the $\source$ vertex.
-      Consequently sometimes we will employ the term $\root$.
+      Consequently from time to time we will employ the term \emph{root vertex} and denote it by $\root := \source$.
+
       For a start we get rid of all the non-zero flow cycles in the oriented graph $G$.
-      Non-zero flow cycle is a cycle in the network such that non-zero flow circulates through this cycle,
-      meaning that for each cycle's edge the flow along the edge is strictly greater than zero.
-      In order to accomplish that we will present a sequence of the flows on the $\onet$.
-      At each step $n \in \mathbb{N}$ we examine a subgraph $\vec{G}_n$ and present a flow function $\flowposn{n}$
-        such that $\flowposn{n}$ is monotone: for any edge $e \in \vec{E}$ the following inequality holds:
+      \emph{Non-zero flow cycle} is a cycle $C$ in $G$ such that non-zero flow circulates along $C$,
+        meaning that for each cycle's edge $e \in E$ the flow along the edge is strictly greater than zero: $\flowpos(e) > 0$.
+      You can see an example of non-zero flow cycle in the picture~\ref{non-zero-flow}.
+      \begin{figure}
+        \begin{center}
+          \begin{tikzpicture}[auto,
+                              thick,
+                              edge/.style={>=stealth',shorten >=1pt, ->},
+                              edge-label/.style={auto,draw=none, color=black},
+                              edge-cycle/.style={edge, color=blue!40!gray, bend left = 10}
+                              %every node/.style={circle, draw, lnode},
+                              %every fit/.style={ellipse,draw,inner sep=-1pt,text width=1cm},
+                              ]
+            \node[lnode](source) at (180:6) {$\source$};
+            \node[rnode](sink) at (180:-6) {$\sink$};
+            \begin{scope}[mnode]
+              \def\NN{8}
+              \foreach \i in {0,...,\NN}
+              \node[mnode] (v\i) at ({180 - \i*(360/\NN)}:3) {$v_{\i}$};
+            \end{scope}
+            \begin{scope} 
+              \draw[edge-cycle] (v1) to node[edge-label] {\scriptsize $4$} (v2);
+              \draw[edge-cycle] (v2) to node[edge-label] {\scriptsize $4$} (v3);
+              \draw[edge-cycle] (v3) to node[edge-label] {\scriptsize $0.5$} (v4);
+              \draw[edge-cycle] (v4) to node[edge-label] {\scriptsize $0.5$} (v5);
+              \draw[edge-cycle] (v5) to node[edge-label] {\scriptsize $2$} (v6);
+              \draw[edge-cycle] (v6) to node[edge-label] {\scriptsize $2$} (v7);
+              \draw[edge-cycle] (v7) to node[edge-label] {\scriptsize $3$} (v8);
+              \draw[edge-cycle] (v8) to node[edge-label] {\scriptsize $2$} (v1);
+
+              \draw[edge, bend right = 25] (v1) to node[edge-label] {\scriptsize $1$} (v3);
+              \draw[edge, bend left = 25] (v8) to node[edge-label] {\scriptsize $2.5$} (v5);
+              \draw[edge, bend left = 15] (source) to node[edge-label] {\scriptsize $3$} (v1);
+              \draw[edge, bend right = 15] (source) to node[edge-label] {\scriptsize $1$} (v7);
+              \draw[edge] (source) to node[edge-label] {\scriptsize $1.5$} (v8);
+
+              \draw[edge, bend left = 15] (v3) to node[edge-label] {\scriptsize $4.5$} (sink);
+              \draw[edge, bend right = 15] (v5) to node[edge-label] {\scriptsize $1$} (sink);
+            \end{scope}
+          \end{tikzpicture}
+        \caption{A network containing a non-zero flow cycle (blue).\\ Here the flow is shown for each edge.} 
+        \label{non-zero-flow}
+        \end{center}
+      \end{figure}
+      In order to accomplish that, we will present a sequence of the flows $\flowposn{n}$, defined on the network $\onet$.
+      At each step $n \in \mathbb{N}$ we examine a subgraph $G_n \subset G$ and present a flow function $\flowposn{n}$
+        such that $\flowposn{n}$ is monotone: for any edge $e \in E$ the following inequality holds:
       \[
         \flowposn{n+1}(e) \leq \flowposn{n}(e)
       \]
@@ -504,7 +586,7 @@
       The main property of the subflow $\flowposn{n}$ is that there will be no non-zero flow cycles in the induced subgraph
       $G_n$.
       We start with the flow $\flowposn{0}$ equal to the flow $\flowpos$.
-      The first step $n = 1$ is trivial: the graph $\vec{G}_1$ contains only the root vertex.
+      The first step $n = 1$ is trivial: the graph $G_1$ contains only the root vertex.
       The flow $\flowposn{1}$ is equal to $\flowposn{0}$.
       At the step $n$ we consider the subgraph $\vec{G}_n = (V_n, \vec{E}_n) \subseteq \vec{G}$, where the vertices
         $V_n = {v_k}_{k=1}^n$ and the edges $E_n$ are the edges from $\vec{E}$ incident to the $V_n$.
@@ -989,7 +1071,7 @@
         \end{enumerate}
       \end{theorem}
       The first statement does not interest us for now.
-      The third statement is criteria for a linear summation method existence.
+      The third statement is a criterion for a linear summation method existence.
       Now we would like to present another proof of the statement~\ref{pt3} of the theorem~\ref{thm-katavolos}:
       \begin{prop}
           The vector system $\fsys_{AS}$ admits a linear summation method when and only when
@@ -1003,7 +1085,7 @@
           that $\fsys$ admits a linear summation method if and only if
           the network $\net(\fsys)$ is $\flow$-preserving for any
           finite-mass flow $\flow$.
-        We could reformulate the conclusion in the terms of \emph{oriented} networks.
+        We could reformulate the conclusion in terms of \emph{oriented} networks.
         The system $\fsys$ admits a linear summation method if and only if
           the oriented network $\onet(\fsys)$ is $\flowpos$-preserving for any
           finite-mass flow $\flowpos$.
