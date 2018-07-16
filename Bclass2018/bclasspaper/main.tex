@@ -183,7 +183,7 @@
         we will call \emph{source} and \emph{sink} of the network respectively.
     \end{definition}
     \begin{definition}
-        Look at the skew-symmetric function $\flow: V \times V \to R$.
+        Look at the skew-symmetric function $\flow: V \times V \to \mathbb{R}$.
         The function $\flow$ will be called a \emph{pseudo-flow}.
     \end{definition}
     \begin{definition}
@@ -261,8 +261,8 @@
     Also we set up the edge length and the positive flow function $\flowpos: E \to \mathbb{R}^{+}$ so that
     for any edge $\vec{e} = (uv) \in \vec{E}$
     \begin{align*}
-      &\flowpos(uv) = |\flow(u,v)|,\\
-      &\wtp_{*}(uv) = \wtp(u,v).
+      &\flowpos(u v) = |\flow(u,v)|,\\
+      &\wtp_{*}(u v) = \wtp(u v).
     \end{align*}
     The total flow functions $d_\flowpos$, $d^{+}_\flowpos$, $d^{-}_\flowpos$ do not change their value and could be written as
     \begin{align*}
@@ -292,7 +292,7 @@
     Now we are ready to continue with the linear summation method problem.
     Our aim is to build up a B-class network from the graph $B(\fsys)$.
     We plan to construct the network $\net(\fsys) = (V, E, \wtp, \source, \sink)$,
-    positive length function $\wtp: E \to R^{+}$ and a real skew-symmetric flow function $\flow: V \times V \to R$.
+    positive length function $\wtp: E \to \mathbb{R}^{+}$ and a real skew-symmetric flow function $\flow: V \times V \to \mathbb{R}$.
     Firstly we consider the vertices and the edges of the graph $B(\fsys)$.
     All the vertices in the graph $B(\fsys)$ we incorporate into the network $\net(\fsys)$.
     The vertex set of the new graph will be a superset of vertices of the graph $B(\fsys)$,
@@ -416,7 +416,7 @@
       Now consider two connected vertices $v_l$, $v_r$ from the left and right part
         respectively. Assign
       \[
-        T_{lr} := \flow(v_l, v_r) \wtp(v_l, v_r).
+        T_{lr} := \flow(v_l, v_r) \wtp(v_l  v_r).
       \]
       Let all the other matrix elements of the operator matrix $T_{ij}$ be zero.
       Then observe that we got a finite-band operator matrix $T_{ij}$ with the sum of diagonal elements
@@ -445,30 +445,29 @@
     Remember some other notions from the graph theory:
     \begin{definition}
       Let $G$ be an oriented graph.
-      A sequence of vertices $\{v_k\}_{k=1}^N$ is called a \emph{path} (simple path) if each consecutive vertices
+      A sequence of vertices $\{v_k\}_{k=1}^N$ is called a \emph{path} (or a simple path) if each consecutive vertices
         $v_k$ and $v_{k+1}$ are connected by an edge $\vec{e} = (v_k v_{k+1})$ and no edges or vertices are repeated twice in the sequence.
     \end{definition}
     \begin{definition}
       Let $G$ be an oriented graph.
-      A sequence of vertices $\{v_k\}_{k=1}^N$ is called a \emph{cycle} (simple cycle) if it is
+      A sequence of vertices $\{v_k\}_{k=1}^N$ is called a \emph{cycle} (or a simple cycle) if it is
         a path and there is an edge $\vec{e} = (v_N v_1)$ connecting the last vertex to the first vertex of the sequence.
     \end{definition}
     \begin{definition}
       Let $G = (V, \vec{E})$ be an infinite (oriented) graph.
-      An infinite path $r = \seq{v}$ is called a \emph{ray} if
-      $r$ is a path, meaning that the edge $\vec{e} = (v_k v_{k+1})$ for each $k > 0$ is present in the graph $G$.
+      An infinite path $r = \seq{r}$ is called a \emph{ray}.
     \end{definition}
 
     The main result of this section is a following
     \begin{theorem}
       \label{ray-thm}
       Let $\onet = (G, \wtp, \source, \sink)$ be an oriented B-class network.
-      Then there exist such a positive flow function $\flowpos: E \to R^{+}$ that
+      Then there exist such a positive flow function $\flowpos: E \to \mathbb{R}^{+}$ that
       \begin{itemize}
         \item the flow $\flowpos$ has a finite mass,
         \item the network $\onet$ does not preserve the flow,
       \end{itemize}
-        if and only if there exists a ray $r = \seq{v}$ in the network $\onet$, taking its start in the vertex $\source$,
+        if and only if there exists a ray $r = \seq{r}$ in the network $\onet$, taking its start in the vertex $\source$,
           which total length is finite:
         \[
           \sum_{k=1}^\infty \wtp(v_k v_{k+1}) < \infty.
@@ -479,9 +478,9 @@
       Notice that the definition of the B-class network implies that the weight of any edge
         incident to the source or the sink vertices is equal to one.
       Suppose we found a ray $r$ described in the theorem.
-      The ray has a finite length and thus it follows that only a finite number of edges $(v_k v_{k+1})$ might
+      The ray has a finite length and thus it follows that only a finite number of edges $(r_k r_{k+1})$ might
         be incident either to the source or to sink vertices.
-      This way the existence of the ray $r$ suggests that there also exists a ray $r_0 \in V \setminus \left\{\source, \sink\right\}$.
+      This way the existence of the ray $r$ suggests that there also exists a ray $r^* \in V \setminus \left\{\source, \sink\right\}$.
     \end{remark}
     \begin{proof}
       Without loss of generality we might assume that $d(\sink) + d(\source)$ is precisely one.
@@ -495,7 +494,7 @@
         which is now \emph{$\flowpos$-active} since its total flow $d(\source')$ equal to one.
       Thus $\onet'$ is a network with a function $\flowpos$ being a flow function as required.
       Obviously the mass of the flow does not change since we did not change the edges weights.
-      Furethermore the flow $\flowpos$ does not preserve the flow by the definition.
+      Furthermore the flow $\flowpos$ does not preserve the flow by the definition.
 
       Now pretend we proved the existence of a ray $r'$ of a finite length in the modified network $\onet'$, starting with $\source'$.
       Then since the weight of any edge incident to the source vertex is equal to one (see the remark~\ref{inner-ray-rml})
@@ -507,28 +506,28 @@
       Thus it is connected to the source, and we have found the ray $r$ in $\onet$.
 
       On the contrary, if there is a ray $r$ in the given network $\onet$, which starts with the vertex $\source$
-        then trivially there is a ray $r^*$ in the modified network $\onet^*$, starting from the vertex $\source$.
+        then trivially there is a ray $r'$ in the modified network $\onet'$, starting from the vertex $\source$.
       This way we will rather be proving the following reformulation of the theorem~\ref{ray-thm}.
       \begin{theorem*}
         Let $\onet = (G, \wtp, \source, \sink = \source)$ be an oriented B-class network which has
           the source vertex equal to the sink vertex.
-        Then there exist such a positive flow function $\flowpos: E \to R^{+}$ that
+        Then there exist such a positive flow function $\flowpos: E \to \mathbb{R}^{+}$ that
         \begin{itemize}
           \item $\onet$ does not preserve $\flowpos$ meaning that $d(\source) \neq 0$,
           \item the flow $\flowpos$ has a finite mass,
         \end{itemize}
-          if and only if there exists a ray $r = \seq{v}$ in the network $\onet$, starting from the source vertex, which total length is finite:
+          if and only if there exists a ray $r = \seq{r}$ in the network $\onet$, starting from the source vertex, which total length is finite:
           \[
-            \sum_{k=1}^\infty \wtp(v_k v_{k+1}) < \infty.
+            \sum_{k=1}^\infty \wtp(r_k r_{k+1}) < \infty.
           \]
       \end{theorem*}
       %First we prove the simpler implication.
-      \subsubsection*{Sufficiency}
-      Suppose that there is a ray of a finite total length $r=(v_1 v_2 \dots)$. 
-      In that case we set the resulting flow function $\flowpos(v_k v_{k+1})$ to one, creating an elusive flow
+      \subsubsection*{Sufficiency.}
+      Suppose that there is a ray of a finite total length $r=(r_1 r_2 \dots)$. 
+      In that case we set the resulting flow function $\flowpos(r_k r_{k+1})$ to one, creating an elusive flow
         from $\source$ to infinity. All the other edges will not carry any flow, hence the flow is preserved
         at each vertex but not preserved by the network $\onet$.
-      \subsubsection*{Necessity}
+      \subsubsection*{Necessity.}
       Now let us turn to the more difficult part.
       In this part we are going to view this network as a rooted graph with the root at the $\source$ vertex.
       Consequently from time to time we will employ the term \emph{root vertex} and denote it by $\root := \source$.
@@ -600,7 +599,7 @@
       At the step $n$ we consider the subgraph $G_n = (V_n, E_n) \subset G$, where the vertices
         $V_n = \left\{v_k\right\}_{k=1}^n$ and the edges $E_n$ are the edges from $E$ incident to the $V_n$.
 
-      Suppose we have already established the flow function $\flowposn{n-1}: \onet \to R^{+}$ for which
+      Suppose we have already established the flow function $\flowposn{n-1}: \onet \to \mathbb{R}^{+}$ for which
         all the inequalities above are satisfied.
       We are aiming to construct the flow function $\flowposn{n}$.
 
@@ -995,7 +994,7 @@
           we have $d_n(u) = 0$ we could study the sum over the whole $G_n$ instead of $L_n$.
 
         Also recall that $d_n^{+}(v) = 0$ for each vertex $v \in L_n$, hence $d_n(v) = -d_n^{-}(v)$ whenever $v$ is in the $n$-th layer.
-          
+
         Next we regroup the summation in order to have a sum over the edges of $G_n$, not vertices:
         \begin{align*}
           LS = \sum\limits_{v \in L_n} d_n^{-}(v) \phi_n(v) = -\sum\limits_{v \in V_n} d_n(v) \phi_n(v) =\\
@@ -1048,13 +1047,10 @@
         \]
       \end{proof}
       \begin{prop}
-        There exists such a ray $R=(R_0 R_1 R_2\dots)$, where $R_n \in L_n$, such that $\sum\limits_{k=1}^\infty \wtp(R_{k-1}R_k) < \infty$.
+        There exists such a ray $r=(r_0 r_1 r_2\dots)$, where $r_n \in L_n$ for each $n > 0$, such that $\sum\limits_{k=1}^\infty \wtp(r_{k-1}r_k) < \infty$.
       \end{prop}
-      \begin{note}
-        The ray $R$ always starts with the root vertex $R_0 = \root$, since $L_0 = \{\root\}$.
-      \end{note}
       \begin{proof}
-        We will seek for the ray $R$ in the graph 
+        We will seek for the ray $r$ in the graph
         \[
           \gstar = \bigcup G_n.
         \]
@@ -1069,41 +1065,41 @@
         \[
           U_n:= \{u \in L_n \mid \phi_n(u) \leq \|\flowpos\|\}.
         \]
-        Let $\cal{P}^*$ be a set of paths $p = (p_1 p_2 \dots)$, such that $p_k \in U_k$.
+        Let $\cal{P}^*$ be a set of paths $p = (p_1 p_2 \dots)$, such that for each $k > 0$ the vertex $p_k$ is in $U_k$.
         Presume $\cal{P}^*$ consists only of finite paths.
-        We are going to build a ray $R$ lying in the $\cal{P}^*$, thus arriving to a contradiction.
-        Let us build the ray $R$ consequtively.
-        We will build $R$ in such a way that for every path $p_k:= (R_0 R_1 \dots R_k)$ there is an infinite number of paths 
+        We are going to build the ray $r$ lying in the $\cal{P}^*$, thus arriving to a contradiction.
+        Let us build the ray $r$ consecutively.
+        We will build $r$ in such a way that for every path $p_k:= (r_0 r_1 \dots r_k)$ there is an infinite number of paths
           in $\cal{P}^*$ which start with $p_k$.
-        
+
         We start from $k = 0$.
-        Trivially, $R_0$ is set to the root vertex:
+        Trivially, $r_0$ is set to the root vertex:
         \[
-          R_0 := \root.
+          r_0 := \root.
         \]
         Each $U_n$ is non-empty and if a vertex $u$ belongs to $U_n$ then there always exists
           a path $p_n \in \cal{P}^*$, which belongs to $\cal{P}(u)$.
         So we have an infinite set of paths $\cup p_n$ starting from the root vertex $\root$.
-        
-        Suppose we already have made the path $p_k:= (R_0 R_1\dots R_{k-1})$. 
+
+        Suppose we already have made the path $p_k:= (r_0 r_1\dots r_{k-1})$.
         By the assumption there is an infinite number of paths in $\cal{P}^*$ starting with $p_k$.
         Address these paths as $\cal{P}^*_k$.
-        Let us look at the \emph{forward} edges of the vertex $R_{k-1} \in U_{k-1} \subseteq L_{k-1}$:
+        Let us look at the \emph{forward} edges of the vertex $r_{k-1} \in U_{k-1} \subseteq L_{k-1}$:
         \[
-          \efor(R_{k-1}):=\left\{(R_{k-1} u) \mid u \in L_k\right\}.
+          \efor(r_{k-1}):=\left\{(r_{k-1} u) \mid u \in L_k\right\}.
         \]
         Now inspect the path $q \in \cal{P}^*_k \setminus \left\{p_k\right\}$ which has the prefix $p_k$:
         \[
-          q:=(R_0 R_1 \dots R_{k-1} \mathbf{q_k} q_{k+1} \dots).
+          q:=(r_0 r_1 \dots r_{k-1} \mathbf{q_k} q_{k+1} \dots).
         \]
-        Evidently for such path we have the vertex $q_k$ being equal to be one of the end vertices of the edges $\efor(R_{k-1})$.
-        Remember that the graph $\gstar$ is locally finite and in particular the degree of the vertex $R_{k-1}$ is finite.
+        Evidently for such path we have the vertex $q_k$ being equal to be one of the end vertices of the edges $\efor(r_{k-1})$.
+        Remember that the graph $\gstar$ is locally finite and in particular the degree of the vertex $r_{k-1}$ is finite.
         Moreover recall that the number of the paths such as $q$ itself (namely, $\cal{P}^*_k$) is infinite,
           as a result of the previous construction step.
-        Consequently we are able to choose such $R_k \in \efor(R_{k-1})$ that the number of paths in $\cal{P}^*_k$ starting from
-          the path $p_{k+1}:= (p_k R_k)$ is infinite as well.
-        Finally the ray $R := (R_0 R_1 \dots) \in \cal{P}^*$ is constructed.
-        The sum $\sum \wtp(R_k R_{k+1})$ is bounded since the partial sums are bounded by the values of the $\phi_n$ function which are uniformly bounded
+        Consequently we are able to choose such $r_k \in \efor(r_{k-1})$ that the number of paths in $\cal{P}^*_k$ starting from
+          the path $p_{k+1}:= (p_k r_k)$ is infinite as well.
+        Finally the ray $r := (r_0 r_1 \dots) \in \cal{P}^*$ is constructed.
+        The sum $\sum \wtp(r_k r_{k+1})$ is bounded since the partial sums are bounded by the values of the $\phi_n$ function which are uniformly bounded
           by the definition of the $U_n$ classes.
       \end{proof}
       In the end we found a finite-length ray in the network $\onet$.
@@ -1139,16 +1135,17 @@
         \end{enumerate}
       \end{theorem}
       The first statement does not interest us for now.
-      The third statement is a criterion for a linear summation method existence.
-      Now we would like to present another proof of the statement~\ref{pt3} of the theorem~\ref{thm-katavolos}:
+
+      The third statement is a criterion for a linear summation method existence, which we want to study next.
+      Here we would like to present another proof of the statement~\ref{pt3} of the theorem~\ref{thm-katavolos}:
       \begin{prop}
           The vector system $\fsys_{AS}$ admits a linear summation method when and only when
             the sequence $\left\{1/a_n\right\}_{n=1}^\infty$ does not belong to $\ell^1$.
-          %theorems~\ref{thm-graph-eq} and~\ref{ray-thm}.
       \end{prop}
       \begin{proof}
         The AS system belongs to the B-class as we mentioned before.
-        Here we will narrow our thinking to the AS system only: $\fsys := \fsys_{AS}$.
+        Here we will discuss the AS system only: $\fsys := \fsys_{AS}$.
+
         Thus $\fsys$ is applicable to the theorem~\ref{thm-graph-eq}, which asserts
           that $\fsys$ admits a linear summation method if and only if
           the network $\net(\fsys)$ is $\flow$-preserving for any
@@ -1158,14 +1155,14 @@
           the oriented network $\onet(\fsys)$ is $\flowpos$-preserving for any
           finite-mass flow $\flowpos$.
         After that we utilize the theorem~\ref{ray-thm}, which states that there exist such
-          flow $\flowpos: \vec{E} \to R^{+}$ with a finite mass which is not preserved in
+          flow $\flowpos: \vec{E} \to \mathbb{R}^{+}$ with a finite mass which is not preserved in
           the network $\onet(\fsys)$
           if and only if there exists a ray $r \subseteq \onet $ originating in the $\source$ vertex
           which total length is bounded:
           \[
-            \sum_{k=1}^\infty \wtp(v_k, v_{k+1}) < \infty.
+            \sum_{k=1}^\infty \wtp(v_k v_{k+1}) < \infty.
           \]
-          Hence, the system does NOT admit a linear summation method when and only when there is such ray $r$
+          Hence, the system does not admit a linear summation method when and only when there is such ray $r$
             with the properties specified up above.
           How does look the ray of a finite length in the network like $\onet(\fsys)$?
           It is obvious that it cannot include infinite number of the edges incident to the
@@ -1173,17 +1170,35 @@
           Now look at the outline of the network $\onet(\fsys)$ (~\ref{AS-net}).
           It clearly demonstrates that
             the existence of the finite-length ray in the network $\onet(\fsys)$ implies
-            the finite length of the ray $R:=(e_1,e_2,e_3\dots)$ which is marked in the picture with the red color.
-          However this ray has length equal to
+            the finite length of the ray $r:=(r_1 r_2 r_3\dots)$ which is marked in the picture with the red color.
+          However this ray has the length equal to
           \[
-            \sum \wtp(e_k, e_{k+1}) = \sum \frac{1}{|a_k|} = \|\frac{1}{a_k}\|_{\ell^1},
+            \sum \wtp(r_k r_{k+1}) = \sum \frac{1}{|a_k|},
           \]
+          \alex{a picture with the AS ray in AS network}
           which ends the proof immediately.
       \end{proof}
-      Let us analyze the second statement of the theorem~\ref{thm-katavolos}.
-      Essentially it says that whenever the AS system does not possess a linear summation method
-        there is such an operator $T$ of rank $2$ that has non-zero trace and annihilates all the
-        rank one operators $f_k \otimes f^*_k$.
+
+      Let us turn to the second statement of the theorem~\ref{thm-katavolos}.
+
+      It says that AS system $\fsys_{AS}$ does not possess a linear summation method,
+        when and only when it is not $2$-complete.
+      The system is not $2$-complete if and only if there exists an operator $T$ of rank $2$
+        which has a non-zero trace and annihilates all the rank one operators $f_k \otimes f^*_k$.
+        (see the proof of the theorem~\ref{thm-katavolos} in the paper~\cite{katavolos}).
+      However, we already found the condition for the linear summation method existence, namely
+        there is no linear summation method for the AS system $\fsys_{AS}$ iff $\left\{1/a_k\right\}$
+        is a summable sequence.
+      \begin{remark}
+        \label{as-rmk}
+        We can conclude from these facts that whenever the sequence $\left\{\wtp_k = 1/a_k\right\}$ is summable,
+          it is possible to define a two-dimensional operator $T$ in such a form:
+          \begin{align*}
+            &T_{11} = 1,\\
+            &T_{k\, k+1} = \wtp_k,
+          \end{align*}
+        while the other entries of the matrix $T_{ij}$ are equal to zero.
+      \end{remark}
       \pagebreak
       \begin{figure}
         \begin{center}
@@ -1237,21 +1252,22 @@
       \end{theorem}
       \begin{proof}
         The sufficiency is trivial~--- the $k$-completeness property is weaker the existence of the linear summation method
-          for $\fsys$.\\
-        \noindent\textbf{Necessity.}
+          for $\fsys$.
+
+        Now let us prove the necessity.
         Pretend $\fsys$ does not admit a linear summation method.
         Let $\onet(\fsys) = (G, \wtp, s, t)$ be an orientation of the network $\net(\fsys)$.
         Applying the theorem~\ref{thm-graph-eq} and then the theorem~\ref{ray-thm} to the network $\onet(\fsys)$
-          we recognize that there is such a ray $r \subseteq \onet$ taking its origin
-          in the source vertex $\source$ which has a finite length.
+          we recognize that there is such a finite-length ray $r \subseteq \onet$ taking its origin
+          in the source vertex $\source$.
         Suppose $r = \seq{r}$ such that $r_0 = \source$ and $r_k$ are some vertices in the graph $G$.
         Recall that in the theorem~\ref{ray-thm} in view of existence of the ray $r$ we were able to push
           a flow of the size one along this ray:
         \[
-          \flow(r_k, r_{k+1}) = 1,
+          \flowpos(r_k r_{k+1}) = 1,
         \]
-        so that the network became not $\flow$-preserving.
-        Next we are going to reconstruct the operator $T$ from such flow $\flow$.
+        so that the network became not $\flowpos$-preserving.
+        Next we are going to reconstruct the operator $T$ from the flow $\flowpos$.
 
         Consider the basis vectors $e_{s_k}$ which correspond to the vertices $r_k$.
         Split the Hilbert space $\cal{H}$ in two smaller subspaces:
@@ -1268,13 +1284,16 @@
         We are meaning to look for a two-dimensional operator in such a form:
         \begin{align*}
           &T_{11} = 1,\\
-          &T_{k k+1} = \wtp(r_k, r_{k+1}) \flow(r_k, r_{k+1}) = \wtp(r_k, r_{k+1}),
+          &T_{k k+1} = \wtp(r_k r_{k+1}) \flowpos(r_k r_{k+1}) = \wtp(r_k r_{k+1}),
         \end{align*}
         while the other elements of $T$ are set to zero.\\
-        Owing to the theorem~\ref{thm-graph-eq} we know as fact that such operator $T$ is
-          a trace class operator with trace equal to 1 and annihilates rank one operators $f_n \otimes f^{*}_n$.
+        Remember that $\wtp(r_k r_{k+1})$ is a summable sequence.
+        Now look at the remark~\ref{as-rmk}.
+        Notice that it claims, that there exists a two-dimensional operator $T$, which satisfies the equalities above.
+        This proves the theorem.
     \end{proof}
-
+    \begin{remark}
+    \end{remark}
 \bigskip
 \begin {thebibliography}{20}
     \bibitem{azoff}
