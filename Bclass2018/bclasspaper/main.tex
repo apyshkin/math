@@ -18,17 +18,28 @@
 % \date{}
 
 \section{Motivation}
+  Consider a complete minimal vector system $\fsys = \seq{f}$ in the Hilbert space $\cal{H}$
+  (The sequence is called \emph{minimal} if none of its elements can be approximated by the linear
+    combinations of the others).
+  It happens that the complete vector system $\fsys$ is minimal when and only when it possesses a unique
+    biorthogonal sequence $\fstarsys$.
+  
   \subsection{Azoff--Shehada and simple examples}
-      The AS system $\fsys_{AS}$ is given as follows:
-      \begin{equation}
-        \label{as-sys}
-        \begin{aligned}
-          &f_1 = e_1 + a_2 e_2, \qquad &f_{2j}=e_{2j}, \quad&j \geq 1,&\\
-          &f_{2j-1}=-a_{2j-1}e_{2j-2} + e_{2j-1} + a_{2j}e_{2j}, \qquad &\makebox[5em]{} \quad&j \geq 2,&\\
-          &f^*_{2j}=-a_{2j}e_{2j-1}+e_{2j}+a_{2j+1}e_{2j+1}, \qquad &f^*_{2j-1}=e_{2j-1}, \quad&j \geq 1&
-        \end{aligned}
-      \end{equation}
-      define $k$-completeness, talk about summ method.
+    The AS system $\fsys_{AS}$ is given as follows:
+    \begin{equation}
+      \label{as-sys}
+      \begin{aligned}
+        &f_1 = e_1 + a_2 e_2, \qquad &f_{2j}=e_{2j}, \quad&j \geq 1,&\\
+        &f_{2j-1}=-a_{2j-1}e_{2j-2} + e_{2j-1} + a_{2j}e_{2j}, \qquad &\makebox[5em]{} \quad&j \geq 2,&\\
+        &f^*_{2j}=-a_{2j}e_{2j-1}+e_{2j}+a_{2j+1}e_{2j+1}, \qquad &f^*_{2j-1}=e_{2j-1}, \quad&j \geq 1&
+      \end{aligned}
+    \end{equation}
+    define $k$-completeness, talk about the summation method.
+
+    We are eager to understand whether the $2$-completeness always implies the existence of the linear summation method.
+    Namely whether there exist such a complete minimal vector system $\fsys$ which is $2$-complete but does not have a
+      linear summation method.
+
   \alex{todo}
 \section{B-class of vector systems}
   \subsection{From vector system to the countable network: linear summation problem}
@@ -40,19 +51,34 @@
     Let $\fstarsys = \{f_n^{*}\}_{n=1}^\infty$ be a biorthogonal vector system to the original system $\seq{f}$.
     \begin{definition}
         The vector system $\fsys$ belongs to the \emph{B-class} whenever the following conditions are satisfied:
-        \begin{itemize}
+        \begin{enumerate}[label={(\Alph*)}]
             \item both $\fsys$ and $\fstarsys$ are complete,
             \item either $f_n = e_n$ or $f^*_n = e_n$ for any $n > 0$,
-            \item $\inner{f_n}{e_n} = \inner{f^*_n}{e_n} = 1$ for any $n > 0$,
-            \item $\inner{f_n}{e_k} = -\inner{f^*_k}{e_n}$ for any $n, k > 0$,
+            \item \label{d3} $\inner{f_n}{e_n} = \inner{f^*_n}{e_n} = 1$ for any $n > 0$,
+            \item \label{d4} $\inner{f_n}{e_k} = -\inner{f^*_k}{e_n}$ for any $n, k > 0; n \neq k$,
             \item the matrices $\{\inner{f_n}{e_k}\}$ and $\{\inner{f^*_n}{e_k}\}$ are both finite-band.
-        \end{itemize}
+        \end{enumerate}
     \end{definition}
     \begin{prop}
       The definition given above guarantees the biorthogonality of the $f_n$ and $f^*_n$.
     \end{prop}
     \begin{proof}
-      Straightforward check.
+      Consider the set of indices $N = \left\{n \in \mathbb{N} \mid f_n = e_n \right\}$.
+      The property~\ref{d4} yields that $\inner{f_n}{e_k}$ is equal to zero whenever $k$ is not in
+        $\mathbb{N} \cup {n}$.
+      Similarly $f^*_m$ is orthogonal to $e_k$ for all $k$ in $\mathbb{N} \setminus {m}$.
+      We also have
+      \[
+        \inner{f_n}{f^*_m} = \sum_{k} \inner{f_n}{e_k} \inner{e_k}{f^*_m}.
+      \]
+      It follows from above that each summand on the right side is equal to zero whenever $k \neq n, m$.
+      Thus we get
+      \[
+        \inner{f_n}{f^*_m} = \inner{f_n}{e_n} \inner{e_n}{f^*_m} + \inner{f_n}{e_m} \inner{e_m}{f^*_m}
+        = \inner{e_n}{f^*_m} + \inner{f_n}{e_m} = 0
+      \]
+      if $n \neq m$.
+      Otherwise if $n = m$ we get $\inner{f_n}{f^*_m} = 1$ due to the property~\ref{d4}.
     \end{proof}
     The B-class of vector systems is the main subject of this section.
     It is a natural extension of the Azoff--Shehada system~\eqref{as-sys}.
@@ -943,7 +969,7 @@
         The monotonicity property~\ref{p1} is true since during the relaxation step $n$ we
           only increased the flow on the edges of the graph $G_n$.
 
-        The boundness property~\ref{p2} is also true since we chose the flow values in such a way
+        The boundedness property~\ref{p2} is also true since we chose the flow values in such a way
           that the bound $\flowposn{n}(e) \leq \flowpos(e)$ holds for each edge $e\in G_n$.
 
         The root vertex was not be affected during the step $n > 1$, so~\ref{p3} holds.
@@ -951,7 +977,7 @@
         The flow $\cal{G}$ was redesigned in such fashion that each non-root vertex $v \in G_{n} \setminus 
           \left(L_n \cup \{\root\}\right)$ became $\cal{G}$-preserving.
         This checks the property~\ref{p4}.
-        
+
         Finally, due to the first step property~\ref{posprop} and the fact that
         any vertex in $L_n$ has only incoming edges in the graph $G_n$, we prove the property~\ref{p5}.
       \end{proof}
@@ -1288,8 +1314,7 @@
         \end{align*}
         while the other elements of $T$ are set to zero.\\
         Remember that $\wtp(r_k r_{k+1})$ is a summable sequence.
-        Now look at the remark~\ref{as-rmk}.
-        Notice that it claims, that there exists a two-dimensional operator $T$, which satisfies the equalities above.
+        Now look at the remark~\ref{as-rmk},~--- it claims, that there exists a two-dimensional operator $T$, which satisfies the equalities above.
         This proves the theorem.
     \end{proof}
     \begin{remark}
