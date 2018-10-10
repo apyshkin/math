@@ -283,18 +283,18 @@
     \begin{remark}
       As shown, the flow functions on the networks and the positive flow functions on the oriented networks
         are interchangeable and describe the same object.
-      The notion of the direction of the positive flow over the particular edge $(uv)$ in the oriented network
-        is incorporated into the sign of the flow function on the same edge $(uv)$ in the non-oriented network.
+      The notion of the direction of the positive flow over the particular edge $(uv)$ of the oriented network
+        is incorporated into the sign of the flow function on the same edge $(uv)$ of the non-oriented network.
     \end{remark}
     \begin{definition}
       Consider a network $\net = (G, \wtp, \source, \sink)$ such that
         the degree of each vertex in $V \setminus \{\source, \sink\} $ is finite,
         and the length of each edge incident to source or to sink is equal to one.
       Also we demand that the vertices $\source$ and $\sink$ are connected by the finite path.
-      We will call such network a \emph{B-class network}.
+      We will call such network a \emph{B-network}.
     \end{definition}
     Now we are ready to continue with the linear summation method problem.
-    Our aim is to build up a B-class network from the graph $B(\fsys)$.
+    Our aim is to build up a B-network from the graph $B(\fsys)$.
     We plan to construct the network $\net(\fsys) = (V, E, \wtp, \source, \sink)$,
     positive length function $\wtp: E \to \mathbb{R}^{+}$ and a real skew-symmetric flow function $\flow: V \times V \to \mathbb{R}$.
     Firstly we consider the vertices and the edges of the graph $B(\fsys)$.
@@ -336,7 +336,7 @@
       &\flow(\sink, r_k) = -T_{r_k r_k}.
     \end{align*}
     For these edges we put the length equal to one as well.
-    The network $\net(\fsys)$ is built up, and it is a B-class network.
+    The network $\net(\fsys)$ is built up, and it is a B-network.
     The defined function $\flow$ is a flow, since each of the vertex preserves
       $\flow$ due to the equation~\eqref{almost-flow-eqn}.
     %\begin{remark}
@@ -380,7 +380,7 @@
     \end{definition}
     \begin{theorem}
       \label{thm-graph-eq}
-        Let $\net(\fsys) = B(\fsys, \wtp, \source, \sink)$ be a B-class network constructed
+        Let $\net(\fsys) = B(\fsys, \wtp, \source, \sink)$ be a B-network constructed
           from the B-class system $\fsys = \seq{f}$.
         Then $\fsys$ admits a linear summation method if and only if
           the network $\net(\fsys)$ is $\flow$-preserving for any
@@ -435,8 +435,8 @@
         which leads to a contradiction.
     \end{proof}
 
-  \subsection{B-class networks characterisation}
-    Due to the theorem~\ref{thm-graph-eq} we intend to analyze the flows on the B-class network
+  \subsection{B-networks characterisation}
+    Due to the theorem~\ref{thm-graph-eq} we intend to analyze the flows on the B-network
       $\net(\fsys)$ in order to understand the conditions under which a linear
       summation method exists for $\fsys$.
     In this section we are not going to address the Hilbert space setup at all,
@@ -465,7 +465,7 @@
     The main result of this section is a following
     \begin{theorem}
       \label{ray-thm}
-      Let $\onet = (G, \wtp, \source, \sink)$ be an oriented B-class network.
+      Let $\onet = (G, \wtp, \source, \sink)$ be an oriented B-network.
       Then there exist such a positive flow function $\flowpos: E \to \mathbb{R}^{+}$ that
       \begin{itemize}
         \item the flow $\flowpos$ has a finite mass,
@@ -479,7 +479,7 @@
     \end{theorem}
     \begin{remark}
       \label{inner-ray-rmk}
-      Notice that the definition of the B-class network implies that the weight of any edge
+      Notice that the definition of the B-network implies that the weight of any edge
         incident to the source or the sink vertices is equal to one.
       Suppose we found a ray $r$ described in the theorem.
       The ray has a finite length and thus it follows that only a finite number of edges $(r_k r_{k+1})$ might
@@ -506,14 +506,14 @@
       Suppose the subray starts with some vertex $v' \in V' \setminus \source'$.
       Now consider the corresponding vertex $v \in V \setminus \left\{\source, \sink\right\}$ in the original network $\onet$.
       Obviously $v$ is either connected to the source or to the sink vertices by the finite path.
-      However by the definition of B-class networks the sink is also connected to the source with the path of the finite length.
+      However by the definition of B-networks the sink is also connected to the source with the path of the finite length.
       Thus it is connected to the source, and we have found the ray $r$ in $\onet$.
 
       On the contrary, if there is a ray $r$ in the given network $\onet$, which starts with the vertex $\source$
         then trivially there is a ray $r'$ in the modified network $\onet'$, starting from the vertex $\source$.
       This way we will rather be proving the following reformulation of the theorem~\ref{ray-thm}.
       \begin{theorem*}
-        Let $\onet = (G, \wtp, \source, \sink = \source)$ be an oriented B-class network which has
+        Let $\onet = (G, \wtp, \source, \sink = \source)$ be an oriented B-network which has
           the source vertex equal to the sink vertex.
         Then there exist such a positive flow function $\flowpos: E \to \mathbb{R}^{+}$ that
         \begin{itemize}
@@ -1109,8 +1109,8 @@
       In the end we found a finite-length ray in the network $\onet$.
       Hence the necessity is proved as well as the theorem itself.
     \end{proof}
-  \subsection{Application of the B-class networks criterion}
-    \subsubsection{Application of the B-class networks criterion to the Azoff--Shehada example.}
+  \subsection{Application of the B-networks criterion}
+    \subsubsection{Application of the B-networks criterion to the Azoff--Shehada example.}
       Let us begin with the exposition of the Azoff--Shehada~\cite{azoff} vector system.
       The AS system $\fsys_{AS}$ is given as follows:
       \begin{equation}
@@ -1246,7 +1246,7 @@
         \end{center}
       \end{figure}
 
-    \subsubsection{Application of the B-class networks criterion to the B-class vector systems}
+    \subsubsection{Application of the B-networks criterion to the B-class vector systems}
       In this section our aim is to apply the knowledge we gathered in the previous section to
       the net $\net(\fsys)$, we created in the section~\ref{fsys2graphs}.
       \begin{theorem}
