@@ -46,25 +46,25 @@
     \label{fsys2graphs}
     We are interested in the completeness properties of the minimal vector system $\fsys = \seq{f}$
       in a separable real [TODO complex] Hilbert space $\cal{H}$.
-    The Hilbert spaces are infinite-dimensional throughout the paper.
+    The Hilbert space $\cal{H}$ is presumed to have infinite dimension in this paper.
     Suppose that $\cal{H}$ has an orthonormal basis $\seq{e}$.
     Let $\fstarsys = \{f_n^{*}\}_{n=1}^\infty$ be a biorthogonal vector system to the original system $\seq{f}$.
     \begin{definition}
-        The vector system $\fsys$ belongs to the \emph{B-class} whenever the following conditions are satisfied:
-        \begin{enumerate}[label={(\Alph*)}]
-            \item both $\fsys$ and $\fstarsys$ are complete,
-            \item either $f_n = e_n$ or $f^*_n = e_n$ for any $n > 0$,
-            \item \label{d3} $\inner{f_n}{e_n} = \inner{f^*_n}{e_n} = 1$ for any $n > 0$,
-            \item \label{d4} $\inner{f_n}{e_k} = -\inner{f^*_k}{e_n}$ for any $n, k > 0; n \neq k$,
-            \item the matrices $\{\inner{f_n}{e_k}\}$ and $\{\inner{f^*_n}{e_k}\}$ are both finite-band.
-        \end{enumerate}
+      The vector system $\fsys$ belongs to the \emph{B-class} whenever the following conditions are satisfied:
+      \begin{enumerate}[label=\textbf{C\arabic*}]
+        \item \label{c1} both $\fsys$ and $\fstarsys$ are complete (or $\fsys$ is $M$-basis)
+        \item either $f_n = e_n$ or $f^*_n = e_n$ for any $n > 0$,
+        \item \label{c3} $\inner{f_n}{e_n} = \inner{f^*_n}{e_n} = 1$ for any $n > 0$,
+        \item \label{c4} $\inner{f_n}{e_k} = -\inner{f^*_k}{e_n}$ for any $n, k > 0; n \neq k$,
+        \item \label{c5} the matrices $\{\inner{f_n}{e_k}\}$ and $\{\inner{f^*_n}{e_k}\}$ are both finite-band.
+      \end{enumerate}
     \end{definition}
     \begin{prop}
       The definition given above guarantees the biorthogonality of the $f_n$ and $f^*_n$.
     \end{prop}
     \begin{proof}
       Consider the set of indices $N = \left\{n \in \mathbb{N} \mid f_n = e_n \right\}$.
-      The property~\ref{d4} yields that $\inner{f_n}{e_k}$ is equal to zero whenever $k$ is not in
+      The property~\ref{c4} yields that $\inner{f_n}{e_k}$ is equal to zero whenever $k$ is not in
         $\mathbb{N} \cup {n}$.
       Similarly $f^*_m$ is orthogonal to $e_k$ for all $k$ in $\mathbb{N} \setminus {m}$.
       We also have
@@ -75,54 +75,37 @@
       Thus we get
       \[
         \inner{f_n}{f^*_m} = \inner{f_n}{e_n} \inner{e_n}{f^*_m} + \inner{f_n}{e_m} \inner{e_m}{f^*_m}
-        = \inner{e_n}{f^*_m} + \inner{f_n}{e_m} = 0
+        = \inner{e_n}{f^*_m} + \inner{f_n}{e_m} = 0,
       \]
       if $n \neq m$.
-      Otherwise if $n = m$ we get $\inner{f_n}{f^*_m} = 1$ due to the property~\ref{d4}.
+      Otherwise if $n = m$ we get $\inner{f_n}{f^*_m} = 1$ due to the conditions~\ref{c2} and~\ref{c3}.
     \end{proof}
     The B-class of vector systems is the main subject of this section.
     It is a natural extension of the Azoff--Shehada system~\eqref{as-sys}.
     B-class has an interesting property we are going to exploit later.
-    \begin{prop}
+    \begin{remark}
       A vector system which belongs to the B-class could be associated with an
-        infinite weighted bipartite graph $B(\fsys) = (V, E, \wt)$, where $\wt$ is a
+        locally-finite weighted bipartite graph $B(\fsys) = (V, E, \wt)$, where $\wt$ is a
         real-valued function on $V\times V$ such that $\wt(v, u) = -\wt(u, v)$.
-    \end{prop}
-    \begin{proof}
       For each index $l > 0$ such that $f^*_l = e_l$ we put a vertex $v_l$ in the first part of the bipartite graph.
       We will call this part from now on the \emph{left} part of the graph $B(\fsys)$.
       For any other index $r > 0$ we construct a vertex in the other part of the graph.
       Evidently, for such indices $r > 0$ the condition $f_r = e_r$ holds due to the definition of the B-class vector systems.
       The second part of the graph will be referred as the \emph{right} part of the graph $B(\fsys)$.
       We put an edge between two vertices $v_l$ and $v_r$ from the left and right parts respectively,
-      whenever the scalar product $\inner{f_l}{e_r}$ is not zero.
+        whenever the scalar product $\inner{f_l}{e_r}$ is not zero.
       For such two vertices we have $\inner{f_l}{e_r}$ = $-\inner{f_r}{e_l}$.
       Denote by $\wt_{lr}$ the expression $\wt_{lr} = \inner{f_l}{e_r}^{-1}$.
       Obviously $\wt_{lr} = -\wt_{rl}$.
-
-      %Conversely, we enumerate the vertices in the graph $B = (V, E, \wt)$ as $v_k$.
-      %Each of them belongs either to the left part or to the right part of the graph:
-        %let the vertices of the left part be indexed with $L:=\seq{l}$ and the vertex from
-        %the right part be indexed with $R:=\seq{r}$.
-      %This way we have $\mathbb{N} = L \bigsqcup R$.
-      %Take an arbitrary vertex $v_l$ from the left part of the graph.
-      %Set corresponding $f_l$ and $f_l^*$ as
-      %\begin{align*}
-        %&f^*_l := e_l,\\
-        %&f_l := \sum_{(v_l, v_r) \in E} \wt_{lr}^{-1} e_r.
-      %\end{align*}
-      %For a vertex from the right part $v_r$ from the right part of the graph put
-      %\begin{align*}
-        %&f^_r := e_r,\\
-        %&f^*_r := \sum_{(v_r, v_l) \in E} \wt_{rl}^{-1} e_l.
-      %\end{align*}
-      %The biorthogonality is a simple corollary from the skew-symmetry property of $\wt$.
-    \end{proof}
+      Since the Hilbert space is infinite-dimensional the graph is infinite as well.
+      However due to the finite-band condition~\ref{c5} the vertices of the graph are of a finite degree, hence the locally-finiteness of
+        the constructed graph.
+    \end{remark}
     \begin{remark}
       Note that there might be several vector systems for a single weighted bipartite graph $B$.
     \end{remark}
     \begin{remark}
-      Observe that due to the completeness property both parts of the bipartite graph must
+      Observe that due to the condition~\ref{c1} both parts of the bipartite graph must
         contain an infinite number of vertices.
     \end{remark}
     \begin{example}
@@ -166,7 +149,7 @@
       the B-class vector systems in terms of infinite networks.
 
     Recall that there exists a linear summation method for the system $\seq{f}$
-      iff there is no trace class operator $T: \cal{H} \to \cal{H}$ with the trace equal to $1$,
+      if and only if there is no trace class operator $T: \cal{H} \to \cal{H}$ with the trace equal to $1$,
       such that $\inner{Tf_n}{f_n^*} = 0$ for any $n$.
     Suppose that there is an operator $T$ such that $\inner{Tf_n}{f_n^*} = 0$ for any $n$.
     There are two cases: either $f^*_n = e_n$ or $f_n = e_n$.
@@ -185,7 +168,7 @@
         &\flowsgn(v_l, v_r) := T_{lr} \inner{f_l}{e_r} = T_{lr} \wt_{lr}^{-1},\\
         &\flowsgn(v_r, v_l) := T_{lr} \inner{f^*_r}{e_l} = T_{lr} \wt_{rl}^{-1}.
     \end{align*}
-    Observe that $\flowsgn(T)$ is a skew-symmetric function.
+    Observe that $\flowsgn$ is a skew-symmetric function.
     Moreover, two equalities~\eqref{left-eqn} and~\eqref{right-eqn} correspond to the \emph{left} and \emph{right}
       parts of the bipartite graph $B(\fsys)$ respectively.
     It follows that the condition $\inner{Tf_n}{f_n^*} = 0$ could be reduced to the simpler one:
@@ -204,13 +187,12 @@
     \end{remark}
     Before we proceed we are going to introduce a few basic definitions.
     \begin{definition}
-        \emph{Network} $\net$ is a quadruple $(G, \wtp, s, t)$, where $G = (V, E)$ is weighted graph
-        with a positive length function $\wtp$ on $E$ and two vertices $s, t \in V$, which
+        \emph{Network} $\net$ is a quadruple $(G, \wtp, \source, \sink)$, where $G = (V, E)$ is weighted graph
+        with a positive length function $\wtp$ on $E$ and two vertices $\source, \sink \in V$, which
         we will call \emph{source} and \emph{sink} of the network respectively.
     \end{definition}
     \begin{definition}
-        Look at the skew-symmetric function $\flow: V \times V \to \mathbb{R}$.
-        The function $\flow$ will be called a \emph{pseudo-flow}.
+        The skew-symmetric function $\flow: V \times V \to \mathbb{R}$ is called a \emph{pseudo-flow}.
     \end{definition}
     \begin{definition}
       Let $G = (V, \vec{E})$ be an oriented graph.
@@ -221,21 +203,21 @@
         &\ein(V_0) = \big\{\ein(v) \mid v\in V_0\big\},\\
         &\eout(V_0) = \big\{\eout(v) \mid v\in V_0\big\}.
       \end{align*}
-      For the subgraph $G_0 = (V_0, E_0) \subseteq G$ we denominate a little differently
+      For the subgraph $G_0 = (V_0, E_0) \subseteq G$ we use the same notation
       \begin{align*}
         &\ein(G_0) = \big\{(uv)\in E_0 \mid u \in V \setminus V_0, v \in V_0\big\},\\
-        &\eout(G_0) = \big\{(uv) \in E_0 \mid u \in V_0, v \in V\setminus V_0\big\}.
+        &\eout(G_0) = \big\{(vu) \in E_0 \mid u \in V\setminus V_0, v \in V_0\big\}.
       \end{align*}
-      For each edge $e=(uv) \in \vec{E}$ we are going to denote by $\init(e)$ the starting vertex
-      $u$ and by $\ter(e)$ the ending vertex $v$.
+      For each edge $e=(uv) \in \vec{E}$ we are going to denote %by $\init(e)$ the starting vertex $u$ and
+        by $\ter(e)$ the ending vertex $v$.
       For the set of edges $E_0$ we denote
       \begin{align*}
-        &\init(E_0) = \big\{\init(e) \mid e\in E_0\big\},\\
+        %&\init(E_0) = \big\{\init(e) \mid e\in E_0\big\},\\
         &\ter(E_0) = \big\{\ter(e) \mid e\in E_0\big\}.
       \end{align*}
     \end{definition}
     \begin{definition}
-      Let $\net = (G, \wtp, s, t)$ be a network, and $\flow$ be a pseudo-flow function.
+      Let $\net = (G, \wtp, \source, \sink)$ be a network, and $\flow$ be a pseudo-flow function.
       Also denote by $d_{+}(v)$ the sum of the flows \emph{leaving} the vertex $v$ and by
       $d^{-}(v)$ the sum of the flows \emph{entering} $v$:
       \begin{align*}
@@ -244,18 +226,18 @@
       \end{align*}
       Also let $d_{\flow}(v)$ be equal to $d^{+}_{\flow}(v) - d^{-}_{\flow}(v)$.
       Sometimes we will refer to this value as a \emph{total flow} of the vertex $v$.
-      The vertex is called \emph{$\flow$-active} iff $d(v)$ is less than zero,
-      \emph{$\flow$-deficient} iff $d(v)$ is greater than zero and
-      \emph{$\flow$-preserving} iff $d(v)$ is precisely zero, meaning that the total incoming flow
+      The vertex is called \emph{$\flow$-active} if $d(v)$ is less than zero,
+      \emph{$\flow$-deficient} if $d(v)$ is greater than zero and
+      \emph{$\flow$-preserving} if $d(v)$ is precisely zero, meaning that the total incoming flow
       is equal to the total outgoing flow of the vertex $v$.
     \end{definition}
     \begin{definition}
-      Given a network $\net = (V, E, \wtp, s, t)$ and a pseudo-flow function $\flow$ we will name $\flow$ a
-        \emph{flow} function iff for any vertex $v \in V \setminus \{s,t\}$ the total flow is zero: $d(v) = 0$.
+      Given a network $\net = (V, E, \wtp, \source, \sink)$ and a pseudo-flow function $\flow$ we will name $\flow$ a
+        \emph{flow} function if for any vertex $v \in V \setminus \{\source, \sink\}$ the total flow is zero: $d(v) = 0$.
     \end{definition}
     \begin{definition}
-      For a network $\net = (G, \wtp, s, t)$ and a flow $\flow$ we will say,
-      that the flow $\flow$ is \emph{$\flow$-preserving} if $d(\sink) = -d(\source)$ vertex.
+      For a network $\net = (G, \wtp, \source, \sink)$ and a flow $\flow$ we will say,
+      that the flow $\flow$ is \emph{$\flow$-preserving} if $d(\sink) = -d(\source)$.
     \end{definition}
     \begin{note}
       In simple words this property suggests
@@ -264,7 +246,7 @@
     \end{note}
     \begin{definition}
       \emph{Oriented network} $\onet$ is a quadruple $(\vec{G}, \wtp, \source, \sink)$, where
-        $\vec{G}$ is an oriented weighted graph with
+        $\vec{G} = (V, \vec{E})$ is an oriented weighted graph with
         a positive length function $\wtp$ on $\vec{E}$ and two vertices $\source, \sink \in V$, which
         we will call \emph{source} and \emph{sink} of the oriented network respectively.
     \end{definition}
@@ -274,21 +256,17 @@
     \end{note}
     Suppose $\net = (V, E, \wtp, \source, \sink)$ is a network and $\flow$ is a skew-symmetric function defined
     on $\net$.
-    Naturally, we might instead consider an oriented network $\onet = (V, \vec{E}, \wtp_{*}, \source, \sink)$ and a 
+    Naturally, we might instead consider an oriented network $\onet = (V, \vec{E}, \wtp, \source, \sink)$ and a
       positive flow function $\flowpos: \vec{E} \to \mathbb{R}^{+}$, where
       the set of vertices $V$, $\source$ and $\sink$ vertices are the same.
-    The length function $\wtp_{*}$ will be also positive but will be redefined since the edges set $\vec{E}$ is a different one.
-    First we provide a direction of the edge $(uv)$ is as follows:
-    \begin{itemize}
-      \item $(uv) \in \vec{E}$ if $\flow(u, v) > 0$,
-      \item $(vu) \in \vec{E}$ if $\flow(u, v) < 0$.
-    \end{itemize}
+    The length function $\wtp$ is preserved for the oriented edges on the graph $\vec{G}$ in a trivial way.
+    We establish a direction of the edge $(uv)$ as follows:
+      $(uv) \in \vec{E}$ if $\flow(u, v) \geq 0$, and $(vu) \in \vec{E}$ otherwise
     This way only one of the edges $(uv)$ and $(vu)$ is present in the graph $\vec{G} = (V, \vec{E})$.
-    Also we set up the edge length and the positive flow function $\flowpos: E \to \mathbb{R}^{+}$ so that
-    for any edge $\vec{e} = (uv) \in \vec{E}$
+    Also we set the positive flow function $\flowpos: E \to \mathbb{R}^{+}$ so that
+      for any edge $\vec{e} = (uv) \in \vec{E}$
     \begin{align*}
-      &\flowpos(u v) = |\flow(u,v)|,\\
-      &\wtp_{*}(u v) = \wtp(u v).
+      &\flowpos(u v) = |\flow(u,v)|,
     \end{align*}
     The total flow functions $d_\flowpos$, $d^{+}_\flowpos$, $d^{-}_\flowpos$ do not change their value and could be written as
     \begin{align*}
@@ -347,7 +325,7 @@
       &\flow(l_k, \source) = T_{l_k l_k},\\
       &\flow(\source, l_k) = -T_{l_k l_k}.
     \end{align*}
-    We have the length equal to one for such edges: $\wtp(e) = 1$.
+    We put the length equal to one for such edges: $\wtp(e) = 1$.
     As we added the edges $\seq{e}$, the flow became \emph{preserved} at each vertex of the left part of the network $\net(\fsys)$.
     In the similar manner we will transform the right part of the graph.
     Assuming we have the vertices from the right part of the graph $B(\fsys)$ in the form of the sequence $\seq{r}$,
@@ -823,14 +801,14 @@
       \end{note}
       For each further step $n > 1$ the construction will be similar.
       Suppose that $G_{n-1}$, $L_{n-1}$ and the preflow function $\flowposn{n-1}$ are already established.
-      Let us enlarge upon the outgoing edges of the vertex $v \in L_{n-1}$.
+      Let us enlarge on the outgoing edges of the vertex $v \in L_{n-1}$.
       Some of them might lead to some new vertices which do not belong to $G_{n-1}$.
-      Such edges we will denominate by $\efor_n$:
+      Such edges we will call by $\efor_n$:
       \[
         \efor_n = \Big\{ e = (uv) \mid u \in L_{n-1} \text{ and } v \notin G_{n-1}\Big\}.
       \]
       Others might lead to the already visited vertices of $G$, namely the ones residing in the graph $G_{n-1}$.
-      Such edges we will address as the \emph{back} edges of $L_{n-1}$ and denominate them by $\eback_n$:
+      Such edges we will address as the \emph{back} edges of $L_{n-1}$ and denote them by $\eback_n$:
       \[
         \eback_n = \Big\{e = (us) \mid u \in L_{n-1} \text{ and } s \in G_{n-1}\Big\}.
       \]
@@ -1150,7 +1128,7 @@
         \label{thm-katavolos}
         The following three cases fully resolve the $k$-completeness problem for the AS-system:
         \begin{enumerate}[label=(\alph*)]
-          \item The system $\fsys_{AS}$ is $1$-complete (a strong $M$-basis) iff the following sequence
+          \item The system $\fsys_{AS}$ is $1$-complete (a strong $M$-basis) if and only if the following sequence
             \begin{equation*}
               \mu_n = \frac{a_{n-1} a_{n-3} \dots}{a_{n} a_{n-2} \dots }
             \end{equation*}
@@ -1213,7 +1191,7 @@
         which has a non-zero trace and annihilates all the rank one operators $f_k \otimes f^*_k$.
         (see the proof of the theorem~\ref{thm-katavolos} in the paper~\cite{katavolos}).
       However, we already found the condition for the linear summation method existence, namely
-        there is no linear summation method for the AS system $\fsys_{AS}$ iff $\left\{1/a_k\right\}$
+        there is no linear summation method for the AS system $\fsys_{AS}$ if and only if $\left\{1/a_k\right\}$
         is a summable sequence.
       \begin{remark}
         \label{as-rmk}
@@ -1282,7 +1260,7 @@
 
         Now let us prove the necessity.
         Pretend $\fsys$ does not admit a linear summation method.
-        Let $\onet(\fsys) = (G, \wtp, s, t)$ be an orientation of the network $\net(\fsys)$.
+        Let $\onet(\fsys) = (G, \wtp, \source, \sink)$ be an orientation of the network $\net(\fsys)$.
         Applying the theorem~\ref{thm-graph-eq} and then the theorem~\ref{ray-thm} to the network $\onet(\fsys)$
           we recognize that there is such a finite-length ray $r \subseteq \onet$ taking its origin
           in the source vertex $\source$.
