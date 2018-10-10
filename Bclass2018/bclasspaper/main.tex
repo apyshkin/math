@@ -296,17 +296,13 @@
     Now we are ready to continue with the linear summation method problem.
     Our aim is to build up a B-network from the graph $B(\fsys)$.
     We plan to construct the network $\net(\fsys) = (V, E, \wtp, \source, \sink)$,
-    positive length function $\wtp: E \to \mathbb{R}^{+}$ and a real skew-symmetric flow function $\flow: V \times V \to \mathbb{R}$.
-    Firstly we consider the vertices and the edges of the graph $B(\fsys)$.
-    All the vertices in the graph $B(\fsys)$ we incorporate into the network $\net(\fsys)$.
-    The vertex set of the new graph will be a superset of vertices of the graph $B(\fsys)$,
-    so we will continue referring to the vertices as the vertices from
-    the \emph{left} part of the graph and the vertices from the \emph{right} part of the graph.
-    The network $\net(\fsys)$ will contain all the edges from the graph $B(\fsys)$ as well.
-    For each of these edges we are going to assign the flow function $\flow$ and
-    establish a new positive length function $\wtp$.
-    Each edge $e = (v_l v_r)$ which belongs to the graph $B(\fsys)$ we include in the graph of $\net(\fsys)$.
-    We set the flow and the length functions on the edge $e$:
+      length function $\wtp: E \to \mathbb{R}^{+}$ and a real skew-symmetric flow function $\flow: V \times V \to \mathbb{R}$.
+    Firstly we incorporate all the vertices of the graph $B(\fsys)$ into the network $\net(\fsys)$.
+    The vertex set of $\net(\fsys)$ will be a superset of the vertex set of $B(\fsys)$,
+      so we will continue referring to the vertices as the vertices from
+      the \emph{left} part of the graph and the vertices from the \emph{right} part of the graph.
+    We add all the edges from the graph $B(\fsys)$ to the network $\net(\fsys)$ as well.
+    We set the flow and the length functions on such edge $e = (v_l v_r)$ as follows:
     \begin{align*}
       &\flow(v_l, v_r) := T_{lr} \inner{f^*_r}{e_l},\\
       &\flow(v_r, v_l) := T_{lr} \inner{f_l}{e_r} = -\flow(v_l, v_r),\\
@@ -320,22 +316,24 @@
     Now we add the source vertex $\source$ and the sink vertex $\sink$ to the constructed graph.
     Suppose we have enumerated the vertices from the left part of the graph, for instance $\seq{l}$.
     Then for each $k > 0$ we connect the vertex $\source$ and the $l_k$ vertex with
-      the edge $e_k = (\source l_k)$, and put a flow:
+      the edge $e_k = (\source l_k)$, and set the flow function:
     \begin{align*}
       &\flow(l_k, \source) = T_{l_k l_k},\\
       &\flow(\source, l_k) = -T_{l_k l_k}.
     \end{align*}
-    We put the length equal to one for such edges: $\wtp(e) = 1$.
+    Also we set the length equal to one for such edges: $\wtp(e_k) = 1$.
     As we added the edges $\seq{e}$, the flow became \emph{preserved} at each vertex of the left part of the network $\net(\fsys)$.
+
     In the similar manner we will transform the right part of the graph.
     Assuming we have the vertices from the right part of the graph $B(\fsys)$ in the form of the sequence $\seq{r}$,
-      for each $k > 0$ we connect the $r_k$ vertex to the $\sink$ vertex with the edge $e'_k=(r_k t)$
+      for each $k > 0$ we connect the $r_k$ vertex to the $\sink$ vertex with the edge $e'_k=(r_k \sink)$
       and set the flow $\flow$ equal to:
     \begin{align*}
       &\flow(r_k, \sink) = T_{r_k r_k},\\
       &\flow(\sink, r_k) = -T_{r_k r_k}.
     \end{align*}
-    For these edges we put the length equal to one as well.
+    Again, we have $\wtp(e'_k) = 1$ for any $k$.
+
     The network $\net(\fsys)$ is built up, and it is a B-network.
     The defined function $\flow$ is a flow, since each of the vertex preserves
       $\flow$ due to the equation~\eqref{almost-flow-eqn}.
@@ -350,7 +348,7 @@
     \begin{remark}
       Pay your attention to the fact that the network $\net(\fsys)$
         depends only on the biorthogonal system $\fsys$ and not on the operator $T$.
-      Only the constructed flow function $flow$ depends on the operator $T$.
+      Only the flow function $flow$ depends on the operator $T$.
     \end{remark}
     What can one say about the total flow in each of the vertex of the constructed network $\net(\fsys)$?
     Due to the trick we performed the total flow became zero in each of the vertices from the \emph{left} and the \emph{right} parts.
@@ -393,8 +391,7 @@
       the trace equal to one, such that $\inner{Tf_n}{f_n^*} = 0$ for any $n$.
       Using the operator $T$, we were able to define a flow function $\flow(T)$ on the network
       $\net(\fsys)$.
-      One thing to check is that the flow we constructed has a finite mass.
-      It easy follows from the condition that the operator matrix is finite band and has a finite trace.
+      Notice that the constructed flow has a finite mass because the operator matrix of $T$ is finite-band and $T$ has a finite trace.
       Finally, one can acknowledge the fact that this network does not preserve the flow, since
       \[
         d(\source) + d(\sink) = \sum T_{l_k l_k} + \sum T_{r_k r_k} = Tr(T) = 1,
@@ -402,10 +399,10 @@
       thus $d(\sink) \neq -d(\source)$.
       We arrived to contradiction and the sufficiency is proved.
 
-      Now suppose that the system $\fsys$ admits a linear summation method.
+      Suppose that the system $\fsys$ admits a linear summation method.
       Assume there is also a flow $\flow$ on the network $\net(\fsys)$ such that $d(\sink) + d(\source) \neq 0$.
-      Now we are going to put up an operator $T$ with a non-zero trace, which annihilates all the rank-one
-      operators $f_n \otimes f^*_n$, thus coming to the contradiction with our initial assumption.
+      In this section we are going to present an operator $T$ with a non-zero trace which annihilates all the rank-one
+      operators $f_n \otimes f^*_n$, thus arriving at a contradiction with our initial assumption.
       First consider the edges incident to the source vertex.
       Having all the vertices already enumerated we will consider the vertices in the left part $v_{l_k}$.
       Recall that each vertex $v_i$ (except source and sink) matches to the basis element $e_i$.
@@ -427,8 +424,7 @@
       equal to one.
       Since the mass of the flow $\flow$ is finite, the $T_{ij}$ is an absolute summable sequence, considering that
         the $\ell^1$-norm of $T_{ij}$ is exactly the mass of $\flow$.
-      Then the operator $T$ we obtained is compact.
-      It acquires a finite non-zero trace, since $Tr(T) = d(\sink) + d(\source)$ which is not zero
+      Then the operator $T$ acquires a finite non-zero trace, since $Tr(T) = d(\sink) + d(\source)$, which is not zero
         by the assumption we made.
       Due to the fact, that the flow was preserved at each vertex of the network $\net(\fsys)$,
         we see that the operator $T$ annihilates all the rank one operators $f_n \otimes f^*_n$,
@@ -436,7 +432,7 @@
     \end{proof}
 
   \subsection{B-networks characterisation}
-    Due to the theorem~\ref{thm-graph-eq} we intend to analyze the flows on the B-network
+    Due to the Theorem~\ref{thm-graph-eq} we intend to analyze the flows on the B-network
       $\net(\fsys)$ in order to understand the conditions under which a linear
       summation method exists for $\fsys$.
     In this section we are not going to address the Hilbert space setup at all,
@@ -472,7 +468,7 @@
         \item the network $\onet$ does not preserve the flow,
       \end{itemize}
         if and only if there exists a ray $r = \seq{r}$ in the network $\onet$, taking its start in the vertex $\source$,
-          which total length is finite:
+          with a finite total length:
         \[
           \sum_{k=1}^\infty \wtp(v_k v_{k+1}) < \infty.
         \]
@@ -492,7 +488,7 @@
       Namely, we merge the source vertex $\source$ with the sink vertex $\sink$ and call this a
         new source vertex $\source'$.
       This way we obtain a network $\onet'$ with a single source such that $d(\source') = 1$.
-      Formally we are left without the sink vertex but we could always set the sink vertex to be the same as the source vertex: $\mathit(sink)=\source'$.
+      Formally we are left without the sink vertex but we could always set the sink vertex to be the same as the source vertex: $\sink=\source'$.
       The flow function $\flowpos$ as well as the length function $\wtp$ stay exactly the same (being defined on the edges set $E$).
       All the vertices in the graph keep preserving the flow after this procedure, except for the source vertex $\source'$
         which is now \emph{$\flowpos$-active} since its total flow $d(\source')$ equal to one.
@@ -500,8 +496,8 @@
       Obviously the mass of the flow does not change since we did not change the edges weights.
       Furthermore the flow $\flowpos$ does not preserve the flow by the definition.
 
-      Now pretend we proved the existence of a ray $r'$ of a finite length in the modified network $\onet'$, starting with $\source'$.
-      Then since the weight of any edge incident to the source vertex is equal to one (see the remark~\ref{inner-ray-rml})
+      Now assume we proved existence of a finite-length ray $r'$ $\onet'$, starting with $\source'$, in the modified network.
+      Then since the weight of any edge incident to the source vertex is equal to one (see the remark~\ref{inner-ray-rmk})
         there is a subray of $r'$ which does not include source.
       Suppose the subray starts with some vertex $v' \in V' \setminus \source'$.
       Now consider the corresponding vertex $v \in V \setminus \left\{\source, \sink\right\}$ in the original network $\onet$.
@@ -511,35 +507,28 @@
 
       On the contrary, if there is a ray $r$ in the given network $\onet$, which starts with the vertex $\source$
         then trivially there is a ray $r'$ in the modified network $\onet'$, starting from the vertex $\source$.
-      This way we will rather be proving the following reformulation of the theorem~\ref{ray-thm}.
+      From now on we will be proving the following reformulation of the Theorem~\ref{ray-thm}.
       \begin{theorem*}
-        Let $\onet = (G, \wtp, \source, \sink = \source)$ be an oriented B-network which has
-          the source vertex equal to the sink vertex.
-        Then there exist such a positive flow function $\flowpos: E \to \mathbb{R}^{+}$ that
-        \begin{itemize}
-          \item $\onet$ does not preserve $\flowpos$ meaning that $d(\source) \neq 0$,
-          \item the flow $\flowpos$ has a finite mass,
-        \end{itemize}
-          if and only if there exists a ray $r = \seq{r}$ in the network $\onet$, starting from the source vertex, which total length is finite:
-          \[
-            \sum_{k=1}^\infty \wtp(r_k r_{k+1}) < \infty.
-          \]
+        Let $\onet = (G, \wtp, \source, \sink)$ be an oriented B-network such that $\source = \sink$.
+        Then there exist such a positive finite-mass flow $\flowpos: E \to \mathbb{R}^{+}$ that
+          $\onet$ does not preserve $\flowpos$ (it means that $d(\source) \neq 0$),
+          if and only if there exist a ray $r = \seq{r}$, which has a finite total length and starts from $\source$.
       \end{theorem*}
       %First we prove the simpler implication.
       \subsubsection*{Sufficiency.}
-      Suppose that there is a ray of a finite total length $r=(r_1 r_2 \dots)$. 
+      Suppose that there is a ray of a finite total length $r=(r_1 r_2 \dots)$.
       In that case we set the resulting flow function $\flowpos(r_k r_{k+1})$ to one, creating an elusive flow
         from $\source$ to infinity. All the other edges will not carry any flow, hence the flow is preserved
         at each vertex but not preserved by the network $\onet$.
       \subsubsection*{Necessity.}
       Now let us turn to the more difficult part.
       In this part we are going to view this network as a rooted graph with the root at the $\source$ vertex.
-      Consequently from time to time we will employ the term \emph{root vertex} and denote it by $\root := \source$.
+      Consequently from time to time we will employ the term \emph{root vertex} and denote it by $\root = \source$.
 
       For a start we get rid of all the positive flow cycles in the oriented graph $G$.
       \emph{A positive flow cycle} is a cycle $C$ in $G$ such that positive flow circulates along $C$,
         meaning that for each cycle's edge $e \in E$ the flow along the edge is strictly greater than zero: $\flowpos(e) > 0$.
-      You can see an example of positive flow cycle in the picture~\ref{positive-flow}.
+      You can see an example of positive flow cycle in the Figure~\ref{positive-flow}.
       \begin{figure}
         \begin{center}
           \begin{tikzpicture}[auto,
@@ -592,30 +581,31 @@
       $G_n$.
       We start with the flow $\flowposn{0}:\onet \to \mathbb{R}^+$ equal to the flow $\flowpos$:
       \[
-        \flowposn{0}(e) := \flowpos(e) \quad \forall e \in E.
+        \flowposn{0}(e) := \flowpos(e), \quad e \in E.
       \]
       The first step $n = 1$ is trivial: the graph $G_1$ contains only the root vertex, and
         the flow $\flowposn{1}$ is equal to $\flowposn{0}$:
       \[
-        \flowposn{1}(e) := \flowposn{0}(e) \quad \forall e \in E.
+        \flowposn{1}(e) := \flowposn{0}(e), \quad e \in E.
       \]
 
-      At the step $n$ we consider the subgraph $G_n = (V_n, E_n) \subset G$, where the vertices
-        $V_n = \left\{v_k\right\}_{k=1}^n$ and the edges $E_n$ are the edges from $E$ incident to the $V_n$.
+      In order to proceed we enumerate all vertices in the network $V = \left\{v_k\right\}_{k=1}^\infty$.
+      At the step $n$ we consider the subgraph $G_n = (V_n, E_n) \subset G$, where $V_n$ is defined as $\left\{v_k\right\}_{k=1}^n$
+        and the edge set $E_n$ consists of the edges from $E$ incident to $V_n$.
 
-      Suppose we have already established the flow function $\flowposn{n-1}: \onet \to \mathbb{R}^{+}$ for which
+      Suppose we have already established the flow function $\flowposn{n}: \onet \to \mathbb{R}^{+}$ for which
         all the inequalities above are satisfied.
-      We are aiming to construct the flow function $\flowposn{n}$.
+      We are aiming to construct the flow function $\flowposn{n+1}$.
 
       Define the flow function $\cal{E}_0(e): \onet \to \mathbb{R}^{+}$ as follows:
       \[
-        \cal{E}_0(e) := \flowposn{n-1}(e).
+        \cal{E}_0(e) := \flowposn{n}(e).
       \]
       Let there be a simple cycle $C_1$ in the graph $G_n$ such that each edge $e \in C_1$ carries
         a positive flow: $\cal{E}_0(e) > 0$.
       At this point we can decrease the flow $\cal{E}_0$ on the edges of $C_1$ so that the cycle $C_1$
         ceases being a positive flow cycle, total mass of the flow does not increase, and all the other properties stay intact.
-      Take the minimal value, the flow function $\cal{E}_0$ attains on the edges of the cycle:
+      Take the minimal value the flow function $\cal{E}_0$ attains on the edges of $C_1$:
         \[
           \min(C_1) = \min_{e \in C_1}\left(\cal{E}_0(e)\right).
         \]
@@ -630,13 +620,13 @@
       Since $C_1$ is a cycle, we reduced the flow $\cal{E}_0$ on each edge by the same value,
         the $\cal{E}_1$ is indeed a flow function.
       After this procedure the positive flow cycle $C_1$ disappears,
-        leaving us with a strictly lesser flow than we had before this step:
+        leaving us with a lesser flow than we had before this step:
       \begin{align*}
-        &\cal{E}_1(e) \leq \flowpos(e)  \quad \forall e \in E_{n+1},\\
         &\cal{E}_1(e) \leq \cal{E}_0(e) \quad \forall e \in E_n.
       \end{align*}
       In this manner we remove all the positive flow cycles from the finite graph $G_n$.
       It is achievable since at each step we turn at least one edge into a zero-flow edge (such edge $e$ that $\cal{E}_0(e) = 0$).
+
       Suppose we annihilated $K$ positive flow cycles in total from the graph $G_n$.
       Then set the flow $\flowposn{n+1}$ equal to the final flow function $\cal{E}_K$:
       \[
@@ -647,7 +637,8 @@
         &\flowposn{n+1}(e) \leq \flowposn{n}(e) \leq \flowpos(e)
       \end{align*}
         for each edge $e \in E$.
-      Consider the preflow function $\preflow$ defined as a pointwise limit of $\flowposn{n}$:
+
+      Consider now the preflow function $\preflow$ defined as a pointwise limit of $\flowposn{n}$:
       \[
         \preflow(e) := \lim_{n \to \infty} \flowposn{n}(e)
       \]
@@ -663,18 +654,16 @@
         Firstly, look at the non-root vertex $v \neq \root$.
         Since there are finite number of edges in $E$ incident with $v$, the limit of
           a finite sum $d_{\flowposn{n}}(v)$ is equal to $d_{\preflow}(v)$.
-        The vertex $v$ is not a root, so $d_{\flowposn{n}}(v) = 0$ for any $n$, and so the limit $d_{\preflow}(v)$ is zero as well.
-        Conclusively, the function $\preflow$ is the flow on the network $\onet$.
+        The vertex $v$ is not a root, so $d_{\flowposn{n}}(v) = 0$ for any $n$, and so the limit $d_{\preflow}(v)$ is equal to zero as well.
+        Conclusively, the function $\preflow$ is a flow on the network $\onet$.
 
         Secondly, consider the root vertex $\root$.
         Notice that
         \[
-          d_{\flowposn{n}}(\root) \overset{\mathit{def}}{=} \sum_{OUT(\root)} \flowposn{n}(e) - \sum_{IN(\root)} \flowposn{n}(e).
+          d_{\flowposn{n}}(\root) \overset{\mathit{def}}{=} \sum_{\out(\root)} \flowposn{n}(e) - \sum_{\in(\root)} \flowposn{n}(e).
         \]
-        For each $n$ the sums on the right converge absolutely.
-        Since each summand $\flowposn{n}(e)$ is bounded from below and decreasing the series on the right converge absolutely.
-        Then the quantity $d_{\preflow}(\root)$ is defined correctly.
-        Since $d_{\flowposn{n}}(\root) \to d_\flowpos(\root)$, when $n$ tends to infinity, we have
+        Since the sequence $\{\flowposn{n}(e})$ is decreasing and bounded from below the quantity $d_{\preflow}(\root)$ is defined correctly.
+        Because $d_{\flowposn{n}}(\root)$ is equal to $d_\flowpos(\root)$ for any $n$, we have
         \[
           d_\preflow(\root) = \lim_{n \to \infty} d_{\flowposn{n}}(\root) = d_\flowpos(\root).
         \]
@@ -687,32 +676,32 @@
         Assume the contrary: there is some cycle $C$ such that $\preflow(e) > 0$ for
           each edge $e \in C$.
         Obviously there exists such $n$ that the cycle $C$ lies within the graph $G_n$.
-        Since on each step $k$ we decreased the flow $\flowposn{k}$, at the step $n$
+        Since on each step $k$ we reduced the flow $\flowposn{k}$, at the step $n$
           the cycle $C$ was a positive flow cycle as well: $\flowposn{n}(e) > 0$ for each edge $e \in C$.
-        But at the end of the step $n$ due to our assumption there could be no positive flow cycles in $G_n$.
-        That is the contradiction~--- there could be no such positive flow cycles $C$ in the network $\onet$.
+        But there could be no positive flow cycles in $G_n$ at the end of the step $n$ according to our procedure.
+        That is a contradiction.
       \end{proof}
 
       Suppose that the flow $\flowpos$ contains no positive flow cycles in the first place.
-      Also we prune the edges of the network $\onet$ for which the flow $\flowpos$ is zero.
+      Also we remove the edges of the network $\onet$ for which the flow $\flowpos$ equals zero.
 
-      Now we are going to have the following
+      We are going to need a few definitions in order to proceed with the proof of the theorem.
       \begin{definition}
-        The graph $G = (V, \vec{E},\wtp, \root)$ is a weighted directed graph with a positive
+        Let $G = (V, \vec{E},\wtp, \root)$ be a weighted directed graph with a positive
           length function $\wtp$ defined on $\vec{E}$ and a root vertex $\root \in V$.
-        Let $\gpaths(u, v)$ be a set of paths from vertex $u$ to vertex $v$ in the graph $G$.
+        Then $\gpaths(u, v)$ denotes a set of paths from vertex $u$ to vertex $v$ in the graph $G$.
         Sometimes we will omit the first argument and then we refer to the paths from the root vertex
           $\gpaths(v) := \gpaths(\root, v)$.
-        Also we could expand the function onto the vertices sets: $\gpaths(U,V)$ is a set of paths
+        Also we expand this notion onto the vertices sets: $\gpaths(U,V)$ is a set of paths
           from the set of vertices $U$ to the set of vertices $V$ in the graph $G$.
       \end{definition}
-      Also we need to introduce a special root-distance function $\gfi$:
+      Below we introduce a special root-distance function $\gfi$:
       \begin{definition}
         The function $\gfi: \gpaths \to \mathbb{R}^{+}$ is settled as follows:
         \[
           \gfi(p) := \sum_{e \in p} \wtp(e).
         \]
-        Also we extend this function to take values on the set of the vertices $\gfi: V \to \mathbb{R}^{+}$ in this fashion:
+        Also we extend this function to take values on the set of the vertices $\gfi: V \to \mathbb{R}^{+}$ in such a fashion:
         \[
           \gfi(v) := \inf_{\gpaths(v)} \gfi(p).
         \]
@@ -722,7 +711,7 @@
         \[
           \depth(v) := \inf_{p \in \gpaths(v)} \#\left\{e \mid e \in p\right\}.
         \]
-        If we think about the network $\onet$ as a rooted tree (see picture \alex{a picture with correspondence: rooted trees <-> oriented networks}) with a root $\root$
+        If we think about the network $\onet$ as a rooted tree (see Figure \alex{a figure with correspondence: rooted trees <-> oriented networks}) with a root $\root$
           then the defined $\depth$ function is essentially a \emph{depth} function, which is defined at the vertex $v$ 
           as the length of the shortest path connecting the root vertex with $v$.
 
@@ -746,7 +735,7 @@
         Also $L_n$ will incorporate all the edges connecting the graph $G_{n-1}$ and the vertices $l_n$.
         We will refer to the subgraph $L_n$ as the \emph{$n$-th layer} of the graph $G$.
         See the figure xxx.
-        \alex{a picture with $n$-th layer and BFS}
+        \alex{a figure with $n$-th layer and BFS}
       \end{note}
       Besides we are going to establish a sequence of the positive preflow functions $\flowposn{n}: E_n \to \mathbb{R}^{+}$,
         pertaining the following properties:
@@ -796,7 +785,7 @@
       \end{proof}
       \begin{note}
         We dealt with the generally infinite degree of the root vertex by abandoning some of the children of the root.
-        \alex{a picture of the first layer (infinite degree!)}
+        \alex{a figure of the first layer (infinite degree!)}
         We need $G_n$ to be finite since this way we could analyze the $\gfi$ function without trouble.
       \end{note}
       For each further step $n > 1$ the construction will be similar.
@@ -826,7 +815,7 @@
         G_n := G_{n-1} \cup L_n \cup \eback_n.
       \]
       Thus the graph $G_n$ is constructed.
-      \alex{a picture of the $n$-th layer construction}
+      \alex{a figure of the $n$-th layer construction}
 
       \noindent\textbf{Setting a preflow function.}\\
       \noindent Here we split the procedure in two steps.
@@ -861,7 +850,7 @@
         since all the properties~\ref{p1}--\ref{p5} would be complied by $\cal{G}$.
       However we ought to solve the problem we created while pushing the flow from the $(n-1)$-th layer via the back edges.
       Notice that the end vertices of such edges $\eback_{n}$ now became $\cal{G}$-active, since for such vertices
-        the total incoming flow now exceeds the total outgoing flow. \alex{a picture of a back edge making some inner vertex non-preserving}
+        the total incoming flow now exceeds the total outgoing flow. \alex{a figure of a back edge making some inner vertex non-preserving}
       Thus we have reached the step number two, when we are going to carry out the \emph{relaxation} procedure
         in order to alleviate those $\cal{G}$-active vertices created by the newly introduced back edges into the graph $G_{n-1}$.
 
@@ -1141,7 +1130,7 @@
       The first statement does not interest us for now.
 
       The third statement is a criterion for a linear summation method existence, which we want to study next.
-      Here we would like to present another proof of the statement~\ref{pt3} of the theorem~\ref{thm-katavolos}:
+      Here we would like to present another proof of the statement~\ref{pt3} of the Theorem~\ref{thm-katavolos}:
       \begin{prop}
           The vector system $\fsys_{AS}$ admits a linear summation method when and only when
             the sequence $\left\{1/a_n\right\}_{n=1}^\infty$ does not belong to $\ell^1$.
@@ -1150,7 +1139,7 @@
         The AS system belongs to the B-class as we mentioned before.
         Here we will discuss the AS system only: $\fsys := \fsys_{AS}$.
 
-        Thus $\fsys$ is applicable to the theorem~\ref{thm-graph-eq}, which asserts
+        Thus $\fsys$ is applicable to the Theorem~\ref{thm-graph-eq}, which asserts
           that $\fsys$ admits a linear summation method if and only if
           the network $\net(\fsys)$ is $\flow$-preserving for any
           finite-mass flow $\flow$.
@@ -1158,11 +1147,11 @@
         The system $\fsys$ admits a linear summation method if and only if
           the oriented network $\onet(\fsys)$ is $\flowpos$-preserving for any
           finite-mass flow $\flowpos$.
-        After that we utilize the theorem~\ref{ray-thm}, which states that there exist such
+        After that we utilize the Theorem~\ref{ray-thm}, which states that there exist such
           flow $\flowpos: \vec{E} \to \mathbb{R}^{+}$ with a finite mass which is not preserved in
           the network $\onet(\fsys)$
-          if and only if there exists a ray $r \subseteq \onet $ originating in the $\source$ vertex
-          which total length is bounded:
+          if and only if there exists a ray $r \subseteq \onet $ originating in the $\source$ vertex,
+          whose total length is bounded:
           \[
             \sum_{k=1}^\infty \wtp(v_k v_{k+1}) < \infty.
           \]
@@ -1174,22 +1163,22 @@
           Now look at the outline of the network $\onet(\fsys)$ (~\ref{AS-net}).
           It clearly demonstrates that
             the existence of the finite-length ray in the network $\onet(\fsys)$ implies
-            the finite length of the ray $r:=(r_1 r_2 r_3\dots)$ which is marked in the picture with the red color.
+            the finite length of the ray $r:=(r_1 r_2 r_3\dots)$ which is marked in the figure with the red color.
           However this ray has the length equal to
           \[
             \sum \wtp(r_k r_{k+1}) = \sum \frac{1}{|a_k|},
           \]
-          \alex{a picture with the AS ray in AS network}
+          \alex{a figure with the AS ray in AS network}
           which ends the proof immediately.
       \end{proof}
 
-      Let us turn to the second statement of the theorem~\ref{thm-katavolos}.
+      Let us turn to the second statement of the Theorem~\ref{thm-katavolos}.
 
       It says that AS system $\fsys_{AS}$ does not possess a linear summation method,
         when and only when it is not $2$-complete.
       The system is not $2$-complete if and only if there exists an operator $T$ of rank $2$
         which has a non-zero trace and annihilates all the rank one operators $f_k \otimes f^*_k$.
-        (see the proof of the theorem~\ref{thm-katavolos} in the paper~\cite{katavolos}).
+        (see the proof of the Theorem~\ref{thm-katavolos} in the paper~\cite{katavolos}).
       However, we already found the condition for the linear summation method existence, namely
         there is no linear summation method for the AS system $\fsys_{AS}$ if and only if $\left\{1/a_k\right\}$
         is a summable sequence.
@@ -1261,11 +1250,11 @@
         Now let us prove the necessity.
         Pretend $\fsys$ does not admit a linear summation method.
         Let $\onet(\fsys) = (G, \wtp, \source, \sink)$ be an orientation of the network $\net(\fsys)$.
-        Applying the theorem~\ref{thm-graph-eq} and then the theorem~\ref{ray-thm} to the network $\onet(\fsys)$
+        Applying the Theorem~\ref{thm-graph-eq} and then the Theorem~\ref{ray-thm} to the network $\onet(\fsys)$
           we recognize that there is such a finite-length ray $r \subseteq \onet$ taking its origin
           in the source vertex $\source$.
         Suppose $r = \seq{r}$ such that $r_0 = \source$ and $r_k$ are some vertices in the graph $G$.
-        Recall that in the theorem~\ref{ray-thm} in view of existence of the ray $r$ we were able to push
+        Recall that in the Theorem~\ref{ray-thm} in view of existence of the ray $r$ we were able to push
           a flow of the size one along this ray:
         \[
           \flowpos(r_k r_{k+1}) = 1,
