@@ -507,18 +507,15 @@
 
     Remember some other notions from the graph theory:
     \begin{definition}
-      Let $G$ be an oriented graph.
-      A sequence of vertices $\{v_k\}_{k=1}^N$ is called a \emph{path} (or a simple path) if each consecutive vertices
+      Let $G = (V, \vec{E})$ be an oriented graph.
+      A sequence of vertices $\{v_k\}_{k=1}^N$ is called a \emph{path} if each consecutive vertices
         $v_k$ and $v_{k+1}$ are connected by an edge $\vec{e} = (v_k v_{k+1})$ and no edges or vertices are repeated twice in the sequence.
+      The path is called a \emph{ray} when $N$ is equal to infinity.
     \end{definition}
     \begin{definition}
       Let $G$ be an oriented graph.
       A sequence of vertices $\{v_k\}_{k=1}^N$ is called a \emph{cycle} (or a simple cycle) if it is
         a path and there is an edge $\vec{e} = (v_N v_1)$ connecting the last vertex to the first vertex of the sequence.
-    \end{definition}
-    \begin{definition}
-      Let $G = (V, \vec{E})$ be an infinite (oriented) graph.
-      An infinite path $r = \seq{r}$ is called a \emph{ray}.
     \end{definition}
 
     The main result of this section is a following
@@ -683,8 +680,8 @@
         \[
           d_{\flowposn{n}}(\root) \overset{\mathit{def}}{=} \sum_{\eout(\root)} \flowposn{n}(e) - \sum_{\ein(\root)} \flowposn{n}(e).
         \]
-        Since the sequence $\flowposn{n}(e)$ is decreasing and bounded from below the quantity
-          $d_{\preflow}(\root)=\sum_{\eout(\root)} \preflow(e) - \sum_{\ein(\root)} \preflow(e)$ is defined correctly.
+        Since the sequence $\{\flowposn{n}(e)\}$ is decreasing and bounded from below,
+          the quantity $d_{\preflow}(\root)=\sum_{\eout(\root)} \preflow(e) - \sum_{\ein(\root)} \preflow(e)$ is defined correctly.
         Because $d_{\flowposn{n}}(\root)$ is equal to $d_\flowpos(\root)$ for any $n$ due to the given algorithm, we have
         \[
           d_\preflow(\root) = \lim_{n \to \infty} d_{\flowposn{n}}(\root) = d_\flowpos(\root).
@@ -724,7 +721,7 @@
         \[
           \gfi(p) = \sum_{e \in p} \wtp(e).
         \]
-        Also we extend this function to take values on the set of the vertices $\gfi: V \to \mathbb{R}^{+}$ in such a fashion:
+        We extend this function to take values on the set of the vertices $\gfi: V \to \mathbb{R}^{+}$ in such a fashion:
         \[
           \gfi(v) = \inf_{\gpaths(v)} \gfi(p).
         \]
@@ -1093,7 +1090,7 @@
           the path $p_{k+1}= (p_k r_k)$ is infinite as well.
         Finally the ray $r = (r_0 r_1 \dots) \in \cal{P}^*$ is constructed.
         The sum $\sum \wtp(r_k r_{k+1})$ is bounded since the partial sums are bounded by the values of the function $\phi_n$
-         which are uniformly bounded by definition of the classes $U_n$
+         which are uniformly bounded by definition of the classes $U_n$.
       \end{proof}
       In the end we found a finite-length ray in the network $\onet$.
       Hence the implication is proved as well as the theorem itself.
@@ -1130,7 +1127,7 @@
           the sequence $\left\{1/a_n\right\}_{n=1}^\infty$ does not belong to $\ell^1$.
       \end{prop}
       \begin{proof}
-        Here we will discuss the AS system only: $\fsys = \fsys_{AS}$.
+        Here we will discuss the Azoff-Shehada system only: $\fsys = \fsys_{AS}$.
 
         Notice that $\fsys$ belongs to the B-class.
         Thus $\fsys$ is applicable to the Theorem~\ref{thm-graph-eq}, which asserts
@@ -1235,8 +1232,7 @@
         Then $\fsys$ is two point dense when and only when $\fsys$ admits a linear summation method.
       \end{theorem}
       \begin{proof}
-        The necessity is trivial for the two point density property is weaker than the existence of the linear summation method
-          for $\fsys$.
+        The necessity is trivial for the two point density property is weaker than the existence of the linear summation method for $\fsys$.
 
         Now let us prove the sufficiency.
         Pretend $\fsys$ does not admit a linear summation method.
