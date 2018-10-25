@@ -165,8 +165,8 @@
     \end{equation}
     Now consider an auxiliary function $\flowsgn: V \otimes V \to \mathbb{R}$ defined as follows
     \begin{align*}
-        &\flowsgn(v_l, v_r) := T_{lr} \inner{f_l}{e_r} = T_{lr} \wt_{lr}^{-1},\\
-        &\flowsgn(v_r, v_l) := T_{lr} \inner{f^*_r}{e_l} = T_{lr} \wt_{rl}^{-1}.
+        &\flowsgn(v_l, v_r) = T_{lr} \inner{f_l}{e_r} = T_{lr} \wt_{lr}^{-1},\\
+        &\flowsgn(v_r, v_l) = T_{lr} \inner{f^*_r}{e_l} = T_{lr} \wt_{rl}^{-1}.
     \end{align*}
     Observe that $\flowsgn$ is a skew-symmetric function.
     Moreover, two equalities~\eqref{left-eqn} and~\eqref{right-eqn} correspond to the \emph{left} and \emph{right}
@@ -221,8 +221,8 @@
       Also denote by $d_{+}(v)$ the sum of the flows \emph{leaving} the vertex $v$ and by
       $d^{-}(v)$ the sum of the flows \emph{entering} $v$:
       \begin{align*}
-        &d^{+}_{\flow}(v) := \sum_{\flow(vu) > 0} \flow(vu),\\
-        &d^{-}_{\flow}(v) := \sum_{\flow(uv) > 0} \flow(uv).
+        &d^{+}_{\flow}(v) = \sum_{\flow(vu) > 0} \flow(vu),\\
+        &d^{-}_{\flow}(v) = \sum_{\flow(uv) > 0} \flow(uv).
       \end{align*}
       Also let $d_{\flow}(v)$ be equal to $d^{+}_{\flow}(v) - d^{-}_{\flow}(v)$.
       Sometimes we will refer to this value as a \emph{total flow} of the vertex $v$.
@@ -270,9 +270,9 @@
     \end{align*}
     The total flow functions $d_\flowpos$, $d^{+}_\flowpos$, $d^{-}_\flowpos$ do not change their value and could be written as
     \begin{align*}
-      &d^{+}_{\flowpos}(v) := \sum_{u \in \eout(v)} \flowpos(vu),\\
-      &d^{-}_{\flowpos}(v) := \sum_{u \in \ein(v)} \flowpos(uv),\\
-      &d_{\flowpos}(v) := d^{+}_\flowpos(v) - d^{-}_\flowpos(v).
+      &d^{+}_{\flowpos}(v) = \sum_{u \in \eout(v)} \flowpos(vu),\\
+      &d^{-}_{\flowpos}(v) = \sum_{u \in \ein(v)} \flowpos(uv),\\
+      &d_{\flowpos}(v) = d^{+}_\flowpos(v) - d^{-}_\flowpos(v).
     \end{align*}
     Sometimes we will omit the flow from the notation.
     \begin{definition}
@@ -304,8 +304,8 @@
     We add all the edges from the graph $B(\fsys)$ to the network $\net(\fsys)$ as well.
     We set the flow and the length functions on such edge $e = (v_l v_r)$ as follows:
     \begin{align*}
-      &\flow(v_l, v_r) := T_{lr} \inner{f^*_r}{e_l},\\
-      &\flow(v_r, v_l) := T_{lr} \inner{f_l}{e_r} = -\flow(v_l, v_r),\\
+      &\flow(v_l, v_r) = T_{lr} \inner{f^*_r}{e_l},\\
+      &\flow(v_r, v_l) = T_{lr} \inner{f_l}{e_r} = -\flow(v_l, v_r),\\
       &\wtp(e) = \left| \wt(v_l, v_r) \right| =  \left|\inner{f_l}{e_r}\right|^{-1}.
     \end{align*}
     \begin{note}
@@ -360,17 +360,17 @@
       Consider a network $\net = (V, E, \wtp, \source, \sink)$ and a flow function $\flow$ on it.
       We introduce a non-negative function $\|\flow\|$ which we call the \emph{mass} of the flow $\flow$.
       \[
-        \|\flow\| := \sum_{e \in E} \left|\flow(e) \wtp(e)\right|.
+        \|\flow\| = \sum_{e \in E} \left|\flow(e) \wtp(e)\right|.
       \]
       We allow it to be equal $+\infty$ as well.
     \end{definition}
     \begin{definition}
-      If $\flowpos$ is an oriented flow on the oriented networks $\onet = (V,\vec{E},\wtp, \source, \sink)$ 
+      If $\flowpos$ is an oriented flow on the oriented network $\onet = (V,\vec{E},\wtp, \source, \sink)$ 
         we can introduce the same term for the \emph{mass} of the flow:
       \[
-        \|\flowpos\| := \sum_{e \in \vec{E}} \left|\flowpos(e) \wtp(e)\right|.
+        \|\flowpos\| = \sum_{e \in \vec{E}} \left|\flowpos(e) \wtp(e)\right|.
       \]
-      Though in the oriented case the flow function is always positive
+      Though in the oriented case the flow function is always positive,
         so we are allowed to omit the modulus signs:
       \[
         \|\flowpos\| = \sum_{e \in \vec{E}} \flowpos(e) \wtp(e).
@@ -408,16 +408,16 @@
       Recall that each vertex $v_i$ (except source and sink) matches to the basis element $e_i$.
       Assign the diagonal elements of $T$:
       \[
-        T_{l_k l_k} := \flow(l_k, \source) \wtp(l_k l_k) = \flow(l_k, \source) \quad k > 0.
+        T_{l_k l_k} = \flow(l_k, \source) \wtp(l_k l_k) = \flow(l_k, \source) \quad k > 0.
       \]
       Now we repeat the same procedure for the right part of the graph $\net(\fsys)$, thus having
       \[
-        T_{r_k r_k} := \flow(r_k, \sink) \wtp(r_k r_k) = \flow(r_k, \sink) \quad k > 0.
+        T_{r_k r_k} = \flow(r_k, \sink) \wtp(r_k r_k) = \flow(r_k, \sink) \quad k > 0.
       \]
       Now consider two connected vertices $v_l$, $v_r$ from the left and right part
         respectively. Assign
       \[
-        T_{lr} := \flow(v_l, v_r) \wtp(v_l  v_r).
+        T_{lr} = \flow(v_l, v_r) \wtp(v_l  v_r).
       \]
       Let all the other matrix elements of the operator matrix $T_{ij}$ be zero.
       Then observe that we got a finite-band operator matrix $T_{ij}$ with the sum of diagonal elements
@@ -488,22 +488,22 @@
       Namely, we merge the source vertex $\source$ with the sink vertex $\sink$ and call this a
         new source vertex $\source'$.
       This way we obtain a network $\onet'$ with a single source such that $d(\source') = 1$.
-      Formally we are left without the sink vertex but we could always set the sink vertex to be the same as the source vertex: $\sink=\source'$.
+      Formally we set the sink vertex in the modified network to be the same as the source vertex: $\sink'=\source'$.
       The flow function $\flowpos$ as well as the length function $\wtp$ stay exactly the same (being defined on the edges set $E$).
-      All the vertices in the graph keep preserving the flow after this procedure, except for the source vertex $\source'$
+      All the vertices in the graph continue preserving the flow after this procedure, except for the source vertex $\source'$
         which is now \emph{$\flowpos$-active} since its total flow $d(\source')$ equal to one.
       Thus $\onet'$ is a network with a function $\flowpos$ being a flow function as required.
       Obviously the mass of the flow does not change since we did not change the edges weights.
-      Furthermore the flow $\flowpos$ does not preserve the flow by the definition.
+      Furthermore the network $\onet'$ does not preserve the flow $\flowpos$ by definition.
 
       Now assume we proved existence of a finite-length ray $r'$ $\onet'$, starting with $\source'$, in the modified network.
       Then since the weight of any edge incident to the source vertex is equal to one (see the remark~\ref{inner-ray-rmk})
         there is a subray of $r'$ which does not include source.
       Suppose the subray starts with some vertex $v' \in V' \setminus \source'$.
       Now consider the corresponding vertex $v \in V \setminus \left\{\source, \sink\right\}$ in the original network $\onet$.
-      Obviously $v$ is either connected to the source or to the sink vertices by the finite path.
-      However by the definition of B-networks the sink is also connected to the source with the path of the finite length.
-      Thus it is connected to the source, and we have found the ray $r$ in $\onet$.
+      Due to the B-network definition $v$ is either connected to the source or to the sink vertices by a finite path.
+      However by the definition of B-networks the sink is also connected to the source with the path of a finite length.
+      Thus $v$ is connected to the source, and we have found the ray $r$ in $\onet$.
 
       On the contrary, if there is a ray $r$ in the given network $\onet$, which starts with the vertex $\source$
         then trivially there is a ray $r'$ in the modified network $\onet'$, starting from the vertex $\source$.
@@ -581,12 +581,12 @@
       $G_n$.
       We start with the flow $\flowposn{0}:\onet \to \mathbb{R}^+$ equal to the flow $\flowpos$:
       \[
-        \flowposn{0}(e) := \flowpos(e), \quad e \in E.
+        \flowposn{0}(e) = \flowpos(e), \quad e \in E.
       \]
       The first step $n = 1$ is trivial: the graph $G_1$ contains only the root vertex, and
         the flow $\flowposn{1}$ is equal to $\flowposn{0}$:
       \[
-        \flowposn{1}(e) := \flowposn{0}(e), \quad e \in E.
+        \flowposn{1}(e) = \flowposn{0}(e), \quad e \in E.
       \]
 
       In order to proceed we enumerate all vertices in the network $V = \left\{v_k\right\}_{k=1}^\infty$.
@@ -599,7 +599,7 @@
 
       Define the flow function $\cal{E}_0(e): \onet \to \mathbb{R}^{+}$ as follows:
       \[
-        \cal{E}_0(e) := \flowposn{n}(e).
+        \cal{E}_0(e) = \flowposn{n}(e).
       \]
       Let there be a simple cycle $C_1$ in the graph $G_n$ such that each edge $e \in C_1$ carries
         a positive flow: $\cal{E}_0(e) > 0$.
@@ -630,7 +630,7 @@
       Suppose we annihilated $K$ positive flow cycles in total from the graph $G_n$.
       Then set the flow $\flowposn{n+1}$ equal to the final flow function $\cal{E}_K$:
       \[
-        \flowposn{n+1} := \cal{E}_K.
+        \flowposn{n+1} = \cal{E}_K.
       \]
       We have
       \begin{align*}
@@ -640,7 +640,7 @@
 
       Consider now the preflow function $\preflow$ defined as a pointwise limit of $\flowposn{n}$:
       \[
-        \preflow(e) := \lim_{n \to \infty} \flowposn{n}(e)
+        \preflow(e) = \lim_{n \to \infty} \flowposn{n}(e)
       \]
         for each $e \in E$.
       The described pointwise limit exists since for each edge $e$ the sequence $\flowposn{n}(e)$ is decreasing and bounded below.
@@ -660,9 +660,9 @@
         Secondly, consider the root vertex $\root$.
         Notice that
         \[
-          d_{\flowposn{n}}(\root) \overset{\mathit{def}}{=} \sum_{\out(\root)} \flowposn{n}(e) - \sum_{\in(\root)} \flowposn{n}(e).
+          d_{\flowposn{n}}(\root) \overset{\mathit{def}}{=} \sum_{\eout(\root)} \flowposn{n}(e) - \sum_{\ein(\root)} \flowposn{n}(e).
         \]
-        Since the sequence $\{\flowposn{n}(e})$ is decreasing and bounded from below the quantity $d_{\preflow}(\root)$ is defined correctly.
+        Since the sequence $\{\flowposn{n}(e)$ is decreasing and bounded from below the quantity $d_{\preflow}(\root)$ is defined correctly.
         Because $d_{\flowposn{n}}(\root)$ is equal to $d_\flowpos(\root)$ for any $n$, we have
         \[
           d_\preflow(\root) = \lim_{n \to \infty} d_{\flowposn{n}}(\root) = d_\flowpos(\root).
@@ -691,7 +691,7 @@
           length function $\wtp$ defined on $\vec{E}$ and a root vertex $\root \in V$.
         Then $\gpaths(u, v)$ denotes a set of paths from vertex $u$ to vertex $v$ in the graph $G$.
         Sometimes we will omit the first argument and then we refer to the paths from the root vertex
-          $\gpaths(v) := \gpaths(\root, v)$.
+          $\gpaths(v) = \gpaths(\root, v)$.
         Also we expand this notion onto the vertices sets: $\gpaths(U,V)$ is a set of paths
           from the set of vertices $U$ to the set of vertices $V$ in the graph $G$.
       \end{definition}
@@ -699,17 +699,17 @@
       \begin{definition}
         The function $\gfi: \gpaths \to \mathbb{R}^{+}$ is settled as follows:
         \[
-          \gfi(p) := \sum_{e \in p} \wtp(e).
+          \gfi(p) = \sum_{e \in p} \wtp(e).
         \]
         Also we extend this function to take values on the set of the vertices $\gfi: V \to \mathbb{R}^{+}$ in such a fashion:
         \[
-          \gfi(v) := \inf_{\gpaths(v)} \gfi(p).
+          \gfi(v) = \inf_{\gpaths(v)} \gfi(p).
         \]
       \end{definition}
       \begin{remark}
         Consider another function $\depth: V \to \mathbb{N}$:
         \[
-          \depth(v) := \inf_{p \in \gpaths(v)} \#\left\{e \mid e \in p\right\}.
+          \depth(v) = \inf_{p \in \gpaths(v)} \#\left\{e \mid e \in p\right\}.
         \]
         If we think about the network $\onet$ as a rooted tree (see Figure \alex{a figure with correspondence: rooted trees <-> oriented networks}) with a root $\root$
           then the defined $\depth$ function is essentially a \emph{depth} function, which is defined at the vertex $v$ 
@@ -729,7 +729,7 @@
           so $V_n = V_{n-1} \cup l_n$ where $l_n$ is all the vertices in the neighborhood of the subgraph $V_{n-1}$
           in the graph $G$:
           \[
-            l_n := \left\{v \in G \setminus V_n \mid \text{there exists an edge $(uv) \in E$ for some $u \in V_{n-1}$} \right\}.
+            l_n = \left\{v \in G \setminus V_n \mid \text{there exists an edge $(uv) \in E$ for some $u \in V_{n-1}$} \right\}.
           \]
         Define the subgraph $L_n$ as the graph with the vertex set $l_n$.
         Also $L_n$ will incorporate all the edges connecting the graph $G_{n-1}$ and the vertices $l_n$.
@@ -750,7 +750,7 @@
           \item \label{p5} the total flow of $\flowposn{n}$ 
             of the vertex $v \in L_n$ is negative: $d_{\flowposn{n}}(v) = -d^{-}_{\flowposn{n}}(v) < 0$.
         \end{enumerate}
-      Let $G_0$ be the trivial subgraph containing the root vertex only: $G_0 := \left\{\root\right\}$.
+      Let $G_0$ be the trivial subgraph containing the root vertex only: $G_0 = \left\{\root\right\}$.
       In the first step we are to build the \emph{finite} graph $G_1$.
       \begin{note}
         This is kind a delicate part of the whole proof since that is the place where
@@ -808,11 +808,11 @@
       Then we will define the subgraph $L_n$ as the set of outgoing edges (together with their ends) of the vertices in $L_{n-1}$,
         leading to the new vertices of $G$:
       \[
-        L_n := \efor_n \cup \ter(\efor_n).
+        L_n = \efor_n \cup \ter(\efor_n).
       \]
       Accordingly, we prescribe the graph $G_n$ as
       \[
-        G_n := G_{n-1} \cup L_n \cup \eback_n.
+        G_n = G_{n-1} \cup L_n \cup \eback_n.
       \]
       Thus the graph $G_n$ is constructed.
       \alex{a figure of the $n$-th layer construction}
@@ -855,7 +855,7 @@
         in order to alleviate those $\cal{G}$-active vertices created by the newly introduced back edges into the graph $G_{n-1}$.
 
       \begin{definition*}
-        Denote $\gnpaths(\makebox[1ex]{$\cdot$}, \makebox[1ex]{$\cdot$}) := \cal{P}_{G_n}(\makebox[1ex]{$\cdot$},\makebox[1ex]{$\cdot$})$.
+        Denote $\gnpaths(\makebox[1ex]{$\cdot$}, \makebox[1ex]{$\cdot$}) = \cal{P}_{G_n}(\makebox[1ex]{$\cdot$},\makebox[1ex]{$\cdot$})$.
       \end{definition*}
       Consider a $\cal{G}$-active vertex $s \in \ter(\eback_n)$ such that $d_{\cal{G}}^{-}(s) > d_{\cal{G}}^{+}(s)$.
       Let there exist such path $p \in \gnpaths(s, L_n)$, connecting the vertex $s$ and the $n$-th layer, that
@@ -884,7 +884,7 @@
         (to be specific, \emph{pushing} the flow $C \in \mathbb{R}$ along the path $p$ means raising the flow $\cal{G}$ at each of the edge of
         the path $p$:
       \[
-        \cal{G}'(e) := \cal{G}(e) + C \quad \forall e \in p.
+        \cal{G}'(e) = \cal{G}(e) + C \quad \forall e \in p.
       \]).
       On the other hand if $\delta_{max} < -d_{\cal{G}}(s)$ then pushing the flow of the size $\delta_{max}$ along the path $p$ is not enough
         in order to make the vertex $\cal{G}$-preserving.
@@ -904,7 +904,7 @@
         Obviously $V(s) \cap L_n = \emptyset$.
         Now observe the subgraph $U \subseteq G_n$:
         \[
-          U := \big\{p \in \gnpaths(s, V(s)) \mid \text{$p$ is not $\cal{G}$-saturated}\big\},
+          U = \big\{p \in \gnpaths(s, V(s)) \mid \text{$p$ is not $\cal{G}$-saturated}\big\},
         \]
         Such subgraph has no outgoing non-saturated edges in the graph $G_n$.
         It also does not have outgoing non-saturated edges in the whole graph $G$ since all the outgoing edges it had in $G$
@@ -913,7 +913,7 @@
           the only $\cal{G}$-deficient vertex in the graph $G_n$ is the root vertex $\root$, which is not in $U$ (we removed all positive-flow
           cycles).
         Also for the vertex $s$ itself we have a strict inequality $d_{\cal{G}}(s) < 0$ since it is not relaxed by our assumption.
-        It is clear now that the quantity $D := \sum_{u \in U} d_{\cal{G}}(u)$ is strictly less than zero.
+        It is clear now that the quantity $D = \sum_{u \in U} d_{\cal{G}}(u)$ is strictly less than zero.
         On the other hand
         \[
         \begin{split}
@@ -954,21 +954,21 @@
       \begin{definition}
         The function $\phi_n: G_n \to \mathbb{R}^{+}$ will stand for the distance function on the $n$-th graph $G_n$:
         \[
-          \phi_n(v) := \phi_{G_n}(v).
+          \phi_n(v) = \phi_{G_n}(v).
         \]
       \end{definition}
       \begin{definition}
         The function $d_n: G_n \to \mathbb{R}$ will stand for the total flow function on the $n$-th graph $G_n$:
         \[
-          d_n(v) := d_{\flowposn{n}}(v).
+          d_n(v) = d_{\flowposn{n}}(v).
         \]
         The function $d^{-}_n: G_n \to \mathbb{R}^{+}$ will stand for the incoming flow function on the $n$-th graph $G_n$:
         \[
-          d^{-}_n(v) := d^{-}_{\flowposn{n}}(v).
+          d^{-}_n(v) = d^{-}_{\flowposn{n}}(v).
         \]
         The function $d^{+}_n: G_n \to \mathbb{R}^{+}$ will stand for the outgoing flow function on the $n$-th graph $G_n$:
         \[
-          d^{+}_n(v) := d^{+}_{\flowposn{n}}(v).
+          d^{+}_n(v) = d^{+}_{\flowposn{n}}(v).
         \]
       \end{definition}
       \begin{lemma}
@@ -981,7 +981,7 @@
       \begin{proof}
         First denote the left hand side by $LS$
         \[
-          LS := \sum\limits_{v \in L_n} d_n^{-}(v) \phi_n(v).
+          LS = \sum\limits_{v \in L_n} d_n^{-}(v) \phi_n(v).
         \]
         Since $\phi_n(\root) = 0$ and for all vertices $u \in G_{n} \setminus \left(L_n \cup \{\root\}\right)$
           we have $d_n(u) = 0$ we could study the sum over the whole $G_n$ instead of $L_n$.
@@ -1050,48 +1050,48 @@
         Unlike $G$ this graph is locally finite which is a crucial property for our solution.
         Also we need a distance function in the graph $\gstar$:
         \[
-          \phistar(v):=\phi_{\gstar}(v).
+          \phistar(v)=\phi_{\gstar}(v).
         \]
         Note that $\phi_n(v) \geq \phistar(v)$ for any $v \in G_n$ since $G_n$ is a subgraph of $\gstar$.
         Owing to the previous proposition there is always a vertex $r_n \in L_n$ that $\phi_n(r_n) \leq \|\flowpos\|$.
         Consider the set of vertices $U_n$:
         \[
-          U_n:= \{u \in L_n \mid \phi_n(u) \leq \|\flowpos\|\}.
+          U_n= \{u \in L_n \mid \phi_n(u) \leq \|\flowpos\|\}.
         \]
         Let $\cal{P}^*$ be a set of paths $p = (p_1 p_2 \dots)$, such that for each $k > 0$ the vertex $p_k$ is in $U_k$.
         Presume $\cal{P}^*$ consists only of finite paths.
         We are going to build the ray $r$ lying in the $\cal{P}^*$, thus arriving to a contradiction.
         Let us build the ray $r$ consecutively.
-        We will build $r$ in such a way that for every path $p_k:= (r_0 r_1 \dots r_k)$ there is an infinite number of paths
+        We will build $r$ in such a way that for every path $p_k= (r_0 r_1 \dots r_k)$ there is an infinite number of paths
           in $\cal{P}^*$ which start with $p_k$.
 
         We start from $k = 0$.
         Trivially, $r_0$ is set to the root vertex:
         \[
-          r_0 := \root.
+          r_0 = \root.
         \]
         Each $U_n$ is non-empty and if a vertex $u$ belongs to $U_n$ then there always exists
           a path $p_n \in \cal{P}^*$, which belongs to $\cal{P}(u)$.
         So we have an infinite set of paths $\cup p_n$ starting from the root vertex $\root$.
 
-        Suppose we already have made the path $p_k:= (r_0 r_1\dots r_{k-1})$.
+        Suppose we already have made the path $p_k= (r_0 r_1\dots r_{k-1})$.
         By the assumption there is an infinite number of paths in $\cal{P}^*$ starting with $p_k$.
         Address these paths as $\cal{P}^*_k$.
         Let us look at the \emph{forward} edges of the vertex $r_{k-1} \in U_{k-1} \subseteq L_{k-1}$:
         \[
-          \efor(r_{k-1}):=\left\{(r_{k-1} u) \mid u \in L_k\right\}.
+          \efor(r_{k-1})=\left\{(r_{k-1} u) \mid u \in L_k\right\}.
         \]
         Now inspect the path $q \in \cal{P}^*_k \setminus \left\{p_k\right\}$ which has the prefix $p_k$:
         \[
-          q:=(r_0 r_1 \dots r_{k-1} \mathbf{q_k} q_{k+1} \dots).
+          q=(r_0 r_1 \dots r_{k-1} \mathbf{q_k} q_{k+1} \dots).
         \]
         Evidently for such path we have the vertex $q_k$ being equal to be one of the end vertices of the edges $\efor(r_{k-1})$.
         Remember that the graph $\gstar$ is locally finite and in particular the degree of the vertex $r_{k-1}$ is finite.
         Moreover recall that the number of the paths such as $q$ itself (namely, $\cal{P}^*_k$) is infinite,
           as a result of the previous construction step.
         Consequently we are able to choose such $r_k \in \efor(r_{k-1})$ that the number of paths in $\cal{P}^*_k$ starting from
-          the path $p_{k+1}:= (p_k r_k)$ is infinite as well.
-        Finally the ray $r := (r_0 r_1 \dots) \in \cal{P}^*$ is constructed.
+          the path $p_{k+1}= (p_k r_k)$ is infinite as well.
+        Finally the ray $r = (r_0 r_1 \dots) \in \cal{P}^*$ is constructed.
         The sum $\sum \wtp(r_k r_{k+1})$ is bounded since the partial sums are bounded by the values of the $\phi_n$ function which are uniformly bounded
           by the definition of the $U_n$ classes.
       \end{proof}
@@ -1137,7 +1137,7 @@
       \end{prop}
       \begin{proof}
         The AS system belongs to the B-class as we mentioned before.
-        Here we will discuss the AS system only: $\fsys := \fsys_{AS}$.
+        Here we will discuss the AS system only: $\fsys = \fsys_{AS}$.
 
         Thus $\fsys$ is applicable to the Theorem~\ref{thm-graph-eq}, which asserts
           that $\fsys$ admits a linear summation method if and only if
@@ -1163,7 +1163,7 @@
           Now look at the outline of the network $\onet(\fsys)$ (~\ref{AS-net}).
           It clearly demonstrates that
             the existence of the finite-length ray in the network $\onet(\fsys)$ implies
-            the finite length of the ray $r:=(r_1 r_2 r_3\dots)$ which is marked in the figure with the red color.
+            the finite length of the ray $r=(r_1 r_2 r_3\dots)$ which is marked in the figure with the red color.
           However this ray has the length equal to
           \[
             \sum \wtp(r_k r_{k+1}) = \sum \frac{1}{|a_k|},
