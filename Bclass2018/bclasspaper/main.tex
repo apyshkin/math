@@ -502,7 +502,7 @@
       Suppose the subray starts with some vertex $v' \in V' \setminus \source'$.
       Now consider the corresponding vertex $v \in V \setminus \left\{\source, \sink\right\}$ in the original network $\onet$.
       Due to the B-network definition $v$ is either connected to the source or to the sink vertices by a finite path.
-      However by the definition of B-networks the sink is also connected to the source with the path of a finite length.
+      However by  definition of B-networks the sink is also connected to the source with the path of a finite length.
       Thus $v$ is connected to the source, and we have found the ray $r$ in $\onet$.
 
       On the contrary, if there is a ray $r$ in the given network $\onet$, which starts with the vertex $\source$
@@ -527,7 +527,7 @@
 
       For a start we get rid of all the positive flow cycles in the oriented graph $G$.
       \emph{A positive flow cycle} is a cycle $C$ in $G$ such that positive flow circulates along $C$,
-        meaning that for each cycle's edge $e \in E$ the flow along the edge is strictly greater than zero: $\flowpos(e) > 0$.
+        meaning that for each edge $e \in C$ the flow along the edge is strictly greater than zero: $\flowpos(e) > 0$.
       You can see an example of positive flow cycle in the Figure~\ref{positive-flow}.
       \begin{figure}
         \begin{center}
@@ -627,7 +627,7 @@
       In this manner we remove all the positive flow cycles from the finite graph $G_n$.
       It is achievable since at each step we turn at least one edge into a zero-flow edge (such edge $e$ that $\cal{E}_0(e) = 0$).
 
-      Suppose we annihilated $K$ positive flow cycles in total from the graph $G_n$.
+      Suppose we removed $K$ positive flow cycles in total from the graph $G_n$.
       Then set the flow $\flowposn{n+1}$ equal to the final flow function $\cal{E}_K$:
       \[
         \flowposn{n+1} = \cal{E}_K.
@@ -662,8 +662,9 @@
         \[
           d_{\flowposn{n}}(\root) \overset{\mathit{def}}{=} \sum_{\eout(\root)} \flowposn{n}(e) - \sum_{\ein(\root)} \flowposn{n}(e).
         \]
-        Since the sequence $\{\flowposn{n}(e)$ is decreasing and bounded from below the quantity $d_{\preflow}(\root)$ is defined correctly.
-        Because $d_{\flowposn{n}}(\root)$ is equal to $d_\flowpos(\root)$ for any $n$, we have
+        Since the sequence $\flowposn{n}(e)$ is decreasing and bounded from below the quantity
+          $d_{\preflow}(\root)=\sum_{\eout(\root)} \preflow(e) - \sum_{\ein(\root)} \preflow(e)$ is defined correctly.
+        Because $d_{\flowposn{n}}(\root)$ is equal to $d_\flowpos(\root)$ for any $n$ due to the given algorithm, we have
         \[
           d_\preflow(\root) = \lim_{n \to \infty} d_{\flowposn{n}}(\root) = d_\flowpos(\root).
         \]
@@ -1093,7 +1094,7 @@
           the path $p_{k+1}= (p_k r_k)$ is infinite as well.
         Finally the ray $r = (r_0 r_1 \dots) \in \cal{P}^*$ is constructed.
         The sum $\sum \wtp(r_k r_{k+1})$ is bounded since the partial sums are bounded by the values of the $\phi_n$ function which are uniformly bounded
-          by the definition of the $U_n$ classes.
+          by  definition of the $U_n$ classes.
       \end{proof}
       In the end we found a finite-length ray in the network $\onet$.
       Hence the necessity is proved as well as the theorem itself.
