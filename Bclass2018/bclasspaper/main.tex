@@ -37,7 +37,7 @@
     define $k$-completeness, talk about the summation method.
 
     We are eager to understand whether the $2$-completeness always implies the existence of the linear summation method.
-    Namely whether there exist such a complete minimal vector system $\fsys$ which is $2$-complete but does not have a
+    Namely whether there exists such a complete minimal vector system $\fsys$ which is $2$-complete but does not have a
       linear summation method.
 
   \alex{todo}
@@ -462,7 +462,7 @@
     \begin{theorem}
       \label{ray-thm}
       Let $\onet = (G, \wtp, \source, \sink)$ be an oriented B-network.
-      Then there exist such a positive flow function $\flowpos: E \to \mathbb{R}^{+}$ that
+      Then there exists such a positive flow function $\flowpos: E \to \mathbb{R}^{+}$ that
       \begin{itemize}
         \item the flow $\flowpos$ has a finite mass,
         \item the network $\onet$ does not preserve the flow,
@@ -510,9 +510,9 @@
       From now on we will be proving the following reformulation of the Theorem~\ref{ray-thm}.
       \begin{theorem*}
         Let $\onet = (G, \wtp, \source, \sink)$ be an oriented B-network such that $\source = \sink$.
-        Then there exist such a positive finite-mass flow $\flowpos: E \to \mathbb{R}^{+}$ that
+        Then there exists such positive finite-mass flow $\flowpos: E \to \mathbb{R}^{+}$ that
           $\onet$ does not preserve $\flowpos$ (it means that $d(\source) \neq 0$),
-          if and only if there exist a ray $r = \seq{r}$, which has a finite total length and starts from $\source$.
+          if and only if there exists a ray $r = \seq{r}$, which has a finite total length and starts from $\source$.
       \end{theorem*}
       %First we prove the simpler implication.
       \subsubsection*{Sufficiency.}
@@ -622,7 +622,7 @@
       After this procedure the positive flow cycle $C_1$ disappears,
         leaving us with a lesser flow than we had before this step:
       \begin{align*}
-        &\cal{E}_1(e) \leq \cal{E}_0(e) \quad \forall e \in E_n.
+        &\cal{E}_1(e) \leq \cal{E}_0(e), \quad e \in E_n.
       \end{align*}
       In this manner we remove all the positive flow cycles from the finite graph $G_n$.
       It is achievable since at each step we turn at least one edge into a zero-flow edge (such edge $e$ that $\cal{E}_0(e) = 0$).
@@ -686,6 +686,7 @@
       Suppose that the flow $\flowpos$ contains no positive flow cycles in the first place.
       Also we remove the edges of the network $\onet$ for which the flow $\flowpos$ equals zero.
 
+      \subsection{Main construction}
       We are going to need a few definitions in order to proceed with the proof of the theorem.
       \begin{definition}
         Let $G = (V, \vec{E},\wtp, \root)$ be a weighted directed graph with a positive
@@ -708,90 +709,92 @@
         \]
       \end{definition}
       \begin{remark}
-        Consider another function $\depth: V \to \mathbb{N}$:
-        \[
-          \depth(v) = \inf_{p \in \gpaths(v)} \#\left\{e \mid e \in p\right\}.
-        \]
-        If we think about the network $\onet$ as a rooted tree (see Figure \alex{a figure with correspondence: rooted trees <-> oriented networks}) with a root $\root$
-          then the defined $\depth$ function is essentially a \emph{depth} function, which is defined at the vertex $v$ 
-          as the length of the shortest path connecting the root vertex with $v$.
+        %Consider another function $\depth: V \to \mathbb{N}$:
+        %\[
+        %  \depth(v) = \inf_{p \in \gpaths(v)} \#\left\{e \mid e \in p\right\}.
+        %\]
+        %If we think about the network $\onet$ as a rooted tree (see Figure \alex{a figure with correspondence: rooted trees <-> oriented networks}) with a root $\root$
+        %  then the defined $\depth$ function is essentially a \emph{depth} function, which is defined at the vertex $v$ 
+        %  as the length of the shortest path connecting the root vertex with $v$.
 
-        Our ambition in the following paragraphs is virtually to provide an estimate on the values of the distance function $\gfi$ on the vertices
-          located ''far'' from the $\root$, namely such vertices for which $\depth >> 1$.
+        Our ambition in the following paragraphs is to provide an estimate on the values of the distance function $\gfi$ on any vertex $v$
+          located ''far'' from $\root$, namely for any integer $N > 0$ we are to provide $M > 0$ such that
+          for any $v$ satisfying $\displaystyle\inf_{p \in \gpaths(v)} \#\left\{ e \mid e \in p\right\} > N$, one has $\gfi(v) < M$.
       \end{remark}
 
-      We are about to put up the main construction of the proof.
-      But before that we scale our flow function $\flowpos$: suppose the total outgoing flow of the root vertex $\root$ is strictly greater than one:
-        $d^{+}_{\flowpos}(\root) > 1$.
-      In a few moments it will become apparent why we did so.
-      We are going to define finite subgraphs $G_n = (V_n, E_n)$ of the network $\onet$ such that $G_{n-1} \subset G_{n}$ for each $n > 1$.
-      \begin{note}
-        Essentially our construction is based on a breadth-first-search in the infinite graph $G$,
-          so $V_n = V_{n-1} \cup l_n$ where $l_n$ is all the vertices in the neighborhood of the subgraph $V_{n-1}$
-          in the graph $G$:
-          \[
-            l_n = \left\{v \in G \setminus V_n \mid \text{there exists an edge $(uv) \in E$ for some $u \in V_{n-1}$} \right\}.
-          \]
-        Define the subgraph $L_n$ as the graph with the vertex set $l_n$.
-        Also $L_n$ will incorporate all the edges connecting the graph $G_{n-1}$ and the vertices $l_n$.
-        We will refer to the subgraph $L_n$ as the \emph{$n$-th layer} of the graph $G$.
-        See the figure xxx.
+      %We are about to put up the main construction of the proof.
+      %In a few moments it will become apparent why we did so.
+      %\begin{note}
+      %  Essentially our construction is based on a breadth-first-search in the infinite graph $G$,
+      %    so $V_n = V_{n-1} \cup l_n$ where $l_n$ is all the vertices in the neighborhood of the subgraph $V_{n-1}$
+      %    in the graph $G$:
+      %    \[
+      %      l_n = \left\{v \in G \setminus V_n \mid \text{there exists an edge $(uv) \in E$ for some $u \in V_{n-1}$} \right\}.
+      %    \]
+      %  Define the subgraph $L_n$ as the graph with the vertex set $l_n$.
+      %  Also $L_n$ will incorporate all the edges connecting the graph $G_{n-1}$ and the vertices $l_n$.
+      % We will refer to the subgraph $L_n$ as the \emph{$n$-th layer} of the graph $G$.
+      %  See the figure xxx.
         \alex{a figure with $n$-th layer and BFS}
-      \end{note}
-      Besides we are going to establish a sequence of the positive preflow functions $\flowposn{n}: E_n \to \mathbb{R}^{+}$,
+      %\end{note}
+      The construction is based on the breadth-first search in the infinite graph $G$.
+      We are going to define \emph{finite} subgraphs $G_n = (V_n, E_n)$ of the network $\onet$ such that $G_{n-1} \subset G_{n}$ for each $n > 1$.
+      We denote the vertex set difference with $L_n = V_n \setminus V_{n-1}$.
+      Besides, we are going to establish a sequence of the positive preflow functions $\flowposn{n}: E_n \to \mathbb{R}^{+}$,
         pertaining the following properties:
         \begin{enumerate}[label=\textbf{P\arabic*}]
-          \item \label{p1} $\flowposn{n}$ is increasing: 
-            one has $\flowposn{n+1}(e) \geq \flowposn{n}(e)$ for each $e \in E_n, n > 0$,
+          \item \label{p1} $\flowposn{n}$ is increasing:
+            one has $\flowposn{n+1}(e) \geq \flowposn{n}(e)$ for each $e \in E_n$,
           \item \label{p2} $\flowposn{n}$ is dominated by $\flowpos$:
-            one has $\flowposn{n}(e) \leq \flowpos(e)$ for each $e \in E_n, n> 0$,
+            one has $\flowposn{n}(e) \leq \flowpos(e)$ for each $e \in E_n$,
           \item \label{p3} the total flow of $\flowposn{n}$ is equal to one at the root vertex: $d_{\flowposn{n}}(\root) = 1$,
           \item \label{p4} the total flow of $\flowposn{n}$ is equal to zero at any non-root vertex
             $v \in G_{n-1}\setminus \left\{\root\right\}$: $d_{\flowposn{n}}(v) = 0$ for any $n > 1$,
-          \item \label{p5} the total flow of $\flowposn{n}$ 
+          \item \label{p5} the total flow of $\flowposn{n}$
             of the vertex $v \in L_n$ is negative: $d_{\flowposn{n}}(v) = -d^{-}_{\flowposn{n}}(v) < 0$.
         \end{enumerate}
+      First of all we scale the flow function $\flowpos$: suppose the total outgoing flow of the root vertex $\root$ is strictly greater than one:
+        $d^{+}_{\flowpos}(\root) > 1$.
+      We are going to need this assumption at the first step.
       Let $G_0$ be the trivial subgraph containing the root vertex only: $G_0 = \left\{\root\right\}$.
-      In the first step we are to build the \emph{finite} graph $G_1$.
-      \begin{note}
-        This is kind a delicate part of the whole proof since that is the place where
-          we are possibly dealing with the only vertex of infinite degree in the graph $G$~--- the root vertex $\root$.
-      \end{note}
+      At the first step we build the graph $G_1$.
+      %\begin{note}
+      %  This is kind a delicate part of the whole proof since that is the place where
+      %    we are possibly dealing with the only vertex of infinite degree in the graph $G$~--- the root vertex $\root$.
+      %\end{note}
       We choose such set of the edges $E_1 \subseteq \eout(\root)$ that the total flow on this set is equal to one:
       \[
         \sum_{e \in E_1} \flowpos(e) = 1.
       \]
-      It is possible since we earlier requested the function $\flowpos$ such that its total outgoing flow in the root vertex
-        $\root$ is strictly greater than one: $d^{+}_{\flowpos}(\root) > 1$.
+      It is possible since $d^{+}_{\flowpos}(\root) > 1$.
 
-      Then we define the \emph{first layer} $L_1$ as
+      Then we define the \emph{first layer} $L_1$ as the ends of the edges $E_1$
       \[
-        L_1 = E_1 \cup \ter(E_1),
+        L_1 = \ter(E_1).
       \]
-        which is exactly the chosen edges $E_1$ and their ends.
-      Along with the graph $G_1 = G_0 \cup L_1$ we appoint the preflow function $\flowposn{1}: E_1 \to \mathbb{R}^{+}$ in a trivial way:
+      Along with the graph $G_1 = (V_0 \cup L_1, E_1)$ we appoint the preflow function $\flowposn{1}: E_1 \to \mathbb{R}^{+}$ in a trivial way:
       \[
         \flowposn{1}(e) = \flowpos(e)
       \]
         for each $e \in E_1$.
       \begin{prop}
-        The preflow $\flowposn{1}$ satisfies all of the declared properties from~\ref{p1}--\ref{p5}.
+        The preflow $\flowposn{1}$ satisfies all of the properties~\ref{p1}--\ref{p5}.
       \end{prop}
       \begin{proof}
-        The properties~\ref{p1}--\ref{p4} are trivial.
-        The only check we intend to clarify here is the check of the property~\ref{p5}.
+        The properties~\ref{p1}--\ref{p4} are trivial and left to the reader.
 
-        We included the ends of the $E_1$ edges without any additional edges.
-        So each vertex in $L_1$ has only incoming edges which makes their total flow strictly negative (recall that we removed all zero-flow edges).
+        \noindent \ref{p5}. We included the ends of the $E_1$ edges without any additional edges.
+        Thus each vertex in $L_1$ has only incoming edges which makes their
+          total flow strictly negative (recall that we removed all zero-flow edges).
       \end{proof}
       \begin{note}
-        We dealt with the generally infinite degree of the root vertex by abandoning some of the children of the root.
+        We dealt with the typically infinite degree of the root vertex by abandoning some of the children of the root.
         \alex{a figure of the first layer (infinite degree!)}
-        We need $G_n$ to be finite since this way we could analyze the $\gfi$ function without trouble.
+        We need the graph $G_n$ to be finite since this way we could analyze the $\gfi$ function without trouble.
       \end{note}
       For each further step $n > 1$ the construction will be similar.
       Suppose that $G_{n-1}$, $L_{n-1}$ and the preflow function $\flowposn{n-1}$ are already established.
-      Let us enlarge on the outgoing edges of the vertex $v \in L_{n-1}$.
+      Consider the outgoing edges of the vertex $v \in L_{n-1}$.
       Some of them might lead to some new vertices which do not belong to $G_{n-1}$.
       Such edges we will call by $\efor_n$:
       \[
@@ -806,23 +809,19 @@
         Pay your attention that a \emph{back} edge could never lead to the root vertex since that
           would yield an existence of a positive flow cycle for the flow function $\flowpos$.
       \end{remark}
-      Then we will define the subgraph $L_n$ as the set of outgoing edges (together with their ends) of the vertices in $L_{n-1}$,
-        leading to the new vertices of $G$:
-      \[
-        L_n = \efor_n \cup \ter(\efor_n).
-      \]
+      We define the vertex set $L_n$ as follows: $L_n = \ter(\efor_n)$.
       Accordingly, we prescribe the graph $G_n$ as
       \[
-        G_n = G_{n-1} \cup L_n \cup \eback_n.
+        G_n = (V_{n-1} \cup L_n, E_{n-1} \cup \eback_n \cup \efor_n).
       \]
       Thus the graph $G_n$ is constructed.
       \alex{a figure of the $n$-th layer construction}
 
       \noindent\textbf{Setting a preflow function.}\\
       \noindent Here we split the procedure in two steps.
-      Take the preflow function $\cal{G}: E_n \to \mathbb{R}^{+}$ initially equal to $\flowposn{n-1}$:
+      Take the preflow function $\cal{G}: E_n \to \mathbb{R}^{+}$ initially equal to $\flowposn{n-1}$ on $E_{n-1}$:
       \[
-        \cal{G}(e) = \flowposn{n-1} \quad \forall e \in E_{n-1},
+        \cal{G}(e) = \flowposn{n-1}, \quad e \in E_{n-1},
       \]
       and zero otherwise.
       We are going to extrapolate it onto the $E_n$ (step one) and then change it gradually in order
@@ -833,13 +832,13 @@
       In order to do such expansion we will propagate the flow $\cal{G}$, incoming to the $(n-1)$-th layer, one edge further.
 
       Namely, consider the vertex $u \in L_{n-1}$.
-      Since $d_{\cal{G}}^{-}(u) \leq d_{\flowpos}^{-}(u)$ (incoming flow $\cal{G}$ is bounded above by the original flow $\flowpos$ by~\ref{p2}),
+      Since $d_{\cal{G}}^{-}(u) \leq d_{\flowpos}^{-}(u)$ (by~\ref{p2}),
         we are able to set the flow $\cal{G}$ on the outgoing edges of $u$ in such a way that:
       \begin{enumerate}[label=\textbf{(\roman*)}]
         \item\label{posprop} each outgoing edge has a positive flow: $\cal{G}(e) > 0$ for any $e \in \eout(u)$,
-        \item the $\cal{G}$ is still bounded from above: 
-          $\cal{G}(e) \leq \flowpos(e) \quad \forall e \in \eout(u)$,
-        \item the vertex $u \in L_{n-1}$ becomes $\cal{G}$-preserving (meaning that $d_{\cal{G}}(u) = 0$).
+        \item $\cal{G}$ is still bounded from above:
+          $\cal{G}(e) \leq \flowpos(e), \quad e \in \eout(u)$,
+        \item the vertex $u \in L_{n-1}$ becomes $\cal{G}$-preserving.
       \end{enumerate}
       \begin{note}
         Literally, here we are pushing the flow out of the vertex $u \in L_{n-1}$ and spreading it among all the outgoing edges
@@ -859,7 +858,7 @@
         Denote $\gnpaths(\makebox[1ex]{$\cdot$}, \makebox[1ex]{$\cdot$}) = \cal{P}_{G_n}(\makebox[1ex]{$\cdot$},\makebox[1ex]{$\cdot$})$.
       \end{definition*}
       Consider a $\cal{G}$-active vertex $s \in \ter(\eback_n)$ such that $d_{\cal{G}}^{-}(s) > d_{\cal{G}}^{+}(s)$.
-      Let there exist such path $p \in \gnpaths(s, L_n)$, connecting the vertex $s$ and the $n$-th layer, that
+      Let there exists such path $p \in \gnpaths(s, L_n)$, connecting the vertex $s$ and the $n$-th layer, that
         the preflow $\cal{G}$ could be increased along this path by some constant
         $\delta \leq d_{\cal{G}}^{-}(s) - d_{\cal{G}}^{+}(s) = -d_{\cal{G}}(s)$.
       \begin{definition}
@@ -876,17 +875,14 @@
       For each path $p \in \gnpaths(s, L_n)$ we raise the preflow $\cal{G}$ at every edge of the path $p$
       by $\delta > 0$.
       The described procedure we call as \emph{$\cal{G}$-relaxation} of the vertex $s$.
-      Strictly speaking, the \emph{$\cal{G}$-relaxation}
+      Strictly speaking, the {$\cal{G}$-relaxation}
         of the vertex $s$ means reduction of the excess of the flow $\cal{G}$ in the vertex $s$.
-      Our purpose is to \emph{$\cal{G}$-relax} the vertex $s$, in other words, transform it into a $\cal{G}$-preserving vertex.
+      Our purpose is to relax the vertex $s$, transforming it into a $\cal{G}$-preserving vertex.
 
       If $\delta_{max} \geq -d_{\cal{G}}(s)$ then \emph{pushing} the flow along the path $p$ of the size precisely $-d_{\cal{G}}(s)$
         will be enough to make the vertex $s$ preserving the preflow $\cal{G}$
-        (to be specific, \emph{pushing} the flow $C \in \mathbb{R}$ along the path $p$ means raising the flow $\cal{G}$ at each of the edge of
-        the path $p$:
-      \[
-        \cal{G}'(e) = \cal{G}(e) + C \quad \forall e \in p.
-      \]).
+        (\emph{pushing} the flow $C \in \mathbb{R}$ along the path $p$ means raising the flow $\cal{G}$ at each edge $e \in p$:
+        $\cal{G}'(e) = \cal{G}(e) + C$).
       On the other hand if $\delta_{max} < -d_{\cal{G}}(s)$ then pushing the flow of the size $\delta_{max}$ along the path $p$ is not enough
         in order to make the vertex $\cal{G}$-preserving.
       In this case we push the flow $\delta_{max}$ along the path $p$ and look for the other augmenting paths in $\gnpaths(s, L_n)$.
@@ -897,22 +893,31 @@
       \begin{proof}
         Firstly, we have a finite graph $G_{n}$, and so there are only a finite number of paths in the $\gnpaths(s, L_n)$.
         Secondly, each time we push the flow along the augmenting path $p$ either we successfully relax the vertex $s$
-          or we saturate at least one edge, lying on the chosen path $p$.
+          or we saturate at least one edge lying on the chosen path $p$.
         Since the number of the edges is finite the procedure halts after a finite number of steps.
 
-        Suppose that the vertex $s$ is not yet $\cal{G}$-relaxed.
-        Examine the set of vertices $V(s) \subseteq G_n$ which are reachable by non-saturated paths from the vertex $s$
-        Obviously $V(s) \cap L_n = \emptyset$.
-        Now observe the subgraph $U \subseteq G_n$:
+        Suppose that there is a non-root vertex $s$ that is not yet relaxed.
+        Examine the set of vertices $S \subseteq G_n$ which are reachable by non-saturated paths from the vertex $s$
+        Obviously $S \cap L_n = \emptyset$.
+        Now consider the subgraph $U \subseteq G_n$:
         \[
-          U = \big\{p \in \gnpaths(s, V(s)) \mid \text{$p$ is not $\cal{G}$-saturated}\big\},
+          U = \bigcup\big\{p \in \gnpaths(s, S) \mid \text{$p$ is not $\cal{G}$-saturated}\big\},
         \]
-        Such subgraph has no outgoing non-saturated edges in the graph $G_n$.
-        It also does not have outgoing non-saturated edges in the whole graph $G$ since all the outgoing edges it had in $G$
-          ought to have been appended to the graph $G_n$.
-        For any vertex $u \in V(s)$ we certainly have that $d_{\cal{G}}(u) = d^{+}_{\cal{G}}(u) - d^{-}_{\cal{G}}(u) \leq 0$, because
-          the only $\cal{G}$-deficient vertex in the graph $G_n$ is the root vertex $\root$, which is not in $U$ (we removed all positive-flow
-          cycles).
+        \begin{lemma}
+          Any edge $e \in \eout(U)$ is saturated.
+        \end{lemma}
+        \begin{proof}
+          There is no root vertex in $U$ and for each non-root vertex $v \in G_n$ we have
+          $\eout_{G_n}(v) = \eout_G(v)$, consequently $e$ is in the graph $G_n$.
+          If $e$ was not saturated then we could trivially find another path in $\gnpaths(s, S)$ belonging to $U$, which would imply that
+            $e$ is in $U$ which is impossible.
+          Therefore $e$ is saturated.
+        \end{proof}
+        %Such subgraph has no outgoing non-saturated edges in the graph $G_n$.
+        %It also does not have outgoing non-saturated edges in the whole graph $G$ since all the outgoing edges it had in $G$
+        %  ought to have been appended to the graph $G_n$.
+        For a vertex $u \in S$ we see that $d_{\cal{G}}(u) = d^{+}_{\cal{G}}(u) - d^{-}_{\cal{G}}(u) \leq 0$, because
+          the only $\cal{G}$-deficient vertex in the graph $G_n$ is the root vertex $\root$, which is not in $U$.
         Also for the vertex $s$ itself we have a strict inequality $d_{\cal{G}}(s) < 0$ since it is not relaxed by our assumption.
         It is clear now that the quantity $D = \sum_{u \in U} d_{\cal{G}}(u)$ is strictly less than zero.
         On the other hand
@@ -928,10 +933,10 @@
       \]
         So we deduced that $0 > D \geq 0$, and that is a contradiction.
       \end{proof}
-      It follows that we could relax all the end vertices of the back edges in $\eback_n$.
-      We study the evolved preflow function $\cal{G}$ we got after all the relaxations.
+      It follows that we relax all the vertices in $\eback_n$.
+      Conclusively, we set the preflow function $\flowposn{n}$ equal to the $\cal{G}$ we got after relaxations.
       \begin{prop}
-        The properties~\ref{p1}--\ref{p5} are satisfied for the resulting preflow function $\cal{G}$ on the network $\onet_n = (G_n, \wtp, \root)$.
+        The properties~\ref{p1}--\ref{p5} are satisfied for the resulting preflow function $\flowposn{n}$ on the network $\onet_n = (G_n, \wtp, \root)$.
       \end{prop}
       \begin{proof}
         The monotonicity property~\ref{p1} is true since during the relaxation step $n$ we
@@ -949,7 +954,6 @@
         Finally, due to the first step property~\ref{posprop} and the fact that
         any vertex in $L_n$ has only incoming edges in the graph $G_n$, we prove the property~\ref{p5}.
       \end{proof}
-      Conclusively, we set the preflow function $\flowposn{n}$ equal to the result flow $\cal{G}$.
       The flow construction is completed.
       Now we would like to introduce some simpler notations.
       \begin{definition}
@@ -958,22 +962,9 @@
           \phi_n(v) = \phi_{G_n}(v).
         \]
       \end{definition}
-      \begin{definition}
-        The function $d_n: G_n \to \mathbb{R}$ will stand for the total flow function on the $n$-th graph $G_n$:
-        \[
-          d_n(v) = d_{\flowposn{n}}(v).
-        \]
-        The function $d^{-}_n: G_n \to \mathbb{R}^{+}$ will stand for the incoming flow function on the $n$-th graph $G_n$:
-        \[
-          d^{-}_n(v) = d^{-}_{\flowposn{n}}(v).
-        \]
-        The function $d^{+}_n: G_n \to \mathbb{R}^{+}$ will stand for the outgoing flow function on the $n$-th graph $G_n$:
-        \[
-          d^{+}_n(v) = d^{+}_{\flowposn{n}}(v).
-        \]
-      \end{definition}
+      Likewise we define the functions $d_n$, $d^{-}_n$, $d^{+}_n$.
       \begin{lemma}
-        For each $G_n$ where $n > 1$ the following inequality remains true:
+        For each $G_n$ ($n > 1$) the following inequality holds.
         \begin{equation}
           \label{main-ineq}
           \sum_{v\in L_n}d_{n}^{-}(v) \phi_n(v) \leq \sum_{e \in E_n} \wtp(e) \flowpos(e).
@@ -995,27 +986,26 @@
           =-\sum_{v \in V_n} \left(\sum_{\eout(v)} \flowposn{n}(e) - \sum_{\ein(v)}\flowposn{n}(e) \right) \phi_n(v)=\\
           =\sum_{(vu) \in E_n} \flowposn{n}(vu) \big(\phi_n(u) - \phi_n(v)\big).
         \end{align*}
-        Let $(vu)$ be an edge in $E_n$. Recollect that
+        Let $(vu)$ be an edge in $E_n$. Recall that
         \[
           \phi_n(u) \overset{\mathit{def}}{=} \inf_{p \in \gnpaths(u)} \phi_n(p) \leq \phi_n(v) + \wtp(vu).
         \]
-        That implies
+        It implies that
         \[
           LS\leq \sum_{(vu) \in E_n} \flowposn{n}(vu) \wtp(vu) = \sum_{e \in E_n} \flowposn{n}(e) \wtp(e).
         \]
-        Due to the property~\ref{p2} which essentially says that the built flows $\flowposn{n}$ do not exceed the initial flow $\flowpos$ 
-          we also acquire that
+        Due to the property~\ref{p2} we get the following:
         \[
           LS\leq \sum_{e \in E_n} \flowposn{n}(e) \wtp(e) \leq \sum_{e \in E_n} \flowpos(e) \wtp(e).
         \]
         The inequality is proven.
       \end{proof}
-      Due to this lemma the following fact turns out transparent
+      Due to this lemma the following fact turns out transparent.
       \begin{prop}
-        For each $n > 0$ there exist such vertex $r_n \in L_n$ that $\phi_n(r_n) \leq \|\flowpos\|$.
+        For each $n > 0$ there exists such vertex $r_n \in L_n$ that $\phi_n(r_n) \leq \|\flowpos\|$.
       \end{prop}
       \begin{proof}
-        Consider the inequality we have just proven.
+        Consider the lemma we have just proven.
         Again we have $LS$ standing for the left hand side of the inequality~\eqref{main-ineq}.
         Remark that
         \[
@@ -1061,40 +1051,36 @@
         \]
         Let $\cal{P}^*$ be a set of paths $p = (p_1 p_2 \dots)$, such that for each $k > 0$ the vertex $p_k$ is in $U_k$.
         Presume $\cal{P}^*$ consists only of finite paths.
-        We are going to build the ray $r$ lying in the $\cal{P}^*$, thus arriving to a contradiction.
-        Let us build the ray $r$ consecutively.
-        We will build $r$ in such a way that for every path $p_k= (r_0 r_1 \dots r_k)$ there is an infinite number of paths
+        We are going to construct the ray $r$ lying in the $\cal{P}^*$, thus arriving to a contradiction.
+        We set up $r$ in such a way that for every path $p_k= (r_0 r_1 \dots r_k)$ there is an infinite number of paths
           in $\cal{P}^*$ which start with $p_k$.
 
         We start from $k = 0$.
-        Trivially, $r_0$ is set to the root vertex:
-        \[
-          r_0 = \root.
-        \]
+        Trivially, we start with the root vertex: $r_0 = \root$.
         Each $U_n$ is non-empty and if a vertex $u$ belongs to $U_n$ then there always exists
           a path $p_n \in \cal{P}^*$, which belongs to $\cal{P}(u)$.
-        So we have an infinite set of paths $\cup p_n$ starting from the root vertex $\root$.
+        So we have an infinite set of paths $\bigcup p_n$ starting from the root vertex $\root$.
 
-        Suppose we already have made the path $p_k= (r_0 r_1\dots r_{k-1})$.
-        By the assumption there is an infinite number of paths in $\cal{P}^*$ starting with $p_k$.
+        Suppose we have already obtained the path $p_k= (r_0 r_1\dots r_{k-1})$.
+        By the assumption there is an infinite number of paths in $\cal{P}^*$ starting with the path $p_k$.
         Address these paths as $\cal{P}^*_k$.
         Let us look at the \emph{forward} edges of the vertex $r_{k-1} \in U_{k-1} \subseteq L_{k-1}$:
         \[
           \efor(r_{k-1})=\left\{(r_{k-1} u) \mid u \in L_k\right\}.
         \]
-        Now inspect the path $q \in \cal{P}^*_k \setminus \left\{p_k\right\}$ which has the prefix $p_k$:
+        Now consider the path $q \in \cal{P}^*_k \setminus \left\{p_k\right\}$ looking as follows.
         \[
-          q=(r_0 r_1 \dots r_{k-1} \mathbf{q_k} q_{k+1} \dots).
+          q=(r_0 r_1 \dots r_{k-1} \mathbf{q_k} q_{k+1} \dots),
         \]
-        Evidently for such path we have the vertex $q_k$ being equal to be one of the end vertices of the edges $\efor(r_{k-1})$.
+          where $q_i$ are some other vertices.
+        Evidently for such path we have the vertex $\mathbf{q_k}$ being equal to be one of the end vertices of the edges $\efor(r_{k-1})$.
         Remember that the graph $\gstar$ is locally finite and in particular the degree of the vertex $r_{k-1}$ is finite.
-        Moreover recall that the number of the paths such as $q$ itself (namely, $\cal{P}^*_k$) is infinite,
-          as a result of the previous construction step.
+        Moreover the number of the paths in $\cal{P}^*_k$ is infinite, as a result of the previous construction step.
         Consequently we are able to choose such $r_k \in \efor(r_{k-1})$ that the number of paths in $\cal{P}^*_k$ starting from
           the path $p_{k+1}= (p_k r_k)$ is infinite as well.
         Finally the ray $r = (r_0 r_1 \dots) \in \cal{P}^*$ is constructed.
-        The sum $\sum \wtp(r_k r_{k+1})$ is bounded since the partial sums are bounded by the values of the $\phi_n$ function which are uniformly bounded
-          by  definition of the $U_n$ classes.
+        The sum $\sum \wtp(r_k r_{k+1})$ is bounded since the partial sums are bounded by the values of the function $\phi_n$
+         which are uniformly bounded by definition of the classes $U_n$
       \end{proof}
       In the end we found a finite-length ray in the network $\onet$.
       Hence the necessity is proved as well as the theorem itself.
@@ -1148,7 +1134,7 @@
         The system $\fsys$ admits a linear summation method if and only if
           the oriented network $\onet(\fsys)$ is $\flowpos$-preserving for any
           finite-mass flow $\flowpos$.
-        After that we utilize the Theorem~\ref{ray-thm}, which states that there exist such
+        After that we utilize the Theorem~\ref{ray-thm}, which states that there exists such
           flow $\flowpos: \vec{E} \to \mathbb{R}^{+}$ with a finite mass which is not preserved in
           the network $\onet(\fsys)$
           if and only if there exists a ray $r \subseteq \onet $ originating in the $\source$ vertex,
