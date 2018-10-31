@@ -10,34 +10,80 @@
                  wnode/.style={sloped,above}}
 
 \begin{document}
- \title{Rank one density property for a class of $M$-bases}
- \author{Alexey Pyshkin}
- \maketitle{}
+  \title{Rank one density property for a class of $M$-bases}
+  \author{Alexey Pyshkin}
+  \begin{abstract}
+    In~\cite{azoff} Azoff and Shehada introduced a strong $M$-basis that did not admit a linear summation method.
+    We study a class of $M$-bases $\mathfrak{F}=\{f_n\}_{n=1}^\infty$ in the Hilbert space, which
+      represents a generalisation of the Azoff-Shehada system.
+    We determine the conditions under which $\mathfrak{F}$ admits a linear summation method, moreover
+      we investigate the two point density property for $\mathfrak{F}$.
+    In order to do that we employ some of the graph theory techniques.
+  \end{abstract}
+  \maketitle
 
 \section{Introduction}
-  Let $\cal{A}$ be a (reflexive) algebra of bounded operators acting on the Hilbert space $\cal{H}$
-    and $\cal{F} = \operatorname{Lat}(\cal{A})$ be the corresponding lattice of invariant subspaces.
-  We are interested in the following two properties of the algebra $\cal{A}$.
-  \begin{definition}
-    \label{intro:cd}
-    The lattice $\cal{F}$ is \emph{completely distributive} if ...
+  Consider a $M$-basis $\fsys = \seq{f}$ in the Hilbert space $\cal{H}$.
+  Let $\cal{F}$ be a subspace lattice generated from $\fsys$ and $\cal{A}$ be an operator algebra leaving all the elements of
+    $\cal{F}$ invariant.
+    %Let $\cal{A}$ be a reflexive algebra of bounded operators acting on the Hilbert space $\cal{H}$
+    %  and $\cal{F} = \operatorname{Lat}(\cal{A})$ be the corresponding lattice of invariant subspaces.
+  We are interested in the following three properties of the algebra $\cal{A}$.
+  \begin{definition}[one point density property]
+    \label{1pd}
+    We say that $\fsys$ is \emph{one point dense} if for any $x \in \cal{H}$ for any $\epsilon > 0$
+      there exists such $T\in \cal{A}$ that $||T(x) - x|| < \epsilon$.
+
+    % The algebra $\cal{A} is \emph{strongly reflexive} if ...
+    % The lattice $\cal{F}$ is \emph{completely distributive} if ...
   \end{definition}
-  \begin{definition}
-    \label{intro:r1density}
-    We say that the algebra $\cal{A}$ has \emph{rank one density property} if
+  \begin{note}
+    The definition is equivalent to $\fsys$ being a strong $M$-basis. (see~\cite{katavolos})
+  \end{note}
+  \begin{definition}[two point density property]
+    \label{2pd}
+    We say that $\fsys$ is \emph{two point dense} if for any $x, y \in \cal{H}$ for any $\epsilon > 0$
+      there exists such $T\in \cal{A}$ that $||T(x) - x|| < \epsilon$ and $||T(y) - y|| < \epsilon$.
+  \end{definition}
+  \begin{definition}[rank one density property]
+    \label{r1d}
+    We say that the algebra $\cal{A}$ possesses \emph{rank one density property} if
       the rank one subalgebra $R_1(\cal{A}) \subset \cal{A}$ is dense in $\cal{A}$ in the strong operator topology.
   \end{definition}
+  \begin{note}
+    The last definition is equivalent to the existence of the \emph{linear summation method} for $\fsys$.
+  \end{note}
+  Notice that we always have $\ref{r1d} \Rightarrow \ref{2pd} \Rightarrow \ref{1pd}$.
+  But is it true that $\ref{1pd} \Rightarrow \ref{r1d}$ or that $\ref{2pd} \Rightarrow \ref{r1d}$?
+  This paper is devoted to the study of the second question.
 
-  In [25] the authors prove that the latter property~\ref{intro:r1density} implies the former~\ref{intro:cd}.
+  Actually, the first question has some history.
+  Longstaff in~\cite{longstaff} studied the abstract subspace lattices and the corresponding operator algebras.
+  Particularly, Longstaff proved that the rank one density property implies
+    the complete distributivity of its lattice (see Raney~\cite{raney} for a definition).
+  It is now a well-known fact that for a subspace lattice generated from an $M$-basis the complete distributivity of its lattice is equivalent to
+    the property~\ref{1pd} (see~\cite{argyroslambrou} for a proof).
+  In the same paper the following question was raised: does the complete distributivity of $\cal{F}$ imply the rank one density property?
+  The answer was already known to be positive in the case of a totally ordered lattice (~\cite{erdos}), and
+    Longstaff proved that for the finite-dimensional Hilbert space in~\cite{longstaff}.
+  Later Laurie and Longstaff discovered that the rank one density holds in the case of commutative subspace lattices(see ~\cite{laurielongstaff}).
 
-  In the following  minimal vector system $\fsys = \seq{f}$ in the Hilbert space $\cal{H}$
-  (The sequence is called \emph{minimal} if none of its elements can be approximated by the linear
-    combinations of the others).
-  It happens that the complete vector system $\fsys$ is minimal when and only when it possesses a unique
-    biorthogonal sequence $\fstarsys$.
-  
-  %\section{Azoff--Shehada vector system}
-    The AS system $\fsys_{AS}$ is given as follows:
+  However the solution for a general case remained unknown until Larson and Wogen determined that the answer is negative (see ~\cite{larson}).
+  They managed to build an example of such a vector system $\fsys$ that the lattice $\cal{F}$ generated from $\fsys$
+    was completely distributive, but the corresponding algebra $\operatorname{Alg}(\cal{F})$
+    did not possess the rank one density property (see Example~\ref{as-sys}).
+  This example was also studied in the paper~\cite{argyroslambrou} (see Addendum) and by Azoff and Shehada~\cite{azoff} regarding
+    the reflexivity of the algebra $\operatorname{Alg}(\cal{F})$.
+  Finally Katavolos et al. in the paper ~\cite{katavolos} performed a deep analysis of the density properties of this vector system and
+    deduced that for this system the property~\ref{1pd} holds while ~\ref{r1d}.
+  We refer to this example as to Azoff-Shehada vector system in this paper.
+
+  We are eager to understand whether the two point density always implies the rank one density property or is there a counterexample.
+
+  In the next sections we are going to study the specific class of vector systems which represents a natural generalisation of
+    the Azoff-Shehada vector system.
+  We are going to analyze the properties~\ref{1pd},~\ref{2pd} and ~\ref{r1d} for this class.
+  \begin{example}[Azoff-Shehada system $\fsys_{AS}$]
     \begin{equation}
       \label{as-sys}
       \begin{aligned}
@@ -46,18 +92,22 @@
         &f^*_{2j}=-a_{2j}e_{2j-1}+e_{2j}+a_{2j+1}e_{2j+1}, \qquad &f^*_{2j-1}=e_{2j-1}, \quad&j \geq 1&
       \end{aligned}
     \end{equation}
-    define $k$-completeness, talk about the summation method.
+  \end{example}
 
-    We are eager to understand whether the $2$-completeness always implies the existence of the linear summation method.
-    Namely whether there exists such a complete minimal vector system $\fsys$ which is $2$-complete but does not have a
-      linear summation method.
-
-  \alex{todo}
 \section{B-class of vector systems: linear summation problem}
     \label{fsys2graphs}
-    We are interested in the completeness properties of the minimal vector system $\fsys = \seq{f}$
-      in a separable real [TODO complex] Hilbert space $\cal{H}$.
     The Hilbert space $\cal{H}$ is presumed to have infinite dimension in this paper.
+    Consider a complete minimal vector system $\fsys = \seq{f}$ in the Hilbert space $\cal{H}$.
+    The sequence is called \emph{minimal} if none of its elements can be approximated by the linear combinations of the others.
+    The system $\fsys$ is minimal when and only when it possesses a unique biorthogonal system $\fstarsys$.
+    We say that $\fsys$ is an $M$-basis if $\fstarsys$ is complete as well.
+    It is called a strong $M$-basis if for any $x\in\cal{H}$ we have $x \in \overline{span}(\inner{x}{f^*_k}f_k)$, where
+      $\overline{span}$ denotes a closed linear span.
+    The system $\fsys$ admits a linear summation method if there is a doubly indexed sequence $\alpha_{kn}$ if
+      $\lim_{n \to \infty} \sum_k \alpha_{kn} \inner{x}{f^*_k}f_k = x$ for any $x \in \cal{H}$.
+    As we already mentioned the linear summation method existence is equivalent to the property~\ref{r1d}.
+    We are interested in the density properties~\ref{2pd} and ~\ref{r1d} of the vector system $\fsys = \seq{f}$
+      in a separable real Hilbert space $\cal{H}$. \alex{todo complex}
     Suppose that $\cal{H}$ has an orthonormal basis $\seq{e}$.
     Let $\fstarsys = \{f_n^{*}\}_{n=1}^\infty$ be a biorthogonal vector system to the original system $\seq{f}$.
     \begin{definition}
@@ -154,7 +204,7 @@
       \end{center}
     \end{example}
     Suppose we have a B-class vector system $\fsys=\seq{f}$.
-    We are going to analyze the $k$-completeness of $\fsys$.
+    We are going to analyze the two point density property of $\fsys$.
     Before we pursue that, we need to investigate the conditions under which the B-class system admits a linear summation method.
     First of all we intend to demonstrate a reformulation of the linear summation method existence problem for
       the B-class vector systems in terms of infinite networks.
@@ -369,7 +419,7 @@
       zero.
     \begin{definition}
       Consider a network $\net = (V, E, \wtp, \source, \sink)$ and a flow function $\flow$ on it.
-      We introduce a non-negative function $\|\flow\|$ which we call the \emph{mass} of the flow $\flow$.
+      We introduce a nonnegative function $\|\flow\|$ which we call the \emph{mass} of the flow $\flow$.
       \[
         \|\flow\| = \sum_{e \in E} \left|\flow(e) \wtp(e)\right|.
       \]
@@ -412,7 +462,7 @@
 
       Suppose that the system $\fsys$ admits a linear summation method.
       Assume there is also a flow $\flow$ on the network $\net(\fsys)$ such that $d(\sink) + d(\source) \neq 0$.
-      In this section we are going to present an operator $T$ with a non-zero trace which annihilates all the rank-one
+      In this section we are going to present an operator $T$ with a nonzero trace which annihilates all the rank-one
       operators $f_n \otimes f^*_n$, thus arriving at a contradiction with our initial assumption.
       First consider the edges incident to the source vertex.
       Having all the vertices already enumerated we will consider the vertices in the left part $v_{l_k}$.
@@ -435,7 +485,7 @@
       equal to one.
       Since the mass of the flow $\flow$ is finite, the $T_{ij}$ is an absolute summable sequence, considering that
         the $\ell^1$-norm of $T_{ij}$ is exactly the mass of $\flow$.
-      Then the operator $T$ acquires a finite non-zero trace, since $Tr(T) = d(\sink) + d(\source)$, which is not zero
+      Then the operator $T$ acquires a finite nonzero trace, since $Tr(T) = d(\sink) + d(\source)$, which is not zero
         by the assumption we made.
       Due to the fact, that the flow was preserved at each vertex of the network $\net(\fsys)$,
         we see that the operator $T$ annihilates all the rank one operators $f_n \otimes f^*_n$,
@@ -1114,7 +1164,7 @@
       Also due to~\cite{katavolos} the next two theorems are accurate.
       \begin{theorem}
         \label{thm-katavolos-1}
-          $\fsys_{AS}$ admits a linear summation method if and only if the system is $2$-complete.
+          $\fsys_{AS}$ admits a linear summation method if and only if the system is two point dense.
       \end{theorem}
       \begin{note}
         We are going to use this result of Katavolos et al~\cite{katavolos} in order to finish the classification of the B-class vector systems later.
@@ -1122,9 +1172,8 @@
 
       \begin{theorem}
         \label{thm-katavolos-2}
-        %The following three cases fully resolve the $k$-completeness problem for the AS-system:
       %  \begin{enumerate}[label=(\alph*)]
-          %\item The system $\fsys_{AS}$ is $1$-complete (a strong $M$-basis) if and only if the following sequence
+          %\item The system $\fsys_{AS}$ is a strong $M$-basis if and only if the following sequence
             %\begin{equation*}
             %  \mu_n = \frac{a_{n-1} a_{n-3} \dots}{a_{n} a_{n-2} \dots }
             %\end{equation*}
@@ -1219,14 +1268,15 @@
 
       First of all we are going to make a few comments on Theorem~\ref{thm-katavolos-1}.
       \begin{remark}
-      Theorem~\ref{thm-katavolos-1} states that $\fsys_{AS}$ does not possess a linear summation method,
-        when and only when it is not $2$-complete.
-      By definition the system is not $2$-complete if and only if there exists an operator $T$ of rank $2$
-        which has a non-zero trace and annihilates all the rank one operators $f_k \otimes f^*_k$.
-        (see the proof of Theorem 2.2 in the paper~\cite{katavolos}).
-      Moreover, we know the condition for the linear summation method existence, namely that
-        there is no linear summation method for the AS system $\fsys_{AS}$ if and only if $\left\{1/a_k\right\}$
-        is a summable sequence.
+        Theorem~\ref{thm-katavolos-1} states that $\fsys_{AS}$ does not possess a linear summation method,
+          when and only when it is not two point dense.
+        The definition\~ref{2pd} implies that the system $\fsys$ is not two point dense
+          if and only if there exists an operator $T$ of rank $2$
+          which has a nonzero trace and annihilates all the rank one operators $f_k \otimes f^*_k$.
+          (see the proof of Theorem 2.2 in the paper~\cite{katavolos}).
+        Moreover, we know the condition for the linear summation method existence, namely that
+          there is no linear summation method for the AS system $\fsys_{AS}$ if and only if $\left\{1/a_k\right\}$
+          is a summable sequence.
         We can conclude from these facts that the following lemma holds.
         \begin{lemma}
           \label{as-lemma}
@@ -1241,12 +1291,12 @@
       \end{remark}
       Now we are ready to prove the final result.
       \begin{theorem}
-        \label{completeness-thm}
+        \label{density-thm}
         Let $\fsys$ be a B-class vector system.
-        Then $\fsys$ is $2$-complete when and only when $\fsys$ admits a linear summation method.
+        Then $\fsys$ is two point dense when and only when $\fsys$ admits a linear summation method.
       \end{theorem}
       \begin{proof}
-        The sufficiency is trivial for the $k$-completeness property is weaker than the existence of the linear summation method
+        The sufficiency is trivial for the two point density property is weaker than the existence of the linear summation method
           for $\fsys$.
 
         Now let us prove the necessity.
@@ -1289,6 +1339,5 @@
 \bigskip
 \include{bib}
 \vspace{1em}
-\noindent{\bf Keywords:} minimal system, biorthogonal system, hereditary completeness, strong M-basis, summation method.
-
+\noindent{\bf Keywords:} biorthogonal system, hereditary completeness, $M$-basis, linear summation method, rank one density property, two point density property.
 \end{document}
