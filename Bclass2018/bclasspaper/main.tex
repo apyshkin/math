@@ -167,8 +167,7 @@
       Observe that due to the condition~\ref{c1} both parts of the bipartite graph must
         contain an infinite number of vertices.
     \end{remark}
-    \begin{example}
-      Now look at the bipartite graph $B(\fsys_{AS})$ built from the Azoff--Shehada system:
+    \begin{figure}
       \begin{center}
       \begin{tikzpicture}[thick,
                           every node/.style={draw},
@@ -194,15 +193,20 @@
         % the edges
         \begin{scope}[wnode]
           \foreach [evaluate={\l=int(\i*2 + 1);\r=int(\i*2 + 2)}] \i in {0,...,3}
-          \draw (l\l) to node[draw=none, color=black!40!green] {\footnotesize $w_{\l\r}=a_{\r}$} (r\r);
+          \draw (l\l) to node[draw=none, color=black] {\footnotesize $w_{\l\r}=a_{\r}$} (r\r);
           \foreach [evaluate={\l=int(\i*2 + 3);\r=int(\i*2 + 2)}] \i in {0,...,2}
-          \draw (l\l) to node[draw=none,color=blue] {\footnotesize $w_{\r\l}=a_{\l}$} (r\r);
+          \draw (l\l) to node[draw=none,color=black] {\footnotesize $w_{\r\l}=a_{\l}$} (r\r);
         \end{scope}
       \end{tikzpicture}
+      \caption{The bipartite graph $B(\fsys_{AS})$ } \label{as-bgraph}
       \end{center}
-    \end{example}
+    \end{figure}
+
+    You can see the bipartite graph built from the Azoff--Shehada system on the Figure~\ref{as-bgraph}.
+
+    \subsection{Linear summation method for B-class}
     Suppose we have a B-class vector system $\fsys=\seq{f}$.
-    We are going to analyze the two point density property of $\fsys$.
+    Our purpose is to analyze the two point density property of $\fsys$.
     Before we pursue that, we need to investigate the conditions under which the B-class system admits a linear summation method.
     First of all we intend to demonstrate a reformulation of the linear summation method existence problem for
       the B-class vector systems in terms of infinite networks.
@@ -325,7 +329,7 @@
     Also we set the positive flow function $\flowpos: E \to \mathbb{R}^{+}$ so that
       for any edge $\vec{e} = (uv) \in \vec{E}$
     \begin{align*}
-      &\flowpos(u v) = |\flow(u,v)|,
+      &\flowpos(u v) = \lvert\flow(u,v)\rvert,
     \end{align*}
     The total flow functions $d_\flowpos$, $d^{+}_\flowpos$, $d^{-}_\flowpos$ do not change their value and could be written as
     \begin{align*}
@@ -365,7 +369,7 @@
     \begin{align*}
       &\flow(v_l, v_r) = T_{lr} \inner{f^*_r}{e_l},\\
       &\flow(v_r, v_l) = T_{lr} \inner{f_l}{e_r} = -\flow(v_l, v_r),\\
-      &\wtp(e) = \left| \wt(v_l, v_r) \right| =  \left|\inner{f_l}{e_r}\right|^{-1}.
+      &\wtp(e) = \lvert \wt(v_l, v_r) \rvert =  \lvert\inner{f_l}{e_r}\rvert^{-1}.
     \end{align*}
     \begin{note}
       Evidently on this kind of edges the flow function $\flow$ agrees with the function $\flowsgn$
@@ -417,9 +421,9 @@
       zero.
     \begin{definition}
       Consider a network $\net = (V, E, \wtp, \source, \sink)$ and a flow function $\flow$ on it.
-      We introduce a nonnegative function $\|\flow\|$ which we call the \emph{mass} of the flow $\flow$.
+      We introduce a nonnegative function $\lvert\flow\rvert$ which we call the \emph{mass} of the flow $\flow$.
       \[
-        \|\flow\| = \sum_{e \in E} \left|\flow(e) \wtp(e)\right|.
+        \lvert\flow\rvert = \sum_{e \in E} \lvert\flow(e) \wtp(e)\rvert.
       \]
       We allow it to be equal $+\infty$ as well.
     \end{definition}
@@ -427,12 +431,12 @@
       If $\flowpos$ is an oriented flow on the oriented network $\onet = (V,\vec{E},\wtp, \source, \sink)$ 
         we can introduce the same term for the \emph{mass} of the flow:
       \[
-        \|\flowpos\| = \sum_{e \in \vec{E}} \left|\flowpos(e) \wtp(e)\right|.
+        \lvert\flowpos\rvert = \sum_{e \in \vec{E}} \lvert\flowpos(e) \wtp(e)\rvert.
       \]
       Though in the oriented case the flow function is always positive,
         so we are allowed to omit the modulus signs:
       \[
-        \|\flowpos\| = \sum_{e \in \vec{E}} \flowpos(e) \wtp(e).
+        \lvert\flowpos\rvert = \sum_{e \in \vec{E}} \flowpos(e) \wtp(e).
       \]
     \end{definition}
     \begin{theorem}
@@ -444,7 +448,7 @@
           finite-mass flow $\flow$.
     \end{theorem}
     \begin{proof}
-      First we briefly repeat the sufficiency proof we sketched previously.
+      First we briefly repeat the necessity proof we sketched previously.
       Suppose there is no summation method for the system $\seq{f}$.
       As we said before, it implies that there exists a trace class operator $T : \cal{H} \to \cal{H}$ with
       the trace equal to one, such that $\inner{Tf_n}{f_n^*} = 0$ for any $n$.
@@ -456,7 +460,7 @@
         d(\source) + d(\sink) = \sum T_{l_k l_k} + \sum T_{r_k r_k} = Tr(T) = 1,
       \]
       thus $d(\sink) \neq -d(\source)$.
-      We arrived to contradiction and the sufficiency is proved.
+      We arrived to contradiction and the necessity is proved.
 
       Suppose that the system $\fsys$ admits a linear summation method.
       Assume there is also a flow $\flow$ on the network $\net(\fsys)$ such that $d(\sink) + d(\source) \neq 0$.
@@ -573,62 +577,20 @@
           $\onet$ does not preserve $\flowpos$ (it means that $d(\source) \neq 0$),
           if and only if there exists a ray $r = \seq{r}$, which has a finite total length and starts from $\source$.
       \end{theorem*}
-      %First we prove the simpler implication.
-      \subsubsection*{Sufficiency.}
+      \subsubsection*{Necessity.}
       Suppose that there is a ray of a finite total length $r=(r_1 r_2 \dots)$.
       In that case we set the resulting flow function $\flowpos(r_k r_{k+1})$ to one, creating an elusive flow
         from $\source$ to infinity. All the other edges will not carry any flow, hence the flow is preserved
         at each vertex but not preserved by the network $\onet$.
-      \subsubsection*{Necessity.}
-      Now let us turn to the more difficult part.
+      \subsubsection*{Sufficiency.}
       In this part we are going to view this network as a rooted graph with the root at the $\source$ vertex.
       Consequently from time to time we will employ the term \emph{root vertex} and denote it by $\root = \source$.
 
       For a start we get rid of all the positive flow cycles in the oriented graph $G$.
       \emph{A positive flow cycle} is a cycle $C$ in $G$ such that positive flow circulates along $C$,
         meaning that for each edge $e \in C$ the flow along the edge is strictly greater than zero: $\flowpos(e) > 0$.
-      You can see an example of positive flow cycle in the Figure~\ref{positive-flow}.
-      \begin{figure}
-        \begin{center}
-          \begin{tikzpicture}[auto,
-                              thick,
-                              edge/.style={>=stealth',shorten >=1pt, ->, semithick},
-                              edge-label/.style={auto,draw=none, color=black},
-                              edge-cycle/.style={edge, very thick, color=blue!40!gray, bend left = 10}
-                              %every node/.style={circle, draw, lnode},
-                              %every fit/.style={ellipse,draw,inner sep=-1pt,text width=1cm},
-                              ]
-            \node[lnode](source) at (180:6) {$\source$};
-            \node[rnode](sink) at (180:-6) {$\sink$};
-            \begin{scope}[mnode]
-              \def\NN{8}
-              \foreach \i in {0,...,\NN}
-              \node[mnode] (v\i) at ({180 - \i*(360/\NN)}:3) {$v_{\i}$};
-            \end{scope}
-            \begin{scope} 
-              \draw[edge-cycle] (v1) to node[edge-label] {\scriptsize $4$} (v2);
-              \draw[edge-cycle] (v2) to node[edge-label] {\scriptsize $4$} (v3);
-              \draw[edge-cycle] (v3) to node[edge-label] {\scriptsize $0.5$} (v4);
-              \draw[edge-cycle] (v4) to node[edge-label] {\scriptsize $0.5$} (v5);
-              \draw[edge-cycle] (v5) to node[edge-label] {\scriptsize $2$} (v6);
-              \draw[edge-cycle] (v6) to node[edge-label] {\scriptsize $2$} (v7);
-              \draw[edge-cycle] (v7) to node[edge-label] {\scriptsize $3$} (v8);
-              \draw[edge-cycle] (v8) to node[edge-label] {\scriptsize $2$} (v1);
-
-              \draw[edge, bend right = 25] (v1) to node[edge-label] {\scriptsize $1$} (v3);
-              \draw[edge, bend left = 25] (v8) to node[edge-label] {\scriptsize $2.5$} (v5);
-              \draw[edge, bend left = 15] (source) to node[edge-label] {\scriptsize $3$} (v1);
-              \draw[edge, bend right = 15] (source) to node[edge-label] {\scriptsize $1$} (v7);
-              \draw[edge] (source) to node[edge-label] {\scriptsize $1.5$} (v8);
-
-              \draw[edge, bend left = 15] (v3) to node[edge-label] {\scriptsize $4.5$} (sink);
-              \draw[edge, bend right = 15] (v5) to node[edge-label] {\scriptsize $1$} (sink);
-            \end{scope}
-          \end{tikzpicture}
-        \caption{A network containing a positive flow cycle (blue).\\ Here the flow is shown for each edge.} 
-        \label{positive-flow}
-        \end{center}
-      \end{figure}
+      %You can see an example of positive flow cycle in the Figure~\ref{positive-flow}.
+      %\include{fig-pos-flow-cycle}
       In order to accomplish that, we will present a sequence of the flows $\flowposn{n}$, defined on the network $\onet$.
       At each step $n \in \mathbb{N}$ we examine a subgraph $G_n \subset G$ and present a flow function $\flowposn{n}: \onet \to \mathbb{R}^{+}$
         such that $\flowposn{n}$ is monotone: for any edge $e \in E$ the following inequality holds:
@@ -768,14 +730,6 @@
         \]
       \end{definition}
       \begin{remark}
-        %Consider another function $\depth: V \to \mathbb{N}$:
-        %\[
-        %  \depth(v) = \inf_{p \in \gpaths(v)} \#\left\{e \mid e \in p\right\}.
-        %\]
-        %If we think about the network $\onet$ as a rooted tree (see Figure \alex{a figure with correspondence: rooted trees <-> oriented networks}) with a root $\root$
-        %  then the defined $\depth$ function is essentially a \emph{depth} function, which is defined at the vertex $v$ 
-        %  as the length of the shortest path connecting the root vertex with $v$.
-
         Our ambition in the following paragraphs is to provide an estimate on the values of the distance function $\gfi$ on any vertex $v$
           located ''far'' from $\root$, namely for any integer $N > 0$ we are to provide $M > 0$ such that
           for any $v$ satisfying $\displaystyle\inf_{p \in \gpaths(v)} \#\left\{ e \mid e \in p\right\} > N$, one has $\gfi(v) < M$.
@@ -794,7 +748,6 @@
       %  Also $L_n$ will incorporate all the edges connecting the graph $G_{n-1}$ and the vertices $l_n$.
       % We will refer to the subgraph $L_n$ as the \emph{$n$-th layer} of the graph $G$.
       %  See the figure xxx.
-        \alex{a figure with $n$-th layer and BFS}
       %\end{note}
       The construction is based on the breadth-first search in the infinite graph $G$.
       We are going to define \emph{finite} subgraphs $G_n = (V_n, E_n)$ of the network $\onet$ such that $G_{n-1} \subset G_{n}$ for each $n > 1$.
@@ -815,6 +768,8 @@
       First of all we scale the flow function $\flowpos$: suppose the total outgoing flow of the root vertex $\root$ is strictly greater than one:
         $d^{+}_{\flowpos}(\root) > 1$.
       We are going to need this assumption at the first step.
+
+      \subsubsection*{Constructing graphs $G_n$}
       Let $G_0$ be the trivial subgraph containing the root vertex only: $G_0 = \left\{\root\right\}$.
       At the first step we build the graph $G_1$.
       %\begin{note}
@@ -876,8 +831,9 @@
       Thus the graph $G_n$ is constructed.
       \alex{a figure of the $n$-th layer construction}
 
-      \noindent\textbf{Setting a preflow function.}\\
-      \noindent Here we split the procedure in two steps.
+      \subsubsection*{Setting a preflow function.}
+
+      Here we split the procedure in two steps.
       Take the preflow function $\cal{G}: E_n \to \mathbb{R}^{+}$ initially equal to $\flowposn{n-1}$ on $E_{n-1}$:
       \[
         \cal{G}(e) = \flowposn{n-1}, \quad e \in E_{n-1},
@@ -909,7 +865,7 @@
         since all the properties~\ref{p1}--\ref{p5} would be complied by $\cal{G}$.
       However we ought to solve the problem we created while pushing the flow from the $(n-1)$-th layer via the back edges.
       Notice that the end vertices of such edges $\eback_{n}$ now became $\cal{G}$-active, since for such vertices
-        the total incoming flow now exceeds the total outgoing flow. \alex{a figure of a back edge making some inner vertex non-preserving}
+        the total incoming flow now exceeds the total outgoing flow. \alex{a figure of a back edge making some inner vertex non-preserving, unite with the figure of n-th layer?}
       Thus we have reached the step number two, when we are going to carry out the \emph{relaxation} procedure
         in order to alleviate those $\cal{G}$-active vertices created by the newly introduced back edges into the graph $G_{n-1}$.
 
@@ -978,11 +934,11 @@
         For a vertex $u \in S$ we see that $d_{\cal{G}}(u) = d^{+}_{\cal{G}}(u) - d^{-}_{\cal{G}}(u) \leq 0$, because
           the only $\cal{G}$-deficient vertex in the graph $G_n$ is the root vertex $\root$, which is not in $U$.
         Also for the vertex $s$ itself we have a strict inequality $d_{\cal{G}}(s) < 0$ since it is not relaxed by our assumption.
-        It is clear now that the quantity $D = \sum_{u \in U} d_{\cal{G}}(u)$ is strictly less than zero.
+        It is clear now that the quantity $D = \displaystyle\sum_{u \in U} d_{\cal{G}}(u)$ is strictly less than zero.
         On the other hand
         \[
         \begin{split}
-          D &= \mathlarger\sum_{u \in U} \big(d^{+}_{\cal{G}}(u) - d^{-}_{\cal{G}}(u)\big)
+          D &= \mathlarger\sum_{u \in U} \Big(d^{+}_{\cal{G}}(u) - d^{-}_{\cal{G}}(u)\Big)
           = \mathlarger{\smashoperator{\sum_{\eout_{G_n}(U)}}} \cal{G}(e) - \mathlarger{\smashoperator{\sum_{\ein_{G_n}(U)}}} \cal{G}(e) = \\
           &= \mathlarger{\smashoperator{\sum_{\eout_{G}(U)}}} \flowpos(e) - \mathlarger{\smashoperator{\sum_{\ein_{G_n}(U)}}} \cal{G}(e)
             \overset{\ref{p2}}{\geq} \mathlarger{\smashoperator{\sum_{\eout_G(U)}}} \flowpos(e) - \mathlarger{\smashoperator{\sum_{\ein_{G_n}(U)}}} \flowpos(e) 
@@ -1017,9 +973,7 @@
       Now we would like to introduce some simpler notations.
       \begin{definition}
         The function $\phi_n: G_n \to \mathbb{R}^{+}$ will stand for the distance function on the $n$-th graph $G_n$:
-        \[
-          \phi_n(v) = \phi_{G_n}(v).
-        \]
+          $\phi_n(v) = \phi_{G_n}(v)$.
       \end{definition}
       Likewise we define the functions $d_n$, $d^{-}_n$, $d^{+}_n$.
       \begin{lemma}
@@ -1061,7 +1015,7 @@
       \end{proof}
       Due to this lemma the following fact turns out transparent.
       \begin{prop}
-        For each $n > 0$ there exists such vertex $r_n \in L_n$ that $\phi_n(r_n) \leq \|\flowpos\|$.
+        For each $n > 0$ there exists such vertex $r_n \in L_n$ that $\phi_n(r_n) \leq \lvert\flowpos\rvert$.
       \end{prop}
       \begin{proof}
         Consider the lemma we have just proven.
@@ -1082,11 +1036,11 @@
 
         Furthermore we remark that due to the~\eqref{main-ineq} the next inequality holds:
         \[
-          \min_{L_n} \phi_n(v) \leq LS \leq \sum_{e \in E_n} \wtp(e) \flowpos(e) \leq \|\flowpos\|.
+          \min_{L_n} \phi_n(v) \leq LS \leq \sum_{e \in E_n} \wtp(e) \flowpos(e) \leq \lvert\flowpos\rvert.
         \]
         Seeing that $L_n$ contains a finite number of vertices, there exists such vertex $r_n \in L_n$ that
         \[
-          \phi_n(r_n) \leq \|\flowpos\|.
+          \phi_n(r_n) \leq \lvert\flowpos\rvert.
         \]
       \end{proof}
       \begin{prop}
@@ -1103,10 +1057,10 @@
           \phistar(v)=\phi_{\gstar}(v).
         \]
         Note that $\phi_n(v) \geq \phistar(v)$ for any $v \in G_n$ since $G_n$ is a subgraph of $\gstar$.
-        Owing to the previous proposition there is always a vertex $r_n \in L_n$ that $\phi_n(r_n) \leq \|\flowpos\|$.
+        Owing to the previous proposition there is always a vertex $r_n \in L_n$ that $\phi_n(r_n) \leq \lvert\flowpos\rvert$.
         Consider the set of vertices $U_n$:
         \[
-          U_n= \{u \in L_n \mid \phi_n(u) \leq \|\flowpos\|\}.
+          U_n= \{u \in L_n \mid \phi_n(u) \leq \lvert\flowpos\rvert\}.
         \]
         Let $\cal{P}^*$ be a set of paths $p = (p_1 p_2 \dots)$, such that for each $k > 0$ the vertex $p_k$ is in $U_k$.
         Presume $\cal{P}^*$ consists only of finite paths.
@@ -1142,20 +1096,20 @@
          which are uniformly bounded by definition of the classes $U_n$
       \end{proof}
       In the end we found a finite-length ray in the network $\onet$.
-      Hence the necessity is proved as well as the theorem itself.
+      Hence the implication is proved as well as the theorem itself.
     \end{proof}
 
   \section{Application of the B-networks criterion}
     \subsection{Application of the B-networks criterion to the Azoff--Shehada example.}
       The Azoff-Shehada system is outlined in the Example~\ref{as-sys}.
-      The sequences $\{f_j\}$, $\{f^*_j\}$ are biorthogonal and both are complete in $\cal{H}$ (thus it is an $M$-basis).
-      Also due to~\cite{katavolos} the next two theorems are accurate.
+      The sequences $\{f_j\}$, $\{f^*_j\}$ are biorthogonal and both are complete in $\cal{H}$ (thus $\fsys$ is an $M$-basis).
+      Also due to Katavolos et al.~\cite{katavolos} the next two theorems are accurate.
       \begin{theorem}
         \label{thm-katavolos-1}
           $\fsys_{AS}$ admits a linear summation method if and only if the system is two point dense.
       \end{theorem}
       \begin{note}
-        We are going to use this result of Katavolos et al~\cite{katavolos} in order to finish the classification of the B-class vector systems later.
+        We are going to use this result in order to finish the classification of the B-class vector systems later.
       \end{note}
 
       \begin{theorem}
@@ -1170,7 +1124,7 @@
             the sequence $\left\{1/a_n\right\}_{n=1}^\infty$ does not belong to $\ell^1$.
       %  \end{enumerate}
       \end{theorem}
-      Here we would like to present another proof of Theorem~\ref{thm-katavolos-2}.
+      We would like to present another proof of Theorem~\ref{thm-katavolos-2}, using the ideas we exposed earlier.
       \begin{prop}
         The vector system $\fsys_{AS}$ admits a linear summation method when and only when
           the sequence $\left\{1/a_n\right\}_{n=1}^\infty$ does not belong to $\ell^1$.
@@ -1201,10 +1155,7 @@
           Now look at the outline of the network $\onet(\fsys)$ (Figure~\ref{AS-net}).
           It clearly demonstrates that the existence of the finite-length ray in the network $\onet(\fsys)$ implies that
             the ray $r=(r_1 r_2 r_3\dots)$ has a finite length as well.
-          However this ray has the length equal to
-          \[
-            \sum \wtp(r_k r_{k+1}) = \sum \frac{1}{|a_k|},
-          \]
+          However this ray has the length equal to $\sum \wtp(r_k r_{k+1}) = \sum 1/\lvert a_k \rvert$,
           which completes the proof.
       \end{proof}
       \pagebreak
@@ -1258,7 +1209,7 @@
       \begin{remark}
         Theorem~\ref{thm-katavolos-1} states that $\fsys_{AS}$ does not possess a linear summation method,
           when and only when it is not two point dense.
-        The definition\~ref{2pd} implies that the system $\fsys$ is not two point dense
+        The definition~\ref{2pd} implies that the system $\fsys$ is not two point dense
           if and only if there exists an operator $T$ of rank $2$
           which has a nonzero trace and annihilates all the rank one operators $f_k \otimes f^*_k$.
           (see the proof of Theorem 2.2 in the paper~\cite{katavolos}).
@@ -1284,10 +1235,10 @@
         Then $\fsys$ is two point dense when and only when $\fsys$ admits a linear summation method.
       \end{theorem}
       \begin{proof}
-        The sufficiency is trivial for the two point density property is weaker than the existence of the linear summation method
+        The necessity is trivial for the two point density property is weaker than the existence of the linear summation method
           for $\fsys$.
 
-        Now let us prove the necessity.
+        Now let us prove the sufficiency.
         Pretend $\fsys$ does not admit a linear summation method.
         Let $\onet(\fsys) = (G, \wtp, \source, \sink)$ be an orientation of the network $\net(\fsys)$.
         Applying the Theorem~\ref{thm-graph-eq} and then the Theorem~\ref{ray-thm} to the network $\onet(\fsys)$
@@ -1298,31 +1249,35 @@
         Consider such a flow $\flowpos$ such that $\flowpos(r_k r_{k+1}) = 1$ and $\flowpos(e) = 0$ for any $e \not \in r$.
         Then the network $\onet(\fsys)$ is not $\flowpos$-preserving (see Theorem~\ref{ray-thm}).
 
-        Next we are going to reconstruct the operator $T$ from the flow $\flowpos$.
+        Next our plan is to reconstruct the operator $T$ from the flow $\flowpos$.
 
         Consider the basis vectors $e_{s_k}$ which correspond to the vertices $r_k$.
         Split the Hilbert space $\cal{H}$ in two smaller subspaces $\cal{H} = \cal{H}_1 \oplus \cal{H}_2$,
           such that $\cal{H}_1 = \bigoplus\limits_k e_{s_k}$.
-        Consequently the operator $T$ is going to be zero on the $\cal{H}_2$: $T\vert_{\cal{H}_2} \equiv 0$.
+
+        Consequently we put the operator $T$ to zero on the $\cal{H}_2$: $T\vert_{\cal{H}_2} = 0$.
         We now reuse the $e_k$ notation for the basis vectors $e_{s_k}$ (since we work now in the subspace $\cal{H}_1$,
           such substitute is feasible).
 
-        We are meaning to look for a two-dimensional operator as follows.
+        We are meaning to look for a two-dimensional operator $T'$ as follows.
         \begin{align*}
-          &T_{11} = 1,\\
-          &T_{k k+1} = \wtp(r_k r_{k+1}) \flowpos(r_k r_{k+1}) = \wtp(r_k r_{k+1}),
+          &T'_{11} = 1,\\
+          &T'_{k k+1} = \wtp(r_k r_{k+1}) \flowpos(r_k r_{k+1}) = \wtp(r_k r_{k+1}),
         \end{align*}
-          while the other elements of $T$ are zero.
+          while the other elements of $T'$ are zero.
 
         Since the ray $r$ has a finite length, $\wtp(r_k r_{k+1})$ is a summable sequence.
-        Due to Lemma~\ref{as-lemma} there exists a two-dimensional operator $T$, which satisfies the equalities above.
-        This proves the theorem.
+        Due to Lemma~\ref{as-lemma} there exists a two-dimensional operator $T'$, which satisfies the equalities above.
+        And so we set up the trace class operator $T$, which corresponds to the flow $\flowpos$ and thus annihilates all the rank one
+          subalgebra of $\cal{A}$.
+        Therefore the system is not two point dense.
     \end{proof}
     \begin{remark}
       Concerning the linear summation method property, the last theorem reveals that the B-class vector systems
-        admits the same criterion as the Azoff-Shehada system.
-      Furthermore the Azoff-Shehada represents a canonical vector system in this class, since the corresponding bipartite graph $B(\cal{F}_AS)$
-        is just a ray.
+        admit the same criterion as the Azoff-Shehada system.
+      Furthermore the Azoff-Shehada system is to a certain extent a canonical element of this class,
+        since the corresponding bipartite graph $B(\cal{F}_{AS})$
+        is a ray itself (see Figure~\ref{as-bgraph}).
     \end{remark}
 \bigskip
 \include{bib}
