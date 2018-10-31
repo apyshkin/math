@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[12pt]{amsart}
 \input{preamble}
 \usepackage{caption}
 \usepackage{tikz}
@@ -10,21 +10,33 @@
                  wnode/.style={sloped,above}}
 
 \begin{document}
-% \title{Методы суммирования ряда Фурье \\
-% относительно системы Азоффа--Шехада}
+ \title{Rank one density property for a class of $M$-bases}
+ \author{Alexey Pyshkin}
+ \maketitle{}
 
-% \author{Алексей Пышкин\thanks{Работа поддержана грантом Президента РФ для государственной 
-% поддержки молодых российских учёных -- докторов наук МД-5758.2015.1.}}
-% \date{}
+\section{Introduction}
+  Let $\cal{A}$ be a (reflexive) algebra of bounded operators acting on the Hilbert space $\cal{H}$
+    and $\cal{F} = \operatorname{Lat}(\cal{A})$ be the corresponding lattice of invariant subspaces.
+  We are interested in the following two properties of the algebra $\cal{A}$.
+  \begin{definition}
+    \label{intro:cd}
+    The lattice $\cal{F}$ is \emph{completely distributive} if ...
+  \end{definition}
+  \begin{definition}
+    \label{intro:r1density}
+    We say that the algebra $\cal{A}$ has \emph{rank one density property} if
+      the rank one subalgebra $R_1(\cal{A}) \subset \cal{A}$ is dense in $\cal{A}$ in the strong operator topology.
+  \end{definition}
 
-\section{Motivation}
-  Consider a complete minimal vector system $\fsys = \seq{f}$ in the Hilbert space $\cal{H}$
+  In [25] the authors prove that the latter property~\ref{intro:r1density} implies the former~\ref{intro:cd}.
+
+  In the following  minimal vector system $\fsys = \seq{f}$ in the Hilbert space $\cal{H}$
   (The sequence is called \emph{minimal} if none of its elements can be approximated by the linear
     combinations of the others).
   It happens that the complete vector system $\fsys$ is minimal when and only when it possesses a unique
     biorthogonal sequence $\fstarsys$.
   
-  \subsection{Azoff--Shehada and simple examples}
+  %\section{Azoff--Shehada vector system}
     The AS system $\fsys_{AS}$ is given as follows:
     \begin{equation}
       \label{as-sys}
@@ -41,8 +53,7 @@
       linear summation method.
 
   \alex{todo}
-\section{B-class of vector systems}
-  \subsection{From vector system to the countable network: linear summation problem}
+\section{B-class of vector systems: linear summation problem}
     \label{fsys2graphs}
     We are interested in the completeness properties of the minimal vector system $\fsys = \seq{f}$
       in a separable real [TODO complex] Hilbert space $\cal{H}$.
@@ -431,7 +442,7 @@
         which leads to a contradiction.
     \end{proof}
 
-  \subsection{B-networks characterisation}
+  \section{B-networks characterisation}
     Due to the Theorem~\ref{thm-graph-eq} we intend to analyze the flows on the B-network
       $\net(\fsys)$ in order to understand the conditions under which a linear
       summation method exists for $\fsys$.
@@ -463,10 +474,10 @@
       \label{ray-thm}
       Let $\onet = (G, \wtp, \source, \sink)$ be an oriented B-network.
       Then there exists such a positive flow function $\flowpos: E \to \mathbb{R}^{+}$ that
-      \begin{itemize}
+      \begin{enumerate}[label=(\alph*)]
         \item the flow $\flowpos$ has a finite mass,
         \item the network $\onet$ does not preserve the flow,
-      \end{itemize}
+      \end{enumerate}
         if and only if there exists a ray $r = \seq{r}$ in the network $\onet$, taking its start in the vertex $\source$,
           with a finite total length:
         \[
@@ -1085,8 +1096,9 @@
       In the end we found a finite-length ray in the network $\onet$.
       Hence the necessity is proved as well as the theorem itself.
     \end{proof}
-  \subsection{Application of the B-networks criterion}
-    \subsubsection{Application of the B-networks criterion to the Azoff--Shehada example.}
+
+  \section{Application of the B-networks criterion}
+    \subsection{Application of the B-networks criterion to the Azoff--Shehada example.}
       Let us begin with the exposition of the Azoff--Shehada~\cite{azoff} vector system.
       The AS system $\fsys_{AS}$ is given as follows:
       \begin{equation}
@@ -1099,33 +1111,37 @@
       \end{equation}
         for some real parameters $a_n > 0$, where $n > 1$.
       The sequences $\{f_j\}$, $\{f^*_j\}$ are biorthogonal and both are complete in $\cal{H}$ (thus it is an $M$-basis).
-      Also due to~\cite{katavolos} the next theorem is accurate
+      Also due to~\cite{katavolos} the next two theorems are accurate.
       \begin{theorem}
-        \label{thm-katavolos}
-        The following three cases fully resolve the $k$-completeness problem for the AS-system:
-        \begin{enumerate}[label=(\alph*)]
-          \item The system $\fsys_{AS}$ is $1$-complete (a strong $M$-basis) if and only if the following sequence
-            \begin{equation*}
-              \mu_n = \frac{a_{n-1} a_{n-3} \dots}{a_{n} a_{n-2} \dots }
-            \end{equation*}
-              does not belong to $\ell^2$,
-          \item \label{pt2} $\fsys_{AS}$ admits a linear summation method if and only if the system is $2$-complete,
-          \item \label{pt3} $\fsys_{AS}$ admits a linear summation method when and only when
-            the sequence $\left\{1/a_n\right\}_{n=1}^\infty$ does not belong to $\ell^1$.
-        \end{enumerate}
+        \label{thm-katavolos-1}
+          $\fsys_{AS}$ admits a linear summation method if and only if the system is $2$-complete.
       \end{theorem}
-      The first statement does not interest us for now.
+      \begin{note}
+        We are going to use this result of Katavolos et al~\cite{katavolos} in order to finish the classification of the B-class vector systems later.
+      \end{note}
 
-      The third statement is a criterion for a linear summation method existence, which we want to study next.
-      Here we would like to present another proof of the statement~\ref{pt3} of the Theorem~\ref{thm-katavolos}:
-      \begin{prop}
-          The vector system $\fsys_{AS}$ admits a linear summation method when and only when
+      \begin{theorem}
+        \label{thm-katavolos-2}
+        %The following three cases fully resolve the $k$-completeness problem for the AS-system:
+      %  \begin{enumerate}[label=(\alph*)]
+          %\item The system $\fsys_{AS}$ is $1$-complete (a strong $M$-basis) if and only if the following sequence
+            %\begin{equation*}
+            %  \mu_n = \frac{a_{n-1} a_{n-3} \dots}{a_{n} a_{n-2} \dots }
+            %\end{equation*}
+              %does not belong to $\ell^2$,
+          $\fsys_{AS}$ admits a linear summation method when and only when
             the sequence $\left\{1/a_n\right\}_{n=1}^\infty$ does not belong to $\ell^1$.
+      %  \end{enumerate}
+      \end{theorem}
+      Here we would like to present another proof of Theorem~\ref{thm-katavolos-2}.
+      \begin{prop}
+        The vector system $\fsys_{AS}$ admits a linear summation method when and only when
+          the sequence $\left\{1/a_n\right\}_{n=1}^\infty$ does not belong to $\ell^1$.
       \end{prop}
       \begin{proof}
-        The AS system belongs to the B-class as we mentioned before.
         Here we will discuss the AS system only: $\fsys = \fsys_{AS}$.
 
+        Notice that $\fsys$ belongs to the B-class.
         Thus $\fsys$ is applicable to the Theorem~\ref{thm-graph-eq}, which asserts
           that $\fsys$ admits a linear summation method if and only if
           the network $\net(\fsys)$ is $\flow$-preserving for any
@@ -1138,47 +1154,22 @@
           flow $\flowpos: \vec{E} \to \mathbb{R}^{+}$ with a finite mass which is not preserved in
           the network $\onet(\fsys)$
           if and only if there exists a ray $r \subseteq \onet $ originating in the $\source$ vertex,
-          whose total length is bounded:
-          \[
-            \sum_{k=1}^\infty \wtp(v_k v_{k+1}) < \infty.
-          \]
+          whose total length is bounded: $ \sum_{k=1}^\infty \wtp(v_k v_{k+1}) < \infty$.
           Hence, the system does not admit a linear summation method when and only when there is such ray $r$
             with the properties specified up above.
+
           How does look the ray of a finite length in the network like $\onet(\fsys)$?
           It is obvious that it cannot include infinite number of the edges incident to the
             $\source$ and $\sink$ vertices, since such edges have the length exactly one.
-          Now look at the outline of the network $\onet(\fsys)$ (~\ref{AS-net}).
-          It clearly demonstrates that
-            the existence of the finite-length ray in the network $\onet(\fsys)$ implies
-            the finite length of the ray $r=(r_1 r_2 r_3\dots)$ which is marked in the figure with the red color.
+          Now look at the outline of the network $\onet(\fsys)$ (Figure~\ref{AS-net}).
+          It clearly demonstrates that the existence of the finite-length ray in the network $\onet(\fsys)$ implies that
+            the ray $r=(r_1 r_2 r_3\dots)$ has a finite length as well.
           However this ray has the length equal to
           \[
             \sum \wtp(r_k r_{k+1}) = \sum \frac{1}{|a_k|},
           \]
-          \alex{a figure with the AS ray in AS network}
-          which ends the proof immediately.
+          which completes the proof.
       \end{proof}
-
-      Let us turn to the second statement of the Theorem~\ref{thm-katavolos}.
-
-      It says that AS system $\fsys_{AS}$ does not possess a linear summation method,
-        when and only when it is not $2$-complete.
-      The system is not $2$-complete if and only if there exists an operator $T$ of rank $2$
-        which has a non-zero trace and annihilates all the rank one operators $f_k \otimes f^*_k$.
-        (see the proof of the Theorem~\ref{thm-katavolos} in the paper~\cite{katavolos}).
-      However, we already found the condition for the linear summation method existence, namely
-        there is no linear summation method for the AS system $\fsys_{AS}$ if and only if $\left\{1/a_k\right\}$
-        is a summable sequence.
-      \begin{remark}
-        \label{as-rmk}
-        We can conclude from these facts that whenever the sequence $\left\{\wtp_k = 1/a_k\right\}$ is summable,
-          it is possible to define a two-dimensional operator $T$ in such a form:
-          \begin{align*}
-            &T_{11} = 1,\\
-            &T_{k\, k+1} = \wtp_k,
-          \end{align*}
-        while the other entries of the matrix $T_{ij}$ are equal to zero.
-      \end{remark}
       \pagebreak
       \begin{figure}
         \begin{center}
@@ -1222,97 +1213,81 @@
         \end{center}
       \end{figure}
 
-    \subsubsection{Application of the B-networks criterion to the B-class vector systems}
+    \section{Application of the B-networks criterion to the B-class vector systems}
       In this section our aim is to apply the knowledge we gathered in the previous section to
-      the net $\net(\fsys)$, we created in the section~\ref{fsys2graphs}.
+      the net $\net(\fsys)$, we constructed in Section~\ref{fsys2graphs}.
+
+      First of all we are going to make a few comments on Theorem~\ref{thm-katavolos-1}.
+      \begin{remark}
+      Theorem~\ref{thm-katavolos-1} states that $\fsys_{AS}$ does not possess a linear summation method,
+        when and only when it is not $2$-complete.
+      By definition the system is not $2$-complete if and only if there exists an operator $T$ of rank $2$
+        which has a non-zero trace and annihilates all the rank one operators $f_k \otimes f^*_k$.
+        (see the proof of Theorem 2.2 in the paper~\cite{katavolos}).
+      Moreover, we know the condition for the linear summation method existence, namely that
+        there is no linear summation method for the AS system $\fsys_{AS}$ if and only if $\left\{1/a_k\right\}$
+        is a summable sequence.
+        We can conclude from these facts that the following lemma holds.
+        \begin{lemma}
+          \label{as-lemma}
+          Whenever the sequence $\left\{\wtp_k = 1/a_k\right\}$ is summable,
+            it is possible to define a two-dimensional operator $T$ in such a form:
+          \begin{align*}
+            &T_{11} = 1,\\
+            &T_{k\, k+1} = \wtp_k,
+          \end{align*}
+          while the other entries $T_{ij}$ are equal to zero.
+        \end{lemma}
+      \end{remark}
+      Now we are ready to prove the final result.
       \begin{theorem}
         \label{completeness-thm}
-        Let $\fsys$ be a minimal sequence of vectors in the Hilbert space $\cal{H}$.
+        Let $\fsys$ be a B-class vector system.
         Then $\fsys$ is $2$-complete when and only when $\fsys$ admits a linear summation method.
       \end{theorem}
       \begin{proof}
-        The sufficiency is trivial~--- the $k$-completeness property is weaker the existence of the linear summation method
+        The sufficiency is trivial for the $k$-completeness property is weaker than the existence of the linear summation method
           for $\fsys$.
 
         Now let us prove the necessity.
         Pretend $\fsys$ does not admit a linear summation method.
         Let $\onet(\fsys) = (G, \wtp, \source, \sink)$ be an orientation of the network $\net(\fsys)$.
         Applying the Theorem~\ref{thm-graph-eq} and then the Theorem~\ref{ray-thm} to the network $\onet(\fsys)$
-          we recognize that there is such a finite-length ray $r \subseteq \onet$ taking its origin
+          we recognize that there is a finite-length ray $r \subseteq \onet$ taking its origin
           in the source vertex $\source$.
-        Suppose $r = \seq{r}$ such that $r_0 = \source$ and $r_k$ are some vertices in the graph $G$.
-        Recall that in the Theorem~\ref{ray-thm} in view of existence of the ray $r$ we were able to push
-          a flow of the size one along this ray:
-        \[
-          \flowpos(r_k r_{k+1}) = 1,
-        \]
-        so that the network became not $\flowpos$-preserving.
+        Suppose $r = \seq{r}$ such that $r_0 = \source$.
+
+        Consider such a flow $\flowpos$ such that $\flowpos(r_k r_{k+1}) = 1$ and $\flowpos(e) = 0$ for any $e \not \in r$.
+        Then the network $\onet(\fsys)$ is not $\flowpos$-preserving (see Theorem~\ref{ray-thm}).
+
         Next we are going to reconstruct the operator $T$ from the flow $\flowpos$.
 
         Consider the basis vectors $e_{s_k}$ which correspond to the vertices $r_k$.
-        Split the Hilbert space $\cal{H}$ in two smaller subspaces:
-        \[
-          \cal{H} = \cal{H}_1 \oplus \cal{H}_2,
-        \]
-        such that $\cal{H}_1 = \bigoplus\limits_k e_{s_k}$.
-        So, virtually the operator $T$ is going to be zero on the $\cal{H}_2$:
-        \[
-          T\vert_{\cal{H}_2} \equiv 0.
-        \]
-        We will reuse the $e_k$ notation for the basis vectors $e_{s_k}$ (since we work now in the subspace $\cal{H}_1$
-          such substitute is allowed).
-        We are meaning to look for a two-dimensional operator in such a form:
+        Split the Hilbert space $\cal{H}$ in two smaller subspaces $\cal{H} = \cal{H}_1 \oplus \cal{H}_2$,
+          such that $\cal{H}_1 = \bigoplus\limits_k e_{s_k}$.
+        Consequently the operator $T$ is going to be zero on the $\cal{H}_2$: $T\vert_{\cal{H}_2} \equiv 0$.
+        We now reuse the $e_k$ notation for the basis vectors $e_{s_k}$ (since we work now in the subspace $\cal{H}_1$,
+          such substitute is feasible).
+
+        We are meaning to look for a two-dimensional operator as follows.
         \begin{align*}
           &T_{11} = 1,\\
           &T_{k k+1} = \wtp(r_k r_{k+1}) \flowpos(r_k r_{k+1}) = \wtp(r_k r_{k+1}),
         \end{align*}
-        while the other elements of $T$ are set to zero.\\
-        Remember that $\wtp(r_k r_{k+1})$ is a summable sequence.
-        Now look at the remark~\ref{as-rmk},~--- it claims, that there exists a two-dimensional operator $T$, which satisfies the equalities above.
+          while the other elements of $T$ are zero.
+
+        Since the ray $r$ has a finite length, $\wtp(r_k r_{k+1})$ is a summable sequence.
+        Due to Lemma~\ref{as-lemma} there exists a two-dimensional operator $T$, which satisfies the equalities above.
         This proves the theorem.
     \end{proof}
     \begin{remark}
+      Concerning the linear summation method property, the last theorem reveals that the B-class vector systems
+        admits the same criterion as the Azoff-Shehada system.
+      Furthermore the Azoff-Shehada represents a canonical vector system in this class, since the corresponding bipartite graph $B(\cal{F}_AS)$
+        is just a ray.
     \end{remark}
 \bigskip
-\begin {thebibliography}{20}
-    \bibitem{azoff}
-    E.~\!Azoff, H.~\!Shehada,
-    \emph{Algebras generated by mutually orthogonal idempotent operators}.
-    J. Oper. Theory, 29 (1993), 2, 249--267.
-    \bibitem{bbb} 
-    A. Baranov, Yu. Belov, A. Borichev,
-    \emph{Hereditary completeness for systems of exponentials and reproducing kernels},
-    Adv. Math., 235 (2013), 1, 525--554.
-    \bibitem{bbb1}
-    A. Baranov, Yu. Belov, A. Borichev, 
-    \emph{Spectral synthesis in de Branges spaces},
-    Geom. Funct. Anal. (GAFA), 25 (2015), 2, 417--452.
-    \bibitem{ad_preprint}
-    A.D.~\!Baranov, D.V.~\!Yakubovich,
-    \emph{Completeness and spectral synthesis of nonselfadjoint one-dimensional
-    perturbations of selfadjoint operators}.
-    arXiv:1212.5965 [math.FA]
-    \bibitem{katavolos}
-    A.~\!Katavolos, M.~\!Lambrou, M.~\!Papadakis,
-    \emph{On some algebras diagonalized by $M$-bases of $\ell^2$}.
-    Integr. Equat. Oper. Theory, 17 (1993), 1, 68--94.
-    %\bibitem{wermer}
-    %J.~\!Wermer,
-    %\emph{On invariant subspaces of normal operators}.
-    %Proc. Amer. Math. Soc., 3(1952), 2, 270--277.
-    \bibitem{larson}
-    D.~\!Larson, W.~\!Wogen,
-    \emph{Reflexivity properties of $T\bigoplus0$}.
-    J. Funct. Anal., 92 (1990), 448--467.
-    %\bibitem{rotfeld}
-    %В.В.~\!Пеллер,
-    %\emph{Операторы Ганкеля и их приложения}.
-    %Издательство РХД, Ижевск(2005).
-    %N.K.~\!Nikol'skii,
-    %\emph{Complete extensions of Volterra operators},
-    %Izv. Akad. Nauk SSSR Ser. Mat 33(1969), 1349--1355. (Russian)
-
-\end{thebibliography}
+\include{bib}
 \vspace{1em}
 \noindent{\bf Keywords:} minimal system, biorthogonal system, hereditary completeness, strong M-basis, summation method.
 

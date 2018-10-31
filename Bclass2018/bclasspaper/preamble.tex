@@ -1,12 +1,13 @@
-\usepackage{cmap} % тоже для кодировки
+\usepackage{cmap}
 %\usepackage[cp866]{inputenc}
 \usepackage[T2A]{fontenc}
-\usepackage[utf8]{inputenc} % любая желаемая кодировка
-\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[english,ngerman]{babel}
 \usepackage[pdftex,unicode]{hyperref}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage{verbatim}
 \usepackage{relsize}
 \usepackage{amsfonts}
 \usepackage{graphicx}
@@ -17,7 +18,7 @@
 \usepackage{dsfont}
 \usepackage{calc}
 \usepackage{bm}
-\usepackage{tocloft}
+%\usepackage{tocloft}
 %\renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth} \bfseries}
 %\renewcommand{\cftbeforetoctitleskip}{-1em}
 %\renewcommand{\cftaftertoctitle}{\mbox{}\hfill \\ \mbox{}\hfill{\footnotesize Стр.}\vspace{-.5em}}
@@ -29,8 +30,8 @@
 %\renewcommand{\cftdotsep}{1}
 %\setcounter{tocdepth}{2} % задать глубину оглавления - до subsection включительно
 
-\usepackage{titlesec}
-\sloppy
+%\usepackage{titlesec}
+%\sloppy
 %\titleformat{\section}
 %{\normalsize\bfseries}
 %{\thesection}
@@ -61,16 +62,15 @@
 \widecommentbox{\alex}{AP}{green!20!white}
 \widecommentbox{\ad}{AD}{red!20!white}
 
-\usepackage{enumitem}
-\usepackage{setspace}
 
-\makeatletter
+%\makeatletter
 %\@addtoreset{theorem}{section}
 %\@addtoreset{lemma}{section}
-\@addtoreset{prop}{section}
-\makeatother
+%\@addtoreset{prop}{section}
+%\makeatother
 
-\theoremstyle{definition}
+\usepackage{enumitem}
+%\usepackage{setspace}
 %\newcommand{\sectionbreak}{\clearpage}
 \usepackage[square,numbers,sort&compress]{natbib}
 \usepackage{mathtools}
@@ -81,7 +81,7 @@
 
 %\titleformat{\section}[block]{\Large\bfseries\centering}{}{1em}{}
 %\titleformat{\subsection}[block]{\large\bfseries\centering}{}{1em}{}
-\renewcommand{\cal}[1]{\mathcal{#1}}
+\newcommand{\cal}[1]{\mathcal{#1}}
 \renewcommand{\leq}{\leqslant}
 \renewcommand{\geq}{\geqslant}
 \renewcommand{\phi}{\varphi}
@@ -90,10 +90,11 @@
 \newtheorem{prop}{Proposition}
 \newtheorem{lemma}{Lemma}
 \newtheorem{corol}{Corollary}
+\theoremstyle{definition}
 \newtheorem{definition}{Definition}
 \newtheorem*{definition*}{Definition}
-\newtheorem{example}{Example}
 \theoremstyle{remark}
+\newtheorem{example}{Example}
 \newtheorem{remark}{Remark}
 \newtheorem*{remark*}{Remark}
 \newtheorem*{note}{Note}
@@ -130,8 +131,8 @@
 \newcommand{\gfi}{\varphi_{G}}
 \newcommand{\vspan}[1]{span\left(#1\right)}
 \newcommand{\phistar}{\phi_{*}}
-\numberwithin{remark}{section}
-\numberwithin{theorem}{section}
-\numberwithin{prop}{section}
-\numberwithin{equation}{section}
-\numberwithin{lemma}{section}
+%\numberwithin{remark}{section}
+%\numberwithin{theorem}{section}
+%\numberwithin{prop}{section}
+%\numberwithin{equation}{section}
+%\numberwithin{lemma}{section}
