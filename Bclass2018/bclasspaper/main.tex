@@ -64,39 +64,37 @@
   It is now a well-known fact that for a subspace lattice generated from an $M$-basis the complete distributivity of its lattice is equivalent to
     the property~\ref{1pd} (see~\cite{argyroslambrou} for a proof).
   In the same paper the following question was raised: does the complete distributivity of $\cal{F}$ imply the rank one density property?
-  The answer was already known to be positive in the case of a totally ordered lattice (~\cite{erdos}), and
-    Longstaff proved that for the finite-dimensional Hilbert space in~\cite{longstaff}.
-  Later Laurie and Longstaff discovered that the rank one density holds in the case of commutative subspace lattices(see ~\cite{laurielongstaff}).
+  The answer was already known to be positive in the case of a totally ordered lattice~\cite{erdos}, and
+    Longstaff proved that for a finite-dimensional Hilbert space in~\cite{longstaff}.
+  Later Laurie and Longstaff discovered that the rank one density holds in the case of commutative subspace lattices~\cite{laurielongstaff}.
 
-  However the solution for a general case remained unknown until Larson and Wogen determined that the answer is negative (see ~\cite{larson}).
+  However the solution for the general case remained unknown until Larson and Wogen determined that the answer is negative (see~\cite{larson}).
   They managed to build an example of such a vector system $\fsys$ that the lattice $\cal{F}$ generated from $\fsys$
-    was completely distributive, but the corresponding algebra $\operatorname{Alg}(\cal{F})$
+    was completely distributive, but the corresponding algebra $\cal{A}$
     did not possess the rank one density property (see Example~\ref{as-sys}).
-  This example was also studied in the paper~\cite{argyroslambrou} (see Addendum) and by Azoff and Shehada~\cite{azoff} regarding
-    the reflexivity of the algebra $\operatorname{Alg}(\cal{F})$.
-  Finally Katavolos et al. in the paper ~\cite{katavolos} performed a deep analysis of the density properties of this vector system and
-    deduced that for this system the property~\ref{1pd} holds while ~\ref{r1d}.
+  This example was also studied in the paper~\cite{argyroslambrou} (see Addendum) and by Azoff and Shehada in~\cite{azoff} regarding
+    the reflexivity of the lattice $\cal{F}$.
+  Finally Katavolos et al. in the paper~\cite{katavolos} performed a deep analysis of the density properties of this vector system and
+    deduced that for this system the property~\ref{1pd} holds while~\ref{r1d}.
   We refer to this example as to Azoff-Shehada vector system in this paper.
 
   We are eager to understand whether the two point density always implies the rank one density property or is there a counterexample.
 
   In the next sections we are going to study the specific class of vector systems which represents a natural generalisation of
     the Azoff-Shehada vector system.
-  We are going to analyze the properties~\ref{1pd},~\ref{2pd} and ~\ref{r1d} for this class.
+  We are going to analyze the properties~\ref{1pd},~\ref{2pd} and~\ref{r1d} for this class.
   \begin{example}[Azoff-Shehada system $\fsys_{AS}$]
-    \begin{equation}
-      \label{as-sys}
-      \begin{aligned}
-        &f_1 = e_1 + a_2 e_2, \qquad &f_{2j}=e_{2j}, \quad&j \geq 1,&\\
-        &f_{2j-1}=-a_{2j-1}e_{2j-2} + e_{2j-1} + a_{2j}e_{2j}, \qquad &\makebox[5em]{} \quad&j \geq 2,&\\
-        &f^*_{2j}=-a_{2j}e_{2j-1}+e_{2j}+a_{2j+1}e_{2j+1}, \qquad &f^*_{2j-1}=e_{2j-1}, \quad&j \geq 1&
-      \end{aligned}
-    \end{equation}
+    \label{as-sys}
+    \begin{align*}
+      &f_1 = e_1 + a_2 e_2, \qquad &f_{2j}=e_{2j}, \quad&j \geq 1,&\\
+      &f_{2j-1}=-a_{2j-1}e_{2j-2} + e_{2j-1} + a_{2j}e_{2j}, \qquad &\makebox[5em]{} \quad&j \geq 2,&\\
+      &f^*_{2j}=-a_{2j}e_{2j-1}+e_{2j}+a_{2j+1}e_{2j+1}, \qquad &f^*_{2j-1}=e_{2j-1}, \quad&j \geq 1&
+    \end{align*}
   \end{example}
 
 \section{B-class of vector systems: linear summation problem}
     \label{fsys2graphs}
-    The Hilbert space $\cal{H}$ is presumed to have infinite dimension in this paper.
+    The Hilbert space $\cal{H}$ is presumed to have infinite dimension.
     Consider a complete minimal vector system $\fsys = \seq{f}$ in the Hilbert space $\cal{H}$.
     The sequence is called \emph{minimal} if none of its elements can be approximated by the linear combinations of the others.
     The system $\fsys$ is minimal when and only when it possesses a unique biorthogonal system $\fstarsys$.
@@ -106,7 +104,7 @@
     The system $\fsys$ admits a linear summation method if there is a doubly indexed sequence $\alpha_{kn}$ if
       $\lim_{n \to \infty} \sum_k \alpha_{kn} \inner{x}{f^*_k}f_k = x$ for any $x \in \cal{H}$.
     As we already mentioned the linear summation method existence is equivalent to the property~\ref{r1d}.
-    We are interested in the density properties~\ref{2pd} and ~\ref{r1d} of the vector system $\fsys = \seq{f}$
+    We are interested in the density properties~\ref{2pd} and~\ref{r1d} of the vector system $\fsys = \seq{f}$
       in a separable real Hilbert space $\cal{H}$. \alex{todo complex}
     Suppose that $\cal{H}$ has an orthonormal basis $\seq{e}$.
     Let $\fstarsys = \{f_n^{*}\}_{n=1}^\infty$ be a biorthogonal vector system to the original system $\seq{f}$.
@@ -114,7 +112,7 @@
       The vector system $\fsys$ belongs to the \emph{B-class} whenever the following conditions are satisfied:
       \begin{enumerate}[label=\textbf{C\arabic*}]
         \item \label{c1} both $\fsys$ and $\fstarsys$ are complete (or $\fsys$ is $M$-basis)
-        \item either $f_n = e_n$ or $f^*_n = e_n$ for any $n > 0$,
+        \item \label{c2} either $f_n = e_n$ or $f^*_n = e_n$ for any $n > 0$,
         \item \label{c3} $\inner{f_n}{e_n} = \inner{f^*_n}{e_n} = 1$ for any $n > 0$,
         \item \label{c4} $\inner{f_n}{e_k} = -\inner{f^*_k}{e_n}$ for any $n, k > 0; n \neq k$,
         \item \label{c5} the matrices $\{\inner{f_n}{e_k}\}$ and $\{\inner{f^*_n}{e_k}\}$ are both finite-band.
@@ -142,7 +140,7 @@
       Otherwise if $n = m$ we get $\inner{f_n}{f^*_m} = 1$ due to the conditions~\ref{c2} and~\ref{c3}.
     \end{proof}
     The B-class of vector systems is the main subject of this section.
-    It is a natural extension of the Azoff--Shehada system~\eqref{as-sys}.
+    It is a natural extension of the Azoff--Shehada system (see Ex.~\ref{as-sys}).
     B-class has an interesting property we are going to exploit later.
     \begin{remark}
       A vector system which belongs to the B-class could be associated with an
@@ -1149,17 +1147,7 @@
 
   \section{Application of the B-networks criterion}
     \subsection{Application of the B-networks criterion to the Azoff--Shehada example.}
-      Let us begin with the exposition of the Azoff--Shehada~\cite{azoff} vector system.
-      The AS system $\fsys_{AS}$ is given as follows:
-      \begin{equation}
-        \label{as-system}
-        \begin{aligned}
-          &f_1 = e_1 + a_2 e_2, \qquad &f_{2j}=e_{2j}, \quad&j \geq 1,&\\
-          &f_{2j-1}=-a_{2j-1}e_{2j-2} + e_{2j-1} + a_{2j}e_{2j}, \qquad &\makebox[5em]{} \quad&j \geq 2,&\\
-          &f^*_{2j}=-a_{2j}e_{2j-1}+e_{2j}+a_{2j+1}e_{2j+1}, \qquad &f^*_{2j-1}=e_{2j-1}, \quad&j \geq 1&
-        \end{aligned}
-      \end{equation}
-        for some real parameters $a_n > 0$, where $n > 1$.
+      The Azoff-Shehada system is outlined in the Example~\ref{as-sys}.
       The sequences $\{f_j\}$, $\{f^*_j\}$ are biorthogonal and both are complete in $\cal{H}$ (thus it is an $M$-basis).
       Also due to~\cite{katavolos} the next two theorems are accurate.
       \begin{theorem}
