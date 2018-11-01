@@ -1,0 +1,247 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{cmap} % тоже для кодировки
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc} % любая желаемая кодировка
+\usepackage[english, russian]{babel}
+\usepackage[pdftex,unicode]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage[normalem]{ulem}
+\usepackage{extsizes}
+%\usepackage{pscyr}
+\usepackage{float}
+\usepackage{bbold}
+\usepackage{dsfont}
+\usepackage{calc}
+\usepackage [a4paper,% other options: a3paper, a5paper, etc
+  left=2cm,
+  right=2cm,
+  top=2cm,
+  bottom=2cm,
+]{geometry}
+
+\usepackage{tocloft}
+\renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth} \bfseries}
+\renewcommand{\cftbeforetoctitleskip}{-1em}
+\renewcommand{\cftaftertoctitle}{\mbox{}\hfill \\ \mbox{}\hfill{\footnotesize Стр.}\vspace{-.5em}}
+\providecommand{\cftchapfont}{\normalsize\bfseries \sectionname}
+\renewcommand{\cftsecfont}{\hspace{31pt}}
+\renewcommand{\cftsubsecfont}{\hspace{11pt}}
+\providecommand{\cftbeforechapskip}{1em}
+\renewcommand{\cftparskip}{-1mm}
+\renewcommand{\cftdotsep}{1}
+%\setcounter{tocdepth}{2} % задать глубину оглавления — до subsection включительно
+
+\usepackage{titlesec}
+
+%\newcommand{\empline}{\mbox{}\newline}
+%\newcommand{\likechapterheading}[1]{ 
+  %\begin{center}
+    %\textbf{#1}
+  %\end{center}
+  %\empline
+%}
+%\makeatletter
+%\renewcommand{\@dotsep}{2}
+%\newcommand{\l@likechapter}[2]{{\bfseries\@dottedtocline{0}{0pt}{0pt}{#1}{#2}}}
+%\makeatother
+%\newcommand{\likechapter}[1]{    
+  %\likechapterheading{#1}    
+  %\addcontentsline{toc}{likechapter}{#1}
+%}
+
+%\titleformat{\chapter}
+%{\bfseries\thechapter.}
+%{8pt}
+%{\bfseries}{}
+
+\sloppy
+\titleformat{\section}
+{\normalsize\bfseries}
+{\thesection}
+{1em}{}
+
+\titleformat{\subsection}
+{\normalsize\bfseries}
+{\thesubsection}
+{1em}{}
+
+% Настройка вертикальных и горизонтальных отступов
+%\titlespacing*{\chapter}{0pt}{-30pt}{8pt}
+\titlespacing*{\section}{\parindent}{*4}{*4}
+\titlespacing*{\subsection}{\parindent}{*4}{*4}
+\linespread{1.2}
+
+\newlength{\widecommentlength}
+%\setlength{\widecommentlength}{5in}
+%%\newcommand{\widecommentbox}[2]{\def#1##1{\strut\newline\noindent\colorbox{#2}{\linespread{1}\parbox{.95\textwidth}{\small ##1}}\newline}}
+\usepackage{pgfplots}
+\newcommand{\widecommentbox}[3]{\def#1##1{\strut\newline\noindent\colorbox{#3}{\linespread{1}\parbox{.95\textwidth}{\small {\bf [#2]} ##1}}\newline}}
+\def\commentsep{\noindent\dotfill}
+
+% To temporarily omit all comments, enable these two lines:
+% %\renewcommand{\widecommentbox}[3]{\def#1##1{}}
+% %\let\commentsep\relax
+
+\widecommentbox{\alex}{Леша}{green!20!white}
+\widecommentbox{\ad}{АД}{red!20!white}
+
+\usepackage{enumitem}
+\usepackage{setspace}
+
+\makeatletter
+%\@addtoreset{theorem}{section}
+%\@addtoreset{lemma}{section}
+\@addtoreset{prop}{section}
+\makeatother
+
+\newcommand{\sectionbreak}{\clearpage}
+\usepackage[square,numbers,sort&compress]{natbib}
+\renewcommand{\bibnumfmt}[1]{#1.\hfill} % нумерация источников в самом списке — через точку
+\renewcommand{\bibsection}{\section*{Список литературы}} % заголовок специального раздела
+\setlength{\bibsep}{0pt}
+
+%\titleformat{\section}[block]{\Large\bfseries\centering}{}{1em}{}
+%\titleformat{\subsection}[block]{\large\bfseries\centering}{}{1em}{}
+\renewcommand{\cal}[1]{\mathcal{#1}}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\phi}{\varphi}
+\newtheorem{theorem}{Теорема}
+\newtheorem{prop}{Утверждение}
+\newtheorem{prop_under_lemma}{Утверждение}
+\newtheorem{definition}{Определение}
+\newtheorem{lemma}{Лемма}
+\newtheorem{corol}{Следствие}
+\newtheorem{remark}{Замечание}
+\newtheorem*{note}{Примечание}
+\newcommand\bigmatrixzero{\raisebox{-0.25\height}{\textnormal{\Huge 0}}}
+\newcommand\bigzero{\makebox{0, 0}{\textnormal{\Huge 0}}}
+\newcommand{\system}[1]{\{{#1}_k\}_{k=1}^\infty}
+
+\numberwithin{prop_under_lemma}{lemma}
+
+%\textwidth 165mm
+\textheight 220mm
+%\renewcommand\baselinestretch{1}
+%\topmargin -16mm \oddsidemargin 0pt \evensidemargin 0pt
+
+\begin{document}
+
+\title{Проект исследований ``Наследственная полнота и аппроксимация тождественного оператора в 
+  различных операторных топологиях на гильбертовом пространстве''.}
+\author{Пышкин А.В.}
+\date{}
+\maketitle
+
+В своей дипломной работе я исследовал свойства полноты и наследственной полноты
+(сильной М-базисности) систем собственных векторов для некоторых классов компактных
+несамосопряженных операторов. Систему векторов называют {\it наследственно полной} (или {\it сильным $M$-базисом}), если
+любой вектор $x$ в гильбертовом пространстве $\mathcal{H}$ можно аппроксимировать
+линейными комбинациями членов ее ряда Фурье. То есть, если $\{\phi_j\}_{j=1}^\infty$, $\{\psi_j\}_{j=1}^\infty$~---
+биортогональные полные системы векторов в $\mathcal{H}$, то для всякого вектора $x \in \mathcal{H}$ верно
+$x \in \overline{span}\left(\phi_j \langle\psi_j, x\rangle\right),$
+где $\overline{span}(\cdot)$ обозначает замыкание линейной оболочки.
+
+В частности, был исследован пример равномерно минимальной полной последовательности
+с полной биортогональной последовательностью, не обладающей свойством наследственной полноты, приведенный в статье~\cite{azoff}.
+\begin{theorem}
+  \label{thm_seq}
+  Пусть $\{e_j\}_{j=1}^\infty$~--- ортонормированный базис $\mathcal{H}$. Зададим $\{\phi_j\}$, $\{\psi_j\}$ при $j > 0$:
+  \begin{equation}
+    \label{main-system}
+    \begin{aligned}
+      &\phi_1 = e_1 + a_2 e_2, \qquad &\phi_{2j}=e_{2j}, \quad&j > 0,&\\
+      &\phi_{2j-1}=-a_{2j-1}e_{2j-2} + e_{2j-1} + a_{2j}e_{2j}, \qquad &\makebox[5em]{} \quad&j > 1,&\\
+      &\psi_{2j}=-a_{2j}e_{2j-1}+e_{2j}+a_{2j+1}e_{2j+1}, \qquad &\psi_{2j-1}=e_{2j-1}, \quad&j > 0&
+    \end{aligned}
+  \end{equation}
+  для некоторых вещественных $a_k$.
+  \smallskip
+  \\Последовательности $\{\phi_j\}$, $\{\psi_j\}$ биортогональны друг другу и полны в $\cal{H}$. Они
+  не являются наследственно полными тогда и только тогда, когда обе последовательности
+  \begin{equation}
+    \label{sequences}
+    \begin{aligned}
+      &\lambda_k = \frac{a_2 a_4\cdots a_{2k}}{a_3 a_5\cdots a_{2k+1}}\qquad
+      \mu_k = \frac{a_3 a_5 \cdots a_{2k - 1}}{a_2 a_4 \cdots a_{2k}}
+    \end{aligned}
+  \end{equation}
+  принадлежат пространству $\ell^2$.
+\end{theorem}
+В дипломной работе было приведено упрощенное доказательство этой теоремы, а также получены некоторые новые
+  свойства вышеописанной системы векторов.
+В аспирантуре я продолжал исследование свойств усиленной полноты различных систем векторов
+  в гильбертовом пространстве.
+В статье Катаволоса, Ламбру и Пападакиса~\cite{katavolos} был предложен более общий подход
+  к вопросам наследственной полноты.
+Былa рассмотрена банахова алгебра $\cal{A}=\{B\in\cal{B}(\cal{H}) \mid B \phi_n \in [\phi_n]\},$
+  где $[\phi_n]$~--- линейное подпространство, порожденное вектором $\phi_n$.
+Обозначив за $\cal{R}_1(\cal{A})$ подалгебру $\cal{A}$ операторов ранга один, сформулируем теорему, приведенную в~\cite{katavolos}.
+\begin{theorem}
+  \label{thm_katavolos}
+  Следующие условия равносильны:
+  \begin{enumerate}
+    \item $\cal{R}_1(\cal{A})$ замкнут в сильной операторной топологии в $\cal{A}$.
+    \item Для любых $x, y \in \cal{H}$ и $\epsilon > 0$ существует такой $R\in\cal{R}_1(\cal{A})$,
+      что \newline $\|Rx - x\|\leq \epsilon$ и $\|Ry - y\|\leq \epsilon$.
+    \item Последовательность $\{1/a_n\}$ не суммируема.
+  \end{enumerate}
+\end{theorem}
+Посмотрим более детально на алгебру операторов $\cal{R}_1(\cal{A})$.
+Легко видеть, что $\cal{R}_1(\cal{A})=\cal{L}(\phi_n \otimes \psi_n)$.
+Заметим, что наследственная полнота~--- это свойство приближения тождественного оператора на гильбертовом пространстве $\cal{H}$ в одной точке 
+  линейными комбинациями одномерных операторов вида $\phi_n \otimes \psi_n$.
+Тогда второй пункт теоремы~\ref{thm_katavolos} есть ни что иное, как свойство приближения тождественного оператора сразу в двух точках 
+  линейными комбинациями одномерных операторов такого же вида.
+Первый пункт является более сильным свойством, утверждая, 
+  что тождественный оператор возможно приблизить в сильной операторной топологии.
+Таким образом, теорема утверждает, что для системы~\eqref{main-system} слабый второй пункт теоремы~\ref{thm_katavolos} 
+  о приближении тождественного оператора в двух точках влечет более сильное свойство (первый пункт).
+Принимая во внимание теорему~\ref{thm_seq}, получим, что существуют наследственно полные системы, но обладающие полнотой в более сильном смысле теоремы~\ref{thm_katavolos}.
+Интерес к этой последовательности возник в 90-х годах прошлого века, когда Ларсон и Воген
+  опубликовали статью~\cite{wogen}, в которой предложили пример двух рефлексивных операторов,
+  прямая сумма которых не является рефлексивным оператором. 
+Эта статья дала ответ на вопрос, который оставался открытым в течение долгого времени.
+По сути контрпример строился аналогично системе~\eqref{main-system}.
+Нас интересует существование подобных примеров, заданных в базисе гильбертова пространства матрицами с некоторой дополнительной структурой.
+Также интересно было бы выяснить, для всех ли систем существует равносильность из теоремы~\ref{thm_katavolos} или 
+  все же существуют системы, для которых, например, существует аппроксимация тождественного оператора в двух точках, но не в трех.
+
+Доказательство теоремы~\ref{thm_katavolos}, предложенное в статье \cite{katavolos}, было достаточно сложным.
+Мною был найден альтернативный способ доказывать подобные утверждения для аппроксимации тождественного оператора (в разных топологиях),
+  опирающееся на элементарные свойства методов суммирования рядов.
+Этот метод сильно упростил доказательство теоремы~\ref{thm_katavolos}.
+
+Таким образом, на текущий момент основным направлением моей научной работы является поиск новых примеров биортогональных систем векторов в гильбертовых пространствах и исследование вышеприведенных свойств для таких систем. До сих пор мной рассматривались системы векторов в абстрактном гильбертовом пространстве. Однако впоследствии планируется также изучить своства усиленной полноты для специальных систем векторов в различных функциональных пространствах, прежде всего в пространствах аналитических функций. Такое направление поиска мотивировано недавними результатами А. Баранова и Д. Якубовича~\cite{ad_preprint} и А. Баранова, Ю. Белова и А. Боричева \cite{bbb}. В этих работах особую роль играют системы воспроизводящих ядер в пространствах целых функций и, в частности, в пространстве Пэли-Винера. Отметим, что существование в пространстве Пэли-Винера наследственно полной системы ядер без свойства приближения тождественного оператора является сложной открытой задачей.
+
+\small
+\addcontentsline{toc}{section}{Список литературы}
+\begin{thebibliography}{9}
+    \bibitem{azoff}
+    E.~\!Azoff, H.~\!Shehada,
+    \emph{Algebras generated by mutually orthogonal idempotent operators}.
+    J. Oper. Theory, 29 (1993), 2, 249--267.
+    \bibitem{katavolos}
+    A.~\!Katavolos, M.~\!Lambrou, M.~\!Papadakis,
+    \emph{On some algebras diagonalized by $M$-bases of $\ell^2$}.
+    Integr. Equat. Oper. Theory, 17 (1993), 1, 68--94.
+    \bibitem{wogen}
+    D.~\!Larson, W.~\!Wogen,
+    \emph{Reflexivity properties of $T \oplus 0$}.
+    J. Functional Analysis, 92 (1990), 448--467.
+    \bibitem{ad_preprint}
+    A.D.~\!Baranov, D.V.~\!Yakubovich,
+    \emph{Completeness and spectral synthesis of nonselfadjoint one-dimensional
+    perturbations of selfadjoint operators}.
+    arXiv:1212.5965 [math.FA]
+    \bibitem{bbb} A. Baranov, Yu. Belov, A. Borichev, \emph{Hereditary completeness for systems of exponentials and reproducing kernels}, Advances in Mathematics, 235 (2013), 525--554.
+    %N.K.~\!Nikol'skii,
+    %\emph{Complete extensions of Volterra operators},
+    %Izv. Akad. Nauk SSSR Ser. Mat 33(1969), 1349--1355. (Russian)
+
+\end{thebibliography}
+\end{document}
