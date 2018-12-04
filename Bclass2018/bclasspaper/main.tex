@@ -27,40 +27,41 @@
 
 \section{Introduction}
   Consider a $M$-basis $\fsys = \seq{f}$ in the Hilbert space $\cal{H}$.
-  Let $\cal{F}$ be a subspace lattice generated from $\fsys$ and $\cal{A}$ be an operator algebra leaving all the elements of
+  Let $\cal{F}$ be a subspace lattice generated from the one-dimensional subspaces $span(f_n), n \in \mathbb{N}$,
+    that is, such a subspace lattice which consists of all possible meets and joins of the generators;
+    and $\cal{A} = \{T\in B(\cal{H}): Tf_n \in \overline{span}(f_n), n \in \mathbb{N}\}$ be an operator algebra leaving all the elements of
     $\cal{F}$ invariant.
-    %Let $\cal{A}$ be a reflexive algebra of bounded operators acting on the Hilbert space $\cal{H}$
-    %  and $\cal{F} = \operatorname{Lat}(\cal{A})$ be the corresponding lattice of invariant subspaces.
+
   We are interested in the following three properties of the algebra $\cal{A}$.
   \begin{definition}[one point density property]
     \label{1pd}
-    We say that $\fsys$ is \emph{one point dense} if for any $x \in \cal{H}$ for any $\epsilon > 0$
-      there exists such $T\in \cal{A}$ that $||T(x) - x|| < \epsilon$.
+    We say that $\fsys$ is \emph{one point dense} if for any $x \in \cal{H}$ for any $\varepsilon > 0$
+      there exists such $T\in \cal{A}$ that $||Tx - x|| < \varepsilon$.
 
     % The algebra $\cal{A} is \emph{strongly reflexive} if ...
     % The lattice $\cal{F}$ is \emph{completely distributive} if ...
   \end{definition}
-  \begin{note}
-    The definition is equivalent to $\fsys$ being a strong $M$-basis. (see~\cite{katavolos})
-  \end{note}
+  %\begin{note}
+    The definition is equivalent to $\fsys$ being a strong $M$-basis (see~\cite{katavolos}).
+  %\end{note}
   \begin{definition}[two point density property]
     \label{2pd}
-    We say that $\fsys$ is \emph{two point dense} if for any $x, y \in \cal{H}$ for any $\epsilon > 0$
-      there exists such $T\in \cal{A}$ that $||T(x) - x|| < \epsilon$ and $||T(y) - y|| < \epsilon$.
+    We say that $\fsys$ is \emph{two point dense} if for any $x, y \in \cal{H}$ for any $\varepsilon > 0$
+      there exists such $T\in \cal{A}$ that $||T(x) - x|| < \varepsilon$ and $||T(y) - y|| < \varepsilon$.
   \end{definition}
   \begin{definition}[rank one density property]
     \label{r1d}
     We say that the algebra $\cal{A}$ possesses \emph{rank one density property} if
       the rank one subalgebra $R_1(\cal{A}) \subset \cal{A}$ is dense in $\cal{A}$ in the strong operator topology.
   \end{definition}
-  \begin{note}
+  %\begin{note}
     The last definition is equivalent to the existence of the \emph{linear summation method} for $\fsys$.
-  \end{note}
+  %\end{note}
   Notice that we always have $\ref{r1d} \Rightarrow \ref{2pd} \Rightarrow \ref{1pd}$.
   But is it true that $\ref{1pd} \Rightarrow \ref{r1d}$ or that $\ref{2pd} \Rightarrow \ref{r1d}$?
   This paper is devoted to the study of the second question.
 
-  Actually, the first question has some history.
+  Actually, the first question has been studied for some time already.
   Longstaff in~\cite{longstaff} studied the abstract subspace lattices and the corresponding operator algebras.
   Particularly, Longstaff proved that the rank one density property implies
     the complete distributivity of its lattice (see Raney~\cite{raney} for a definition).
@@ -78,8 +79,8 @@
   This example was also studied in the paper~\cite{argyroslambrou} (see Addendum) and by Azoff and Shehada in~\cite{azoff} regarding
     the reflexivity of the lattice $\cal{F}$.
   Finally Katavolos et al. in the paper~\cite{katavolos} performed a deep analysis of the density properties of this vector system and
-    deduced that for this system the property~\ref{1pd} holds while~\ref{r1d}.
-  We refer to this example as to Larson--Wogen vector system in this paper.
+    deduced that for this system the property~\ref{1pd} does not imply~\ref{r1d}, however the system also admitted the property~\ref{2pd}.
+  We refer to this particular example as to Larson--Wogen vector system in this paper.
 
   We are eager to understand whether the two point density always implies the rank one density property or is there a counterexample.
 
@@ -149,7 +150,7 @@
       A vector system which belongs to the B-class could be associated with an
         locally-finite weighted bipartite graph $B(\fsys) = (V, E, \wt)$, where $\wt$ is a
         real-valued function on $V\times V$ such that $\wt(v, u) = -\wt(u, v)$.
-      For each index $l > 0$ such that $f^*_l = e_l$ we put a vertex $v_l$ in the first part of the bipartite graph.
+      For each index $l > 0$ such that $f^*_l = e_l$ we put the vertex $v_l$ in the first part of the bipartite graph.
       We will call this part from now on the \emph{left} part of the graph $B(\fsys)$.
       For any other index $r > 0$ we construct a vertex in the other part of the graph.
       Evidently, for such indices $r > 0$ the condition $f_r = e_r$ holds due to the definition of the B-class vector systems.
@@ -292,7 +293,7 @@
       \end{align*}
       Also let $d_{\flow}(v)$ be equal to $d^{+}_{\flow}(v) - d^{-}_{\flow}(v)$.
       Sometimes we will refer to this value as a \emph{total flow} of the vertex $v$.
-      The vertex is called \emph{$\flow$-active} if $d(v)$ is less than zero,
+      The vertex $v$ is called \emph{$\flow$-active} if $d(v)$ is less than zero,
       \emph{$\flow$-deficient} if $d(v)$ is greater than zero and
       \emph{$\flow$-preserving} if $d(v)$ is precisely zero, meaning that the total incoming flow
       is equal to the total outgoing flow of the vertex $v$.
@@ -381,7 +382,7 @@
 
     Now we add the source vertex $\source$ and the sink vertex $\sink$ to the constructed graph.
     Suppose we have enumerated the vertices from the left part of the graph, for instance $\seq{l}$.
-    Then for each $k > 0$ we connect the vertex $\source$ and the $l_k$ vertex with
+    Then for each $k > 0$ we connect the vertex $\source$ and the vertex $l_k$ with
       the edge $e_k = (\source l_k)$, and set the flow function:
     \begin{align*}
       &\flow(l_k, \source) = T_{l_k l_k},\\
@@ -392,7 +393,7 @@
 
     In the similar manner we will transform the right part of the graph.
     Assuming we have the vertices from the right part of the graph $B(\fsys)$ in the form of the sequence $\seq{r}$,
-      for each $k > 0$ we connect the $r_k$ vertex to the $\sink$ vertex with the edge $e'_k=(r_k \sink)$
+      for each $k > 0$ we connect the vertex $r_k$ to the vertex $\sink$ with the edge $e'_k=(r_k \sink)$
       and set the flow $\flow$ equal to:
     \begin{align*}
       &\flow(r_k, \sink) = T_{r_k r_k},\\
@@ -712,7 +713,7 @@
       \begin{definition}
         Let $G = (V, \vec{E},\wtp, \root)$ be a weighted directed graph with a positive
           length function $\wtp$ defined on $\vec{E}$ and a root vertex $\root \in V$.
-        Then $\gpaths(u, v)$ denotes a set of paths from vertex $u$ to vertex $v$ in the graph $G$.
+        Then $\gpaths(u, v)$ denotes a set of paths from the vertex $u$ to the vertex $v$ in the graph $G$.
         Sometimes we will omit the first argument and then we refer to the paths from the root vertex
           $\gpaths(v) = \gpaths(\root, v)$.
         Also we expand this notion onto the vertices sets: $\gpaths(U,V)$ is a set of paths
@@ -1070,7 +1071,7 @@
 
         We start from $k = 0$.
         Trivially, we start with the root vertex: $r_0 = \root$.
-        Each $U_n$ is non-empty and if a vertex $u$ belongs to $U_n$ then there always exists
+        Each $U_n$ is non-empty and if the vertex $u$ belongs to $U_n$ then there always exists
           a path $p_n \in \cal{P}^*$, which belongs to $\cal{P}(u)$.
         So we have an infinite set of paths $\bigcup p_n$ starting from the root vertex $\root$.
 
@@ -1125,15 +1126,9 @@
       %  \end{enumerate}
       \end{theorem}
       We would like to present another proof of Theorem~\ref{thm-katavolos-2}, using the ideas we exposed earlier.
-      \begin{prop}
-        The vector system $\fsys_{LW}$ admits a linear summation method when and only when
-          the sequence $\left\{1/a_n\right\}_{n=1}^\infty$ does not belong to $\ell^1$.
-      \end{prop}
       \begin{proof}
-        Here we will discuss the Larson--Wogen system only: $\fsys = \fsys_{LW}$.
-
-        Notice that $\fsys$ belongs to the B-class.
-        Thus $\fsys$ is applicable to Theorem~\ref{thm-graph-eq}, which asserts
+        Notice that $\fsys=\fsys_{LW}$ belongs to B-class.
+        Thus Theorem~\ref{thm-graph-eq} applies to the system $\fsys$, which asserts
           that $\fsys$ admits a linear summation method if and only if
           the network $\net(\fsys)$ is $\flow$-preserving for any
           finite-mass flow $\flow$.
@@ -1144,21 +1139,20 @@
         After that we utilize Theorem~\ref{ray-thm}, which states that there exists such
           flow $\flowpos: \vec{E} \to \mathbb{R}^{+}$ with a finite mass which is not preserved in
           the network $\onet(\fsys)$
-          if and only if there exists a ray $r \subseteq \onet $ originating in the $\source$ vertex,
-          whose total length is bounded: $ \sum_{k=1}^\infty \wtp(v_k v_{k+1}) < \infty$.
+          if and only if there exists a ray $r \subseteq \onet $ originating in the vertex $\source$,
+          whose total length is bounded: $ \sum_{k=1}^\infty \wtp(r_k r_{k+1}) < \infty$.
           Hence, the system does not admit a linear summation method when and only when there is such ray $r$
             with the properties specified up above.
 
           How does look the ray of a finite length in the network like $\onet(\fsys)$?
-          It is obvious that it cannot include infinite number of the edges incident to the
-            $\source$ and $\sink$ vertices, since such edges have the length exactly one.
+          It is obvious that it cannot include infinite number of the edges incident to the vertices
+            $\source$ and $\sink$, since such edges have the length exactly one.
           Now look at the outline of the network $\onet(\fsys)$ (Figure~\ref{LW-net}).
           It clearly demonstrates that the existence of the finite-length ray in the network $\onet(\fsys)$ implies that
             the ray $r=(r_1 r_2 r_3\dots)$ has a finite length as well.
           However this ray has the length equal to $\sum \wtp(r_k r_{k+1}) = \sum 1/\lvert a_k \rvert$,
           which completes the proof.
       \end{proof}
-      \pagebreak
       \begin{figure}
         \begin{center}
         \begin{tikzpicture}[thick,
@@ -1197,7 +1191,7 @@
           \draw (r6) -- (l7);
           \draw (l7) -- (r8);
         \end{tikzpicture}
-        \caption{The network $\net$ built based on the LW-system $\fsys_{LW}$} \label{LW-net}
+        \caption{The network $\net$ built for the LW-system $\fsys_{LW}$} \label{LW-net}
         \end{center}
       \end{figure}
 
@@ -1208,24 +1202,24 @@
       First of all we are going to make a few comments on Theorem~\ref{thm-katavolos-1}.
       \begin{remark}
         Theorem~\ref{thm-katavolos-1} states that $\fsys_{LW}$ does not possess a linear summation method,
-          when and only when it is not two point dense.
+          if and only if it is not two point dense.
         The definition~\ref{2pd} implies that the system $\fsys$ is not two point dense
           if and only if there exists an operator $T$ of rank $2$
           which has a nonzero trace and annihilates all the rank one operators $f_k \otimes f^*_k$.
           (see the proof of Theorem 2.2 in the paper~\cite{katavolos}).
-        Moreover, we know the condition for the linear summation method existence, namely that
-          there is no linear summation method for the LW system $\fsys_{LW}$ if and only if $\left\{1/a_k\right\}$
-          is a summable sequence.
+        Moreover, by Theorem~\ref{thm-katavolos-1}
+          there is no linear summation method for the LW system $\fsys_{LW}$ if and only if $\left\{1/a_k\right\} \in \ell^1$.
         We can conclude from these facts that the following lemma holds.
         \begin{lemma}
-          \label{as-lemma}
-          Whenever the sequence $\left\{\wtp_k = 1/a_k\right\}$ is summable,
+          \label{lw-lemma}
+          Whenever the sequence $\left\{\wtp_s = 1/a_s\right\}$ is summable,
             it is possible to define a two-dimensional operator $T$ in such a form:
           \begin{align*}
             &T_{11} = 1,\\
-            &T_{k\, k+1} = \wtp_k,
+            &T_{kk} = 0, \quad k > 1,\\
+            &T_{2k-1, 2k} = \wtp_{2k-1},\\
+            &T_{2k+1, 2k} = \wtp_{2k}.
           \end{align*}
-          while the other entries $T_{ij}$ are equal to zero.
         \end{lemma}
       \end{remark}
       Now we are ready to prove the final result.
@@ -1235,10 +1229,10 @@
         Then $\fsys$ is two point dense when and only when $\fsys$ admits a linear summation method.
       \end{theorem}
       \begin{proof}
-        The necessity is trivial for the two point density property is weaker than the existence of the linear summation method for $\fsys$.
+        The necessity is trivial considering that the two point density property is weaker than the existence of the linear summation method for $\fsys$.
 
         Now let us prove the sufficiency.
-        Pretend $\fsys$ does not admit a linear summation method.
+        Presume that $\fsys$ does not admit a linear summation method.
         Let $\onet(\fsys) = (G, \wtp, \source, \sink)$ be an orientation of the network $\net(\fsys)$.
         Applying Theorem~\ref{thm-graph-eq} and then Theorem~\ref{ray-thm} to the network $\onet(\fsys)$
           we recognize that there is a finite-length ray $r \subseteq \onet$ taking its origin
@@ -1248,28 +1242,31 @@
         Consider such a flow $\flowpos$ such that $\flowpos(r_k r_{k+1}) = 1$ and $\flowpos(e) = 0$ for any $e \not \in r$.
         Then the network $\onet(\fsys)$ is not $\flowpos$-preserving (see Theorem~\ref{ray-thm}).
 
-        Next our plan is to reconstruct the operator $T$ from the flow $\flowpos$.
+        Recall that there is a mapping between operators and network flows provided by Theorem~\ref{thm-graph-eq}.
+        Now we look upon one such operator $T$ which corresponds to the flow $\flowpos$.
 
-        Consider the basis vectors $e_{s_k}$ which correspond to the vertices $r_k$.
-        Split the Hilbert space $\cal{H}$ in two smaller subspaces $\cal{H} = \cal{H}_1 \oplus \cal{H}_2$,
+        Next let the basis vectors $e_{s_k}$ be correspondent to the graph vertices $r_k$.
+        Now we split the Hilbert space $\cal{H}$ in two subspaces $\cal{H} = \cal{H}_1 \oplus \cal{H}_2$,
           such that $\cal{H}_1 = \bigoplus\limits_k e_{s_k}$.
 
-        Consequently we put the operator $T$ to zero on the $\cal{H}_2$: $T\vert_{\cal{H}_2} = 0$.
-        We now reuse the $e_k$ notation for the basis vectors $e_{s_k}$ (since we work now in the subspace $\cal{H}_1$,
+        Hereafter we study the operator $T' = T_{\cal{H}_1}$.
+        Below we reuse the $e_k$ notation for the basis vectors $e_{s_k}$ (since we are restricted to the subspace $\cal{H}_1$,
           such substitute is feasible).
 
-        We are meaning to look for a two-dimensional operator $T'$ as follows.
+        In the light of the basis substitution the following equations must hold for the operator $T'$.
         \begin{align*}
           &T'_{11} = 1,\\
-          &T'_{k k+1} = \wtp(r_k r_{k+1}) \flowpos(r_k r_{k+1}) = \wtp(r_k r_{k+1}),
+          &T'_{kk} = 0,\\
+          &T'_{2k-1, 2k} = \wtp(r_{2k-1} r_{2k}) \flowpos(r_{2k-1} r_{2k}) = \wtp(r_{2k-1} r_{2k}),\\
+          &T'_{2k+1, 2k} = \wtp(r_{2k+1} r_{2k}) \flowpos(r_{2k+1} r_{2k}) = \wtp(r_{2k+1} r_{2k}).
         \end{align*}
-          while the other elements of $T'$ are zero.
+        Notice that, since the ray $r$ has a finite length, $\wtp(r_k r_{k+1})$ is a summable sequence.
 
-        Since the ray $r$ has a finite length, $\wtp(r_k r_{k+1})$ is a summable sequence.
-        Due to Lemma~\ref{as-lemma} there exists a two-dimensional operator $T'$, which satisfies the equalities above.
-        And so we set up the trace class operator $T$, which corresponds to the flow $\flowpos$ and thus annihilates all the rank one
-          subalgebra of $\cal{A}$.
-        Therefore the system is not two point dense.
+        Now due to Lemma~\ref{lw-lemma} there exists a two-dimensional operator $T'$ acting on $\cal{H}_1$, which satisfies the equalities above.
+        Consequently there is a two-dimensional operator $T:\cal{H}\to\cal{H}$, which equals to $T'$ on $\cal{H}_1$ and equals to zero
+          on $\cal{H}_2$.
+        The constructed operator $T$ obviously corresponds to the flow $\flowpos$ and therefore annihilates all the rank one subalgebra of $\cal{A}$.
+        It follows that the system $\fsys$ is not two point dense.
     \end{proof}
     \begin{remark}
       Concerning the linear summation method property, the last theorem reveals that the B-class vector systems
