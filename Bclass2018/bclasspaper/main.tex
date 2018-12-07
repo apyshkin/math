@@ -52,12 +52,12 @@
   \begin{definition}[two point density property]
     \label{2pd}
     We say that $\fsys$ is \emph{two point dense} if for any $x, y \in \cal{H}$ and $\varepsilon > 0$
-      there exists such $T\in \cal{A}$ that $||T(x) - x|| < \varepsilon$ and $||T(y) - y|| < \varepsilon$.
+      there exists such $T\in \cal{A}$ that $||Tx - x|| < \varepsilon$ and $||Ty - y|| < \varepsilon$.
   \end{definition}
   \begin{definition}[rank one density property]
     \label{r1d}
     We say that the algebra $\cal{A}$ possesses \emph{rank one density property} if
-      the rank one subalgebra $R_1(\cal{A}) \subset \cal{A}$ is dense in $\cal{A}$ in the strong operator topology.
+      the unit ball of the rank one subalgebra $R_1(\cal{A}) \subset \cal{A}$ is dense in the unit ball of $\cal{A}$ in the strong operator topology.
   \end{definition}
   %\begin{note}
     The last definition is equivalent to the existence of the \emph{linear summation method} for $\fsys$, meaning that
@@ -147,12 +147,14 @@
       Otherwise if $n = m$ we get $\inner{f_n}{f^*_m} = 1$ due to the conditions~\ref{c2} and~\ref{c3}.
     \end{proof}
     The B-class of vector systems is the main subject of this section.
-    It is a natural extension of the Larson--Wogen system (see Ex.~\ref{lw-sys}).
-    B-class has an interesting property we are going to exploit later.
+    It is a natural extension of the Larson--Wogen system (see Example~\ref{lw-sys}).
+
+    Furthermore, it appears that the B-class vector system could be restored using an infinite bipartite graph.
     \begin{remark}
-      A vector system which belongs to the B-class could be associated with an
+      A vector system which belongs to the B-class could be associated with a
         locally-finite weighted bipartite graph $B(\fsys) = (V, E, \wt)$, where $\wt$ is a
         real-valued function on $V\times V$ such that $\wt(v, u) = -\wt(u, v)$.
+
       For each index $l > 0$ such that $f^*_l = e_l$ we put the vertex $v_l$ in the first part of the bipartite graph.
       We will call this part from now on the \emph{left} part of the graph $B(\fsys)$.
       For any other index $r > 0$ we construct a vertex in the other part of the graph.
@@ -161,7 +163,7 @@
       We put an edge between two vertices $v_l$ and $v_r$ from the left and right parts respectively,
         whenever the scalar product $\inner{f_l}{e_r}$ is not zero.
       For such two vertices we have $\inner{f_l}{e_r}$ = $-\inner{f_r}{e_l}$.
-      Denote by $\wt_{lr}$ the expression $\wt_{lr} = \inner{f_l}{e_r}^{-1}$.
+      We set the weight on the edge $(lr)$ as follows: $\wt_{lr} = \inner{f_l}{e_r}^{-1}$.
       Obviously $\wt_{lr} = -\wt_{rl}$.
       Since the Hilbert space is infinite-dimensional the graph is infinite as well.
       However due to the finite-band condition~\ref{c5} the vertices of the graph are of a finite degree, hence the locally-finiteness of
@@ -209,7 +211,7 @@
       \end{center}
     \end{figure}
 
-    You can see the bipartite graph built from the Larson--Wogen system on the Figure~\ref{lw-bgraph}.
+    You can see the bipartite graph built from the Larson--Wogen system in the Figure~\ref{lw-bgraph}.
 
     \subsection{Linear summation method for B-class}
     Suppose we have a B-class vector system $\fsys=\seq{f}$.
@@ -220,8 +222,8 @@
 
     Recall that there exists a linear summation method for the system $\seq{f}$
       if and only if there is no trace class operator $T: \cal{H} \to \cal{H}$ with the trace equal to $1$,
-      such that $\inner{Tf_n}{f_n^*} = 0$ for any $n$.
-    Suppose that there is an operator $T$ such that $\inner{Tf_n}{f_n^*} = 0$ for any $n$.
+      such that $\inner{Tf_n}{f_n^*} = 0$ for any $n$ (see Theorem 2.2 of~\cite{katavolos} for details).
+    Suppose that there is an operator $T$ such that $\inner{Tf_n}{f_n^*} = 0$ for any $n$e
     There are two cases: either $f^*_n = e_n$ or $f_n = e_n$.
     In the first case the condition $\inner{Tf_n}{f_n^*} = 0$ turns into
     \begin{equation}
@@ -241,7 +243,7 @@
     Observe that $\flowsgn$ is a skew-symmetric function.
     Moreover, two equalities~\eqref{left-eqn} and~\eqref{right-eqn} correspond to the \emph{left} and \emph{right}
       parts of the bipartite graph $B(\fsys)$ respectively.
-    It follows that the condition $\inner{Tf_n}{f_n^*} = 0$ could be reduced to the simpler one:
+    It follows that the condition $\inner{Tf_n}{f_n^*} = 0$ could be reduced to a simpler one:
     \begin{equation}
       \label{almost-flow-eqn}
       \sum_{u \in V} \flowsgn(v, u) + T_{vv} = 0
@@ -249,7 +251,7 @@
       for each vertex $v$ in the graph $B(\fsys)$.
     \begin{remark}
       Notice how the function $\flowsgn$ defined on the graph $B(\fsys)$ resembles
-        a \emph{flow} defined on the edges of the $B(\fsys)$ graph.
+        a \emph{flow} defined on the edges of the graph $B(\fsys)$.
       One might also see that the equation~\eqref{almost-flow-eqn} describes the total flow (sum of the outgoing flow and incoming flow) 
         for each vertex $v$ in the graph $B(\fsys)$.
       In order to formalize this observation we are going to build a flow function
@@ -257,10 +259,11 @@
     \end{remark}
     Before we proceed we are going to introduce a few basic definitions.
     \begin{definition}
-        \emph{Network} $\net$ is a quadruple $(G, \wtp, \source, \sink)$, where $G = (V, E)$ is weighted graph
+        \emph{Network} $\net$ is a quadruple $(G, \wtp, \source, \sink)$, where $G = (V, E)$ is a weighted graph
         with a positive length function $\wtp$ on $E$ and two vertices $\source, \sink \in V$, which
         we will call \emph{source} and \emph{sink} of the network respectively.
     \end{definition}
+    By graph here we always mean a graph without loops and multiple edges.
     \begin{definition}
         The skew-symmetric function $\flow: V \times V \to \mathbb{R}$ is called a \emph{pseudo-flow}.
     \end{definition}
@@ -416,8 +419,7 @@
       %Formally there is a isomorphism between these two types of objects.
     %\end{remark}
     \begin{remark}
-      Pay your attention to the fact that the network $\net(\fsys)$
-        depends only on the biorthogonal system $\fsys$ and not on the operator $T$.
+      Note that the network $\net(\fsys)$ depends only on the biorthogonal system $\fsys$ and not on the operator $T$.
       Only the flow function $flow$ depends on the operator $T$.
     \end{remark}
     What can one say about the total flow in each of the vertex of the constructed network $\net(\fsys)$?
@@ -512,7 +514,7 @@
       did in the previous one.
     Consequently the graphs, edges and networks are presumed to be oriented unless said otherwise.
 
-    Remember some other notions from the graph theory:
+    Next we recollect some other notions from the graph theory:
     \begin{definition}
       Let $G = (V, \vec{E})$ be an oriented graph.
       A sequence of vertices $\{v_k\}_{k=1}^N$ is called a \emph{path} if each pair of consecutive vertices
@@ -1105,12 +1107,12 @@
 
   \section{Application of the B-networks criterion}
     \subsection{Application of the B-networks criterion to the Larson--Wogen example.}
-      The Larson--Wogen system is outlined in the Example~\ref{lw-sys}.
+      The Larson--Wogen system is given in the Example~\ref{lw-sys}.
       The sequences $\{f_j\}$, $\{f^*_j\}$ are biorthogonal and both are complete in $\cal{H}$ (thus $\fsys$ is a $M$-basis).
-      Also due to Katavolos et al.~\cite{katavolos} the next two theorems are accurate.
+      Also due to Katavolos, Lambrou and Papadakis~\cite{katavolos} the next two theorems hold.
       \begin{theorem}
         \label{thm-katavolos-1}
-          $\fsys_{LW}$ admits a linear summation method if and only if the system is two point dense.
+          The system $\fsys_{LW}$ admits a linear summation method if and only if the system is two point dense.
       \end{theorem}
       \begin{note}
         We are going to use this result in order to finish the classification of the B-class vector systems later.
@@ -1124,7 +1126,7 @@
             %  \mu_n = \frac{a_{n-1} a_{n-3} \dots}{a_{n} a_{n-2} \dots }
             %\end{equation*}
               %does not belong to $\ell^2$,
-          $\fsys_{LW}$ admits a linear summation method when and only when
+          The system $\fsys_{LW}$ admits a linear summation method if and only if
             the sequence $\left\{1/a_n\right\}_{n=1}^\infty$ does not belong to $\ell^1$.
       %  \end{enumerate}
       \end{theorem}
@@ -1142,7 +1144,7 @@
         After that we utilize Theorem~\ref{ray-thm}, which states that there exists such
           flow $\flowpos: \vec{E} \to \mathbb{R}^{+}$ with a finite mass which is not preserved in
           the network $\onet(\fsys)$
-          if and only if there exists a ray $r \subseteq \onet $ originating in the vertex $\source$,
+          if and only if there exists a ray $r = \seq{r} \subseteq \onet $ originating in the vertex $\source$,
           whose total length is bounded: $ \sum_{k=1}^\infty \wtp(r_k r_{k+1}) < \infty$.
           Hence, the system does not admit a linear summation method when and only when there is such ray $r$
             with the properties specified up above.
@@ -1199,10 +1201,10 @@
       \end{figure}
 
     \section{Application of the B-networks criterion to the B-class vector systems}
-      In this section our aim is to apply the knowledge we gathered in the previous section to
+      In this section our aim is to apply all the results from the previous section to
       the net $\net(\fsys)$, we constructed in Section~\ref{fsys2graphs}.
 
-      First of all we are going to make a few comments on Theorem~\ref{thm-katavolos-1}.
+      First of all, we are going to make a few comments on Theorem~\ref{thm-katavolos-1}.
       \begin{remark}
         Theorem~\ref{thm-katavolos-1} states that $\fsys_{LW}$ does not possess a linear summation method,
           if and only if it is not two point dense.
