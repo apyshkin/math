@@ -1194,86 +1194,86 @@
         \end{center}
       \end{figure}
 
-    \section{Application of the B-networks criterion to the B-class vector systems}
-      In this section our aim is to apply all the results from the previous section to
-      the net $\net(\fsys)$, we constructed in Section~\ref{fsys2graphs}.
+    %\section{Application of the B-networks criterion to the B-class vector systems}
+      %In this section our aim is to apply all the results from the previous section to
+      %the net $\net(\fsys)$, we constructed in Section~\ref{fsys2graphs}.
 
-      First of all, we are going to make a few comments on Theorem~\ref{thm-katavolos-1}.
-      \begin{remark}
-        Theorem~\ref{thm-katavolos-1} states that $\fsys_{LW}$ does not possess a rank one density property,
-          if and only if it is not two point dense.
-        The definition~\ref{2pd} implies that the system $\fsys$ is not two point dense
-          if and only if there exists an operator $T$ of rank $2$
-          which has a nonzero trace and annihilates all the rank one operators $f^*_k \otimes f_k$.
-          (see the proof of Theorem 2.2 in the paper~\cite{katavolos}).
-        Moreover, by Theorem~\ref{thm-katavolos-1}
-          there is no rank one density for the LW system $\fsys_{LW}$ if and only if $\left\{1/a_k\right\} \in \ell^1$.
-        We can conclude from these facts that the following lemma holds.
-        \begin{lemma}
-          \label{lw-lemma}
-          Whenever the sequence $\left\{\len_s = 1/a_s\right\}$ is summable,
-            it is possible to define a two-dimensional operator $T$ in such a form:
-          \begin{align*}
-            &T_{11} = 1,\\
-            &T_{kk} = 0, \quad k > 1,\\
-            &T_{2k-1, 2k} = \len_{2k-1},\\
-            &T_{2k+1, 2k} = \len_{2k}.
-          \end{align*}
-        \end{lemma}
-      \end{remark}
-      Now we are ready to prove the final result.
-      \begin{theorem}
-        \label{density-thm}
-        Let $\fsys$ be a B-class vector system.
-        Then $\fsys$ is two point dense when and only when $\fsys$ admits a rank one density property.
-      \end{theorem}
-      \begin{proof}
-        The necessity is trivial considering that the two point density property is weaker than the rank one density property for $\fsys$.
+      %First of all, we are going to make a few comments on Theorem~\ref{thm-katavolos-1}.
+      %\begin{remark}
+        %Theorem~\ref{thm-katavolos-1} states that $\fsys_{LW}$ does not possess a rank one density property,
+          %if and only if it is not two point dense.
+        %The definition~\ref{2pd} implies that the system $\fsys$ is not two point dense
+          %if and only if there exists an operator $T$ of rank $2$
+          %which has a nonzero trace and annihilates all the rank one operators $f^*_k \otimes f_k$.
+          %(see the proof of Theorem 2.2 in the paper~\cite{katavolos}).
+        %Moreover, by Theorem~\ref{thm-katavolos-1}
+          %there is no rank one density for the LW system $\fsys_{LW}$ if and only if $\left\{1/a_k\right\} \in \ell^1$.
+        %We can conclude from these facts that the following lemma holds.
+        %\begin{lemma}
+          %\label{lw-lemma}
+          %Whenever the sequence $\left\{\len_s = 1/a_s\right\}$ is summable,
+            %it is possible to define a two-dimensional operator $T$ in such a form:
+          %\begin{align*}
+            %&T_{11} = 1,\\
+            %&T_{kk} = 0, \quad k > 1,\\
+            %&T_{2k-1, 2k} = \len_{2k-1},\\
+            %&T_{2k+1, 2k} = \len_{2k}.
+          %\end{align*}
+        %\end{lemma}
+      %\end{remark}
+      %Now we are ready to prove the final result.
+      %\begin{theorem}
+        %\label{density-thm}
+        %Let $\fsys$ be a B-class vector system.
+        %Then $\fsys$ is two point dense when and only when $\fsys$ admits a rank one density property.
+      %\end{theorem}
+      %\begin{proof}
+        %The necessity is trivial considering that the two point density property is weaker than the rank one density property for $\fsys$.
 
-        Now let us prove the sufficiency.
-        Presume that $\fsys$ is not rank one dense.
-        Let $\onet(\fsys) = (G, \len, \source, \sink)$ be an orientation of the network $\net(\fsys)$.
-        Applying Theorem~\ref{thm-graph-eq} and then Theorem~\ref{ray-thm} to the network $\onet(\fsys)$
-          we recognize that there is a finite-length ray $r \subseteq \onet$ taking its origin
-          in the source vertex $\source$.
-        Suppose $r = \seq{r}$ such that $r_0 = \source$.
+        %Now let us prove the sufficiency.
+        %Presume that $\fsys$ is not rank one dense.
+        %Let $\onet(\fsys) = (G, \len, \source, \sink)$ be an orientation of the network $\net(\fsys)$.
+        %Applying Theorem~\ref{thm-graph-eq} and then Theorem~\ref{ray-thm} to the network $\onet(\fsys)$
+          %we recognize that there is a finite-length ray $r \subseteq \onet$ taking its origin
+          %in the source vertex $\source$.
+        %Suppose $r = \seq{r}$ such that $r_0 = \source$.
 
-        Consider such a flow $\flowpos$ such that $\flowpos(r_k r_{k+1}) = 1$ and $\flowpos(e) = 0$ for any $e \not \in r$.
-        Then the network $\onet(\fsys)$ is not $\flowpos$-preserving (see Theorem~\ref{ray-thm}).
+        %Consider such a flow $\flowpos$ such that $\flowpos(r_k r_{k+1}) = 1$ and $\flowpos(e) = 0$ for any $e \not \in r$.
+        %Then the network $\onet(\fsys)$ is not $\flowpos$-preserving (see Theorem~\ref{ray-thm}).
 
-        Recall that there is a mapping between operators and network flows provided by Theorem~\ref{thm-graph-eq}.
-        Now we look upon one such operator $T$ which corresponds to the flow $\flowpos$.
+        %Recall that there is a mapping between operators and network flows provided by Theorem~\ref{thm-graph-eq}.
+        %Now we look upon one such operator $T$ which corresponds to the flow $\flowpos$.
 
-        Next let the basis vectors $e_{s_k}$ be correspondent to the graph vertices $r_k$.
-        Now we split the Hilbert space $\cal{H}$ in two subspaces $\cal{H} = \cal{H}_1 \oplus \cal{H}_2$,
-          such that $\cal{H}_1 = \bigoplus\limits_k e_{s_k}$.
+        %Next let the basis vectors $e_{s_k}$ be correspondent to the graph vertices $r_k$.
+        %Now we split the Hilbert space $\cal{H}$ in two subspaces $\cal{H} = \cal{H}_1 \oplus \cal{H}_2$,
+          %such that $\cal{H}_1 = \bigoplus\limits_k e_{s_k}$.
 
-        Hereafter we study the operator $T' = T_{\cal{H}_1}$.
-        Below we reuse the $e_k$ notation for the basis vectors $e_{s_k}$ (since we are restricted to the subspace $\cal{H}_1$,
-          such substitute is feasible).
+        %Hereafter we study the operator $T' = T_{\cal{H}_1}$.
+        %Below we reuse the $e_k$ notation for the basis vectors $e_{s_k}$ (since we are restricted to the subspace $\cal{H}_1$,
+          %such substitute is feasible).
 
-        In the light of the basis substitution the following equations must hold for the operator $T'$.
-        \begin{align*}
-          &T'_{11} = 1,\\
-          &T'_{kk} = 0,\\
-          &T'_{2k-1, 2k} = \len(r_{2k-1} r_{2k}) \flowpos(r_{2k-1} r_{2k}) = \len(r_{2k-1} r_{2k}),\\
-          &T'_{2k+1, 2k} = \len(r_{2k+1} r_{2k}) \flowpos(r_{2k+1} r_{2k}) = \len(r_{2k+1} r_{2k}).
-        \end{align*}
-        Notice that, since the ray $r$ has a finite length, $\len(r_k r_{k+1})$ is a summable sequence.
+        %In the light of the basis substitution the following equations must hold for the operator $T'$.
+        %\begin{align*}
+          %&T'_{11} = 1,\\
+          %&T'_{kk} = 0,\\
+          %&T'_{2k-1, 2k} = \len(r_{2k-1} r_{2k}) \flowpos(r_{2k-1} r_{2k}) = \len(r_{2k-1} r_{2k}),\\
+          %&T'_{2k+1, 2k} = \len(r_{2k+1} r_{2k}) \flowpos(r_{2k+1} r_{2k}) = \len(r_{2k+1} r_{2k}).
+        %\end{align*}
+        %Notice that, since the ray $r$ has a finite length, $\len(r_k r_{k+1})$ is a summable sequence.
 
-        Now due to Lemma~\ref{lw-lemma} there exists a two-dimensional operator $T'$ acting on $\cal{H}_1$, which satisfies the equalities above.
-        Consequently there is a two-dimensional operator $T:\cal{H}\to\cal{H}$, which equals to $T'$ on $\cal{H}_1$ and equals to zero
-          on $\cal{H}_2$.
-        The constructed operator $T$ obviously corresponds to the flow $\flowpos$ and therefore annihilates all the rank one subalgebra of $\cal{A}$.
-        It follows that the system $\fsys$ is not two point dense.
-    \end{proof}
-    \begin{remark}
-      Concerning the rank one density, the last theorem reveals that the B-class vector systems
-        admit the same criterion as the Larson--Wogen system.
-      Furthermore the Larson--Wogen system is to a certain extent a canonical element of this class,
-        since the corresponding bipartite graph $B(\cal{F}_{LW})$
-        is a ray itself (see Figure~\ref{lw-bgraph}).
-    \end{remark}
+        %Now due to Lemma~\ref{lw-lemma} there exists a two-dimensional operator $T'$ acting on $\cal{H}_1$, which satisfies the equalities above.
+        %Consequently there is a two-dimensional operator $T:\cal{H}\to\cal{H}$, which equals to $T'$ on $\cal{H}_1$ and equals to zero
+          %on $\cal{H}_2$.
+        %The constructed operator $T$ obviously corresponds to the flow $\flowpos$ and therefore annihilates all the rank one subalgebra of $\cal{A}$.
+        %It follows that the system $\fsys$ is not two point dense.
+    %\end{proof}
+    %\begin{remark}
+      %Concerning the rank one density, the last theorem reveals that the B-class vector systems
+        %admit the same criterion as the Larson--Wogen system.
+      %Furthermore the Larson--Wogen system is to a certain extent a canonical element of this class,
+        %since the corresponding bipartite graph $B(\cal{F}_{LW})$
+        %is a ray itself (see Figure~\ref{lw-bgraph}).
+    %\end{remark}
 \bigskip
 \include{bib}
 \vspace{1em}
