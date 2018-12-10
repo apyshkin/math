@@ -46,7 +46,7 @@
   \end{definition}
   %\begin{note}
     The definition is equivalent to $\fsys$ being a strong $M$-basis (see~\cite{katavolos}):
-    the system $\fsys$ is called a strong $M$-basis if for any $x\in\cal{H}$ we have $x \in \overline{span}(\inner{x}{f^*_k}f_k)$, where
+    the system $\fsys$ is called a strong $M$-basis if for any $x\in\cal{H}$ we have $x \in \overline{span}\big(\inner{x}{f^*_k}f_k\big)$, where
       $\overline{span}$ denotes a closed linear span.
   %\end{note}
   \begin{definition}[two point density property]
@@ -63,11 +63,11 @@
     The last definition is equivalent to the existence of the \emph{linear summation method} for $\fsys$, meaning that
       there exists such $\alpha_{kn}$ that $\lim_{k \to \infty} \alpha_{kn} = 0$, $\lim_{n \to \infty} \alpha_{kn} = 1$ and
       \[
-        \lim_{n \to \infty} \sum_k \alpha_{kn} \inner{x, f^*_k} = x,
+        \lim_{n \to \infty} \sum_k \alpha_{kn} \inner{x}{f^*_k} = x,
       \]
       for any $x \in \cal{H}$.
   %\end{note}
-  TODO WHY CONDITIONS ON ALPHA
+  \alex{TODO WHY CONDITIONS ON ALPHA}
 
   Notice that we always have $\ref{r1d} \Rightarrow \ref{2pd} \Rightarrow \ref{1pd}$.
   But is it true that $\ref{1pd} \Rightarrow \ref{r1d}$ or that $\ref{2pd} \Rightarrow \ref{r1d}$?
@@ -109,7 +109,7 @@
     \end{align*}
   \end{example}
 
-\section{B-class of vector systems: linear summation problem}
+\section{B-class vector systems: rank one density problem}
     \label{fsys2graphs}
     We are interested in the density properties~\ref{2pd} and~\ref{r1d} of the vector system $\fsys = \seq{f}$
       in a separable Hilbert space $\cal{H}$.
@@ -173,8 +173,8 @@
       Note that there might be several vector systems for a single weighted bipartite graph $B$.
     \end{remark}
     \begin{remark}
-      Observe that due to the condition~\ref{c1} both parts of the bipartite graph must
-        contain an infinite number of vertices.
+      Observe that both parts of the constructed bipartite graph contain an infinite number of vertices, because
+        the system $\fsys$ is a $M$-basis.
     \end{remark}
     \begin{figure}
       \begin{center}
@@ -215,7 +215,8 @@
 
     \subsection{Linear summation method for B-class}
     Suppose we have a B-class vector system $\fsys=\seq{f}$.
-    Our purpose is to analyze the two point density property of $\fsys$.
+    %Our purpose is to analyze the two point density property of $\fsys$.
+    Our purpose is to analyze the rank one density property of $\fsys$.
     Before we pursue that, we need to investigate the conditions under which the B-class system admits a linear summation method.
     First of all we intend to demonstrate a reformulation of the linear summation method existence problem for
       the B-class vector systems in terms of infinite networks.
@@ -223,7 +224,7 @@
     Recall that there exists a linear summation method for the system $\seq{f}$
       if and only if there is no trace class operator $T: \cal{H} \to \cal{H}$ with the trace equal to $1$,
       such that $\inner{Tf_n}{f_n^*} = 0$ for any $n$ (see Theorem 2.2 of~\cite{katavolos} for details).
-    Suppose that there is an operator $T$ such that $\inner{Tf_n}{f_n^*} = 0$ for any $n$e
+    Suppose that there is an operator $T$ such that $\inner{Tf_n}{f_n^*} = 0$ for any $n$.
     There are two cases: either $f^*_n = e_n$ or $f_n = e_n$.
     In the first case the condition $\inner{Tf_n}{f_n^*} = 0$ turns into
     \begin{equation}
@@ -235,6 +236,7 @@
         \label{right-eqn}
         \sum_j T_{jn} \inner{f^*_n}{e_j} = 0.
     \end{equation}
+
     Now consider an auxiliary function $\flowsgn: V \otimes V \to \mathbb{R}$ defined as follows
     \begin{align*}
         &\flowsgn(v_l, v_r) = T_{lr} \inner{f_l}{e_r} = T_{lr} \wt_{lr}^{-1},\\
@@ -250,13 +252,16 @@
     \end{equation}
       for each vertex $v$ in the graph $B(\fsys)$.
     \begin{remark}
-      Notice how the function $\flowsgn$ defined on the graph $B(\fsys)$ resembles
+      Observe that the function $\flowsgn$ defined on the graph $B(\fsys)$ resembles
         a \emph{flow} defined on the edges of the graph $B(\fsys)$.
-      One might also see that the equation~\eqref{almost-flow-eqn} describes the total flow (sum of the outgoing flow and incoming flow) 
+      One might also see that the equation~\eqref{almost-flow-eqn} describes the total flow (sum of the outgoing flows and incoming flows) 
         for each vertex $v$ in the graph $B(\fsys)$.
-      In order to formalize this observation we are going to build a flow function
+      In order to formalize this observation we are going to build a flow
         after a few changes are made to the graph $B(\fsys)$.
     \end{remark}
+
+    \subsection{Flows and networks preliminaries}
+
     Before we proceed we are going to introduce a few basic definitions.
     \begin{definition}
         \emph{Network} $\net$ is a quadruple $(G, \wtp, \source, \sink)$, where $G = (V, E)$ is a weighted graph
@@ -290,7 +295,7 @@
       \end{align*}
     \end{definition}
     \begin{definition}
-      Let $\net = (G, \wtp, \source, \sink)$ be a network, and $\flow$ be a pseudo-flow function.
+      Let $\net = (G, \wtp, \source, \sink)$ be a network, and $\flow$ be a pseudo-flow.
       Also denote by $d_{+}(v)$ the sum of the flows \emph{leaving} the vertex $v$ and by
       $d^{-}(v)$ the sum of the flows \emph{entering} $v$:
       \begin{align*}
@@ -305,7 +310,7 @@
       is equal to the total outgoing flow of the vertex $v$.
     \end{definition}
     \begin{definition}
-      Given a network $\net = (V, E, \wtp, \source, \sink)$ and a pseudo-flow function $\flow$ we will name $\flow$ a
+      Given a network $\net = (V, E, \wtp, \source, \sink)$ and a pseudo-flow $\flow$ we will name $\flow$ a
         \emph{flow} function if for any vertex $v \in V \setminus \{\source, \sink\}$ the total flow is zero: $d(v) = 0$.
     \end{definition}
     \begin{definition}
@@ -325,18 +330,18 @@
     \end{definition}
     \begin{note}
       The flow functions could be defined on the oriented networks in the similar manner
-      we defined on the non-oriented networks.
+        we defined on the non-oriented networks.
     \end{note}
     Suppose $\net = (V, E, \wtp, \source, \sink)$ is a network and $\flow$ is a skew-symmetric function defined
     on $\net$.
     Naturally, we might instead consider an oriented network $\onet = (V, \vec{E}, \wtp, \source, \sink)$ and a
-      positive flow function $\flowpos: \vec{E} \to \mathbb{R}^{+}$, where
+      positive flow $\flowpos: \vec{E} \to \mathbb{R}^{+}$, where
       the set of vertices $V$, $\source$ and $\sink$ vertices are the same.
     The length function $\wtp$ is preserved for the oriented edges on the graph $\vec{G}$ in a trivial way.
     We establish a direction of the edge $(uv)$ as follows:
       $(uv) \in \vec{E}$ if $\flow(u, v) \geq 0$, and $(vu) \in \vec{E}$ otherwise
     This way only one of the edges $(uv)$ and $(vu)$ is present in the graph $\vec{G} = (V, \vec{E})$.
-    Also we set the positive flow function $\flowpos: E \to \mathbb{R}^{+}$ so that
+    Also we set the positive flow $\flowpos: E \to \mathbb{R}^{+}$ so that
       for any edge $\vec{e} = (uv) \in \vec{E}$
     \begin{align*}
       &\flowpos(u v) = \lvert\flow(u,v)\rvert,
@@ -350,14 +355,14 @@
     Sometimes we will omit the flow from the notation.
     \begin{definition}
       The oriented network $\onet$ is called an \emph{orientation} of the network $\net$.
-      For the positive flow function $\flowpos$ we will exploit the same term:
+      For the positive flow $\flowpos$ we will exploit the same term:
         $\flowpos$ is an \emph{orientation} of the flow $\flow$.
     \end{definition}
     \begin{remark}
       As shown, the flow functions on the networks and the positive flow functions on the oriented networks
         are interchangeable and describe the same object.
       The notion of the direction of the positive flow over the particular edge $(uv)$ of the oriented network
-        is incorporated into the sign of the flow function on the same edge $(uv)$ of the non-oriented network.
+        is incorporated into the sign of the flow on the same edge $(uv)$ of the non-oriented network.
     \end{remark}
     \begin{definition}
       Consider a network $\net = (G, \wtp, \source, \sink)$ such that
@@ -369,7 +374,7 @@
     Now we are ready to continue with the linear summation method problem.
     Our aim is to build up a B-network from the graph $B(\fsys)$.
     We plan to construct the network $\net(\fsys) = (V, E, \wtp, \source, \sink)$,
-      length function $\wtp: E \to \mathbb{R}^{+}$ and a real skew-symmetric flow function $\flow: V \times V \to \mathbb{R}$.
+      length function $\wtp: E \to \mathbb{R}^{+}$ and a real skew-symmetric flow $\flow: V \times V \to \mathbb{R}$.
     Firstly we incorporate all the vertices of the graph $B(\fsys)$ into the network $\net(\fsys)$.
     The vertex set of $\net(\fsys)$ will be a superset of the vertex set of $B(\fsys)$,
       so we will continue referring to the vertices as the vertices from
@@ -382,14 +387,14 @@
       &\wtp(e) = \lvert \wt(v_l, v_r) \rvert =  \lvert\inner{f_l}{e_r}\rvert^{-1}.
     \end{align*}
     \begin{note}
-      Evidently on this kind of edges the flow function $\flow$ agrees with the function $\flowsgn$
+      Evidently on this kind of edges the flow $\flow$ agrees with the function $\flowsgn$
         we examined a few paragraphs before.
     \end{note}
 
     Now we add the source vertex $\source$ and the sink vertex $\sink$ to the constructed graph.
     Suppose we have enumerated the vertices from the left part of the graph, for instance $\seq{l}$.
     Then for each $k > 0$ we connect the vertex $\source$ and the vertex $l_k$ with
-      the edge $e_k = (\source l_k)$, and set the flow function:
+      the edge $e_k = (\source l_k)$, and set the flow:
     \begin{align*}
       &\flow(l_k, \source) = T_{l_k l_k},\\
       &\flow(\source, l_k) = -T_{l_k l_k}.
@@ -412,15 +417,15 @@
       $\flow$ due to the equation~\eqref{almost-flow-eqn}.
     %\begin{remark}
       %Sometimes it might be useful to consider slightly different definition of the network.
-      %Instead of studying an oriented graph with a positive flow function on it we might consider
-      %an undirected graph with a skew-symmetric flow function on the edges.
+      %Instead of studying an oriented graph with a positive flow on it we might consider
+      %an undirected graph with a skew-symmetric flow on the edges.
       %Intuitively, the direction of the flow could be expressed either via the direction of the edge
-      %or with the sign of the flow function, and these two definitions describe the same objects.
+      %or with the sign of the flow , and these two definitions describe the same objects.
       %Formally there is a isomorphism between these two types of objects.
     %\end{remark}
     \begin{remark}
       Note that the network $\net(\fsys)$ depends only on the biorthogonal system $\fsys$ and not on the operator $T$.
-      Only the flow function $flow$ depends on the operator $T$.
+      Only the flow $flow$ depends on the operator $T$.
     \end{remark}
     What can one say about the total flow in each of the vertex of the constructed network $\net(\fsys)$?
     Due to the trick we performed the total flow became zero in each of the vertices from the \emph{left} and the \emph{right} parts.
@@ -429,7 +434,7 @@
     Now one can see that the network $\net(\fsys)$ is $\flow$-preserving if and only if the trace of the operator $T$ is equal to
       zero.
     \begin{definition}
-      Consider a network $\net = (V, E, \wtp, \source, \sink)$ and a flow function $\flow$ on it.
+      Consider a network $\net = (V, E, \wtp, \source, \sink)$ and a flow $\flow$ on it.
       We introduce a nonnegative function $\lvert\flow\rvert$ which we call the \emph{mass} of the flow $\flow$.
       \[
         \lvert\flow\rvert = \sum_{e \in E} \lvert\flow(e) \wtp(e)\rvert.
@@ -442,7 +447,7 @@
       \[
         \lvert\flowpos\rvert = \sum_{e \in \vec{E}} \lvert\flowpos(e) \wtp(e)\rvert.
       \]
-      Though in the oriented case the flow function is always positive,
+      Though in the oriented case the flow is always positive,
         so we are allowed to omit the modulus signs:
       \[
         \lvert\flowpos\rvert = \sum_{e \in \vec{E}} \flowpos(e) \wtp(e).
@@ -461,7 +466,7 @@
       Suppose there is no summation method for the system $\seq{f}$.
       As we said before, it implies that there exists a trace class operator $T : \cal{H} \to \cal{H}$ with
       the trace equal to one, such that $\inner{Tf_n}{f_n^*} = 0$ for any $n$.
-      Using the operator $T$, we were able to define a flow function $\flow(T)$ on the network
+      Using the operator $T$, we were able to define a flow $\flow(T)$ on the network
       $\net(\fsys)$.
       Notice that the constructed flow has a finite mass because the operator matrix of $T$ is finite-band and $T$ has a finite trace.
       Finally, one can acknowledge the fact that this network does not preserve the flow, since
@@ -531,7 +536,7 @@
     \begin{theorem}
       \label{ray-thm}
       Let $\onet = (G, \wtp, \source, \sink)$ be an oriented B-network.
-      Then there exists such a positive flow function $\flowpos: E \to \mathbb{R}^{+}$ that
+      Then there exists such a positive flow $\flowpos: E \to \mathbb{R}^{+}$ that
       \begin{enumerate}[label=(\alph*)]
         \item the flow $\flowpos$ has a finite mass,
         \item the network $\onet$ does not preserve the flow,
@@ -558,10 +563,10 @@
         new source vertex $\source'$.
       This way we obtain a network $\onet'$ with a single source such that $d(\source') = 1$.
       Formally we set the sink vertex in the modified network to be the same as the source vertex: $\sink'=\source'$.
-      The flow function $\flowpos$ as well as the length function $\wtp$ stay exactly the same (being defined on the edges set $E$).
+      The flow $\flowpos$ as well as the length function $\wtp$ stay exactly the same (being defined on the edges set $E$).
       All the vertices in the graph continue preserving the flow after this procedure, except for the source vertex $\source'$
         which is now \emph{$\flowpos$-active} since its total flow $d(\source')$ equal to one.
-      Thus $\onet'$ is a network with a function $\flowpos$ being a flow function as required.
+      Thus $\onet'$ is a network with a function $\flowpos$ being a flow as required.
       Obviously the mass of the flow does not change since we did not change the edges weights.
       Furthermore the network $\onet'$ does not preserve the flow $\flowpos$ by definition.
 
@@ -585,7 +590,7 @@
       \end{theorem*}
       \subsubsection*{Necessity.}
       Suppose that there is a ray of a finite total length $r=(r_1 r_2 \dots)$.
-      In that case we set the resulting flow function $\flowpos(r_k r_{k+1})$ to one, creating an elusive flow
+      In that case we set the resulting flow $\flowpos(r_k r_{k+1})$ to one, creating an elusive flow
         from $\source$ to infinity. All the other edges will not carry any flow, hence the flow is preserved
         at each vertex but not preserved by the network $\onet$.
       \subsubsection*{Sufficiency.}
@@ -598,7 +603,7 @@
       %You can see an example of positive flow cycle in the Figure~\ref{positive-flow}.
       %\include{fig-pos-flow-cycle}
       In order to accomplish that, we will present a sequence of the flows $\flowposn{n}$, defined on the network $\onet$.
-      At each step $n \in \mathbb{N}$ we examine a subgraph $G_n \subset G$ and present a flow function $\flowposn{n}: \onet \to \mathbb{R}^{+}$
+      At each step $n \in \mathbb{N}$ we examine a subgraph $G_n \subset G$ and present a flow $\flowposn{n}: \onet \to \mathbb{R}^{+}$
         such that $\flowposn{n}$ is monotone: for any edge $e \in E$ the following inequality holds:
       \[
         \flowposn{n+1}(e) \leq \flowposn{n}(e),
@@ -620,9 +625,9 @@
       At the step $n$ we consider the subgraph $G_n = (V_n, E_n) \subset G$, where $V_n$ is defined as $\left\{v_k\right\}_{k=1}^n$
         and the edge set $E_n$ consists of the edges from $E$ incident to $V_n$.
 
-      Suppose we have already established the flow function $\flowposn{n}: \onet \to \mathbb{R}^{+}$ for which
+      Suppose we have already established the flow $\flowposn{n}: \onet \to \mathbb{R}^{+}$ for which
         all the inequalities above are satisfied.
-      We are aiming to construct the flow function $\flowposn{n+1}$.
+      We are aiming to construct the flow $\flowposn{n+1}$.
 
       Define the flow function $\cal{E}_0(e): \onet \to \mathbb{R}^{+}$ as follows:
       \[
@@ -632,7 +637,7 @@
         a positive flow: $\cal{E}_0(e) > 0$.
       At this point we can decrease the flow $\cal{E}_0$ on the edges of $C_1$ so that the cycle $C_1$
         ceases being a positive flow cycle, total mass of the flow does not increase, and all the other properties stay intact.
-      Take the minimal value the flow function $\cal{E}_0$ attains on the edges of $C_1$:
+      Take the minimal value the flow $\cal{E}_0$ attains on the edges of $C_1$:
         \[
           \min(C_1) = \min_{e \in C_1}\left(\cal{E}_0(e)\right).
         \]
@@ -645,7 +650,7 @@
         \end{cases}
       \end{equation*}
       Since $C_1$ is a cycle, we reduced the flow $\cal{E}_0$ on each edge by the same value,
-        the $\cal{E}_1$ is indeed a flow function.
+        the $\cal{E}_1$ is indeed a flow.
       After this procedure the positive flow cycle $C_1$ disappears,
         leaving us with a lesser flow than we had before this step:
       \begin{align*}
@@ -655,7 +660,7 @@
       It is achievable since at each step we turn at least one edge into a zero-flow edge (such edge $e$ that $\cal{E}_0(e) = 0$).
 
       Suppose we removed $K$ positive flow cycles in total from the graph $G_n$.
-      Then set the flow $\flowposn{n+1}$ equal to the final flow function $\cal{E}_K$:
+      Then set the flow $\flowposn{n+1}$ equal to the final flow $\cal{E}_K$:
       \[
         \flowposn{n+1} = \cal{E}_K.
       \]
@@ -665,7 +670,7 @@
       \end{align*}
         for each edge $e \in E$.
 
-      Consider now the preflow function $\preflow$ defined as a pointwise limit of $\flowposn{n}$:
+      Consider now the preflow $\preflow$ defined as a pointwise limit of $\flowposn{n}$:
       \[
         \preflow(e) = \lim_{n \to \infty} \flowposn{n}(e)
       \]
@@ -697,7 +702,7 @@
         \]
       \end{proof}
       \begin{prop}
-        Consider the flow function $\preflow$ on the network $\onet$.
+        Consider the flow $\preflow$ on the network $\onet$.
         Then there are no positive flow cycles of $\preflow$.
       \end{prop}
       \begin{proof}
@@ -792,7 +797,7 @@
       \[
         L_1 = \ter(E_1).
       \]
-      Along with the graph $G_1 = (V_0 \cup L_1, E_1)$ we appoint the preflow function $\flowposn{1}: E_1 \to \mathbb{R}^{+}$ in a trivial way:
+      Along with the graph $G_1 = (V_0 \cup L_1, E_1)$ we set the preflow $\flowposn{1}: E_1 \to \mathbb{R}^{+}$ in a trivial way:
       \[
         \flowposn{1}(e) = \flowpos(e)
       \]
@@ -813,7 +818,7 @@
         We need the graph $G_n$ to be finite since this way we could analyze the $\gfi$ function without trouble.
       \end{note}
       For each further step $n > 1$ the construction will be similar.
-      Suppose that $G_{n-1}$, $L_{n-1}$ and the preflow function $\flowposn{n-1}$ are already established.
+      Suppose that $G_{n-1}$, $L_{n-1}$ and the preflow $\flowposn{n-1}$ are already established.
       Consider the outgoing edges of the vertex $v \in L_{n-1}$.
       Some of them might lead to some new vertices which do not belong to $G_{n-1}$.
       Such edges we will call by $\efor_n$:
@@ -827,7 +832,7 @@
       \]
       \begin{remark}
         Pay your attention that a \emph{back} edge could never lead to the root vertex since that
-          would yield an existence of a positive flow cycle for the flow function $\flowpos$.
+          would yield an existence of a positive flow cycle for the flow $\flowpos$.
       \end{remark}
       We define the vertex set $L_n$ as follows: $L_n = \ter(\efor_n)$.
       Accordingly, we prescribe the graph $G_n$ as
@@ -837,7 +842,7 @@
       Thus the graph $G_n$ is constructed.
       \alex{a figure of the $n$-th layer construction}
 
-      \subsubsection*{Setting a preflow function.}
+      \subsubsection*{Setting a preflow}
 
       Here we split the procedure in two steps.
       Take the preflow function $\cal{G}: E_n \to \mathbb{R}^{+}$ initially equal to $\flowposn{n-1}$ on $E_{n-1}$:
@@ -867,7 +872,7 @@
         Since the preflow $\cal{G}$ is bounded above by the flow $\flowpos$ which is preserved at each vertex of the graph $G$,
           particularly, at the vertex $u$, it is trivial that such expansion exists.
       \end{note}
-      So if we had no back edges, the function $\cal{G}$ would be our next preflow function $\flowposn{n}$, and this step would be accomplished,
+      So if we had no back edges, the function $\cal{G}$ would be the next preflow function $\flowposn{n}$, and this step would be accomplished,
         since all the properties~\ref{p1}--\ref{p5} would be complied by $\cal{G}$.
       However we ought to solve the problem we created while pushing the flow from the $(n-1)$-th layer via the back edges.
       Notice that the end vertices of such edges $\eback_{n}$ now became $\cal{G}$-active, since for such vertices
@@ -955,9 +960,9 @@
         So we deduced that $0 > D \geq 0$, and that is a contradiction.
       \end{proof}
       It follows that we relax all the vertices in $\eback_n$.
-      Conclusively, we set the preflow function $\flowposn{n}$ equal to the $\cal{G}$ we got after relaxations.
+      Conclusively, we set the preflow $\flowposn{n}$ equal to the $\cal{G}$ we got after relaxations.
       \begin{prop}
-        The properties~\ref{p1}--\ref{p5} are satisfied for the resulting preflow function $\flowposn{n}$ on the network $\onet_n = (G_n, \wtp, \root)$.
+        The properties~\ref{p1}--\ref{p5} are satisfied for the resulting preflow $\flowposn{n}$ on the network $\onet_n = (G_n, \wtp, \root)$.
       \end{prop}
       \begin{proof}
         The monotonicity property~\ref{p1} is true since during the relaxation step $n$ we
