@@ -44,11 +44,11 @@
     % The algebra $\cal{A} is \emph{strongly reflexive} if ...
     % The lattice $\cal{F}$ is \emph{completely distributive} if ...
   \end{definition}
-  %\begin{note}
+  %\begin{remark}
     The definition is equivalent to $\fsys$ being a strong $M$-basis (see~\cite{katavolos}):
     the system $\fsys$ is called a strong $M$-basis if for any $x\in\cal{H}$ we have $x \in \overline{span}\big(\inner{x}{f^*_k}f_k\big)$, where
       $\overline{span}$ denotes a closed linear span.
-  %\end{note}
+  %\end{remark}
   \begin{definition}[two point density property]
     \label{2pd}
     We say that $\fsys$ is \emph{two point dense} if for any $x, y \in \cal{H}$ and $\varepsilon > 0$
@@ -59,14 +59,16 @@
     We say that the algebra $\cal{A}$ possesses \emph{rank one density property} if
       the unit ball of the rank one subalgebra $R_1(\cal{A}) \subset \cal{A}$ is dense in the unit ball of $\cal{A}$ in the strong operator topology.
   \end{definition}
-  %\begin{note}
-    The last definition is equivalent to the existence of the \emph{linear summation method} for $\fsys$, meaning that
+  By abuse of notation, we say that the $\fsys$ is \emph{rank one dense}, meaning that the rank one density holds for the corresponding algebra $\cal{A}$.
+
+  %\begin{remark}
+    The last definition is equivalent to the defintion of the \emph{linear summation method} existence for system $\fsys$, namely that
       there exists such $\alpha_{kn}$ that $\lim_{k \to \infty} \alpha_{kn} = 0$, $\lim_{n \to \infty} \alpha_{kn} = 1$ and
       \[
         \lim_{n \to \infty} \sum_k \alpha_{kn} \inner{x}{f^*_k} = x,
       \]
       for any $x \in \cal{H}$.
-  %\end{note}
+  %\end{remark}
   \alex{TODO WHY CONDITIONS ON ALPHA}
 
   Notice that we always have $\ref{r1d} \Rightarrow \ref{2pd} \Rightarrow \ref{1pd}$.
@@ -165,7 +167,7 @@
       For such two vertices we have $\inner{f_l}{e_r}$ = $-\inner{f_r}{e_l}$.
       We set the weight on the edge $(lr)$ as follows: $\wt_{lr} = \inner{f_l}{e_r}^{-1}$.
       Obviously $\wt_{lr} = -\wt_{rl}$.
-      Since the Hilbert space is infinite-dimensional the graph is infinite as well.
+      Since the Hilbert space is infinite-dimensional, the graph is infinite as well.
       However due to the finite-band condition~\ref{c5} the vertices of the graph are of a finite degree, hence the locally-finiteness of
         the constructed graph.
     \end{remark}
@@ -213,17 +215,19 @@
 
     You can see the bipartite graph built from the Larson--Wogen system in the Figure~\ref{lw-bgraph}.
 
-    \subsection{Linear summation method for B-class}
+    \subsection{Rank one density property for B-class}
     Suppose we have a B-class vector system $\fsys=\seq{f}$.
     %Our purpose is to analyze the two point density property of $\fsys$.
     Our purpose is to analyze the rank one density property of $\fsys$.
-    Before we pursue that, we need to investigate the conditions under which the B-class system admits a linear summation method.
-    First of all we intend to demonstrate a reformulation of the linear summation method existence problem for
+    Before we pursue that, we need to investigate the conditions under which the B-class system is rank one dense.
+    First of all, we intend to demonstrate a reformulation of the rank one density problem for
       the B-class vector systems in terms of infinite networks.
 
-    Recall that there exists a linear summation method for the system $\seq{f}$
-      if and only if there is no trace class operator $T: \cal{H} \to \cal{H}$ with the trace equal to $1$,
-      such that $\inner{Tf_n}{f_n^*} = 0$ for any $n$ (see Theorem 2.2 of~\cite{katavolos} for details).
+    Recall that the system $\seq{f}$ is rank one dense
+      if and only if there is no trace class operator $T: \cal{H} \to \cal{H}$ with the trace equal to $1$
+      which belongs to the annihilator of the rank one subalgebra $R_1(\cal{A})$: one has $\inner{Tf_n}{f_n^*} = 0$ for any $n$
+      (see Theorem 2.2 of~\cite{katavolos} for details).
+
     Suppose that there is an operator $T$ such that $\inner{Tf_n}{f_n^*} = 0$ for any $n$.
     There are two cases: either $f^*_n = e_n$ or $f_n = e_n$.
     In the first case the condition $\inner{Tf_n}{f_n^*} = 0$ turns into
@@ -237,7 +241,7 @@
         \sum_j T_{jn} \inner{f^*_n}{e_j} = 0.
     \end{equation}
 
-    Now consider an auxiliary function $\flowsgn: V \otimes V \to \mathbb{R}$ defined as follows
+    Now consider an auxiliary function $\flowsgn: V \times V \to \mathbb{R}$ defined as follows
     \begin{align*}
         &\flowsgn(v_l, v_r) = T_{lr} \inner{f_l}{e_r} = T_{lr} \wt_{lr}^{-1},\\
         &\flowsgn(v_r, v_l) = T_{lr} \inner{f^*_r}{e_l} = T_{lr} \wt_{rl}^{-1}.
@@ -264,8 +268,8 @@
 
     Before we proceed we are going to introduce a few basic definitions.
     \begin{definition}
-        \emph{Network} $\net$ is a quadruple $(G, \wtp, \source, \sink)$, where $G = (V, E)$ is a weighted graph
-        with a positive length function $\wtp$ on $E$ and two vertices $\source, \sink \in V$, which
+        \emph{Network} $\net$ is a quadruple $(G, \len, \source, \sink)$, where $G = (V, E)$ is a weighted graph
+        with a positive length function $\len$ on $E$ and two vertices $\source, \sink \in V$, which
         we will call \emph{source} and \emph{sink} of the network respectively.
     \end{definition}
     By graph here we always mean a graph without loops and multiple edges.
@@ -295,125 +299,117 @@
       \end{align*}
     \end{definition}
     \begin{definition}
-      Let $\net = (G, \wtp, \source, \sink)$ be a network, and $\flow$ be a pseudo-flow.
+      Let $\net = (G, \len, \source, \sink)$ be a network, and $\flow$ be a pseudo-flow.
       Also denote by $d_{+}(v)$ the sum of the flows \emph{leaving} the vertex $v$ and by
       $d^{-}(v)$ the sum of the flows \emph{entering} $v$:
       \begin{align*}
-        &d^{+}_{\flow}(v) = \sum_{\flow(vu) > 0} \flow(vu),\\
-        &d^{-}_{\flow}(v) = \sum_{\flow(uv) > 0} \flow(uv).
+        &d^{+}_{\flow}(v) = \sum_{\flow(vu) > 0} \flow(v,u),\\
+        &d^{-}_{\flow}(v) = \sum_{\flow(uv) > 0} \flow(u,v).
       \end{align*}
       Also let $d_{\flow}(v)$ be equal to $d^{+}_{\flow}(v) - d^{-}_{\flow}(v)$.
-      Sometimes we will refer to this value as a \emph{total flow} of the vertex $v$.
+      We will refer to this value as a \emph{total flow} of the vertex $v$.
       The vertex $v$ is called \emph{$\flow$-active} if $d(v)$ is less than zero,
-      \emph{$\flow$-deficient} if $d(v)$ is greater than zero and
-      \emph{$\flow$-preserving} if $d(v)$ is precisely zero, meaning that the total incoming flow
-      is equal to the total outgoing flow of the vertex $v$.
+        \emph{$\flow$-deficient} if $d(v)$ is greater than zero and
+        \emph{$\flow$-preserving} if $d(v)$ is precisely zero, meaning that the total incoming flow
+        is equal to the total outgoing flow of the vertex $v$.
     \end{definition}
     \begin{definition}
-      Given a network $\net = (V, E, \wtp, \source, \sink)$ and a pseudo-flow $\flow$ we will name $\flow$ a
+      \label{flow-dfn}
+      Given a network $\net = (V, E, \len, \source, \sink)$ and a pseudo-flow $\flow$ we will name $\flow$ a
         \emph{flow} function if for any vertex $v \in V \setminus \{\source, \sink\}$ the total flow is zero: $d(v) = 0$.
     \end{definition}
     \begin{definition}
-      For a network $\net = (G, \wtp, \source, \sink)$ and a flow $\flow$ we will say,
-      that the flow $\flow$ is \emph{$\flow$-preserving} if $d(\sink) = -d(\source)$.
+      \label{flow-preserving-dfn}
+      For a network $\net = (G, \len, \source, \sink)$ and a flow $\flow$ we will say,
+      that the network $\net$ \emph{preserves} the flow $\flow$ if $d(\sink) = -d(\source)$.
     \end{definition}
-    \begin{note}
-      In simple words this property suggests
-        that the total flow coming out of the source is equal to the total flow
+    \begin{remark}
+      In simple words this property suggests that the total flow coming out of the source is equal to the total flow
         coming into the sink.
-    \end{note}
+      Note that in the case when the graph $G$ is finite, the network $\net$ always preserves the flow.
+      It is the infinite case that is of our interest.
+    \end{remark}
     \begin{definition}
-      \emph{Oriented network} $\onet$ is a quadruple $(\vec{G}, \wtp, \source, \sink)$, where
+      \emph{Oriented network} $\onet$ is a quadruple $(\vec{G}, \len, \source, \sink)$, where
         $\vec{G} = (V, \vec{E})$ is an oriented weighted graph with
-        a positive length function $\wtp$ on $\vec{E}$ and two vertices $\source, \sink \in V$, which
-        we will call \emph{source} and \emph{sink} of the oriented network respectively.
+        a positive length function $\len$ on $\vec{E}$ and two vertices $\source, \sink \in V$, which
+        we will call the \emph{source} and the \emph{sink} of the oriented network respectively.
     \end{definition}
-    \begin{note}
-      The flow functions could be defined on the oriented networks in the similar manner
-        we defined on the non-oriented networks.
-    \end{note}
-    Suppose $\net = (V, E, \wtp, \source, \sink)$ is a network and $\flow$ is a skew-symmetric function defined
-    on $\net$.
-    Naturally, we might instead consider an oriented network $\onet = (V, \vec{E}, \wtp, \source, \sink)$ and a
-      positive flow $\flowpos: \vec{E} \to \mathbb{R}^{+}$, where
-      the set of vertices $V$, $\source$ and $\sink$ vertices are the same.
-    The length function $\wtp$ is preserved for the oriented edges on the graph $\vec{G}$ in a trivial way.
-    We establish a direction of the edge $(uv)$ as follows:
-      $(uv) \in \vec{E}$ if $\flow(u, v) \geq 0$, and $(vu) \in \vec{E}$ otherwise
-    This way only one of the edges $(uv)$ and $(vu)$ is present in the graph $\vec{G} = (V, \vec{E})$.
-    Also we set the positive flow $\flowpos: E \to \mathbb{R}^{+}$ so that
-      for any edge $\vec{e} = (uv) \in \vec{E}$
+    Now we define the flow functions on the oriented networks in the similar manner we defined on the non-oriented networks.
     \begin{align*}
-      &\flowpos(u v) = \lvert\flow(u,v)\rvert,
-    \end{align*}
-    The total flow functions $d_\flowpos$, $d^{+}_\flowpos$, $d^{-}_\flowpos$ do not change their value and could be written as
-    \begin{align*}
-      &d^{+}_{\flowpos}(v) = \sum_{u \in \eout(v)} \flowpos(vu),\\
-      &d^{-}_{\flowpos}(v) = \sum_{u \in \ein(v)} \flowpos(uv),\\
+      &d^{+}_{\flowpos}(v) = \sum_{e \in \eout(v)} \flowpos(e),\\
+      &d^{-}_{\flowpos}(v) = \sum_{e \in \ein(v)} \flowpos(e),\\
       &d_{\flowpos}(v) = d^{+}_\flowpos(v) - d^{-}_\flowpos(v).
     \end{align*}
     Sometimes we will omit the flow from the notation.
-    \begin{definition}
-      The oriented network $\onet$ is called an \emph{orientation} of the network $\net$.
-      For the positive flow $\flowpos$ we will exploit the same term:
-        $\flowpos$ is an \emph{orientation} of the flow $\flow$.
-    \end{definition}
+    The definitions~\ref{flow-dfn} and~\ref{flow-preserving-dfn} are the same for the oriented networks.
+    \bigskip
+
+    Suppose $\net = (V, E, \len, \source, \sink)$ is a network and $\flow$ is a skew-symmetric function defined
+      on $\net$.
+    Naturally, we might instead consider an oriented network $\onet = (V, \vec{E}, \len, \source, \sink)$ and a
+      positive flow $\flowpos: \vec{E} \to \mathbb{R}^{+}$, where $V$, $\source$, $\sink$ and $\len$ are the same.
+    We assign a direction to the edge $(uv)$ as follows:
+      $(uv) \in \vec{E}$ if $\flow(u, v) > 0$, and $(vu) \in \vec{E}$ otherwise.
+    This way only one of the edges $(uv)$ and $(vu)$ is present in the graph $\vec{G} = (V, \vec{E})$.
+    Also we set the positive flow $\flowpos: E \to \mathbb{R}^{+}$ so that
+      for any edge $(uv) \in \vec{E}$ we have $\flowpos(u v) = \flow(u,v)$.
+    %\begin{definition}
+      %The oriented network $\onet$ is called an \emph{orientation} of the network $\net$.
+      %For the positive flow $\flowpos$ we will exploit the same term:
+        %$\flowpos$ is an \emph{orientation} of the flow $\flow$.
+    %\end{definition}
     \begin{remark}
       As shown, the flow functions on the networks and the positive flow functions on the oriented networks
         are interchangeable and describe the same object.
       The notion of the direction of the positive flow over the particular edge $(uv)$ of the oriented network
         is incorporated into the sign of the flow on the same edge $(uv)$ of the non-oriented network.
     \end{remark}
+
+    \subsection{B-network construction}
     \begin{definition}
-      Consider a network $\net = (G, \wtp, \source, \sink)$ such that
+      Consider a network $\net = (G, \len, \source, \sink)$ such that
         the degree of each vertex in $V \setminus \{\source, \sink\} $ is finite,
         and the length of each edge incident to source or to sink is equal to one.
-      Also we demand that the vertices $\source$ and $\sink$ are connected by the finite path.
+      Also we demand that the vertices $\source$ and $\sink$ are connected by a finite path.
       We will call such network a \emph{B-network}.
     \end{definition}
-    Now we are ready to continue with the linear summation method problem.
-    Our aim is to build up a B-network from the graph $B(\fsys)$.
-    We plan to construct the network $\net(\fsys) = (V, E, \wtp, \source, \sink)$,
-      length function $\wtp: E \to \mathbb{R}^{+}$ and a real skew-symmetric flow $\flow: V \times V \to \mathbb{R}$.
-    Firstly we incorporate all the vertices of the graph $B(\fsys)$ into the network $\net(\fsys)$.
-    The vertex set of $\net(\fsys)$ will be a superset of the vertex set of $B(\fsys)$,
-      so we will continue referring to the vertices as the vertices from
-      the \emph{left} part of the graph and the vertices from the \emph{right} part of the graph.
-    We add all the edges from the graph $B(\fsys)$ to the network $\net(\fsys)$ as well.
+
+    In this section we build up a B-network from the graph $B(\fsys)$ and associate a flow $\flow$ on this network with 
+      an arbitrary trace class operator $T$ which annihilates the rank one subalgebra $R_1(\cal{A})$.
+    We will see later that this association is a bijection.
+    Namely, we plan to construct the network $\net(\fsys) = (V, E, \len, \source, \sink)$,
+      with the length function $\len: E \to \mathbb{R}^{+}$ and a real skew-symmetric flow $\flow: V \times V \to \mathbb{R}$.
+    Firstly, we incorporate all the vertices and edges from the graph $B(\fsys)$ into the network $\net(\fsys)$.
     We set the flow and the length functions on such edge $e = (v_l v_r)$ as follows:
     \begin{align*}
       &\flow(v_l, v_r) = T_{lr} \inner{f^*_r}{e_l},\\
       &\flow(v_r, v_l) = T_{lr} \inner{f_l}{e_r} = -\flow(v_l, v_r),\\
-      &\wtp(e) = \lvert \wt(v_l, v_r) \rvert =  \lvert\inner{f_l}{e_r}\rvert^{-1}.
+      &\len(e) = \lvert \wt(v_l, v_r) \rvert =  \lvert\inner{f_l}{e_r}\rvert^{-1}.
     \end{align*}
-    \begin{note}
+    \begin{remark}
       Evidently on this kind of edges the flow $\flow$ agrees with the function $\flowsgn$
         we examined a few paragraphs before.
-    \end{note}
+    \end{remark}
 
-    Now we add the source vertex $\source$ and the sink vertex $\sink$ to the constructed graph.
-    Suppose we have enumerated the vertices from the left part of the graph, for instance $\seq{l}$.
-    Then for each $k > 0$ we connect the vertex $\source$ and the vertex $l_k$ with
-      the edge $e_k = (\source l_k)$, and set the flow:
+    Now we add two new vertices: the source vertex $\source$ and the sink vertex $\sink$ to the constructed graph.
+    For each vertex $v_l$ from the left part of the graph we connect it with the vertex $\source$ with the edge $e_l = (\source v_l)$
+      and assign the flow to the newly constructed edge.
     \begin{align*}
-      &\flow(l_k, \source) = T_{l_k l_k},\\
-      &\flow(\source, l_k) = -T_{l_k l_k}.
+      &\flow(v_l, \source) = -\flow(\source, v_l) = T_{v_l v_l}.
     \end{align*}
-    Also we set the length equal to one for such edges: $\wtp(e_k) = 1$.
+    Also we set the length equal to one for such edges: $\len(e_l) = 1$.
     As we added the edges $\seq{e}$, the flow became \emph{preserved} at each vertex of the left part of the network $\net(\fsys)$.
 
-    In the similar manner we will transform the right part of the graph.
-    Assuming we have the vertices from the right part of the graph $B(\fsys)$ in the form of the sequence $\seq{r}$,
-      for each $k > 0$ we connect the vertex $r_k$ to the vertex $\sink$ with the edge $e'_k=(r_k \sink)$
+    Analagously, for every vertex $v_r$ from the right part of the graph we add a new edge $e_r=(v_r \sink)$
       and set the flow $\flow$ equal to:
     \begin{align*}
-      &\flow(r_k, \sink) = T_{r_k r_k},\\
-      &\flow(\sink, r_k) = -T_{r_k r_k}.
+      &\flow(v_r, \sink) = -\flow(\sink, v_r) =  T_{v_r v_r}.
     \end{align*}
-    Again, we have $\wtp(e'_k) = 1$ for any $k$.
+    Again, we have $\len(e_r) = 1$ for any $k$.
 
-    The network $\net(\fsys)$ is built up, and it is a B-network.
-    The defined function $\flow$ is a flow, since each of the vertex preserves
+    The network $\net(\fsys)$ is obviously a B-network.
+    The defined function $\flow$ is a flow, since each of the vertices preserves
       $\flow$ due to the equation~\eqref{almost-flow-eqn}.
     %\begin{remark}
       %Sometimes it might be useful to consider slightly different definition of the network.
@@ -425,87 +421,78 @@
     %\end{remark}
     \begin{remark}
       Note that the network $\net(\fsys)$ depends only on the biorthogonal system $\fsys$ and not on the operator $T$.
-      Only the flow $flow$ depends on the operator $T$.
+      Only the flow $\flow$ depends on the operator $T$.
     \end{remark}
-    What can one say about the total flow in each of the vertex of the constructed network $\net(\fsys)$?
-    Due to the trick we performed the total flow became zero in each of the vertices from the \emph{left} and the \emph{right} parts.
-    The total flow $d(\source)$ in the source vertex is equal to the $\sum T_{l_k l_k}$, and the total flow in the
-      sink vertex is now equal to the $\sum T_{r_k r_k}$.
-    Now one can see that the network $\net(\fsys)$ is $\flow$-preserving if and only if the trace of the operator $T$ is equal to
-      zero.
+    What can be said about the total flow in each of the vertex of the constructed network $\net(\fsys)$?
+    Due to the trick we performed, the total flow became zero in each of the vertices from the left and the right parts.
+    The total flow $d(\source)$ in the source vertex is equal to $\sum_{v_l} T_{ll}$, and the total flow in the
+      sink vertex is now equal to $\sum_{v_r} T_{rr}$.
+    Now one can see that the network $\net(\fsys)$ is $\flow$-preserving if and only if the trace of the operator $T$ is equal to zero.
     \begin{definition}
-      Consider a network $\net = (V, E, \wtp, \source, \sink)$ and a flow $\flow$ on it.
-      We introduce a nonnegative function $\lvert\flow\rvert$ which we call the \emph{mass} of the flow $\flow$.
+      Consider a network $\net = (V, E, \len, \source, \sink)$ and a flow $\flow$ on it.
+      We write $\lvert\flow\rvert$ for the \emph{mass} of the flow $\flow$:
       \[
-        \lvert\flow\rvert = \sum_{e \in E} \lvert\flow(e) \wtp(e)\rvert.
+        \lvert\flow\rvert = \sum_{e \in E} \lvert\flow(e) \len(e)\rvert.
       \]
-      We allow it to be equal $+\infty$ as well.
+      For the flow $\flowpos$ on the oriented network we will use the same notation.
+      %We allow it to be equal $+\infty$ as well.
     \end{definition}
-    \begin{definition}
-      If $\flowpos$ is an oriented flow on the oriented network $\onet = (V,\vec{E},\wtp, \source, \sink)$ 
-        we can introduce the same term for the \emph{mass} of the flow:
-      \[
-        \lvert\flowpos\rvert = \sum_{e \in \vec{E}} \lvert\flowpos(e) \wtp(e)\rvert.
-      \]
-      Though in the oriented case the flow is always positive,
-        so we are allowed to omit the modulus signs:
-      \[
-        \lvert\flowpos\rvert = \sum_{e \in \vec{E}} \flowpos(e) \wtp(e).
-      \]
-    \end{definition}
+    %\begin{definition}
+      %If $\flowpos$ is an oriented flow on the oriented network $\onet = (V,\vec{E},\len, \source, \sink)$ 
+        %we can introduce the same term for the \emph{mass} of the flow:
+      %\[
+        %\lvert\flowpos\rvert = \sum_{e \in \vec{E}} \lvert\flowpos(e) \len(e)\rvert.
+      %\]
+      %Though in the oriented case the flow is always positive,
+        %so we are allowed to omit the modulus signs:
+      %\[
+        %\lvert\flowpos\rvert = \sum_{e \in \vec{E}} \flowpos(e) \len(e).
+      %\]
+    %\end{definition}
     \begin{theorem}
       \label{thm-graph-eq}
-        Let $\net(\fsys) = B(\fsys, \wtp, \source, \sink)$ be a B-network constructed
+        Let $\net(\fsys) = B(\fsys, \len, \source, \sink)$ be a B-network constructed
           from the B-class system $\fsys = \seq{f}$.
-        Then $\fsys$ admits a linear summation method if and only if
-          the network $\net(\fsys)$ is $\flow$-preserving for any
-          finite-mass flow $\flow$.
+        Then $\fsys$ is rank one dense if and only if
+          the network $\net(\fsys)$ is $\flow$-preserving for any finite-mass flow $\flow$.
     \end{theorem}
     \begin{proof}
-      First we briefly repeat the necessity proof we sketched previously.
-      Suppose there is no summation method for the system $\seq{f}$.
-      As we said before, it implies that there exists a trace class operator $T : \cal{H} \to \cal{H}$ with
-      the trace equal to one, such that $\inner{Tf_n}{f_n^*} = 0$ for any $n$.
-      Using the operator $T$, we were able to define a flow $\flow(T)$ on the network
-      $\net(\fsys)$.
-      Notice that the constructed flow has a finite mass because the operator matrix of $T$ is finite-band and $T$ has a finite trace.
-      Finally, one can acknowledge the fact that this network does not preserve the flow, since
+      Suppose there is no rank one density property for the system $\seq{f}$.
+      As we mentioned before, it implies that there exists a trace class operator $T: \cal{H} \to \cal{H}$ with
+        the trace equal to one, such that $\inner{Tf_n}{f_n^*} = 0$ for any $n$.
+      Using the operator $T$, we were able to define a flow $\flow$ on the network $\net(\fsys)$.
+      The constructed flow has a finite mass because the operator matrix of $T$ is finite-band and $T$ has a finite trace.
+      Finally, the network $\net(\fsys)$ does not preserve the flow since
       \[
-        d(\source) + d(\sink) = \sum T_{l_k l_k} + \sum T_{r_k r_k} = Tr(T) = 1,
+        d(\source) + d(\sink) = \sum_{v_l} T_{ll} + \sum_{v_r} T_{rr} = Tr(T) = 1,
       \]
       thus $d(\sink) \neq -d(\source)$.
-      We arrived to contradiction and the necessity is proved.
+      The necessity is proved.
 
-      Suppose that the system $\fsys$ admits a linear summation method.
-      Assume there is also a flow $\flow$ on the network $\net(\fsys)$ such that $d(\sink) + d(\source) \neq 0$.
-      In this section we are going to present an operator $T$ with a nonzero trace which annihilates all the rank-one
-      operators $f_n \otimes f^*_n$, thus arriving at a contradiction with our initial assumption.
+      Suppose that the system $\fsys$ is rank one dense.
+      Assume that there is also a flow $\flow$ on the network $\net(\fsys)$ such that $d(\sink) + d(\source) \neq 0$.
       First consider the edges incident to the source vertex.
-      Having all the vertices already enumerated we will consider the vertices in the left part $v_{l_k}$.
+      Having all the vertices already enumerated we will consider the vertices in the left part $v_{l}$.
       Recall that each vertex $v_i$ (except source and sink) matches to the basis element $e_i$.
       Assign the diagonal elements of $T$:
       \[
-        T_{l_k l_k} = \flow(l_k, \source) \wtp(l_k l_k) = \flow(l_k, \source) \quad k > 0.
+        T_{ll} = \flow(v_l, \source) \len(v_l v_l) = \flow(v_l, \source), \quad l > 0.
       \]
-      Now we repeat the same procedure for the right part of the graph $\net(\fsys)$, thus having
+      We proceed in this fashion with the right part of the graph $\net(\fsys)$:
       \[
-        T_{r_k r_k} = \flow(r_k, \sink) \wtp(r_k r_k) = \flow(r_k, \sink) \quad k > 0.
+        T_{rr} = \flow(v_r, \sink) \len(v_r v_r) = \flow(v_r, \sink), \quad r > 0.
       \]
-      Now consider two connected vertices $v_l$, $v_r$ from the left and right part
-        respectively. Assign
-      \[
-        T_{lr} = \flow(v_l, v_r) \wtp(v_l  v_r).
-      \]
+      Now consider two connected vertices $v_l$, $v_r$ from the left and right part respectively.
+      Let $T_{lr} = \flow(v_l, v_r) \len(v_l  v_r)$.
       Let all the other matrix elements of the operator matrix $T_{ij}$ be zero.
-      Then observe that we got a finite-band operator matrix $T_{ij}$ with the sum of diagonal elements
-      equal to one.
-      Since the mass of the flow $\flow$ is finite, the $T_{ij}$ is an absolute summable sequence, considering that
+      Then observe that we obtained a finite-band operator matrix $T_{ij}$ with the sum of diagonal elements equal to one.
+      Since the mass of the flow $\flow$ is finite, $T_{ij}$ is a summable sequence, considering that
         the $\ell^1$-norm of $T_{ij}$ is exactly the mass of $\flow$.
-      Then the operator $T$ acquires a finite nonzero trace, since $Tr(T) = d(\sink) + d(\source)$, which is not zero
+      Then the operator $T$ has a finite nonzero trace, since $Tr(T) = d(\sink) + d(\source)$, which is not zero
         by the assumption we made.
-      Due to the fact, that the flow was preserved at each vertex of the network $\net(\fsys)$,
-        we see that the operator $T$ annihilates all the rank one operators $f_n \otimes f^*_n$,
-        which leads to a contradiction.
+      Due to the fact~\eqref{almost-flow-eqn}, that $\flow$ is preserved at each vertex of the network $\net(\fsys)$,
+        we can see that the operator $T$ annihilates all the rank one operators $R_1(\cal{A})$,
+        which is a contradiction to the rank one density property.
     \end{proof}
 
   \section{B-networks characterisation}
@@ -515,15 +502,15 @@
     In this section we are not going to address the Hilbert space setup at all,
       instead we will use only the abstract objects of the graph theory
       we used throughout the previous section.
-    Also it will be more convenient for us to study \emph{oriented} networks in this section unlike we
+    Also it will be more convenient for us to study the \emph{oriented} networks in this section unlike we
       did in the previous one.
-    Consequently the graphs, edges and networks are presumed to be oriented unless said otherwise.
+    Consequently, the graphs, edges and networks are presumed to be oriented unless said otherwise.
 
-    Next we recollect some other notions from the graph theory:
+    Next we reintroduce a few more notions from the graph theory.
     \begin{definition}
       Let $G = (V, \vec{E})$ be an oriented graph.
       A sequence of vertices $\{v_k\}_{k=1}^N$ is called a \emph{path} if each pair of consecutive vertices
-        $v_k$ and $v_{k+1}$ are connected by an edge $\vec{e} = (v_k v_{k+1})$ and no edges or vertices are repeated twice in the sequence.
+        $v_k$ and $v_{k+1}$ are connected by an edge $(v_k v_{k+1})$ and no edges or vertices are repeated twice in the sequence.
       The path is called a \emph{ray} when $N$ is equal to infinity.
     \end{definition}
     \begin{definition}
@@ -532,11 +519,12 @@
         a path and there is an edge $\vec{e} = (v_N v_1)$ connecting the last vertex to the first vertex of the sequence.
     \end{definition}
 
-    The main result of this section is a following
+    The main result of this section is Theorem~\ref{ray-thm}.
+    It essentially equips us with tools to analyze the 
     \begin{theorem}
       \label{ray-thm}
-      Let $\onet = (G, \wtp, \source, \sink)$ be an oriented B-network.
-      Then there exists such a positive flow $\flowpos: E \to \mathbb{R}^{+}$ that
+      Let $\onet = (\vec{G}, \len, \source, \sink)$ be an oriented B-network.
+      Then there exists such a positive flow $\flowpos: \vec{E} \to \mathbb{R}^{+}$ that
       \begin{enumerate}[label=(\alph*)]
         \item the flow $\flowpos$ has a finite mass,
         \item the network $\onet$ does not preserve the flow,
@@ -544,59 +532,60 @@
         if and only if there exists a ray $r = \seq{r}$ in the network $\onet$, taking its start in the vertex $\source$,
           with a finite total length:
         \[
-          \sum_{k=1}^\infty \wtp(v_k v_{k+1}) < \infty.
+          \sum_{k=1}^\infty \len(r_k r_{k+1}) < \infty.
         \]
     \end{theorem}
     \begin{remark}
       \label{inner-ray-rmk}
       Notice that the definition of the B-network implies that the weight of any edge
         incident to the source or the sink vertices is equal to one.
-      Suppose we found a ray $r$ described in the theorem.
-      The ray has a finite length and thus it follows that only a finite number of edges $(r_k r_{k+1})$ might
+      The ray $r$ has a finite length and thus it follows that only a finite number of edges $(r_k r_{k+1})$ could
         be incident either to the source or to sink vertices.
       This way the existence of the ray $r$ suggests that there also exists a ray $r^* \in V \setminus \left\{\source, \sink\right\}$.
     \end{remark}
     \begin{proof}
-      Without loss of generality we might assume that $d(\sink) + d(\source)$ is precisely one.
-      In order to make our proof easier we consider a slightly modified network $\onet' = (V', E', \source', \source')$.
-      Namely, we merge the source vertex $\source$ with the sink vertex $\sink$ and call this a
-        new source vertex $\source'$.
+      Without loss of generality we might assume that $d(\sink) + d(\source) = 1$.
+      In order to make our proof easier, we consider a modified network $\onet' = (\vec{G}', \source', \source')$.
+      Namely, we merge the source vertex $\source$ with the sink vertex $\sink$ and call this a new source vertex $\source'$.
       This way we obtain a network $\onet'$ with a single source such that $d(\source') = 1$.
-      Formally we set the sink vertex in the modified network to be the same as the source vertex: $\sink'=\source'$.
-      The flow $\flowpos$ as well as the length function $\wtp$ stay exactly the same (being defined on the edges set $E$).
-      All the vertices in the graph continue preserving the flow after this procedure, except for the source vertex $\source'$
-        which is now \emph{$\flowpos$-active} since its total flow $d(\source')$ equal to one.
+      In that case the graph $\vec{G'}$ is a rooted graph with the root at the vertex $\source'$.
+      From now on we will employ the term \emph{root vertex} and denote it by $\root = \source$.
+
+      %Formally we set the sink vertex in the modified network to be the same as the source vertex: $\sink'=\source'$.
+      The flow $\flowpos$ as well as the length function $\len$ stay exactly the same (being defined on the edges set $\vec{E}'$).
+      All the vertices in the graph continue preserving the flow after this procedure, except for the source vertex $\source'$,
+        which is now \emph{$\flowpos$-active} since its total flow $d(\source')$ is equal to one.
       Thus $\onet'$ is a network with a function $\flowpos$ being a flow as required.
-      Obviously the mass of the flow does not change since we did not change the edges weights.
-      Furthermore the network $\onet'$ does not preserve the flow $\flowpos$ by definition.
+      Obviously the mass of the flow does not change since we did not change the lengths of the edges.
+      Furthermore the network $\onet'$ does not preserve the flow $\flowpos$ by construction.
 
-      Now assume we proved existence of a finite-length ray $r'$ $\onet'$, starting with $\source'$, in the modified network.
-      Then since the weight of any edge incident to the source vertex is equal to one (see the remark~\ref{inner-ray-rmk})
-        there is a subray of $r'$ which does not include source.
-      Suppose the subray starts with some vertex $v' \in V' \setminus \source'$.
-      Now consider the corresponding vertex $v \in V \setminus \left\{\source, \sink\right\}$ in the original network $\onet$.
-      Due to the B-network definition $v$ is either connected to the source or to the sink vertices by a finite path.
-      However by  definition of B-networks the sink is also connected to the source with the path of a finite length.
-      Thus $v$ is connected to the source, and we have found the ray $r$ in $\onet$.
+      It is clear that $\onet'$ contains a finite length ray starting on the vertex $s'$ if and only if the original network $\onet$ contains a finite
+        length ray starting on the vertex $s$.
+      %Now assume we proved existence of a finite-length ray $r'$ $\onet'$, starting with $\source'$, in the modified network.
+      %Then since the weight of any edge incident to the source vertex is equal to one (see the remark~\ref{inner-ray-rmk})
+        %there is a subray of $r'$ which does not include source.
+      %Suppose the subray starts with some vertex $v' \in V' \setminus \source'$.
+      %Now consider the corresponding vertex $v \in V \setminus \left\{\source, \sink\right\}$ in the original network $\onet$.
+      %Due to the B-network definition $v$ is either connected to the source or to the sink vertices by a finite path.
+      %However by  definition of B-networks the sink is also connected to the source with the path of a finite length.
+      %Thus $v$ is connected to the source, and we have found the ray $r$ in $\onet$.
 
-      On the contrary, if there is a ray $r$ in the given network $\onet$, which starts with the vertex $\source$
-        then trivially there is a ray $r'$ in the modified network $\onet'$, starting from the vertex $\source$.
-      From now on we will be proving the following reformulation of Theorem~\ref{ray-thm}.
+      %On the contrary, if there is a ray $r$ in the given network $\onet$, which starts with the vertex $\source$
+        %then trivially there is a ray $r'$ in the modified network $\onet'$, starting from the vertex $\source$.
+      Therefore we will be proving the following reformulation of Theorem~\ref{ray-thm}.
       \begin{theorem*}
-        Let $\onet = (G, \wtp, \source, \sink)$ be an oriented B-network such that $\source = \sink$.
+        Let $\onet = (G, \len, \source, \sink)$ be an oriented B-network such that $\source = \sink$.
         Then there exists such positive finite-mass flow $\flowpos: E \to \mathbb{R}^{+}$ that
           $\onet$ does not preserve $\flowpos$ (it means that $d(\source) \neq 0$),
-          if and only if there exists a ray $r = \seq{r}$, which has a finite total length and starts from $\source$.
+          if and only if there exists a ray $r = \seq{r}$, which has a finite total length and starts on $\source$.
       \end{theorem*}
       \subsubsection*{Necessity.}
       Suppose that there is a ray of a finite total length $r=(r_1 r_2 \dots)$.
-      In that case we set the resulting flow $\flowpos(r_k r_{k+1})$ to one, creating an elusive flow
-        from $\source$ to infinity. All the other edges will not carry any flow, hence the flow is preserved
-        at each vertex but not preserved by the network $\onet$.
+      In that case we set the resulting flow $\flowpos(r_k r_{k+1})$ to one, creating a flow which escapes
+        from $\source$ to infinity.
+      All the other edges will not carry any flow, hence the flow is preserved
+        at each vertex but not preserved by the whole network $\onet$.
       \subsubsection*{Sufficiency.}
-      In this part we are going to view this network as a rooted graph with the root at the $\source$ vertex.
-      Consequently from time to time we will employ the term \emph{root vertex} and denote it by $\root = \source$.
-
       For a start we get rid of all the positive flow cycles in the oriented graph $G$.
       \emph{A positive flow cycle} is a cycle $C$ in $G$ such that positive flow circulates along $C$,
         meaning that for each edge $e \in C$ the flow along the edge is strictly greater than zero: $\flowpos(e) > 0$.
@@ -721,8 +710,8 @@
       \subsection{Main construction}
       We are going to need a few definitions in order to proceed with the proof of the theorem.
       \begin{definition}
-        Let $G = (V, \vec{E},\wtp, \root)$ be a weighted directed graph with a positive
-          length function $\wtp$ defined on $\vec{E}$ and a root vertex $\root \in V$.
+        Let $G = (V, \vec{E},\len, \root)$ be a weighted directed graph with a positive
+          length function $\len$ defined on $\vec{E}$ and a root vertex $\root \in V$.
         Then $\gpaths(u, v)$ denotes a set of paths from the vertex $u$ to the vertex $v$ in the graph $G$.
         Sometimes we will omit the first argument and then we refer to the paths from the root vertex
           $\gpaths(v) = \gpaths(\root, v)$.
@@ -733,7 +722,7 @@
       \begin{definition}
         The function $\gfi: \gpaths \to \mathbb{R}^{+}$ is settled as follows:
         \[
-          \gfi(p) = \sum_{e \in p} \wtp(e).
+          \gfi(p) = \sum_{e \in p} \len(e).
         \]
         We extend this function to take values on the set of the vertices $\gfi: V \to \mathbb{R}^{+}$ in such a fashion:
         \[
@@ -748,7 +737,7 @@
 
       %We are about to put up the main construction of the proof.
       %In a few moments it will become apparent why we did so.
-      %\begin{note}
+      %\begin{remark}
       %  Essentially our construction is based on a breadth-first-search in the infinite graph $G$,
       %    so $V_n = V_{n-1} \cup l_n$ where $l_n$ is all the vertices in the neighborhood of the subgraph $V_{n-1}$
       %    in the graph $G$:
@@ -759,7 +748,7 @@
       %  Also $L_n$ will incorporate all the edges connecting the graph $G_{n-1}$ and the vertices $l_n$.
       % We will refer to the subgraph $L_n$ as the \emph{$n$-th layer} of the graph $G$.
       %  See the figure xxx.
-      %\end{note}
+      %\end{remark}
       The construction is based on the breadth-first search in the infinite graph $G$.
       We are going to define \emph{finite} subgraphs $G_n = (V_n, E_n)$ of the network $\onet$ such that $G_{n-1} \subset G_{n}$ for each $n > 1$.
       We denote the vertex set difference with $L_n = V_n \setminus V_{n-1}$.
@@ -783,10 +772,10 @@
       \subsubsection*{Constructing graphs $G_n$}
       Let $G_0$ be the trivial subgraph containing the root vertex only: $G_0 = \left\{\root\right\}$.
       At the first step we build the graph $G_1$.
-      %\begin{note}
+      %\begin{remark}
       %  This is kind a delicate part of the whole proof since that is the place where
       %    we are possibly dealing with the only vertex of infinite degree in the graph $G$~--- the root vertex $\root$.
-      %\end{note}
+      %\end{remark}
       We choose such set of the edges $E_1 \subseteq \eout(\root)$ that the total flow on this set is equal to one:
       \[
         \sum_{e \in E_1} \flowpos(e) = 1.
@@ -812,11 +801,11 @@
         Thus each vertex in $L_1$ has only incoming edges which makes their
           total flow strictly negative (recall that we removed all zero-flow edges).
       \end{proof}
-      \begin{note}
+      \begin{remark}
         We dealt with the typically infinite degree of the root vertex by abandoning some of the children of the root.
         \alex{a figure of the first layer (infinite degree!)}
         We need the graph $G_n$ to be finite since this way we could analyze the $\gfi$ function without trouble.
-      \end{note}
+      \end{remark}
       For each further step $n > 1$ the construction will be similar.
       Suppose that $G_{n-1}$, $L_{n-1}$ and the preflow $\flowposn{n-1}$ are already established.
       Consider the outgoing edges of the vertex $v \in L_{n-1}$.
@@ -866,12 +855,12 @@
           $\cal{G}(e) \leq \flowpos(e), \quad e \in \eout(u)$,
         \item the vertex $u \in L_{n-1}$ becomes $\cal{G}$-preserving.
       \end{enumerate}
-      \begin{note}
+      \begin{remark}
         Literally, here we are pushing the flow out of the vertex $u \in L_{n-1}$ and spreading it among all the outgoing edges
           $\eout_{G_n}(u) = \eout_G(u)$.
-        Since the preflow $\cal{G}$ is bounded above by the flow $\flowpos$ which is preserved at each vertex of the graph $G$,
+        Since the preflow $\cal{G}$ is bounded above by the flow $\flowpos$, which is preserved at each vertex of the graph $G$,
           particularly, at the vertex $u$, it is trivial that such expansion exists.
-      \end{note}
+      \end{remark}
       So if we had no back edges, the function $\cal{G}$ would be the next preflow function $\flowposn{n}$, and this step would be accomplished,
         since all the properties~\ref{p1}--\ref{p5} would be complied by $\cal{G}$.
       However we ought to solve the problem we created while pushing the flow from the $(n-1)$-th layer via the back edges.
@@ -920,7 +909,7 @@
         Firstly, we have a finite graph $G_{n}$, and so there are only a finite number of paths in the $\gnpaths(s, L_n)$.
         Secondly, each time we push the flow along the augmenting path $p$ either we successfully relax the vertex $s$
           or we saturate at least one edge lying on the chosen path $p$.
-        Since the number of the edges is finite the procedure halts after a finite number of steps.
+        Since the number of the edges is finite, the procedure halts after a finite number of steps.
 
         Suppose that there is a non-root vertex $s$ that is not yet relaxed.
         Examine the set of vertices $S \subseteq G_n$ which are reachable by non-saturated paths from the vertex $s$
@@ -962,7 +951,7 @@
       It follows that we relax all the vertices in $\eback_n$.
       Conclusively, we set the preflow $\flowposn{n}$ equal to the $\cal{G}$ we got after relaxations.
       \begin{prop}
-        The properties~\ref{p1}--\ref{p5} are satisfied for the resulting preflow $\flowposn{n}$ on the network $\onet_n = (G_n, \wtp, \root)$.
+        The properties~\ref{p1}--\ref{p5} are satisfied for the resulting preflow $\flowposn{n}$ on the network $\onet_n = (G_n, \len, \root)$.
       \end{prop}
       \begin{proof}
         The monotonicity property~\ref{p1} is true since during the relaxation step $n$ we
@@ -991,7 +980,7 @@
         For each $G_n$ ($n > 1$) the following inequality holds.
         \begin{equation}
           \label{main-ineq}
-          \sum_{v\in L_n}d_{n}^{-}(v) \phi_n(v) \leq \sum_{e \in E_n} \wtp(e) \flowpos(e).
+          \sum_{v\in L_n}d_{n}^{-}(v) \phi_n(v) \leq \sum_{e \in E_n} \len(e) \flowpos(e).
         \end{equation}
       \end{lemma}
       \begin{proof}
@@ -1000,7 +989,7 @@
           LS = \sum\limits_{v \in L_n} d_n^{-}(v) \phi_n(v).
         \]
         Since $\phi_n(\root) = 0$ and for all vertices $u \in G_{n} \setminus \left(L_n \cup \{\root\}\right)$
-          we have $d_n(u) = 0$ we could study the sum over the whole $G_n$ instead of $L_n$.
+          we have $d_n(u) = 0$, we could study the sum over the whole $G_n$ instead of $L_n$.
 
         Also recall that $d_n^{+}(v) = 0$ for each vertex $v \in L_n$, hence $d_n(v) = -d_n^{-}(v)$ whenever $v$ is in the $n$-th layer.
 
@@ -1012,15 +1001,15 @@
         \end{align*}
         Let $(vu)$ be an edge in $E_n$. Recall that
         \[
-          \phi_n(u) \overset{\mathit{def}}{=} \inf_{p \in \gnpaths(u)} \phi_n(p) \leq \phi_n(v) + \wtp(vu).
+          \phi_n(u) \overset{\mathit{def}}{=} \inf_{p \in \gnpaths(u)} \phi_n(p) \leq \phi_n(v) + \len(vu).
         \]
         It implies that
         \[
-          LS\leq \sum_{(vu) \in E_n} \flowposn{n}(vu) \wtp(vu) = \sum_{e \in E_n} \flowposn{n}(e) \wtp(e).
+          LS\leq \sum_{(vu) \in E_n} \flowposn{n}(vu) \len(vu) = \sum_{e \in E_n} \flowposn{n}(e) \len(e).
         \]
         Due to the property~\ref{p2} we get the following:
         \[
-          LS\leq \sum_{e \in E_n} \flowposn{n}(e) \wtp(e) \leq \sum_{e \in E_n} \flowpos(e) \wtp(e).
+          LS\leq \sum_{e \in E_n} \flowposn{n}(e) \len(e) \leq \sum_{e \in E_n} \flowpos(e) \len(e).
         \]
         The inequality is proven.
       \end{proof}
@@ -1036,7 +1025,7 @@
           LS = \sum_{v \in L_n}d^{-}_n(v) \phi_n(v) \geq \min_{v \in L_n}\phi_n(v) \sum_{v \in L_n} d^{-}_n(v).
         \]
         Since $\sum\limits_{v \in L_n} d^{-}_n(v)$ is the total amount of the flow incoming to the deepest layer $L_n$, and the only
-          active vertex in $G_n$ is the root, which produces the flow which size is precisely equal to $1$, the following is true:
+          active vertex in $G_n$ is the root, which produces the flow which size is equal to $1$, the following is true:
         \[
           \sum_{v \in L_n} d^{-}_n(v) = d^{+}_n(\root) = 1.
         \]
@@ -1047,7 +1036,7 @@
 
         Furthermore we remark that due to the~\eqref{main-ineq} the next inequality holds:
         \[
-          \min_{L_n} \phi_n(v) \leq LS \leq \sum_{e \in E_n} \wtp(e) \flowpos(e) \leq \lvert\flowpos\rvert.
+          \min_{L_n} \phi_n(v) \leq LS \leq \sum_{e \in E_n} \len(e) \flowpos(e) \leq \lvert\flowpos\rvert.
         \]
         Seeing that $L_n$ contains a finite number of vertices, there exists such vertex $r_n \in L_n$ that
         \[
@@ -1055,7 +1044,7 @@
         \]
       \end{proof}
       \begin{prop}
-        There exists such a ray $r=(r_0 r_1 r_2\dots)$, where $r_n \in L_n$ for each $n > 0$, such that $\sum\limits_{k=1}^\infty \wtp(r_{k-1}r_k) < \infty$.
+        There exists such a ray $r=(r_0 r_1 r_2\dots)$, where $r_n \in L_n$ for each $n > 0$, such that $\sum\limits_{k=1}^\infty \len(r_{k-1}r_k) < \infty$.
       \end{prop}
       \begin{proof}
         We will seek for the ray $r$ in the graph
@@ -1077,12 +1066,12 @@
         Presume $\cal{P}^*$ consists only of finite paths.
         We are going to construct the ray $r$ lying in the $\cal{P}^*$, thus arriving to a contradiction.
         We set up $r$ in such a way that for every path $p_k= (r_0 r_1 \dots r_k)$ there is an infinite number of paths
-          in $\cal{P}^*$ which start with $p_k$.
+          in $\cal{P}^*$ which start on $p_k$.
 
-        We start from $k = 0$.
-        Trivially, we start with the root vertex: $r_0 = \root$.
+        We begin from $k = 0$.
+        Trivially, we let $r_0 = \root$.
         Each $U_n$ is non-empty and if the vertex $u$ belongs to $U_n$ then there always exists
-          a path $p_n \in \cal{P}^*$, which belongs to $\cal{P}(u)$.
+          a path $p_n \in \cal{P}^*$ which belongs to $\cal{P}(u)$.
         So we have an infinite set of paths $\bigcup p_n$ starting from the root vertex $\root$.
 
         Suppose we have already obtained the path $p_k= (r_0 r_1\dots r_{k-1})$.
@@ -1103,7 +1092,7 @@
         Consequently we are able to choose such $r_k \in \efor(r_{k-1})$ that the number of paths in $\cal{P}^*_k$ starting from
           the path $p_{k+1}= (p_k r_k)$ is infinite as well.
         Finally the ray $r = (r_0 r_1 \dots) \in \cal{P}^*$ is constructed.
-        The sum $\sum \wtp(r_k r_{k+1})$ is bounded since the partial sums are bounded by the values of the function $\phi_n$
+        The sum $\sum \len(r_k r_{k+1})$ is bounded since the partial sums are bounded by the values of the function $\phi_n$
          which are uniformly bounded by definition of the classes $U_n$.
       \end{proof}
       In the end we found a finite-length ray in the network $\onet$.
@@ -1117,11 +1106,11 @@
       Also due to Katavolos, Lambrou and Papadakis~\cite{katavolos} the next two theorems hold.
       \begin{theorem}
         \label{thm-katavolos-1}
-          The system $\fsys_{LW}$ admits a linear summation method if and only if the system is two point dense.
+          The system $\fsys_{LW}$ admits a rank one density property if and only if the system is two point dense.
       \end{theorem}
-      \begin{note}
+      \begin{remark}
         We are going to use this result in order to finish the classification of the B-class vector systems later.
-      \end{note}
+      \end{remark}
 
       \begin{theorem}
         \label{thm-katavolos-2}
@@ -1131,7 +1120,7 @@
             %  \mu_n = \frac{a_{n-1} a_{n-3} \dots}{a_{n} a_{n-2} \dots }
             %\end{equation*}
               %does not belong to $\ell^2$,
-          The system $\fsys_{LW}$ admits a linear summation method if and only if
+          The system $\fsys_{LW}$ admits a rank one density property if and only if
             the sequence $\left\{1/a_n\right\}_{n=1}^\infty$ does not belong to $\ell^1$.
       %  \end{enumerate}
       \end{theorem}
@@ -1139,19 +1128,19 @@
       \begin{proof}
         Notice that $\fsys=\fsys_{LW}$ belongs to B-class.
         Thus Theorem~\ref{thm-graph-eq} applies to the system $\fsys$, which asserts
-          that $\fsys$ admits a linear summation method if and only if
+          that $\fsys$ admits the rank one density property if and only if
           the network $\net(\fsys)$ is $\flow$-preserving for any
           finite-mass flow $\flow$.
-        We could reformulate the conclusion in terms of \emph{oriented} networks.
-        The system $\fsys$ admits a linear summation method if and only if
+        We could rephrase the conclusion in terms of \emph{oriented} networks.
+        The system $\fsys$ admits the rank one density property if and only if
           the oriented network $\onet(\fsys)$ is $\flowpos$-preserving for any
           finite-mass flow $\flowpos$.
         After that we utilize Theorem~\ref{ray-thm}, which states that there exists such
           flow $\flowpos: \vec{E} \to \mathbb{R}^{+}$ with a finite mass which is not preserved in
           the network $\onet(\fsys)$
           if and only if there exists a ray $r = \seq{r} \subseteq \onet $ originating in the vertex $\source$,
-          whose total length is bounded: $ \sum_{k=1}^\infty \wtp(r_k r_{k+1}) < \infty$.
-          Hence, the system does not admit a linear summation method when and only when there is such ray $r$
+          whose total length is bounded: $ \sum_{k=1}^\infty \len(r_k r_{k+1}) < \infty$.
+          Hence, the system is not rank one dense when and only when there is such ray $r$
             with the properties specified up above.
 
           How does look the ray of a finite length in the network like $\onet(\fsys)$?
@@ -1160,7 +1149,7 @@
           Now look at the outline of the network $\onet(\fsys)$ (Figure~\ref{LW-net}).
           It clearly demonstrates that the existence of the finite-length ray in the network $\onet(\fsys)$ implies that
             the ray $r=(r_1 r_2 r_3\dots)$ has a finite length as well.
-          However this ray has the length equal to $\sum \wtp(r_k r_{k+1}) = \sum 1/\lvert a_k \rvert$,
+          However this ray has the length equal to $\sum \len(r_k r_{k+1}) = \sum 1/\lvert a_k \rvert$,
           which completes the proof.
       \end{proof}
       \begin{figure}
@@ -1211,24 +1200,24 @@
 
       First of all, we are going to make a few comments on Theorem~\ref{thm-katavolos-1}.
       \begin{remark}
-        Theorem~\ref{thm-katavolos-1} states that $\fsys_{LW}$ does not possess a linear summation method,
+        Theorem~\ref{thm-katavolos-1} states that $\fsys_{LW}$ does not possess a rank one density property,
           if and only if it is not two point dense.
         The definition~\ref{2pd} implies that the system $\fsys$ is not two point dense
           if and only if there exists an operator $T$ of rank $2$
-          which has a nonzero trace and annihilates all the rank one operators $f_k \otimes f^*_k$.
+          which has a nonzero trace and annihilates all the rank one operators $f^*_k \otimes f_k$.
           (see the proof of Theorem 2.2 in the paper~\cite{katavolos}).
         Moreover, by Theorem~\ref{thm-katavolos-1}
-          there is no linear summation method for the LW system $\fsys_{LW}$ if and only if $\left\{1/a_k\right\} \in \ell^1$.
+          there is no rank one density for the LW system $\fsys_{LW}$ if and only if $\left\{1/a_k\right\} \in \ell^1$.
         We can conclude from these facts that the following lemma holds.
         \begin{lemma}
           \label{lw-lemma}
-          Whenever the sequence $\left\{\wtp_s = 1/a_s\right\}$ is summable,
+          Whenever the sequence $\left\{\len_s = 1/a_s\right\}$ is summable,
             it is possible to define a two-dimensional operator $T$ in such a form:
           \begin{align*}
             &T_{11} = 1,\\
             &T_{kk} = 0, \quad k > 1,\\
-            &T_{2k-1, 2k} = \wtp_{2k-1},\\
-            &T_{2k+1, 2k} = \wtp_{2k}.
+            &T_{2k-1, 2k} = \len_{2k-1},\\
+            &T_{2k+1, 2k} = \len_{2k}.
           \end{align*}
         \end{lemma}
       \end{remark}
@@ -1236,14 +1225,14 @@
       \begin{theorem}
         \label{density-thm}
         Let $\fsys$ be a B-class vector system.
-        Then $\fsys$ is two point dense when and only when $\fsys$ admits a linear summation method.
+        Then $\fsys$ is two point dense when and only when $\fsys$ admits a rank one density property.
       \end{theorem}
       \begin{proof}
-        The necessity is trivial considering that the two point density property is weaker than the existence of the linear summation method for $\fsys$.
+        The necessity is trivial considering that the two point density property is weaker than the rank one density property for $\fsys$.
 
         Now let us prove the sufficiency.
-        Presume that $\fsys$ does not admit a linear summation method.
-        Let $\onet(\fsys) = (G, \wtp, \source, \sink)$ be an orientation of the network $\net(\fsys)$.
+        Presume that $\fsys$ is not rank one dense.
+        Let $\onet(\fsys) = (G, \len, \source, \sink)$ be an orientation of the network $\net(\fsys)$.
         Applying Theorem~\ref{thm-graph-eq} and then Theorem~\ref{ray-thm} to the network $\onet(\fsys)$
           we recognize that there is a finite-length ray $r \subseteq \onet$ taking its origin
           in the source vertex $\source$.
@@ -1267,10 +1256,10 @@
         \begin{align*}
           &T'_{11} = 1,\\
           &T'_{kk} = 0,\\
-          &T'_{2k-1, 2k} = \wtp(r_{2k-1} r_{2k}) \flowpos(r_{2k-1} r_{2k}) = \wtp(r_{2k-1} r_{2k}),\\
-          &T'_{2k+1, 2k} = \wtp(r_{2k+1} r_{2k}) \flowpos(r_{2k+1} r_{2k}) = \wtp(r_{2k+1} r_{2k}).
+          &T'_{2k-1, 2k} = \len(r_{2k-1} r_{2k}) \flowpos(r_{2k-1} r_{2k}) = \len(r_{2k-1} r_{2k}),\\
+          &T'_{2k+1, 2k} = \len(r_{2k+1} r_{2k}) \flowpos(r_{2k+1} r_{2k}) = \len(r_{2k+1} r_{2k}).
         \end{align*}
-        Notice that, since the ray $r$ has a finite length, $\wtp(r_k r_{k+1})$ is a summable sequence.
+        Notice that, since the ray $r$ has a finite length, $\len(r_k r_{k+1})$ is a summable sequence.
 
         Now due to Lemma~\ref{lw-lemma} there exists a two-dimensional operator $T'$ acting on $\cal{H}_1$, which satisfies the equalities above.
         Consequently there is a two-dimensional operator $T:\cal{H}\to\cal{H}$, which equals to $T'$ on $\cal{H}_1$ and equals to zero
@@ -1279,7 +1268,7 @@
         It follows that the system $\fsys$ is not two point dense.
     \end{proof}
     \begin{remark}
-      Concerning the linear summation method property, the last theorem reveals that the B-class vector systems
+      Concerning the rank one density, the last theorem reveals that the B-class vector systems
         admit the same criterion as the Larson--Wogen system.
       Furthermore the Larson--Wogen system is to a certain extent a canonical element of this class,
         since the corresponding bipartite graph $B(\cal{F}_{LW})$
@@ -1288,5 +1277,5 @@
 \bigskip
 \include{bib}
 \vspace{1em}
-\noindent{\bf Keywords:} biorthogonal system, hereditary completeness, $M$-basis, linear summation method, rank one density property, two point density property.
+\noindent{\bf Keywords:} biorthogonal system, hereditary completeness, $M$-basis, linear summation method, rank one density, two point density.
 \end{document}
