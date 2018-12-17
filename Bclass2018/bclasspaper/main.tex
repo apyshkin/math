@@ -101,9 +101,8 @@
   We are wondering whether the two point density always implies the rank one density property for an arbitrary $M$-basis $f_k$.
 
   In the next sections we are going to study the specific class of vector systems which represents a natural generalization of
-    the Larson--Wogen vector system.
+    the Larson--Wogen vector system, particularly we are going to analyze the rank one density property~\ref{r1d} for this class.
   %We are going to analyze the properties~\ref{2pd} and~\ref{r1d} for this class.
-  In this paper we are going to analyze the rank one density property~\ref{r1d} for this class.
   \begin{example}[Larson--Wogen system $\fsys_{LW}$]
     \label{lw-sys}
     \begin{align*}
@@ -178,13 +177,24 @@
         the system $\fsys$ is a $M$-basis.
     \end{remark}
     You can see the bipartite graph built from the Larson--Wogen system in the Figure~\ref{lw-bgraph}.
-
-    Below we formulate the main theorem.
+    \medskip
+    Below we pose the main theorem.
     \begin{theorem}
+      \label{thm-main}
       The B-class system $\fsys$ is rank one dense if and only if
         for any infinite path $\seq{r}$ in the bipartite graph $B(\fsys)$
           the series $\sum_{k=1}^\infty\lvert\wt^{-1}(r_k, r_{k+1})\rvert$ diverges.
     \end{theorem}
+    \begin{remark}
+      One could apply the theorem to the Larson--Wogen system~\eqref{lw-sys}.
+      Since the bipartite graph $B(\fsys_{LW})$ is a ray itself, the next proposition holds.
+      \begin{corol*}
+        %\label{thm-katavolos-2}
+          The system $\fsys_{LW}$ admits a rank one density property if and only if
+            the sequence $\left\{1/a_n\right\}_{n=1}^\infty$ does not belong to $\ell^1$.
+      \end{corol*}
+      Needless to say, this statement and its proof could be easily found within the previous studies of the Larson--Wogen example (in~\cite{katavolos},~\cite{larson}).
+    \end{remark}
     \begin{figure}
       \begin{center}
       \begin{tikzpicture}[thick,
@@ -194,12 +204,12 @@
 
         \begin{scope}[start chain=going below,node distance=12mm]
           \foreach [evaluate={\k=int(\i*2 + 1)}] \i in {0,...,3}
-          \node[lnode,on chain] (l\k) [label=left: $v_{l_\k}$] {$e_{\k}$};
+          \node[lnode,on chain] (l\k) [label=left: $v_{\k}$] {$e_{\k}$};
           \node[draw=none,on chain, yshift=7mm]{$\vdots$};
         \end{scope}
         \begin{scope}[xshift=4cm,yshift=-0.7cm,start chain=going below,node distance=12mm]
           \foreach [evaluate={\k=int(\i*2 + 2)}] \i in {0,...,3}
-          \node[rnode,on chain] (r\k) [label=right: $v_{r_\k}$] {$e_\k$};
+          \node[rnode,on chain] (r\k) [label=right: $v_{\k}$] {$e_\k$};
           \node[draw=none,on chain, yshift=7mm]{$\vdots$};
         \end{scope}
 
@@ -211,9 +221,9 @@
         % the edges
         \begin{scope}[wnode]
           \foreach [evaluate={\l=int(\i*2 + 1);\r=int(\i*2 + 2)}] \i in {0,...,3}
-          \draw (l\l) to node[draw=none, color=black] {\footnotesize $w_{\l\r}=a_{\r}$} (r\r);
+          \draw (l\l) to node[draw=none, color=black] {\footnotesize $\mathrm{w}_{\l\r}=a_{\r}$} (r\r);
           \foreach [evaluate={\l=int(\i*2 + 3);\r=int(\i*2 + 2)}] \i in {0,...,2}
-          \draw (l\l) to node[draw=none,color=black] {\footnotesize $w_{\r\l}=a_{\l}$} (r\r);
+          \draw (l\l) to node[draw=none,color=black] {\footnotesize $\mathrm{w}_{\r\l}=a_{\l}$} (r\r);
         \end{scope}
       \end{tikzpicture}
       \caption{The bipartite graph $B(\fsys_{LW})$ } \label{lw-bgraph}
@@ -711,7 +721,7 @@
       Suppose that the flow $\flowpos$ contains no positive flow cycles in the first place.
       Also we remove the edges of the network $\onet$ for which the flow $\flowpos$ equals zero.
 
-      \subsection{Main construction}
+    \subsection{Main construction}
       We are going to need a few definitions in order to proceed with the proof of the theorem.
       \begin{definition}
         Let $G = (V, \vec{E},\len, \root)$ be a weighted directed graph with a positive
@@ -1103,100 +1113,68 @@
       Hence the implication is proved as well as the theorem itself.
     \end{proof}
 
-  \section{Application of the B-networks criterion}
-    \subsection{Application of the B-networks criterion to the Larson--Wogen example.}
-      The Larson--Wogen system is given in the Example~\ref{lw-sys}.
-      The sequences $\{f_j\}$, $\{f^*_j\}$ are biorthogonal and both are complete in $\cal{H}$ (thus $\fsys$ is a $M$-basis).
-      Also due to Katavolos, Lambrou and Papadakis~\cite{katavolos} the next two theorems hold.
-      \begin{theorem}
-        \label{thm-katavolos-1}
-          The system $\fsys_{LW}$ admits a rank one density property if and only if the system is two point dense.
-      \end{theorem}
-      \begin{remark}
-        We are going to use this result in order to finish the classification of the B-class vector systems later.
-      \end{remark}
+    Now we present the proof of the theorem~\ref{thm-main} using the theorems~\ref{thm-graph-eq} and~\ref{ray-thm}.
+    \begin{proof}[Proof of Theorem~\ref{thm-main}]
+      The system $\fsys$ belongs to B-class, so we could apply Theorem~\ref{thm-graph-eq}, which asserts
+        that $\fsys$ admits the rank one density property if and only if
+        the corresponding network $\net(\fsys)$ is $\flow$-preserving for any
+        finite-mass flow $\flow$.
+      We could rephrase the last conclusion in terms of \emph{oriented} networks.
+      The system $\fsys$ admits the rank one density property if and only if
+        the oriented network $\onet(\fsys)$ is $\flowpos$-preserving for any
+        finite-mass flow $\flowpos$.
+      After that we utilize Theorem~\ref{ray-thm}, which states that there exists such
+        flow $\flowpos: \vec{E} \to \mathbb{R}^{+}$ with a finite mass, which is not preserved in
+        the network $\onet(\fsys)$, if and only if there exists a ray $r^{*} \subseteq \onet$, originating in the vertex $\source$,
+        whose total length is bounded: $\sum_{k=1}^\infty \len(r^{*}_k r^{*}_{k+1}) < \infty$.
+      Combining these two statements we get that $\fsys$ is \emph{not} rank one dense when and only when there is a finite-length ray $r^*$ in the network $\onet(\fsys)$.
+      It is obvious that $r^*$ cannot include infinite number of the edges incident to the vertices
+        $\source$ and $\sink$, since such edges have the length exactly one.
+      Therefore, such $r^*$ exists in $\onet(\fsys)$ if and only if there is a ray $r=\seq{r}$ in the original bipartite graph $B(\fsys)$ such that
+        the series $\sum_{k=1}^\infty\lvert\wt^{-1}(r_k, r_{k+1})\rvert$ converges.
+      The theorem is proved.
+    \end{proof}
+      %\begin{figure}
+        %\begin{center}
+        %\begin{tikzpicture}[thick,
+                            %every node/.style={draw,circle},
+                            %%every fit/.style={ellipse,draw,inner sep=-1pt,text width=2cm},
+                            %]
+          %%\draw[help lines,step=9mm,gray!70] (0,-6) grid (6,0);
+          %\node[fill=gray,draw, xshift=-3cm, yshift=-3.5cm] (source) {$s$};
+          %\begin{scope}[start chain=going below,node distance=7mm]
+            %\foreach \i in {1,3,5,7}
+            %\node[lnode,on chain] (l\i) [] {$e_{\i}$};
+            %\node[draw=none,on chain, yshift=7mm]{$\vdots$};
+          %\end{scope}
+          %\begin{scope}[xshift=3cm,yshift=-0.5cm,start chain=going below,node distance=7mm]
+            %\foreach \i in {2,4,6,8}
+            %\node[rnode,on chain] (r\i) [] {$e_\i$};
+            %\node[draw=none,on chain, yshift=7mm]{$\vdots$};
+          %\end{scope}
+          %\node[xshift=6cm,yshift=-3.5cm,draw] (sink) {$t$};
 
-      \begin{theorem}
-        \label{thm-katavolos-2}
-      %  \begin{enumerate}[label=(\alph*)]
-          %\item The system $\fsys_{LW}$ is a strong $M$-basis if and only if the following sequence
-            %\begin{equation*}
-            %  \mu_n = \frac{a_{n-1} a_{n-3} \dots}{a_{n} a_{n-2} \dots }
-            %\end{equation*}
-              %does not belong to $\ell^2$,
-          The system $\fsys_{LW}$ admits a rank one density property if and only if
-            the sequence $\left\{1/a_n\right\}_{n=1}^\infty$ does not belong to $\ell^1$.
-      %  \end{enumerate}
-      \end{theorem}
-      We would like to present another proof of Theorem~\ref{thm-katavolos-2}, using the ideas we exposed earlier.
-      \begin{proof}
-        Notice that $\fsys=\fsys_{LW}$ belongs to B-class.
-        Thus Theorem~\ref{thm-graph-eq} applies to the system $\fsys$, which asserts
-          that $\fsys$ admits the rank one density property if and only if
-          the network $\net(\fsys)$ is $\flow$-preserving for any
-          finite-mass flow $\flow$.
-        We could rephrase the conclusion in terms of \emph{oriented} networks.
-        The system $\fsys$ admits the rank one density property if and only if
-          the oriented network $\onet(\fsys)$ is $\flowpos$-preserving for any
-          finite-mass flow $\flowpos$.
-        After that we utilize Theorem~\ref{ray-thm}, which states that there exists such
-          flow $\flowpos: \vec{E} \to \mathbb{R}^{+}$ with a finite mass which is not preserved in
-          the network $\onet(\fsys)$
-          if and only if there exists a ray $r = \seq{r} \subseteq \onet $ originating in the vertex $\source$,
-          whose total length is bounded: $ \sum_{k=1}^\infty \len(r_k r_{k+1}) < \infty$.
-          Hence, the system is not rank one dense when and only when there is such ray $r$
-            with the properties specified up above.
+          %% the set U
+          %%\node [fit=(l1) (l5),label=above:\emph{left}] {};
+          %% the set V
+          %%\node [fit=(r6) (r9),label=above:\emph{right}] {};
 
-          How does look the ray of a finite length in the network like $\onet(\fsys)$?
-          It is obvious that it cannot include infinite number of the edges incident to the vertices
-            $\source$ and $\sink$, since such edges have the length exactly one.
-          Now look at the outline of the network $\onet(\fsys)$ (Figure~\ref{LW-net}).
-          It clearly demonstrates that the existence of the finite-length ray in the network $\onet(\fsys)$ implies that
-            the ray $r=(r_1 r_2 r_3\dots)$ has a finite length as well.
-          However this ray has the length equal to $\sum \len(r_k r_{k+1}) = \sum 1/\lvert a_k \rvert$,
-          which completes the proof.
-      \end{proof}
-      \begin{figure}
-        \begin{center}
-        \begin{tikzpicture}[thick,
-                            every node/.style={draw,circle},
-                            %every fit/.style={ellipse,draw,inner sep=-1pt,text width=2cm},
-                            ]
-          %\draw[help lines,step=9mm,gray!70] (0,-6) grid (6,0);
-          \node[fill=gray,draw, xshift=-3cm, yshift=-3.5cm] (source) {$s$};
-          \begin{scope}[start chain=going below,node distance=7mm]
-            \foreach \i in {1,3,5,7}
-            \node[lnode,on chain] (l\i) [] {$e_{\i}$};
-            \node[draw=none,on chain, yshift=7mm]{$\vdots$};
-          \end{scope}
-          \begin{scope}[xshift=3cm,yshift=-0.5cm,start chain=going below,node distance=7mm]
-            \foreach \i in {2,4,6,8}
-            \node[rnode,on chain] (r\i) [] {$e_\i$};
-            \node[draw=none,on chain, yshift=7mm]{$\vdots$};
-          \end{scope}
-          \node[xshift=6cm,yshift=-3.5cm,draw] (sink) {$t$};
-
-          % the set U
-          %\node [fit=(l1) (l5),label=above:\emph{left}] {};
-          % the set V
-          %\node [fit=(r6) (r9),label=above:\emph{right}] {};
-
-          % the edges
-          \foreach [evaluate={\k=int(\i*2 + 1)}] \i in {0,...,3}
-          \draw(source)--(l\k);
-          \foreach [evaluate={\k=int(\i*2 + 2)}] \i in {0,...,3}
-          \draw(sink)--(r\k);
-          \draw (l1) -- (r2);
-          \draw (r2) -- (l3);
-          \draw (l3) -- (r4);
-          \draw (r4) -- (l5);
-          \draw (l5) -- (r6);
-          \draw (r6) -- (l7);
-          \draw (l7) -- (r8);
-        \end{tikzpicture}
-        \caption{The network $\net$ built for the LW-system $\fsys_{LW}$} \label{LW-net}
-        \end{center}
-      \end{figure}
+          %% the edges
+          %\foreach [evaluate={\k=int(\i*2 + 1)}] \i in {0,...,3}
+          %\draw(source)--(l\k);
+          %\foreach [evaluate={\k=int(\i*2 + 2)}] \i in {0,...,3}
+          %\draw(sink)--(r\k);
+          %\draw (l1) -- (r2);
+          %\draw (r2) -- (l3);
+          %\draw (l3) -- (r4);
+          %\draw (r4) -- (l5);
+          %\draw (l5) -- (r6);
+          %\draw (r6) -- (l7);
+          %\draw (l7) -- (r8);
+        %\end{tikzpicture}
+        %\caption{The network $\net$ built for the LW-system $\fsys_{LW}$} \label{LW-net}
+        %\end{center}
+      %\end{figure}
 
     %\section{Application of the B-networks criterion to the B-class vector systems}
       %In this section our aim is to apply all the results from the previous section to
