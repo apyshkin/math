@@ -410,7 +410,7 @@
     For each vertex $v_l$ from the left part of the graph we connect it with the vertex $\source$ with the edge $e_l = (\source v_l)$
       and assign the flow to the newly constructed edge.
     \begin{align*}
-      &\flow(v_l, \source) = -\flow(\source, v_l) = T_{v_l v_l}.
+      &\flow(v_l, \source) = -\flow(\source, v_l) = T_{ll}.
     \end{align*}
     Also we set the length equal to one for such edges: $\len(e_l) = 1$.
     As we added the edges $\seq{e}$, the flow became \emph{preserved} at each vertex of the left part of the network $\net(\fsys)$.
@@ -418,7 +418,7 @@
     Analagously, for every vertex $v_r$ from the right part of the graph we add a new edge $e_r=(v_r \sink)$
       and set the flow $\flow$ equal to:
     \begin{align*}
-      &\flow(v_r, \sink) = -\flow(\sink, v_r) =  T_{v_r v_r}.
+      &\flow(v_r, \sink) = -\flow(\sink, v_r) =  T_{rr}.
     \end{align*}
     Again, we have $\len(e_r) = 1$ for any $k$.
 
