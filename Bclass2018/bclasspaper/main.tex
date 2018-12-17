@@ -10,20 +10,20 @@
                  wnode/.style={sloped,above}}
 
 \begin{document}
-  \title{Rank one density property for a class of $M$-bases}
-  \author{Alexey Pyshkin}
-  \begin{abstract}
-    In the early 1990s the works of Larson, Wogen and Argyros, Lambrou, Longstaff
-      disclosed an example of a strong $M$-basis that did not admit a linear summation method.
-    We study a class of $M$-bases $\mathfrak{F}=\{f_n\}_{n=1}^\infty$ in the Hilbert space, which
-      generalizes of the Larson--Wogen system.
-    We determine the conditions under which $\mathfrak{F}$ admits a linear summation method, moreover
-      we investigate the two point density property for $\mathfrak{F}$.
-    In order to do that we employ some of the graph theory techniques.
-  \end{abstract}
-  \keywords{}
-  \thanks{TODO: Supported by RFFI}
-  \maketitle
+\title{Rank one density property for a class of $M$-bases}
+\author{Alexey Pyshkin}
+\begin{abstract}
+  In the early 1990s the works of Larson, Wogen and Argyros, Lambrou, Longstaff
+    disclosed an example of a strong $M$-basis that did not admit a linear summation method.
+  We study a class of $M$-bases $\mathfrak{F}=\{f_n\}_{n=1}^\infty$ in the Hilbert space, which
+    generalizes of the Larson--Wogen system.
+  We determine the conditions under which $\mathfrak{F}$ admits a linear summation method, moreover
+    we investigate the two point density property for $\mathfrak{F}$.
+  In order to do that we employ some of the graph theory techniques.
+\end{abstract}
+\keywords{biorthogonal system, hereditary completeness, $M$-basis, linear summation method, rank one density, two point density}
+\thanks{The author was partially supported by RFBR (the project~16-01-00674).}
+\maketitle
 
 \section{Introduction}
   Consider a complete minimal vector system $\fsys = \seq{f}$ in the infinite-dimensional Hilbert space $\cal{H}$.
@@ -65,7 +65,7 @@
     The last definition is equivalent to the defintion of the \emph{linear summation method} existence for system $\fsys$, namely that
       there exists such $\alpha_{kn}$ that $\lim_{k \to \infty} \alpha_{kn} = 0$, $\lim_{n \to \infty} \alpha_{kn} = 1$ and
       \[
-        \lim_{n \to \infty} \sum_k \alpha_{kn} \inner{x}{f^*_k} = x,
+        \lim_{n \to \infty} \sum_k \alpha_{kn} \inner{x}{f^*_k}f_k = x,
       \]
       for any $x \in \cal{H}$.
   %\end{remark}
@@ -90,18 +90,20 @@
   They built an example of a vector system $\fsys$ such that the lattice $\cal{F}$ generated from $\fsys$
     was completely distributive, but the corresponding algebra $\cal{A}$
     did not possess the rank one density property (see Example~\ref{lw-sys}).
-  This example was also studied in~\cite{argyroslambrou} (see Addendum) and by Azoff and Shehada in~\cite{azoff} regarding
+  The construction presented by Larson and Wogen was remarkably simple and elementary, and was mentioned in several papers afterwards.
+  For instance, this example was also studied in~\cite{argyroslambrou} (see Addendum) and by Azoff and Shehada in~\cite{azoff}, regarding
     the reflexivity of the lattice $\cal{F}$.
-  Finally Katavolos, Lambrou and Papadakis in~\cite{katavolos} performed a deep analysis of the density properties
+  Finally, Katavolos, Lambrou and Papadakis in~\cite{katavolos} performed a deep analysis of the density properties
     of this vector system and deduced that for this system the property~\ref{1pd} does not imply~\ref{r1d},
     however the system also admitted the property~\ref{2pd}.
   We refer to this particular example as to Larson--Wogen vector system in this paper.
 
-  We are wondering whether the two point density always implies the rank one density property for any $M$-basis $f_k$.
+  We are wondering whether the two point density always implies the rank one density property for an arbitrary $M$-basis $f_k$.
 
   In the next sections we are going to study the specific class of vector systems which represents a natural generalization of
     the Larson--Wogen vector system.
-  We are going to analyze the properties~\ref{2pd} and~\ref{r1d} for this class.
+  %We are going to analyze the properties~\ref{2pd} and~\ref{r1d} for this class.
+  In this paper we are going to analyze the rank one density property~\ref{r1d} for this class.
   \begin{example}[Larson--Wogen system $\fsys_{LW}$]
     \label{lw-sys}
     \begin{align*}
@@ -151,26 +153,23 @@
     The B-class of vector systems is the main subject of this section.
     It is a natural extension of the Larson--Wogen system (see Example~\ref{lw-sys}).
 
-    Furthermore, it appears that the B-class vector system could be restored using an infinite bipartite graph.
-    \begin{remark}
-      A vector system which belongs to the B-class could be associated with a
-        locally-finite weighted bipartite graph $B(\fsys) = (V, E, \wt)$, where $\wt$ is a
-        real-valued function on $V\times V$ such that $\wt(v, u) = -\wt(u, v)$.
+    Furthermore, a B-class vector system $\fsys$ could be associated with a
+      locally-finite weighted bipartite graph $B(\fsys) = (V, E, \wt)$, where $\wt$ is a
+      nonzero real-valued function on $V\times V$ such that $\wt(v, u) = -\wt(u, v)$.
 
-      For each index $l > 0$ such that $f^*_l = e_l$ we put the vertex $v_l$ in the first part of the bipartite graph.
-      We will call this part from now on the \emph{left} part of the graph $B(\fsys)$.
-      For any other index $r > 0$ we construct a vertex in the other part of the graph.
-      Evidently, for such indices $r > 0$ the condition $f_r = e_r$ holds due to the definition of the B-class vector systems.
-      The second part of the graph will be referred as the \emph{right} part of the graph $B(\fsys)$.
-      We put an edge between two vertices $v_l$ and $v_r$ from the left and right parts respectively,
-        whenever the scalar product $\inner{f_l}{e_r}$ is not zero.
-      For such two vertices we have $\inner{f_l}{e_r}$ = $-\inner{f_r}{e_l}$.
-      We set the weight on the edge $(lr)$ as follows: $\wt_{lr} = \inner{f_l}{e_r}^{-1}$.
-      Obviously $\wt_{lr} = -\wt_{rl}$.
-      Since the Hilbert space is infinite-dimensional, the graph is infinite as well.
-      However due to the finite-band condition~\ref{c5} the vertices of the graph are of a finite degree, hence the locally-finiteness of
-        the constructed graph.
-    \end{remark}
+    For each index $l > 0$ such that $f^*_l = e_l$ we put the vertex $v_l$ in the first part of the bipartite graph.
+    We will call this part from now on the \emph{left} part of the graph $B(\fsys)$.
+    For any other index $r > 0$ we construct a vertex in the other part of the graph.
+    Evidently, for such indices $r > 0$ the condition $f_r = e_r$ holds due to the definition of the B-class vector systems.
+    The second part of the graph will be referred as the \emph{right} part of the graph $B(\fsys)$.
+    We put an edge between two vertices $v_l$ and $v_r$ from the left and right parts respectively,
+      whenever the scalar product $\inner{f_l}{e_r}$ is not zero.
+    For such two vertices we have $\inner{f_l}{e_r}$ = $-\inner{f_r}{e_l}$.
+    We set the weight on the edge $(lr)$ as follows: $\wt_{lr} = \inner{f_l}{e_r}^{-1}$.
+    Obviously $\wt_{lr} = -\wt_{rl}$.
+    Since the Hilbert space is infinite-dimensional, the graph is infinite as well.
+    However due to the finite-band condition~\ref{c5} the vertices of the graph are of a finite degree, hence the locally-finiteness of
+      the constructed graph.
     \begin{remark}
       Note that there might be several vector systems for a single weighted bipartite graph $B$.
     \end{remark}
@@ -178,6 +177,14 @@
       Observe that both parts of the constructed bipartite graph contain an infinite number of vertices, because
         the system $\fsys$ is a $M$-basis.
     \end{remark}
+    You can see the bipartite graph built from the Larson--Wogen system in the Figure~\ref{lw-bgraph}.
+
+    Below we formulate the main theorem.
+    \begin{theorem}
+      The B-class system $\fsys$ is rank one dense if and only if
+        for any infinite path $\seq{r}$ in the bipartite graph $B(\fsys)$
+          the series $\sum_{k=1}^\infty\lvert\wt^{-1}(r_k, r_{k+1})\rvert$ diverges.
+    \end{theorem}
     \begin{figure}
       \begin{center}
       \begin{tikzpicture}[thick,
@@ -213,13 +220,10 @@
       \end{center}
     \end{figure}
 
-    You can see the bipartite graph built from the Larson--Wogen system in the Figure~\ref{lw-bgraph}.
-
     \subsection{Rank one density property for B-class}
     Suppose we have a B-class vector system $\fsys=\seq{f}$.
     %Our purpose is to analyze the two point density property of $\fsys$.
-    Our purpose is to analyze the rank one density property of $\fsys$.
-    Before we pursue that, we need to investigate the conditions under which the B-class system is rank one dense.
+    %Before we pursue that, we need to investigate the conditions under which the B-class system is rank one dense.
     First of all, we intend to demonstrate a reformulation of the rank one density problem for
       the B-class vector systems in terms of infinite networks.
 
@@ -1086,12 +1090,12 @@
           q=(r_0 r_1 \dots r_{k-1} \mathbf{q_k} q_{k+1} \dots),
         \]
           where $q_i$ are some other vertices.
-        Evidently for such path we have the vertex $\mathbf{q_k}$ being equal to be one of the end vertices of the edges $\efor(r_{k-1})$.
+        Evidently, for such path the vertex $\mathbf{q_k}$ is equal to one of the end vertices of the edges $\efor(r_{k-1})$.
         Remember that the graph $\gstar$ is locally finite and in particular the degree of the vertex $r_{k-1}$ is finite.
-        Moreover the number of the paths in $\cal{P}^*_k$ is infinite, as a result of the previous construction step.
-        Consequently we are able to choose such $r_k \in \efor(r_{k-1})$ that the number of paths in $\cal{P}^*_k$ starting from
+        Moreover, the number of the paths in $\cal{P}^*_k$ is infinite, as a result of the previous construction step.
+        Consequently, we are able to choose such $r_k \in \efor(r_{k-1})$ that the number of paths in $\cal{P}^*_k$ starting from
           the path $p_{k+1}= (p_k r_k)$ is infinite as well.
-        Finally the ray $r = (r_0 r_1 \dots) \in \cal{P}^*$ is constructed.
+        Finally, the ray $r = (r_0 r_1 \dots) \in \cal{P}^*$ is constructed.
         The sum $\sum \len(r_k r_{k+1})$ is bounded since the partial sums are bounded by the values of the function $\phi_n$
          which are uniformly bounded by definition of the classes $U_n$.
       \end{proof}
@@ -1276,6 +1280,6 @@
     %\end{remark}
 \bigskip
 \include{bib}
-\vspace{1em}
-\noindent{\bf Keywords:} biorthogonal system, hereditary completeness, $M$-basis, linear summation method, rank one density, two point density.
+%\vspace{1em}
+%\noindent{\bf Keywords:} biorthogonal system, hereditary completeness, $M$-basis, linear summation method, rank one density, two point density.
 \end{document}
