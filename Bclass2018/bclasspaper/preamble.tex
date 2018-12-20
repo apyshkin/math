@@ -18,6 +18,9 @@
 \usepackage{dsfont}
 \usepackage{calc}
 \usepackage{bm}
+
+\usepackage{fullpage}
+
 %\usepackage{tocloft}
 %\renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth} \bfseries}
 %\renewcommand{\cftbeforetoctitleskip}{-1em}
@@ -56,7 +59,7 @@
 \def\commentsep{\noindent\dotfill}
 
 % To temporarily omit all comments, enable these two lines:
-% \renewcommand{\widecommentbox}[3]{\def#1##1{}}
+\renewcommand{\widecommentbox}[3]{\def#1##1{}}
 % \let\commentsep\relax
 
 \widecommentbox{\alex}{AP}{green!20!white}
@@ -78,6 +81,7 @@
 % \renewcommand{\bibsection}{\section*{Список литературы}} % заголовок специального раздела
 \setlength{\bibsep}{0pt}
 \newcommand*{\Scale}[2][4]{\scalebox{#1}{\ensuremath{#2}}}%
+\setlength{\emergencystretch}{2pt}
 
 %\titleformat{\section}[block]{\Large\bfseries\centering}{}{1em}{}
 %\titleformat{\subsection}[block]{\large\bfseries\centering}{}{1em}{}
