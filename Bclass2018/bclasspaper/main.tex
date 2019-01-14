@@ -941,7 +941,8 @@
               =-\sum_{v \in V_n} \left(\sum_{\eout(v)} \flowposn{n}(e) - \sum_{\ein(v)}\flowposn{n}(e) \right) \phi_n(v)=\\
               =\sum_{(vu) \in E_n} \flowposn{n}(vu) \big(\phi_n(u) - \phi_n(v)\big).
             \end{align*}
-            For any $(vu) \in E_n$ we have $\phi_n(u) \leq \phi_n(v) + \len(vu).$ Therefore,
+            For any $(vu) \in E_n$ we have $\phi_n(u) \leq \phi_n(v) + \len(vu).$
+            Therefore,
             \[
               LS\leq\sum_{(vu) \in E_n} \flowposn{n}(vu) \len(vu)= \sum_{e \in E_n} \flowposn{n}(e) \len(e) \overset{\ref{p2}}{\leq} \sum_{e \in E_n} \flowpos(e) \len(e).
             \]
