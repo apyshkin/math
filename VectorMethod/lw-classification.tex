@@ -1,4 +1,4 @@
-\section{Classification theorem for the Larson--Wogen system}
+\section{Classification for the Larson--Wogen $M$-basis}
   \label{section:lw-sys}
   In this section we study the canonical example of the Larson--Wogen~\eqref{lw-sys} vector system $\fsys_{LW}$.
   Namely, we prove a theorem similar to Theorem 2.2 of~\cite{katavolos}.
@@ -19,11 +19,12 @@
     \end{itemize}
   \end{theorem}
   \begin{proof}
-    Again consider a $k$-dimensional operator $T =  \sum_{s=1}^k y^s \otimes x^s$ which annihilates $R_1(\cal{A})$.
+    Consider a $k$-dimensional operator $T = \sum_{s=1}^k y^s \otimes x^s$ which annihilates $R_1(\cal{A})$.
+    We reproduce the logic from the previous section and define $\Xi_n$, $u_n$, $v_n$ exactly in the way it is described there.
     For the given $M$-basis $\fsys = \fsys_{LW}$ we might calculate $\Xi_n$ precisely.
     \begin{align*}
-      \Xi_{2n-1} &= -a_{2n}T_{2n - 1, 2n},\\
-      \Xi_{2n} &= -a_{2n + 1}T_{2n + 1, 2n},
+      \Xi_{2n-1} &= a_{2n}T_{2n - 1, 2n},\\
+      \Xi_{2n} &= a_{2n + 1}T_{2n + 1, 2n},
     \end{align*}
       having $T_{ij}$ equal to the $\inner{Te_j}{e_i}$.
     %\begin{remark}
@@ -34,21 +35,22 @@
       %Then $\Xi_k$ tend to $1$ with $k$ going to infinity. Since $T_{k-1, k}$ as well as $T_{k, k-1}$
         %is a summable sequence for any trace operator $T$, we get the required condition.
     %\end{proof}
-    Consider Proposition~\ref{thm:kreformulation}.
-    We start from getting the new expressions for $\Xi_n$ via the vectors $u_n$ and $v_n$.
+
+    We deduce new expressions for $\Xi_n$ via the vectors $u_n$ and $v_n$,
+      also defined in the previous section.
     %Next we express $\Xi_n$ using the scalar product of the vectors $u_n$ and $v_n$, defined in the previous section.
     \begin{equation}
       \begin{aligned}
-        \Xi_{2n-1} &= -a_{2n} \sum_{s=1}^k y^s_{2n} x^s_{2n-1} = -a_{2n} \inner{u_{2n}}{v_{2n-1}},\\
-        \Xi_{2n} &= -a_{2n+1} \sum_{s=1}^k y^s_{2n} x^s_{2n+1} = -a_{2n+1} \inner{u_{2n}}{v_{2n+1}},
+        \Xi_{2n-1} &= a_{2n} \sum_{s=1}^k y^s_{2n} x^s_{2n-1} = a_{2n} \inner{u_{2n}}{v_{2n-1}},\\
+        \Xi_{2n} &= a_{2n+1} \sum_{s=1}^k y^s_{2n} x^s_{2n+1} = a_{2n+1} \inner{u_{2n}}{v_{2n+1}},
       \end{aligned}
     \end{equation}
       where $\langle\cdot, \cdot\rangle$ denotes a standard scalar product in the $\mathbb{R}^k$.
 
     Now we introduce the sequences of vectors $w_n$ and $w^*_n$.
     \begin{align*}
-      w_{2n} &= u_{2n} \quad w^*_{2n} &= v_{2n},\\
-      w_{2n+1} &= v_{2n+1} \quad w^*_{2n+1} &= u_{2n+1}.
+      w_{2n} &= u_{2n} \quad w^*_{2n} = v_{2n},\\
+      w_{2n+1} &= v_{2n+1} \quad w^*_{2n+1} = u_{2n+1}.
     \end{align*}
     Proposition~\ref{prop:kreformulation} asserts that $k$ point density is equivalent to the existence of
       such $k$-dimensional vectors $w_s$, $w^*_s$ lying in $\ell^2(\mathbb{R}^k)$ which comply with the equation
@@ -82,7 +84,7 @@
       Namely, we define $W_n = \lvert w_n\rvert$ and real $\theta_n$ that
         $\inner{w_{n}}{w_{n+1}} = W_n W_{n+1} \cos{\theta_n}.$
 
-      We have $\Xi_n = \sum_0^n \inner{w_s}{w^*_s}$ isolated from zero, so let us
+      We have $\Xi_n = -\sum_0^n \inner{w_s}{w^*_s}$ isolated from zero, so let us
         find the biggest $N > 0$ such that $\Xi_N = 0$.
       Then we can set $w_n$, $w^*_n$ to zero for any $0 \leq n \leq N$, and~\eqref{eq:vector2}
         still holds.
@@ -99,7 +101,7 @@
         W_n = \frac{\Xi_{n-1}/a'_n}{\Xi_{n-2}/a'_{n-1}} \cdot \frac{\Xi_{n-3}/a'_{n-2}}{\Xi_{n-4}/a'_{n-3}} \cdots
       \]
         belongs to $\ell^2$.
-      Now since $\Xi_n = \sum_0^n \inner{w_s}{w^*_s}$, we discover that
+      Now since $\Xi_n = -\sum_0^n \inner{w_s}{w^*_s}$, we discover that
       \[
         \frac{\Xi_n}{\Xi_{n-1}} = 1 + \eta_n,
       \]
@@ -110,9 +112,9 @@
         W^\#_n = \frac{1/a'_n}{1/a'_{n-1}} \cdot \frac{1/a'_{n-2}}{1/a'_{n-3}} \cdots
       \]
         belongs to $\ell^2$.
-      Now we set $r_n$ to $(-1)^n\frac{W^\#_n}{W_n}w_n$, and then~\eqref{eq:vector2} holds since
+      Now we set $r_n$ to $\frac{W^\#_n}{W_n}w_n$, and then~\eqref{eq:vector2} holds since
       \[
-        a_{n+1} \inner{r_n}{r_{n+1}} = -a_{n+1} \frac{1/a'_{n+1}}{\Xi_n/a'_{n+1}} \inner{w_n}{w_{n+1}} = 1.
+        a_{n+1} \inner{r_n}{r_{n+1}} = a_{n+1} \frac{1/a'_{n+1}}{\Xi_n/a'_{n+1}} \inner{w_n}{w_{n+1}} = 1.
       \]
       Since $\lvert r_n \rvert = \lvert W^\#_n \rvert$ and $\lvert W^\#_n \rvert$ belongs to $\ell^2$,
         then $r_n \in \ell^2$ as well.
@@ -136,7 +138,7 @@
       The system $\fsys$ is $k$ point dense ($k > 1$) if and only if the sequence $\{1/a_n\}_{n=1}^\infty$ does not belong to $\ell^1$.
     \end{prop}
     \begin{proof}
-      According to Proposition~\ref{prop:reformulation:lw} the $k$ point density is equivalent to the non-existence of
+      According to Proposition~\ref{prop:reformulation-lw} the $k$ point density is equivalent to the non-existence of
         the sequence of vectors $w_n$ in the $\ell^2(\mathbb{R}^k)$ which satisfy $a_n \inner{w_n}{w_{n-1}} = 1$.
       Obviously if there are such vectors $w_n$ then $1/a_n$ belongs to $\ell^1$.
 
@@ -146,28 +148,13 @@
         W_n = \max(a_n^{-\frac{1}{2}}, a^{-\frac{1}{2}}_{n+1}).
       \]
       It is easy to see that $W_n$ belongs to $\ell^2$.
+
       Notice that the product $W_nW_{n-1} \geq 1/\sqrt{a_n}$, and so it is always possible for us to choose the angle $\theta_n$ so that
       \[
         a_n \langle w_n, w_{n-1} \rangle = a_n W_n W_{n-1}\cos{\theta_n} = 1.
       \]
       Now we have defined the lengths for $w_n$ and the angles between two consecutive vectors $w_{n-1}$, $w_n$.
       Obviously, for any $k \geq 2$ we are able to choose the corresponding vectors $w_n$.
-      %\textbf{Reasoning 2.}\\
-      %Suppose $1/a_n$ is a summable sequence.
-      %We need to find such $a'_n$ that $|a'_n| \leq |a_n|$ and $\mu'_n = \frac{a'_{n-1} a'_{n-3} \dots}{a'_{n} a'_{n-2} \dots }$ belongs to $\ell^2$.
-      %Note that essentially we need to reduce $a_n$ in such a way that the fractions of the $\mu_n$ type belong to $\ell^2$ (sic!).
-      %It appears there is an appropriate sequence $a'_n$ which has a very explicit and compact form:
-      %\begin{equation*}
-        %a'_n := \begin{cases}
-          %\sqrt{a_n a_{n-1}} & \quad a_{n-1} \leq a_n \leq a_{n+1},\\
-          %\sqrt{a_n a_{n+1}} & \quad a_{n-1} \geq a_n \geq a_{n+1},\\
-          %a_n & \quad a_{n-1} \geq a_n \leq a_{n+1},\\
-          %\sqrt{a_{n-1} a_{n+1}} &\quad a_{n-1} \leq a_n \geq a_{n+1}.\\
-        %\end{cases}
-      %\end{equation*}
-      %It is easy to check that for such a sequence $a'_n$ the generated sequence $\mu'_n$ is equal either to $1/\sqrt{a_n}$ or to the $1/\sqrt{a_{n+1}}$.
-      %Then obviously the constructed $\mu'_n$ belongs to $\ell^2$.
-      %From this construction we are able to calculate the precise lengths $W_n$ and angles $\theta_n$.
     \end{proof}
   \end{proof}
   %\begin{remark}

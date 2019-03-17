@@ -106,10 +106,11 @@
       on the other hand, it is not clear how to study $k$ point density property.
     In this paper we present a new technique for analysis of $k$ point density property of a band-diagonal vector system.
 
-    In the next section we will gather some common ideas we are going to use in the rest of the paper.
-    In Section~\ref{section:lw-sys} we outline the analysis for the Larson--Wogen example providing the simpler proof of Theorems 2.1 and 2.2 in~\cite{katavolos}.
+    In the next section we will gather some common facts and outline the main idea of the paper.
+    In Section~\ref{section:lw-sys} we perform the analysis for the Larson--Wogen example providing the simpler proof of Theorems 2.1 and 2.2 in~\cite{katavolos}.
     In Section~\ref{section:pentadiagonal} we prove a similar theorem for one pentadiagonal system.
 \section{Preliminaries}
+  \label{sec:preliminaries}
   Suppose that $\fsys=\{f_n\}_{n=0}^\infty$ is an arbitrary band-diagonal $M$-basis and $\{f^*_n\}_{n=0}^\infty$ is its biorthogonal sequence.
   In this section we establish several facts about this system.
   \begin{prop}
@@ -129,24 +130,25 @@
     In the paper~\cite{katavolos} authors proved the proposition for $k = 2$.
     For greater $k$s the same reasoning works.
   \end{proof}
-  For an arbitrary operator $T$ we can define the differences between
+  For an arbitrary linear operator $T$ we can define the differences between
     the partial sums of the Fourier series using the system $\fsys$ and
     partial sums of the canonical Fourier series (using the orthonormal basis $e_k$).
   \begin{equation}
     \label{eq:xi}
-    \Xi_n = \sum_{s=0}^n \inner{Te_s}{e_s} - \sum_{s=0}^n \inner{Tf_s}{f_s^*},
+    \Xi_n = -\sum_{s=0}^n \inner{Te_s}{e_s} + \sum_{s=0}^n \inner{Tf_s}{f_s^*},
   \end{equation}
     where the $\langle \cdot, \cdot\rangle$ denotes a standard scalar product in $\cal{H}$.
-  It appears that for a finite-band system $\Xi_n$ takes a concise form, and it is much easier to study $\Xi_n$
+  It appears that $\Xi_n$ takes a concise form for a finite-band system $\fsys$, and it is much easier to study $\Xi_n$
     than, for example, $\inner{Tf_s}{f_s^*}$.
 
   \begin{prop}
     \label{prop:reformulation}
     Notice that $T$ is a trace class operator annihilating the subalgebra $R_1(\cal{A})$ if and only if
-      for any $n \geq 0$ one has $\Xi_n = \sum_{s=0}^n \inner{Te_s}{e_s}$.
+      for any $n \geq 0$ one has $\Xi_n = -\sum_{s=0}^n \inner{Te_s}{e_s}$.
   \end{prop}
     We will work with this formulation in the following sections.
-  Now suppose that the operator $T$ is finite-dimensional.
+
+  Now assume that the operator $T$ has a finite rank.
   In that case we write $T$ as a finite sum $T = \sum_{s=1}^k y^s \otimes x^s$,
     where $x^s, y^s \in \cal{H}$.
 
@@ -157,7 +159,7 @@
   \end{align*}
   Since $\inner{Te_k}{e_l} = \inner{u_k}{v_l}$ for any $k$ and $l$, we can rewrite $\Xi_n$ in terms of
     the scalar products of $\{u_n\}_{n=0}^\infty$ and $\{v_n\}_{n=0}^\infty$.
-  In turn that means that the condition from Proposition~\ref{prop:reformulation} $\Xi_n = \sum_{s=0}^n \inner{Te_s}{e_s}$
+  In turn that means that the condition from Proposition~\ref{prop:reformulation} $\Xi_n = -\sum_{s=0}^n \inner{Te_s}{e_s}$
     can be rewritten in terms of the scalar products of $\{u_n\}_{n=0}^\infty$ and $\{v_n\}_{n=0}^\infty$.
 
   Hence, the existence of $T$ might be reduced to the existence of
@@ -181,11 +183,11 @@
       $\sum_{n=0}^\infty \inner{u_n}{v_n} \neq 0$, and the following holds:
       \begin{equation}
         \label{eq:thm}
-        \Xi_n = \sum_{s=0}^n \inner{u_s}{v_s},
+        \Xi_n = -\sum_{s=0}^n \inner{u_s}{v_s},
       \end{equation}
       for any $n \geq 0$.
   \end{prop}
-  Essentially the last theorem asserts that the $k$ point density property can viewed as a
+  Essentially, the last theorem asserts that the $k$ point density property can viewed as a
     possibility of laying out the sequence of vectors in $\mathbb{R}^k$ which is constricted with
     a series of relations~\eqref{eq:thm}.
 \input{lw-classification}

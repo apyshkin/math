@@ -1,8 +1,8 @@
 \section{Pentadiagonal example}
   \label{section:pentadiagonal}
-  In this section we explore the vector system $\fsys$ and its biorthogonal system $\fstarsys$ defined as follows:
+  In this section we explore another vector system $\fsys$ and its biorthogonal system $\fstarsys$ defined as follows:
   \begin{equation}
-    \label{main-system}
+    \label{eq:5system}
     \begin{aligned}
       &\mathbf{f_{4j}} = e_{4j} \quad
       \mathbf{f^*_{4j}} = e_{4j} + d_{2j - 1} e_{4j-2} - b_{2j-1} e_{4j-1} + a_{2j} e_{4j+1} + c_{2j} e_{4j+2}\\
@@ -24,7 +24,8 @@
       while the completeness of $\fsys$ and $\fstarsys$ is easy to check.
   \end{proof}
 
-  \section{Main result}
+  We prove the theorem similar to Theorem~\ref{thm:katavolos}, though we do not investigate the case $k = 1$ in this section.
+  %\section{Main result}
     \begin{theorem}
       The given system is NOT $k$ point dense for some (equivalently any) $k > 1$ if and only if the sequence
       \[
@@ -33,35 +34,35 @@
         belongs to $\ell^1$.
     \end{theorem}
     \begin{proof}
-      %Let us consider a $k$-dimensional operator $T$ such that 
-        %$Tr(TR) = 0$ for each $R \in \cal{R}_1(\cal{A})$ which essentially means that
-        %$\langle Tf_n, f_n^* \rangle = 0$ for any $n > 0$. 
-      Notice that the partial sums of the Fourier series for the given system are somehow close to the
-        partial sums of the canonical Fourier series (using the orthonormal basis $e_n$).
-      Consider the following differences
-      \[
-        \Xi_n = \sum_0^n \langle Tf_s, f_s^* \rangle - \sum_0^n \langle Te_s, e_s \rangle,
-      \]
-        where $\langle \cdot, \cdot\rangle$ denotes the inner product in $\cal{H}$.
-      For any $j \geq 0$ we have
+      In order to investigate the density properties we repeat the reasoning from Section~\ref{sec:preliminaries}.
+      Presume that $\Xi_n$ are defined as it is described in Section~\ref{sec:preliminaries}.
+
+      Thus, for any $j \geq 0$ we have
       \begin{align*}
-        \Xi_{4j} = a_{2j} T_{4j+1, 4j} + c_{2j} T_{4j+2, 4j},\\
-        \Xi_{4j + 1} = -d_{2j} T_{4j+2, 4j} + b_{2j} T_{4j+2, 4j+1},\\
-        \Xi_{4j + 2} = a_{2j+1} T_{4j+2, 4j+3} + c_{2j+1} T_{4j+2, 4j+4},\\
-        \Xi_{4j + 3} = -d_{2j+1} T_{4j+2, 4j+4} + b_{2j+1} T_{4j+3, 4j+4},
+        \Xi_{4j} &= a_{2j} T_{4j+1, 4j} + c_{2j} T_{4j+2, 4j},\\
+        \Xi_{4j + 1} &= -d_{2j} T_{4j+2, 4j} + b_{2j} T_{4j+2, 4j+1},\\
+        \Xi_{4j + 2} &= a_{2j+1} T_{4j+2, 4j+3} + c_{2j+1} T_{4j+2, 4j+4},\\
+        \Xi_{4j + 3} &= -d_{2j+1} T_{4j+2, 4j+4} + b_{2j+1} T_{4j+3, 4j+4},
       \end{align*}
-      where $T_{ij}$ stands for $\langle Te_j, e_i \rangle$.
+        where $T_{ij}$ stands for $\langle Te_j, e_i \rangle$.
+      First of all we want to investigate the conditions of the rank one density property for $\fsys$.
       \begin{prop}
-        \label{inf-dim-statement}
-        There exists an operator $T$ with the trace equal to $-1$ such that $\langle Tf_n, f_n^*\rangle = 0$ for any $n \geq 0$
-          if and only if the sequence $\left\{\mu_n\right\}$ belongs to $\ell^1$.
+        \label{prop:inf-dim}
+        The following statements are equivalent:
+        \begin{enumerate}
+          \item The system $\fsys$ is not rank one dense;
+          %\item There exists an operator $T$ with the trace equal to $-1$ such that $\inner{Tf_n}{f_n^*} = 0$ for any $n \geq 0$;
+          \item There exists an operator $T$ such that $TrT = -1$ and for any $n \geq 0$ one has $\Xi_n = -\sum_{s=0}^n \inner{Te_s}{e_s}$;
+          \item The sequence $\left\{\mu_n\right\}_{n=1}^\infty$ belongs to $\ell^1$.
+        \end{enumerate}
       \end{prop}
       \begin{proof}
-        Assume that $\mu_n \in \ell^1$.
-        We will then construct a required operator $T$.
-        Let $T_{00}$ be equal to $-1$, and $T_{jj}$ be equal to zero for any $j > 0$.
+        The equivalence of the first two statements is due to Proposition~\ref{prop:reformulation}.
+        We are going to prove the equivalence between the last two statements.
 
-        Consider three cases for each $n \geq 0$.
+        Assume that $\mu_n \in \ell^1$; we are going construct the required operator $T$.
+        Let $T_{00}$ be equal to $-1$, and $T_{jj}$ be equal to zero for any $j > 0$.
+        Next we consider three cases for each $n \geq 0$.
 
         \noindent\textbf{Case 1.}
         Suppose $\mu_n = 1/|a_n| + 1/|b_n|$.
@@ -70,59 +71,60 @@
           T_{4j+1,4j}&=1/a_n & \quad T_{4j+2,4j} = 0,\\
           T_{4j+2,4j+1}&=1/b_n.
         \end{align*}
-        That guarantees an equality $\Xi_{2n} = \Xi_{2n+1} = 1$.
+        That guarantees the equality $\Xi_{2n} = \Xi_{2n+1} = 1$.
         For $n=2j+1$ we set:
         \begin{align*}
           T_{4j+2,4j+3}&=1/a_n & \quad T_{4j+2,4j+4} = 0,\\
           T_{4j+3,4j+4}&=1/b_n,
         \end{align*}
-        which provides an equality $\Xi_{2n} = \Xi_{2n+1} = 1$.
+        which provides the equality $\Xi_{2n} = \Xi_{2n+1} = 1$.
 
         \noindent\textbf{Case 2.}
-        Assume $\mu_n = (1 + |b_n|)/|d_n|$. 
+        Assume $\mu_n = (1 + |b_n|)/|d_n|$.
         For $n=2j$ we set
         \begin{align*}
           T_{4j+1,4j} &= b_{2j}/d_{2j} & \quad T_{4j+2,4j} = -1/d_{2j},\\
           T_{4j+2,4j+1} &= 0.
         \end{align*}
         Again, we have $\Xi_{2n} = \Xi_{2n+1} = 1$.
-        The case $n = 2j + 1$ is left to the reader.
-
-        \noindent\textbf{Case 3.}
-        Suppose $\mu_n = (1 + |a_n|)/|c_n|$. 
-        For $n = 2j + 1$ we assign:
+        For $n = 2j + 1$ we set:
         \begin{align*}
-          T_{4j+2,4j+3} &= 0 & \quad T_{4j+2,4j+4} = 1/c_{2j+1},\\
-          T_{4j+3,4j+4} &= a_{2j+1}/c_{2j+1}.
+          T_{4j+2,4j+3}&=b_{2j+1}/d_{2j+1} & \quad T_{4j+2,4j+4} = -1/d_{2j+1},\\
+          T_{4j+3,4j+4}&=0,
         \end{align*}
-        The case $n = 2j$ is analogous.
+
+        The third case $\mu_n = (1 + |a_n|)/|c_n|$ is left to the reader.
         \medskip
         All the other entries $T_{ij}$ we set to zero.
-        These assignments ensure that $\Xi_n = 1$ for any $n \geq 0$.
+        These equalities ensure that $\Xi_n = 1 = -\sum_{s=0}^n T_{ss}$ for any $n \geq 0$.
 
-        The constructed operator $T$ belongs to the trace class since all the non-zero elements are summable 
+        The constructed operator $T$ belongs to the trace class since the non-zero operator matrix entries are summable
           due to the assumption that $\left\{\mu_n\right\} \in \ell^1$.
-        Notice that $T$ annihilates all the rank one operators $f^*_n \otimes f_n$ due to the equality $\Xi_n = 1$.
-        Since the trace of the operator $T$ is equal to $-1$, the sufficiency is proved.
+        Since the trace of $T$ is equal to $-1$, the sufficiency is proved.
 
-        \medskip
-        Now assume that there exists a trace class operator $T$ with the trace equal to $-1$, which annihilates all the rank one operatos $f^*_n \otimes f_n$.
-        Then all the operator matrix elements $T_{nn}, T_{n, n+1}, T_{n, n+2}$ belong to $\ell^1$ (simple property of a trace class operator).
-        As we know, $\Xi_n$ tends to $1$, since the trace of the operator is $-1$.
-        Look at the sum $S_{2j} = |T_{4j+1, 4j}| + |T_{4j+2,4j}| + |T_{4j+2,4j+1}|$.
-        Observe that $S_{2j}$ is a linear function if considered as a function of $T_{4j+2, 4j}$.
-        Its minimum is attained on the boundary of the domain, thus it is greater than $\mu_{2j}/2$ whenever $j$ is sufficiently large.
-        The second pair of equalities gives out the minimum value greater than $\mu_{2j+1}/2$ when $j$ is large,
-          which shows that the stated condition is necessary for the existence of the operator $T$.
-        %\alex{TODO elaborate}
+        Now assume that there exists a trace class operator $T$ in the annihilator of $R_1(\cal{A})$ with the trace equal to $-1$.
+        Then the near-diagonal operator matrix elements $T_{nn}, T_{n, n+1}, T_{n, n+2}$ are summable.
+        As we know, $\Xi_n$ tends to $1$, since the trace of $T$ is $-1$.
+        We choose such $N$ that for any $n > N$ one has $\lvert \Xi_n - 1 \rvert \leq 1/2$.
+        Firstly, we consider the even case $n = 2j$.
+        Look at the sum $S_{2j} = \lvert T_{4j+1, 4j} \rvert + \lvert T_{4j+2,4j} \rvert + \lvert T_{4j+2,4j+1}\rvert$.
+        Obviously, we can rewrite this expression in a following way.
+        \begin{align*}
+          S_{2j} = \Big\lvert \frac{\Xi_{4j} - c_{2j} T_{4j+2, 4j}}{a_{2j}} \Big\rvert +
+                   \Big\lvert T_{4j+2, 4j} \Big\rvert +
+                   \Big\lvert \frac{\Xi_{4j+1} + d_{2j} T_{4j+2, 4j}}{b_{2j}} \Big\rvert.
+        \end{align*}
+        This function is piecewise linear on $T_{4j+2, 4j}$, so its minimum is attained in the breakpoints, and
+          it is easy to check that the function is greater or equal than $\mu_{2j}/2$ in each of three breakpoints.
+        Thus for $n=2j$ we proved that $S_n \geq \mu_n/2$ whenever $n > N$.
+
+        Analogously, for the odd case $n = 2j+1$ the second pair of equalities yields
+          the same estimate $S_{2j+1} \geq \mu_{2j+1}/2$ when $n > N$.
+        The latter shows that the $\left\{\mu_n\right\}_{n=1}^\infty$ is a summable sequence.
       \end{proof}
-      Now consider the case of the $k$-dimensional operator $T$.
-      Let us view the operator $T$ as a sum of $k$ rank one operators:
-      \[
-        T = \sum_1^k y^s \otimes x^s,
-      \]
-        where $x^s, y^s \in \cal{H}$.
-      Let us define vectors $v_n$ and $u_n$ for $n \geq 0 $ which lie in $\mathbb{R}^k$ as follows:
+      Now consider the case of the $k$-dimensional operator $T$, we are going to reproduce the reasoning of Seciont~\ref{sec:preliminaries}.
+      We may view the operator $T$ as a sum of $k$ rank one operators: $T = \sum_{s=1}^k y^s \otimes x^s$, where $x^s, y^s \in \cal{H}$.
+      Let us define vectors $v_n$ and $u_n$ in $\mathbb{R}^k$ for $n \geq 0 $ as follows:
       \begin{align*}
         v_{2j} &= (y^1_{4j}, y^2_{4j}, \dots ,y^k_{4j}) \quad
         &v^*_{2j} = (x^1_{4j}, x^2_{4j}, \dots ,x^k_{4j}) \\
@@ -131,39 +133,42 @@
         u_{2j} &= (x^1_{4j+1}, x^2_{4j+1}, \dots ,x^k_{4j+1}) \quad
         &u^*_{2j} = (y^1_{4j+1}, y^2_{4j+1}, \dots ,y^k_{4j+1}) \\
         u_{2j+1} &= (y^1_{4j+3}, y^2_{4j+3}, \dots ,y^k_{4j+3}) \quad
-        &u^*_{2j+1} = (x^1_{4j+3}, x^2_{4j+3}, \dots ,x^k_{4j+3}) 
+        &u^*_{2j+1} = (x^1_{4j+3}, x^2_{4j+3}, \dots ,x^k_{4j+3})
       \end{align*}
-      Note that the sequences $|v_n|$, $|u_n|$ belong to $\ell^2$.
+      Note that the sequences $\lvert v_n \rvert$, $\lvert u_n \rvert$ belong to $\ell^2$.
+
       We can rewrite the previous equations using the introduced vectors.
       \begin{align*}
         \Xi_{4j} &= a_{2j} \langle u_{2j}, v_{2j}\rangle + c_{2j} \langle v_{2j+1}, v_{2j}\rangle,\\
         \Xi_{4j + 1} &= -d_{2j} \langle v_{2j+1}, v_{2j}\rangle + b_{2j} \langle v_{2j+1}, u_{2j}\rangle,\\
         \Xi_{4j + 2} &= a_{2j+1} \langle v_{2j+1}, u_{2j+1} \rangle + c_{2j+1} \langle v_{2j+1}, v_{2j+2} \rangle,\\
-        \Xi_{4j + 3} &= -d_{2j+1} \langle v_{2j+1}, v_{2j+2}\rangle + b_{2j+1} \langle u_{2j+1}, v_{2j+2} \rangle.
+        \Xi_{4j + 3} &= -d_{2j+1} \langle v_{2j+1}, v_{2j+2}\rangle + b_{2j+1} \langle u_{2j+1}, v_{2j+2} \rangle,
       \end{align*}
-      Here $\langle\cdot, \cdot\rangle$ denotes the scalar product in $\mathbb{R}^k$.
-      %\begin{note}
-        %Observe that in such setup we always have $\Xi_n = 0$ for any $n \leq 1$.
-      %\end{note}
-      Now we will study the simplified system instead.
+        where $\langle\cdot, \cdot\rangle$ denotes the scalar product in $\mathbb{R}^k$.
+      Now we will have the following simplified expressions for $\Xi_n$ instead.
       \begin{align*}
         \Xi_{2j} &= a_{j} \langle u_{j}, v_{j} \rangle  + c_{j} \langle v_{j+1}, v_{j} \rangle,\\
         \Xi_{2j + 1} &= -d_{j} \langle v_{j+1}, v_{j} \rangle + b_{j} \langle v_{j+1}, u_{j}\rangle.
       \end{align*}
-      To summarize, we obtained that the existence of an operator $T$ could be reduced to the existence of vectors $u_n$, $v_n$ in the $\mathbb{R}^k$
-        which satisfy the conditions given above.
-      Given that the sequences of vectors $u_n$, $v_n$ lie in the $\mathbb{R}^k$, we might think of the scalar product as
-        the product of the vector lengths and the cosinus of the angle between the vectors.
+      To summarize, again Proposition~\ref{prop:kreformulation} applies to this set-up as well.
+      Next, we are going to analyze the necessary condition of $k$ point density property for $\fsys$.
       \begin{prop}
-        \label{k-dim-statement}
-        If $\left\{\mu_n\right\}$ belongs to $\ell^1$ then it is possible to construct the vectors $u_n, v_n \in \mathbb{R}^2$ such that
-          the equations above are true and for any $n \geq 0$ we have $\Xi_n = 1$.
+        If $\left\{\mu_n\right\}_{n=1}^\infty$ belongs to $\ell^1$ then it is possible to construct
+          the vectors $u_n, v_n \in \mathbb{R}^2$ such that for any $n \geq 0$ we have $\Xi_n = 1$.
       \end{prop}
-      \begin{corol*}
-        For any $k > 1$ there exists a $k$-dimensional operator $T$ with the trace equal to $-1$ such that $\langle Tf_n, f_n^*\rangle = 0$ for any $n \geq 0$
-          if and only if the sequence $\left\{\mu_n\right\}$ belongs to $\ell^1$.
-      \end{corol*}
-      \begin{proof}
+      \begin{corol}
+        \label{corol:2density}
+        If $\left\{\mu_n\right\}_{n=1}^\infty$ belongs to $\ell^1$ then $\fsys$ is NOT $k$ point dense for any $k \geq 2$.
+      \end{corol}
+      \begin{proof}[Proof of the corollary]
+        Apply the theorem and get vectors $u_n$ and $v_n$.
+        Now without loss of generality assume that $u_0 \neq 0$.
+        Then choose $u^*_0$ so that $\inner{u_0}{u^*_0} = -1$ and set all $u^*_k$ ($k > 0$), $v^*_k$ to zero.
+        Since trace of the resulting operator $T$ is equal to $\sum_{s=0}^\infty \inner{u_s}{u^*_s} + \inner{v_s}{v^*_s}$,
+          Proposition~\ref{prop:kreformulation} implies that $\fsys$ is not two point dense.
+        Trivially when $\fsys$ is not two point dense, it is also not $k$ point dense for any $k \geq 2$.
+      \end{proof}
+      \begin{proof}[Proof of the theorem]
         %The operator matrix will look very similar to one we built in the previous proposition.
         Here again we are going to look at three possible values of the $\mu_n$.
         For each $n \geq 0$ we are going to find the vector lengths $V_n = |v_n|$, $U_n = |u_n|$ and three angles:
@@ -196,19 +201,23 @@
               U_n &\leq \sqrt{\mu_n},\\
               V_n &\leq \max(\sqrt{\mu_n}, M_n).
             \end{align*}
-            There exist such angles $\beta_n$, $\gamma_n$ that with the values $U_n$, $V_n$ defined like this the following is true:
-            \begin{align*}
-              \langle u_n, v_n \rangle &= 1/a_n,\\
-              \langle u_n, v_{n+1} \rangle &= 1/b_n,\\
-              \langle v_n, v_{n+1} \rangle &= 0.
-            \end{align*}
+            There exist angles $\beta_n$, $\gamma_n$ such that:
+            \begin{equation}
+              \label{eqn:case1}
+              \begin{aligned}
+                \langle u_n, v_n \rangle &= 1/a_n,\\
+                \langle u_n, v_{n+1} \rangle &= 1/b_n,\\
+                \langle v_n, v_{n+1} \rangle &= 0.
+              \end{aligned}
+            \end{equation}
           \end{prop}
           \begin{proof}
             First part of the proposition is trivial.
             Now we want to understand why there exist such $\beta_n$ and $\gamma_n$ that all the scalar products of
-            $v_n$, $v_{n+1}$, $u_n$ satisfy the conditions above.
-            Now observe that the chosen $U_n$, $1/(|a_n| V_n)$ and $1/(|b_n| V_{n+1})$ 
-              comprise a right triangle with $U_n$ as a hypotenuse.
+              $v_n$, $v_{n+1}$, $u_n$ satisfy the conditions~\eqref{eqn:case1}.
+
+            Observe that the chosen $U_n$, $\frac{1}{|a_n| V_n}$ and $\frac{1}{|b_n| V_{n+1}}$
+              make up a right triangle with $U_n$ as a hypotenuse.
             As a result there always be such $\beta_n$ and $\gamma_n$ that
             \begin{align*}
               |U_n \cos{\beta_n}| &= \frac{1}{|a_n|V_n},\\
@@ -236,30 +245,32 @@
                 V_n &\leq \max(2\sqrt{\mu_n}, M_n),\\
                 U_n &\leq \sqrt{\mu_n}.
             \end{align*}
-            With the values $U_n$, $V_n$, $\gamma_n$, $\alpha_n$ defined like we have
-            \begin{align*}
-              \langle u_n, v_n \rangle &= 0,\\
-              \langle u_n, v_{n+1} \rangle &= a_n/c_n,\\
-              \langle v_n, v_{n+1} \rangle &= 1/c_n.
-            \end{align*}
+            With $U_n$, $V_n$, $\gamma_n$, $\alpha_n$ defined like this, we have
+            \begin{equation}
+              \label{eqn:case2}
+              \begin{aligned}
+                \langle u_n, v_n \rangle &= 0,\\
+                \langle u_n, v_{n+1} \rangle &= a_n/c_n,\\
+                \langle v_n, v_{n+1} \rangle &= 1/c_n.
+              \end{aligned}
+            \end{equation}
           \end{prop}
           \begin{proof}
             Firstly, $\alpha_n$ is defined correctly since
             \[
-              V_n V_{n+1} \geq V_n M_{n+1} \geq \frac{2}{\sqrt{\smash[b]{|c_n|}}} \frac{1}{\sqrt{\smash[b]{|c_n|}}} = \frac{2}{|c_n|}
+              V_n V_{n+1} \geq V_n M_{n+1} \geq \frac{2}{\sqrt{\smash[b]{|c_n|}}} \frac{1}{\sqrt{\smash[b]{|c_n|}}} = \frac{2}{|c_n|},
             \]
-            which means that the absolute value of the arccosinus argument is always less than $1/2$.
-            Now taking into account that $|\cos{\alpha_n}| \leq 1/2$, notice that $|\cos{\gamma_n}| = |\sin{\alpha_n}|$ is always greater than $1/2$.
+              which means that the absolute value of the inverse cosine argument is always less than $1/2$.
+            Taking into account that $|\cos{\alpha_n}| \leq 1/2$, notice that $|\cos{\gamma_n}| = |\sin{\alpha_n}|$ is always greater than $1/2$.
             It is the fact which we need later.
-            
+
             Trivially, $M_{n+1} \leq \sqrt{\mu_n}$ and $V_n \leq \max(2\sqrt{\mu_n}, M_n)$.
             Next we set
             \[
               U_n = |U_n| \leq 2 \frac{|a_n|}{|c_n|} \frac{1}{V_{n+1}} \leq 2 \frac{\sqrt{|a_n|}}{\sqrt{|c_n|}} \leq \sqrt{\mu_n}.
             \]
-            It is easy to notice that the angles and $U_n$ are chosen in such way that the scalar product conditions are 
-              satisfied.
-            Finally, we are able to lay out the vectors $v_n$, $u_n$ and $v_{n+1}$ with the prescribed angles 
+            It is easy to notice that the angles and $U_n$ are chosen in such way that the scalar product conditions~\eqref{eqn:case2} are satisfied.
+            Finally, we are able to lay out the vectors $v_n$, $u_n$ and $v_{n+1}$ with the prescribed angles
               since we have $\beta_n = \pi/2 = (\pi/2 \pm \alpha_n) \mp \alpha_n = \gamma_n \mp \alpha_n$,
               where we choose the '$\mp$' sign accordingly to our choice in the expression of the $\gamma_n$ angle.
           \end{proof}
@@ -286,40 +297,39 @@
                 U_n &\leq \sqrt{\mu_n}.
               \end{align*}
               With the values $U_n$, $V_n$, $\beta_n$, $\alpha_n$ defined like this the following is true:
-              \begin{align*}
-                \langle u_n, v_n \rangle &= b_n/d_n,\\
-                \langle u_n, v_{n+1} \rangle &= 0,\\
-                \langle v_n, v_{n+1} \rangle &= -1/d_n.
-              \end{align*}
+              \begin{equation}
+                \label{eqn:case3}
+                \begin{aligned}
+                  \langle u_n, v_n \rangle &= b_n/d_n,\\
+                  \langle u_n, v_{n+1} \rangle &= 0,\\
+                  \langle v_n, v_{n+1} \rangle &= -1/d_n.
+                \end{aligned}
+              \end{equation}
           \end{prop}
           \begin{proof}
             Firstly, $\alpha_n$ is defined correctly since
             \[
               V_n V_{n+1} \geq V_n M_{n+1} \geq \frac{2}{\sqrt{\smash[b]{|d_n|}}} \frac{1}{\sqrt{\smash[b]{|d_n|}}} = \frac{2}{|d_n|},
             \]
-              which means that the absolute value of the arccosinus argument is always less than $1/2$. Now taking into
-              account that $|\cos{\alpha_n}|$ is less than or equal to $1/2$, we always have $|\cos{\beta_n}| > 1/2$.
-            
+              which means that the absolute value of the inverse cosine argument is always less than $1/2$.
+            Taking into account that $|\cos{\alpha_n}| \leq 1/2$, we always have $|\cos{\beta_n}| > 1/2$.
+
             Trivially, we have $M_{n+1} \leq \sqrt{\mu_n}$ and $V_n \leq \max(2\sqrt{\mu_n}, M_n)$.
-            Next
+            Next,
             \[
               U_n = |U_n| \leq 2 \frac{|b_n|}{|d_n|} \frac{1}{V_n} \leq 2 \frac{\sqrt{|b_n|}}{\sqrt{|d_n|}} \leq \sqrt{\mu_n}.
             \]
-            It is easy to notice that the angles and $U_n$ are chosen in such way that the scalar product conditions are satisfied.
-            Finally, we are able to lay out the vectors $v_n$, $u_n$ and $v_{n+1}$ with the prescribed angles 
+            Again, the angles and $U_n$ are chosen in such way that the scalar product conditions~\eqref{eqn:case3} are satisfied.
+            Finally, we are able to lay out the vectors $v_n$, $u_n$ and $v_{n+1}$ with the prescribed  analyze the necessary condition of $k$ point density property for $\fsys$.
               since we have $\gamma_n = \pi/2 = (\pi/2 \pm \alpha_n) \mp \alpha_n = \beta_n \mp \alpha_n$,
               where we choose the '$\mp$' sign accordingly to our choice in the expression of the $\beta_n$ angle.
           \end{proof}
-        In each of three cases we guaranteed that $M_{n+1} \leq \sqrt{\mu_n}$ and
-          that $V_n \leq \max(M_n, 2\sqrt{\mu_n})$.
+        In each of three cases we guaranteed that $M_{n+1} \leq \sqrt{\mu_n}$ and that $V_n \leq \max(M_n, 2\sqrt{\mu_n})$.
         Hence, we get that $V_n$ is bounded up to some constant by $\max(\sqrt{\mu_{n-1}}, \sqrt{\mu_n})$.
         Due to the three propositions above, for any $n \geq 0$ we have $U_n \leq \sqrt{\mu_n}$.
         Thus the constructed sequences $V_n$ and $U_n$ belong to $\ell^2$.
-
-        In the end we choose the vector $v_0^*$ such that $\langle v_0, v_0^*\rangle$ is equal to $-1$.
-        It is possible since the vector $v_0$ is not trivial.
-        Furthermore, we set all the other $v^*_n$ and $u^*_n$ to the zero vector in order to guarantee that for any $n \geq 0$ we have $\Xi_n = 1$.
-        The trace of the constructed operator is obviously equal to $-1$.
       \end{proof}
-      The proof of the theorem is finished with the proof of the statements~\ref{inf-dim-statement} and~\ref{k-dim-statement}.
+      Now due to Corollary~\ref{corol:2density} we get that the two point density of $\fsys$ implies the divergence of $\sum_{n=1}^\infty \mu_n$,
+        which in turn is equivalent to the rank one density property of $\fsys$ (see~\ref{prop:inf-dim}).
+      Since rank one density implies $k$ point density for any $k$, the theorem is proved.
     \end{proof}
