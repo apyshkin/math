@@ -27,11 +27,11 @@
   We prove the theorem similar to Theorem~\ref{thm:katavolos}, though we do not investigate the case $k = 1$ in this section.
   %\section{Main result}
     \begin{theorem}
-      The given system is NOT $k$ point dense for some (equivalently any) $k > 1$ if and only if the sequence
+      The given system is $k$ point dense for some (equivalently any) $k > 1$ if and only if the sequence
       \[
-        \mu_n = \min\left(\frac{1}{|a_n|} + \frac{1}{|b_n|}, \frac{1 + |b_n|}{|d_n|}, \frac{1 + |a_n|}{|c_n|}\right)
+        \mu_n = \min\left(\frac{1}{\lvert a_n \rvert} + \frac{1}{\lvert b_n \rvert}, \frac{1 + \lvert b_n\rvert}{\lvert d_n\rvert}, \frac{1 + \lvert a_n\rvert}{\lvert c_n\rvert}\right)
       \]
-        belongs to $\ell^1$.
+        does not belong to $\ell^1$.
     \end{theorem}
     \begin{proof}
       In order to investigate the density properties we repeat the reasoning from Section~\ref{sec:preliminaries}.
@@ -68,13 +68,13 @@
         Suppose $\mu_n = 1/|a_n| + 1/|b_n|$.
         For $n=2j$ we set:
         \begin{align*}
-          T_{4j+1,4j}&=1/a_n & \quad T_{4j+2,4j} = 0,\\
+          T_{4j+1,4j}&=1/a_n, & \quad T_{4j+2,4j} = 0,\\
           T_{4j+2,4j+1}&=1/b_n.
         \end{align*}
         That guarantees the equality $\Xi_{2n} = \Xi_{2n+1} = 1$.
         For $n=2j+1$ we set:
         \begin{align*}
-          T_{4j+2,4j+3}&=1/a_n & \quad T_{4j+2,4j+4} = 0,\\
+          T_{4j+2,4j+3}&=1/a_n, & \quad T_{4j+2,4j+4} = 0,\\
           T_{4j+3,4j+4}&=1/b_n,
         \end{align*}
         which provides the equality $\Xi_{2n} = \Xi_{2n+1} = 1$.
@@ -83,18 +83,19 @@
         Assume $\mu_n = (1 + |b_n|)/|d_n|$.
         For $n=2j$ we set
         \begin{align*}
-          T_{4j+1,4j} &= b_{2j}/d_{2j} & \quad T_{4j+2,4j} = -1/d_{2j},\\
+          T_{4j+1,4j} &= b_{2j}/d_{2j}, & \quad T_{4j+2,4j} = -1/d_{2j},\\
           T_{4j+2,4j+1} &= 0.
         \end{align*}
         Again, we have $\Xi_{2n} = \Xi_{2n+1} = 1$.
         For $n = 2j + 1$ we set:
         \begin{align*}
-          T_{4j+2,4j+3}&=b_{2j+1}/d_{2j+1} & \quad T_{4j+2,4j+4} = -1/d_{2j+1},\\
+          T_{4j+2,4j+3}&=b_{2j+1}/d_{2j+1}, & \quad T_{4j+2,4j+4} = -1/d_{2j+1},\\
           T_{4j+3,4j+4}&=0,
         \end{align*}
 
         The third case $\mu_n = (1 + |a_n|)/|c_n|$ is left to the reader.
         \medskip
+
         All the other entries $T_{ij}$ we set to zero.
         These equalities ensure that $\Xi_n = 1 = -\sum_{s=0}^n T_{ss}$ for any $n \geq 0$.
 
