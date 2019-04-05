@@ -24,7 +24,7 @@
       while the completeness of $\fsys$ and $\fstarsys$ is easy to check.
   \end{proof}
 
-  We prove the theorem similar to Theorem~\ref{thm:katavolos}, though we do not investigate the case $k = 1$ in this section.
+  We prove a theorem similar to Theorem~\ref{thm:katavolos}, though we do not investigate the case $k = 1$ in this section.
   %\section{Main result}
     \begin{theorem}
       The given system is $k$ point dense for some (equivalently any) $k > 1$ if and only if the sequence
@@ -67,31 +67,27 @@
         \noindent\textbf{Case 1.}
         Suppose $\mu_n = 1/|a_n| + 1/|b_n|$.
         For $n=2j$ we set:
-        \begin{align*}
-          T_{4j+1,4j}&=1/a_n, & \quad T_{4j+2,4j} = 0,\\
-          T_{4j+2,4j+1}&=1/b_n.
-        \end{align*}
+        \[
+          T_{4j+1,4j}=1/a_n, \quad T_{4j+2,4j} = 0, \quad T_{4j+2,4j+1}=1/b_n.
+        \]
         That guarantees the equality $\Xi_{2n} = \Xi_{2n+1} = 1$.
         For $n=2j+1$ we set:
-        \begin{align*}
-          T_{4j+2,4j+3}&=1/a_n, & \quad T_{4j+2,4j+4} = 0,\\
-          T_{4j+3,4j+4}&=1/b_n,
-        \end{align*}
+        \[
+          T_{4j+2,4j+3}=1/a_n, \quad T_{4j+2,4j+4} = 0, \quad T_{4j+3,4j+4}=1/b_n,
+        \]
         which provides the equality $\Xi_{2n} = \Xi_{2n+1} = 1$.
 
         \noindent\textbf{Case 2.}
         Assume $\mu_n = (1 + |b_n|)/|d_n|$.
         For $n=2j$ we set
-        \begin{align*}
-          T_{4j+1,4j} &= b_{2j}/d_{2j}, & \quad T_{4j+2,4j} = -1/d_{2j},\\
-          T_{4j+2,4j+1} &= 0.
-        \end{align*}
+        \[
+          T_{4j+1,4j} = b_{2j}/d_{2j}, \quad T_{4j+2,4j} = -1/d_{2j}, \quad T_{4j+2,4j+1} = 0.
+        \]
         Again, we have $\Xi_{2n} = \Xi_{2n+1} = 1$.
         For $n = 2j + 1$ we set:
-        \begin{align*}
-          T_{4j+2,4j+3}&=b_{2j+1}/d_{2j+1}, & \quad T_{4j+2,4j+4} = -1/d_{2j+1},\\
-          T_{4j+3,4j+4}&=0,
-        \end{align*}
+        \[ 
+          T_{4j+2,4j+3}=b_{2j+1}/d_{2j+1},  \quad T_{4j+2,4j+4} = -1/d_{2j+1}, \quad T_{4j+3,4j+4}=0,
+        \]
 
         The third case $\mu_n = (1 + |a_n|)/|c_n|$ is left to the reader.
         \medskip
@@ -104,7 +100,7 @@
         Since the trace of $T$ is equal to $-1$, the sufficiency is proved.
 
         Now assume that there exists a trace class operator $T$ in the annihilator of $R_1(\cal{A})$ with the trace equal to $-1$.
-        Then the near-diagonal operator matrix elements $T_{nn}, T_{n, n+1}, T_{n, n+2}$ are summable.
+        Then the near-diagonal operator matrix elements $T_{nn}, T_{n, n+1}, T_{n, n+2}$ are absolutely summable.
         As we know, $\Xi_n$ tends to $1$, since the trace of $T$ is $-1$.
         We choose such $N$ that for any $n > N$ one has $\lvert \Xi_n - 1 \rvert \leq 1/2$.
         Firstly, we consider the even case $n = 2j$.
@@ -115,7 +111,7 @@
                    \Big\lvert T_{4j+2, 4j} \Big\rvert +
                    \Big\lvert \frac{\Xi_{4j+1} + d_{2j} T_{4j+2, 4j}}{b_{2j}} \Big\rvert.
         \end{align*}
-        This function is piecewise linear on $T_{4j+2, 4j}$, so its minimum is attained in the breakpoints, and
+        This function is piecewise linear in $T_{4j+2, 4j}$, so its minimum is attained in the breakpoints, and
           it is easy to check that the function is greater or equal than $\mu_{2j}/2$ in each of three breakpoints.
         Thus for $n=2j$ we proved that $S_n \geq \mu_n/2$ whenever $n > N$.
 
@@ -123,7 +119,7 @@
           the same estimate $S_{2j+1} \geq \mu_{2j+1}/2$ when $n > N$.
         The latter shows that the $\left\{\mu_n\right\}_{n=1}^\infty$ is a summable sequence.
       \end{proof}
-      Now consider the case of the $k$-dimensional operator $T$, we are going to reproduce the reasoning of Seciont~\ref{sec:preliminaries}.
+      Now consider the case of the $k$-dimensional operator $T$, we are going to reproduce the reasoning of Section~\ref{sec:preliminaries}.
       We may view the operator $T$ as a sum of $k$ rank one operators: $T = \sum_{s=1}^k y^s \otimes x^s$, where $x^s, y^s \in \cal{H}$.
       Let us define vectors $v_n$ and $u_n$ in $\mathbb{R}^k$ for $n \geq 0 $ as follows:
       \begin{align*}
@@ -151,25 +147,29 @@
         \Xi_{2j} &= a_{j} \langle u_{j}, v_{j} \rangle  + c_{j} \langle v_{j+1}, v_{j} \rangle,\\
         \Xi_{2j + 1} &= -d_{j} \langle v_{j+1}, v_{j} \rangle + b_{j} \langle v_{j+1}, u_{j}\rangle.
       \end{align*}
-      To summarize, again Proposition~\ref{prop:kreformulation} applies to this set-up as well.
+      To summarize, Proposition~\ref{prop:kreformulation} applies to this set-up as well.
+
       Next, we are going to analyze the necessary condition of $k$ point density property for $\fsys$.
       \begin{prop}
+        \label{prop:2pd}
         If $\left\{\mu_n\right\}_{n=1}^\infty$ belongs to $\ell^1$ then it is possible to construct
           the vectors $u_n, v_n \in \mathbb{R}^2$ such that for any $n \geq 0$ we have $\Xi_n = 1$.
       \end{prop}
       \begin{corol}
         \label{corol:2density}
-        If $\left\{\mu_n\right\}_{n=1}^\infty$ belongs to $\ell^1$ then $\fsys$ is NOT $k$ point dense for any $k \geq 2$.
+        If $\fsys$ is $k$ point dense for any $k \geq 2$ then $\sum_{n=1}^\infty \lvert\mu_n\rvert = \infty$.
       \end{corol}
       \begin{proof}[Proof of the corollary]
-        Apply the theorem and get vectors $u_n$ and $v_n$.
-        Now without loss of generality assume that $u_0 \neq 0$.
-        Then choose $u^*_0$ so that $\inner{u_0}{u^*_0} = -1$ and set all $u^*_k$ ($k > 0$), $v^*_k$ to zero.
+        Assume the converse: $\{\mu_n\}_{n=1}^\infty \in \ell^1$.
+
+        We apply the proposition and get the vectors $u_n$ and $v_n$.
+        Now without loss of generality we can assume that $u_0 \neq 0$.
+        Then consider $u^*_0$ so that $\inner{u_0}{u^*_0} = -1$ and set all $u^*_k$ ($k > 0$), $v^*_k$ to zero.
         Since trace of the resulting operator $T$ is equal to $\sum_{s=0}^\infty \inner{u_s}{u^*_s} + \inner{v_s}{v^*_s}$,
           Proposition~\ref{prop:kreformulation} implies that $\fsys$ is not two point dense.
         Trivially when $\fsys$ is not two point dense, it is also not $k$ point dense for any $k \geq 2$.
       \end{proof}
-      \begin{proof}[Proof of the theorem]
+      \begin{proof}[Proof of Proposition~\ref{prop:2pd}]
         %The operator matrix will look very similar to one we built in the previous proposition.
         Here again we are going to look at three possible values of the $\mu_n$.
         For each $n \geq 0$ we are going to find the vector lengths $V_n = |v_n|$, $U_n = |u_n|$ and three angles:
