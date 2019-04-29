@@ -60,7 +60,7 @@
         The equivalence of the first two statements is due to Proposition~\ref{prop:reformulation}.
         We are going to prove the equivalence between the last two statements.
 
-        Assume that $\mu_n \in \ell^1$; we are going construct the required operator $T$.
+        Assume that $\left\{\mu_n\right\}_{n=1}^\infty \in \ell^1$; we are going construct the required operator $T$.
         Let $T_{00}$ be equal to $-1$, and $T_{jj}$ be equal to zero for any $j > 0$.
         Next we consider three cases for each $n \geq 0$.
 
@@ -96,21 +96,21 @@
         These equalities ensure that $\Xi_n = 1 = -\sum_{s=0}^n T_{ss}$ for any $n \geq 0$.
 
         The constructed operator $T$ belongs to the trace class since the non-zero operator matrix entries are summable
-          due to the assumption that $\left\{\mu_n\right\} \in \ell^1$.
+          due to the assumption that $\left\{\mu_n\right\}_{n=1}^\infty \in \ell^1$.
         Since the trace of $T$ is equal to $-1$, the sufficiency is proved.
 
         Now assume that there exists a trace class operator $T$ in the annihilator of $R_1(\cal{A})$ with the trace equal to $-1$.
-        We will prove that $\mu_{2j}$ is a summable sequence, the odd case is analogous.
 
-        Since $T$ is in the trace class, the near-diagonal operator matrix elements $T_{nn}, T_{n, n+1}, T_{n, n+2}$ are absolutely summable.
-        Then $\nu_n = \lvert T_{nn} \rvert + \lvert T_{n, n + 1} \rvert + \lvert T_{n, n+2} \rvert$ belongs to $\ell^1$.
-        It can be easily checked that if for some $n$ one of $a_n$,$b_n$,$c_n$,$d_n$ is equal to zero, then $\nu_n \geq \mu_n/2$.
+        First of all, we prove that $\{\mu_{2j}\}_{j=1}^\infty$ is a summable sequence.
+        Since $T$ is in the trace class, the sequence $\nu_n = \lvert T_{nn} \rvert + \lvert T_{n, n + 1} \rvert + \lvert T_{n, n+2} \rvert$
+          belongs to $\ell^1$.
+        It can be easily checked that if for some $n$ one of the numbers $a_n$,$b_n$,$c_n$,$d_n$ is equal to zero, then $\nu_n \geq \mu_n/2$.
 
-        For any $n = 2j$ consider the linear function
+        For any even $n = 2j$ consider the linear function $g_n$:
         \begin{align*}
           g_{n}(x) = \Big\lvert \frac{\Xi_{2n} - c_{n} x}{a_{n}} \Big\rvert +
-                   \lvert x \rvert +
-                   \Big\lvert \frac{\Xi_{2n+1} + d_{n} x}{b_{n}} \Big\rvert.
+                       \lvert x \rvert +
+                     \Big\lvert \frac{\Xi_{2n+1} + d_{n} x}{b_{n}} \Big\rvert.
         \end{align*}
         Obviously, we have $\nu_{n} = g_{n}(T_{2n+2, 2n})$.
         %\begin{align*}
@@ -120,10 +120,10 @@
         %\end{align*}
         This function is piecewise linear, so its minimum is attained in the breakpoints.
         The breakpoints are zero, $y_n = \Xi_{2n}/c_n$ and $z_n = -\Xi_{2n+1}/d_n$.
-        Obviously, we have $g_n(0) \geq \mu_n/2$.
-        Consider the set $N_1 \subset \mathbb{N}_{{even}}$, such that for any $n \in N_1$ we have $g_n$ attains its minimum in
+        We have $g_n(0) \geq \mu_n/2$.
+        Consider the set $N_1 \subseteq \mathbb{N}_{{even}}$, such that for any $n \in N_1$ the function $g_n$ attains its minimum in
           the point $\Xi_{2n}/c_n$.
-        Thus for any $n\in N_1$ we have $\nu_n \geq g_n(y_n)$.
+        Thus, for any $n\in N_1$ we have $\nu_n \geq g_n(y_n)$.
         We have
         \[
           g_n(y_n) = \Big\lvert \Xi_{2n}/c_n \Big\rvert +
@@ -132,30 +132,33 @@
         Since $\nu_n$ is summable and $\nu_n \geq g_n(y_n) \geq 0.5/|c_n|$ for any $n \in N_1$
           we deduce that $\sum_{n \in N_1} |c_n|^{-1} < \infty$.
 
-        We denote $g_n(y_n) - \Big\lvert \Xi_{2n}/c_n \Big\rvert$ with $G_n$.
-        Trivially, $G_n$ is summable.
+        Clearly, $G_n = g_n(y_n) - \Big\lvert \Xi_{2n}/c_n \Big\rvert$ is summable.
         Let $\Delta_n$ stand for the difference $\Xi_{2n+1} - \Xi_{2n}$.
         Then
         \[
           G_n = \Big\lvert \frac{c_n \Xi_{2n+1} + d_{n} \Xi_{2n}}{c_n b_n} \Big\rvert
-            = \Big\lvert \frac{c_n \Delta_n + (c_n + d_n) \Xi_{2n}}{c_n b_n} \Big\rvert
-            = \Big\lvert \frac{c_n \Delta_n + a_n b_n\Xi_{2n}}{c_n b_n} \Big\rvert.
+              = \Big\lvert \frac{c_n \Delta_n + (c_n + d_n) \Xi_{2n}}{c_n b_n} \Big\rvert
+              = \Big\lvert \frac{c_n \Delta_n + a_n b_n\Xi_{2n}}{c_n b_n} \Big\rvert.
         \]
-        Notice that
-          $\big\lvert G_n - \Xi_{2n}\lvert a_n/c_n\rvert \big\rvert \leq \lvert \Delta_n/b_n \rvert$.
-        Consider $N_2 = \{n\in N_1 \mid 0.5 \leq \lvert b_n \rvert\}$ and $N_3 = N_1 \setminus N_2$.
-        Since $\Xi_n$ has a finite limit then $\sum_{n \in N_2} |a_n|/|c_n| < \infty$.
-        Hence, $\sum_{n \in N_2} \mu_n < \infty$.
+        Notice that $\big\lvert G_n - \Xi_{2n}\lvert a_n/c_n\rvert \big\rvert \leq \lvert \Delta_n/b_n \rvert$.
 
-        Presume that $\sum_{n \in N_3} |a_n|/|c_n| = \infty$.
-        We have $\lvert |b_n| G_n - (\Xi_{2n}|c_n + d_n|)/|c_n|\rvert \leq \lvert \Delta_n \rvert$.
-        Then because both $|b_n| G_n$ and $\Delta_n$ are summable for $n \in N_2$ we see that
-          $|c_n + d_n| / |c_n|$ is summable.
-        Consequently, it is less then $0.5$ when $n$ is sufficiently big, and so $|d_n| \geq 0.5|c_n|$.
-        Hence $\sum_{n \in N_3} 1/|d_n| < \infty$, and since for $n \in N_3$ one has $\lvert b_n \rvert \leq 0.5$,
-          $\sum_{n\in N_3} \mu_n \leq \sum_{n \in N_3} 1/\lvert d_n \rvert + \lvert b_n / d_n \rvert < \infty$.
+        Consider the sets $N_2 = \{n\in N_1 \mid 0.5 \leq \lvert b_n \rvert\}$ and $N_3 = N_1 \setminus N_2$.
+        Since $\Xi_n$ has a finite limit, we have $\sum_{n \in N_2} \lvert a_n/c_n \rvert < \infty$.
+        Hence, $\{\mu_n\}_{n \in N_2} \in \ell^1$.
 
-        The latter shows that the $\left\{\mu_n\right\}_{n=1}^\infty$ is a summable sequence.
+        Presume that $\sum_{n \in N_3} \lvert a_n/c_n\rvert = \infty$.
+
+        We have $\big\lvert |b_n| G_n - \Xi_{2n}\lvert (c_n + d_n)/c_n \rvert\big\rvert \leq \lvert \Delta_n \rvert$.
+        Then because the sequences $\{b_n G_n\}_{n\in N_2}$ and $\{\Delta_n\}_{n \in N_2}$ are absolutely summable, the sequence
+          $\{(c_n + d_n) / c_n\}_{n\in N_2} $ is absolutely summable as well.
+        Consequently, $\lvert d_n/c_n \rvert \geq 0.5$ when $n$ is large enough.
+        We get $\{1/c_n\}_{n \in N_3} \in \ell^1$, and thus $\{1/d_n\}_{n \in N_3} \in \ell^1$.
+        Since for $n \in N_3$ one has $\lvert b_n \rvert \leq 0.5$, we have
+        \[
+          \sum_{n\in N_3} \mu_n \leq \sum_{n \in N_3} \frac{1 + \lvert b_n\rvert}{\lvert d_n \rvert} < \infty.
+        \]
+
+        Repeating the reasoning for odd $n$, we get that $\left\{\mu_n\right\}_{n=1}^\infty$ is a summable sequence.
       \end{proof}
       Now consider the case of the $k$-dimensional operator $T$, we are going to reproduce the reasoning of Section~\ref{sec:preliminaries}.
       We may view the operator $T$ as a sum of $k$ rank one operators: $T = \sum_{s=1}^k y^s \otimes x^s$, where $x^s, y^s \in \cal{H}$.
@@ -329,6 +332,7 @@
             We choose plus or minus in the expression of $\beta_n$ in order to make the $b_n/(d_n \cos{\beta_n})$ always positive.
           \end{remark*}
           \begin{prop}
+            \label{prop:case3}
               The angle $\alpha_n$ is defined correctly and the following inequalities are true:
               \begin{align*}
                 M_{n+1} &\leq \sqrt{\mu_n},\\
@@ -362,13 +366,15 @@
             Finally, we are able to lay out the vectors $v_n$, $u_n$ and $v_{n+1}$ with the prescribed  analyze the necessary condition of $k$ point density property for $\fsys$.
               since we have $\gamma_n = \pi/2 = (\pi/2 \pm \alpha_n) \mp \alpha_n = \beta_n \mp \alpha_n$,
               where we choose the '$\mp$' sign accordingly to our choice in the expression of the $\beta_n$ angle.
+            Proposition~\ref{prop:case3} is proved.
           \end{proof}
         In each of three cases we guaranteed that $M_{n+1} \leq \sqrt{\mu_n}$ and that $V_n \leq \max(M_n, 2\sqrt{\mu_n})$.
         Hence, we get that $V_n$ is bounded up to some constant by $\max(\sqrt{\mu_{n-1}}, \sqrt{\mu_n})$.
         Due to the three propositions above, for any $n \geq 0$ we have $U_n \leq \sqrt{\mu_n}$.
         Thus the constructed sequences $V_n$ and $U_n$ belong to $\ell^2$.
+        The proof of Proposition~\ref{prop:2pd} is finished.
       \end{proof}
       Now due to Corollary~\ref{corol:2density} we get that the two point density of $\fsys$ implies the divergence of $\sum_{n=1}^\infty \mu_n$,
-        which in turn is equivalent to the rank one density property of $\fsys$ (see~\ref{prop:inf-dim}).
+        which in turn is equivalent to the rank one density property of $\fsys$ (see Proposition~\ref{prop:inf-dim}).
       Since rank one density implies $k$ point density for any $k$, the theorem is proved.
     \end{proof}

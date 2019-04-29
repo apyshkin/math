@@ -115,7 +115,7 @@
       \[
         a_{n+1} \inner{r_n}{r_{n+1}} = a_{n+1} \frac{1/a'_{n+1}}{\Xi_n/a'_{n+1}} \inner{w_n}{w_{n+1}} = 1.
       \]
-      Since $\lvert r_n \rvert = \lvert W^\#_n \rvert$ and $\{\lvert W^\#_n \rvert\}$ belongs to $\ell^2$,
+      Since $\lvert r_n \rvert = \lvert W^\#_n \rvert$ and $\{\lvert W^\#_n \rvert\}_{n=1}^\infty$ belongs to $\ell^2$,
         then $r_n \in \ell^2(\mathbb{R}^k)$ as well.
     \end{proof}
 
@@ -144,11 +144,11 @@
       Conversely, suppose $1/a_n$ belongs to $\ell^1$.
       Then consider $W_n$ defined as follows:
       \[
-        W_n = \max(a_n^{-\frac{1}{2}}, a^{-\frac{1}{2}}_{n+1}).
+        W_n = \max(\lvert a_n^{-\frac{1}{2}} \rvert, \lvert a^{-\frac{1}{2}}_{n+1}\rvert).
       \]
       It is easy to see that $W_n$ belongs to $\ell^2$.
 
-      Notice that the product $W_nW_{n-1} \geq 1/a_n$, and so it is always possible to choose the angle $\theta_n$ so that
+      Notice that the product $W_nW_{n-1} \geq 1/\lvert a_n\rvert$, and so it is always possible to choose the angle $\theta_n$ so that
       \[
         a_n \langle w_n, w_{n-1} \rangle = a_n W_n W_{n-1}\cos{\theta_n} = 1.
       \]

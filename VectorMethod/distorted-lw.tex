@@ -137,7 +137,7 @@
     \Xi_n = -\sum_{m=0}^n \inner{Te_m}{e_m} + \sum_{m=0}^n \inner{Tf_m}{f_m^*},
   \end{equation}
     where the $\langle \cdot, \cdot\rangle$ denotes a standard scalar product in $\cal{H}$.
-  It appears that $\Xi_n$ takes a concise form for a finite-band system $\fsys$, and it is much easier to study $\Xi_n$
+  It appears that $\Xi_n$ takes a concise form for the finite-band system $\fsys$, and it is much easier to study $\Xi_n$
     than, for example, $\inner{Tf_s}{f_s^*}$.
 
   \begin{prop}
@@ -156,20 +156,20 @@
     v_n &= (x^1_n, x^2_n, \dots, x^k_n),\\
     u_n &= (y^1_n, y^2_n, \dots, y^k_n),
   \end{align*}
-  where $x^s_n = \inner{x^s}{e_j}$.
+  where $x^s_n = \inner{x^s}{e_n}$.
   Since $\inner{Te_k}{e_l} = \inner{u_k}{v_l}$ for any $k$ and $l$, we can rewrite $\Xi_n$ in terms of
     the scalar products of $\{u_n\}_{n=0}^\infty$ and $\{v_n\}_{n=0}^\infty$.
-  In turn it means that the condition from Proposition~\ref{prop:reformulation} $\Xi_n = -\sum_{m=0}^n \inner{Te_m}{e_m}$
+  In turn it means that the condition from Proposition~\ref{prop:reformulation} on $\Xi_n$
     can be rewritten in terms of the scalar products of $\{u_n\}_{n=0}^\infty$ and $\{v_n\}_{n=0}^\infty$.
 
   Hence, the existence of $T$ might be reduced to the existence of
-    the vectors $u_n$, $v_n$ in $\mathbb{R}^k$ (such that the sequences $\{\lvert u_n\rvert\}$, $\{\lvert v_n\rvert\}$ are both square summable)
-    which satisfy the condition given in Proposition~\ref{prop:reformulation}.
+    the vectors $u_n$, $v_n$ in $\mathbb{R}^k$ (such that the sequences $\{\lvert u_n\rvert\}_{n=0}^\infty$,
+    $\{\lvert v_n\rvert\}_{n=0}^\infty$ are both square summable) which satisfy the condition given in Proposition~\ref{prop:reformulation}.
   Thus, instead of looking for $k$ Hilbert elements $x^s$ and $y^s$ we might look for an infinite sequence
-    of $k$-dimensional vectors $v_n$ and $u_n$ such that $\lvert v_n \rvert$, $\lvert u_n \rvert$ belong to $\ell^2$.
-  Obviously we can also write the trace of $T$ in terms of $u_n$, $v_n$.
+    of $k$-dimensional vectors $v_n$ and $u_n$ such that $\{v_n \}_{n=0}^\infty$, $\{u_n\}_{n=0}^\infty$ belong to $\ell^2(\mathbb{R}^k)$.
+  Clearly, we can also write the trace of $T$ in terms of $u_n$, $v_n$.
   \begin{align*}
-    Tr T &= \sum_{s=1}^k \langle y^s, x^s \rangle = \sum_{s=1}^k \sum_{n=0}^\infty y^s_n x^s_n =\\
+    Tr\,T &= \sum_{s=1}^k \langle y^s, x^s \rangle = \sum_{s=1}^k \sum_{n=0}^\infty y^s_n x^s_n =\\
          &= \sum_{n=0}^\infty \sum_{s=1}^k y^s_n x^s_n = \sum_{n=0}^\infty \langle u_n, v_n \rangle.
   \end{align*}
 
@@ -178,8 +178,7 @@
     \label{prop:kreformulation}
     There exists a $k$-dimensional operator $T$ which annihilates $R_1(\cal{A})$
       such that $Tr\, T \neq 0$ if and only if
-      there exist vectors $u_n$, $v_n \in \mathbb{R}^k$ such that
-      $\{\lvert v_n \rvert\}$, $\{\lvert u_n \rvert\} \in \ell^2$,
+      there exist vectors $\{u_n\}_{n=0}^\infty$, $\{v_n\}_{n=0}^\infty\in \ell^2(\mathbb{R}^k)$ such that
       $\sum_{n=0}^\infty \inner{u_n}{v_n} \neq 0$, and the following holds:
       \begin{equation}
         \label{eq:thm}
