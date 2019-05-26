@@ -27,40 +27,50 @@
   We prove a theorem similar to Theorem~\ref{thm:katavolos}, though we do not investigate the case $k = 1$ in this section.
   %\section{Main result}
     \begin{theorem}
-      The given system is $k$ point dense for some (equivalently any) $k > 1$ if and only if the sequence
-      \[
-        \mu_n = \min\left(\frac{1}{\lvert a_n \rvert} + \frac{1}{\lvert b_n \rvert}, \frac{1 + \lvert b_n\rvert}{\lvert d_n\rvert}, \frac{1 + \lvert a_n\rvert}{\lvert c_n\rvert}\right)
-      \]
+      The following statements are equivalent:
+      \begin{itemize}
+        \item the given system is rank one dense;
+        \item the given system is $k$ point dense for some (equivalently any) $k > 1$;
+        \item the sequence
+          \[
+            \mu_n = \min\left(\frac{1}{\lvert a_n \rvert} + \frac{1}{\lvert b_n \rvert}, \frac{1 + \lvert b_n\rvert}{\lvert d_n\rvert},
+                    \frac{1 + \lvert a_n\rvert}{\lvert c_n\rvert}\right)
+          \]
         does not belong to $\ell^1$.
+      \end{itemize}
     \end{theorem}
     \begin{proof}
       In order to investigate the density properties we repeat the reasoning from Section~\ref{sec:preliminaries}.
-      Presume that $\Xi_n$ are defined as it is described in Section~\ref{sec:preliminaries}.
+      Presume that $\Xi_n$ are defined by~\eqref{eq:xi}.
 
       Thus, for any $j \geq 0$ we have
-      \begin{align*}
-        \Xi_{4j} &= a_{2j} T_{4j+1, 4j} + c_{2j} T_{4j+2, 4j},\\
-        \Xi_{4j + 1} &= -d_{2j} T_{4j+2, 4j} + b_{2j} T_{4j+2, 4j+1},\\
-        \Xi_{4j + 2} &= a_{2j+1} T_{4j+2, 4j+3} + c_{2j+1} T_{4j+2, 4j+4},\\
-        \Xi_{4j + 3} &= -d_{2j+1} T_{4j+2, 4j+4} + b_{2j+1} T_{4j+3, 4j+4},
-      \end{align*}
+      \begin{equation}
+        \label{eq:xi5}
+        \begin{aligned}
+          \Xi_{4j} &= a_{2j} T_{4j+1, 4j} + c_{2j} T_{4j+2, 4j},\\
+          \Xi_{4j + 1} &= -d_{2j} T_{4j+2, 4j} + b_{2j} T_{4j+2, 4j+1},\\
+          \Xi_{4j + 2} &= a_{2j+1} T_{4j+2, 4j+3} + c_{2j+1} T_{4j+2, 4j+4},\\
+          \Xi_{4j + 3} &= -d_{2j+1} T_{4j+2, 4j+4} + b_{2j+1} T_{4j+3, 4j+4},
+        \end{aligned}
+      \end{equation}
         where $T_{ij}$ stands for $\langle Te_j, e_i \rangle$.
-      First of all we want to investigate the conditions of the rank one density property for $\fsys$.
+
+      First of all we investigate the conditions of rank one density property for $\fsys$.
       \begin{prop}
         \label{prop:inf-dim}
         The following statements are equivalent:
         \begin{enumerate}
-          \item The system $\fsys$ is not rank one dense;
-          %\item There exists an operator $T$ with the trace equal to $-1$ such that $\inner{Tf_n}{f_n^*} = 0$ for any $n \geq 0$;
-          \item There exists an operator $T$ such that $TrT = -1$ and for any $n \geq 0$ one has $\Xi_n = -\sum_{s=0}^n \inner{Te_s}{e_s}$;
-          \item The sequence $\left\{\mu_n\right\}_{n=1}^\infty$ belongs to $\ell^1$.
+          \item the system $\fsys$ is not rank one dense;
+          %\item there exists an operator $T$ with the trace equal to $-1$ such that $\inner{Tf_n}{f_n^*} = 0$ for any $n \geq 0$;
+          \item there exists an operator $T$ such that $Tr\,T = -1$ and for any $n \geq 0$ one has $\Xi_n = -\sum_{s=0}^n \inner{Te_s}{e_s}$;
+          \item the sequence $\left\{\mu_n\right\}_{n=1}^\infty$ belongs to $\ell^1$.
         \end{enumerate}
       \end{prop}
       \begin{proof}
         The equivalence of the first two statements is due to Proposition~\ref{prop:reformulation}.
         We are going to prove the equivalence between the last two statements.
 
-        Assume that $\left\{\mu_n\right\}_{n=1}^\infty \in \ell^1$; we are going construct the required operator $T$.
+        Assume that $\left\{\mu_n\right\}_{n=1}^\infty \in \ell^1$; our purpose is to construct the required operator $T$.
         Let $T_{00}$ be equal to $-1$, and $T_{jj}$ be equal to zero for any $j > 0$.
         Next we consider three cases for each $n \geq 0$.
 
@@ -85,7 +95,7 @@
         \]
         Again, we have $\Xi_{2n} = \Xi_{2n+1} = 1$.
         For $n = 2j + 1$ we set:
-        \[ 
+        \[
           T_{4j+2,4j+3}=b_{2j+1}/d_{2j+1},  \quad T_{4j+2,4j+4} = -1/d_{2j+1}, \quad T_{4j+3,4j+4}=0,
         \]
 
@@ -93,18 +103,23 @@
         \medskip
 
         All the other entries $T_{ij}$ we set to zero.
-        These equalities ensure that $\Xi_n = 1 = -\sum_{s=0}^n T_{ss}$ for any $n \geq 0$.
+        These equalities ensure that $\Xi_n = -\sum_{s=0}^n T_{ss} = 1$ for any $n \geq 0$.
 
         The constructed operator $T$ belongs to the trace class since the non-zero operator matrix entries are summable
           due to the assumption that $\left\{\mu_n\right\}_{n=1}^\infty \in \ell^1$.
         Since the trace of $T$ is equal to $-1$, the sufficiency is proved.
 
+        \medskip
         Now assume that there exists a trace class operator $T$ in the annihilator of $R_1(\cal{A})$ with the trace equal to $-1$.
 
         First of all, we prove that $\{\mu_{2j}\}_{j=1}^\infty$ is a summable sequence.
-        Since $T$ is in the trace class, the sequence $\nu_n = \lvert T_{nn} \rvert + \lvert T_{n, n + 1} \rvert + \lvert T_{n, n+2} \rvert$
+        Since $T$ is in the trace class, the sequence of vectors $\nu_n = \lvert T_{nn} \rvert + \lvert T_{n, n + 1} \rvert + \lvert T_{n, n+2} \rvert$
           belongs to $\ell^1$.
-        It can be easily checked that if for some $n$ one of the numbers $a_n$,$b_n$,$c_n$,$d_n$ is equal to zero, then $\nu_n \geq \mu_n/2$.
+        Obviously, $\{\Xi_n\}_{n=1}^\infty$ belongs $\ell^1$ as well.
+        Hence, $\lvert \Xi_n\rvert \geq 0.5$ for all $n$ large enough; we will assume that it holds for any $n > 0$.
+
+        It can be easily checked that if for some $n$ one of the numbers $a_n,b_n,c_n,d_n$ is equal to zero, then $\nu_n \geq \mu_n/2$.
+        From this point we will suppose that the coefficients are nonzero.
 
         For any even $n = 2j$ consider the linear function $g_n$:
         \begin{align*}
@@ -118,7 +133,7 @@
                    %\Big\lvert T_{4j+2, 4j} \Big\rvert +
                    %\Big\lvert \frac{\Xi_{4j+1} + d_{2j} T_{4j+2, 4j}}{b_{2j}} \Big\rvert.
         %\end{align*}
-        This function is piecewise linear, so its minimum is attained in the breakpoints.
+        The function $g_n$ is piecewise linear, so its minimum is attained in the breakpoints.
         The breakpoints are zero, $y_n = \Xi_{2n}/c_n$ and $z_n = -\Xi_{2n+1}/d_n$.
         We have $g_n(0) \geq \mu_n/2$.
         Consider the set $N_1 \subseteq \mathbb{N}_{{even}}$, such that for any $n \in N_1$ the function $g_n$ attains its minimum in
@@ -140,17 +155,17 @@
               = \Big\lvert \frac{c_n \Delta_n + (c_n + d_n) \Xi_{2n}}{c_n b_n} \Big\rvert
               = \Big\lvert \frac{c_n \Delta_n + a_n b_n\Xi_{2n}}{c_n b_n} \Big\rvert.
         \]
-        Notice that $\big\lvert G_n - \Xi_{2n}\lvert a_n/c_n\rvert \big\rvert \leq \lvert \Delta_n/b_n \rvert$.
+        Hence, $\big\lvert G_n - \Xi_{2n}\lvert a_n/c_n\rvert \big\rvert \leq \lvert \Delta_n/b_n \rvert$.
 
         Consider the sets $N_2 = \{n\in N_1 \mid 0.5 \leq \lvert b_n \rvert\}$ and $N_3 = N_1 \setminus N_2$.
         Since $\Xi_n$ has a finite limit, we have $\sum_{n \in N_2} \lvert a_n/c_n \rvert < \infty$.
         Hence, $\{\mu_n\}_{n \in N_2} \in \ell^1$.
 
-        Presume that $\sum_{n \in N_3} \lvert a_n/c_n\rvert = \infty$.
+        Assume that $\sum_{n \in N_3} \lvert a_n/c_n\rvert = \infty$.
 
         We have $\big\lvert |b_n| G_n - \Xi_{2n}\lvert (c_n + d_n)/c_n \rvert\big\rvert \leq \lvert \Delta_n \rvert$.
-        Then because the sequences $\{b_n G_n\}_{n\in N_2}$ and $\{\Delta_n\}_{n \in N_2}$ are absolutely summable, the sequence
-          $\{(c_n + d_n) / c_n\}_{n\in N_2} $ is absolutely summable as well.
+        Since the sequences $\{b_n G_n\}_{n\in N_3}$ and $\{\Delta_n\}_{n \in N_3}$ are absolutely summable, the sequence
+          $\{(c_n + d_n) / c_n\}_{n\in N_3} $ is absolutely summable as well.
         Consequently, $\lvert d_n/c_n \rvert \geq 0.5$ when $n$ is large enough.
         We get $\{1/c_n\}_{n \in N_3} \in \ell^1$, and thus $\{1/d_n\}_{n \in N_3} \in \ell^1$.
         Since for $n \in N_3$ one has $\lvert b_n \rvert \leq 0.5$, we have
@@ -175,7 +190,7 @@
       \end{align*}
       Note that the sequences $\lvert v_n \rvert$, $\lvert u_n \rvert$ belong to $\ell^2$.
 
-      We can rewrite the previous equations using the introduced vectors.
+      We can rewrite the equations~\eqref{eq:xi5} using the introduced vectors:
       \begin{align*}
         \Xi_{4j} &= a_{2j} \langle u_{2j}, v_{2j}\rangle + c_{2j} \langle v_{2j+1}, v_{2j}\rangle,\\
         \Xi_{4j + 1} &= -d_{2j} \langle v_{2j+1}, v_{2j}\rangle + b_{2j} \langle v_{2j+1}, u_{2j}\rangle,\\
@@ -183,12 +198,11 @@
         \Xi_{4j + 3} &= -d_{2j+1} \langle v_{2j+1}, v_{2j+2}\rangle + b_{2j+1} \langle u_{2j+1}, v_{2j+2} \rangle,
       \end{align*}
         where $\langle\cdot, \cdot\rangle$ denotes the scalar product in $\mathbb{R}^k$.
-      Now we will have the following simplified expressions for $\Xi_n$ instead.
+      These equations simplify to
       \begin{align*}
         \Xi_{2j} &= a_{j} \langle u_{j}, v_{j} \rangle  + c_{j} \langle v_{j+1}, v_{j} \rangle,\\
         \Xi_{2j + 1} &= -d_{j} \langle v_{j+1}, v_{j} \rangle + b_{j} \langle v_{j+1}, u_{j}\rangle.
       \end{align*}
-      To summarize, Proposition~\ref{prop:kreformulation} applies to this set-up as well.
 
       Next, we are going to analyze the necessary condition of $k$ point density property for $\fsys$.
       \begin{prop}
@@ -206,21 +220,19 @@
         We apply the proposition and get the vectors $u_n$ and $v_n$.
         Now without loss of generality we can assume that $u_0 \neq 0$.
         Then consider $u^*_0$ so that $\inner{u_0}{u^*_0} = -1$ and set all $u^*_k$ ($k > 0$), $v^*_k$ to zero.
-        Since trace of the resulting operator $T$ is equal to $\sum_{s=0}^\infty \inner{u_s}{u^*_s} + \inner{v_s}{v^*_s}$,
+        Since the trace of the resulting operator $T$ is equal to $\sum_{s=0}^\infty \left(\inner{u_s}{u^*_s} + \inner{v_s}{v^*_s}\right)$,
           Proposition~\ref{prop:kreformulation} implies that $\fsys$ is not two point dense.
         Trivially when $\fsys$ is not two point dense, it is also not $k$ point dense for any $k \geq 2$.
       \end{proof}
       \begin{proof}[Proof of Proposition~\ref{prop:2pd}]
-        %The operator matrix will look very similar to one we built in the previous proposition.
         Here again we are going to look at three possible values of the $\mu_n$.
-        For each $n \geq 0$ we are going to find the vector lengths $V_n = |v_n|$, $U_n = |u_n|$ and three angles:
-          $\alpha_n$ which stands for the angle between the vectors $v_n$ and $v_{n + 1}$,
-          $\beta_n$ which denotes the angle between $v_n$ and $u_n$,
-          and $\gamma_n$ standing for the angle between $v_{n + 1}$ and $u_n$.
-        We will write out the vector lengths and define the angles and we will prove that the corresponding vectors could be settled in $\mathbb{R}^2$.
-        %We choose the vector $v^*_0$ such that $\langle v_0, v^*_0 \rangle = -1$ and set all
-          %the other vectors $u^*_n$, $v^*_n$ to $\vec{0}$.
-        %That guarantees that the trace of the constructed operator (if it belongs to the trace class) is equal to $-1$.
+        For each $n \geq 0$ we are going to find the vector lengths $V_n = |v_n|$, $U_n = |u_n|$ and three angles between $v_n$, $v_{n+1}$ and $u_n$:
+        \[
+          \alpha_n = \angle (v_n, v_{n+1}) \quad
+          \beta_n = \angle (v_n, v_{n+1}) \quad
+          \gamma_n = \angle (v_n, v_{n+1}).
+        \]
+        We will prove that the corresponding vectors could be settled in $\mathbb{R}^2$.
 
         Within the construction we are going to set all $V_n$ step by step.
         In order to do that we are going to define an auxiliary sequence $\{M_n\}_{n=0}^\infty \in \ell^2$ such that $V_n \geq M_n$ for any $n \geq 0$.
@@ -229,12 +241,12 @@
 
         \noindent\textbf{Case 1.} Suppose $\mu_n = 1/|a_n| + 1/|b_n|$.
 
-          Here we want to have $v_n$ orthogonal to $v_{n+1}$.
-          We set:
+          Here we have $v_n$ orthogonal to $v_{n+1}$.
+          We set
           \begin{align*}
-              V_n &= \max\left(M_n, \frac{1}{\sqrt{\smash[b]{|a_n|}}}\right),\\
-              U_n &= \sqrt{\frac{1}{a_n^2 V_n^2} + \frac{1}{b_n^2 V_{n+1}^2}},\\
-              M_{n+1} &= \frac{1}{\sqrt{\smash[b]{|b_n|}}}.
+              V_n = \max\left(M_n, \frac{1}{\sqrt{\smash[b]{\lvert a_n \rvert}}}\right) \quad
+              U_n = \sqrt{\frac{1}{a_n^2 V_n^2} + \frac{1}{b_n^2 V_{n+1}^2}} \quad
+              M_{n+1} = \frac{1}{\sqrt{\smash[b]{\lvert b_n \rvert}}}.
           \end{align*}
           \begin{prop}
             The following inequalities are true.
@@ -243,7 +255,7 @@
               U_n &\leq \sqrt{\mu_n},\\
               V_n &\leq \max(\sqrt{\mu_n}, M_n).
             \end{align*}
-            There exist angles $\beta_n$, $\gamma_n$ such that:
+            Moreover, there exist angles $\beta_n$, $\gamma_n$ such that:
             \begin{equation}
               \label{eqn:case1}
               \begin{aligned}
@@ -255,15 +267,12 @@
           \end{prop}
           \begin{proof}
             First part of the proposition is trivial.
-            Now we want to understand why there exist such $\beta_n$ and $\gamma_n$ that all the scalar products of
-              $v_n$, $v_{n+1}$, $u_n$ satisfy the conditions~\eqref{eqn:case1}.
-
-            Observe that the chosen $U_n$, $\frac{1}{|a_n| V_n}$ and $\frac{1}{|b_n| V_{n+1}}$
+            Observe that the chosen $U_n$, $\frac{1}{\lvert a_n \rvert V_n}$ and $\frac{1}{\lvert b_n \rvert V_{n+1}}$
               make up a right triangle with $U_n$ as a hypotenuse.
             As a result there always be such $\beta_n$ and $\gamma_n$ that
             \begin{align*}
-              |U_n \cos{\beta_n}| &= \frac{1}{|a_n|V_n},\\
-              \left|U_n \cos{\gamma_n}\right| &= \left|U_n \sin{\beta_n}\right| = \frac{1}{|b_n|V_{n+1}}.
+              \lvert U_n \cos{\beta_n} \rvert &= \frac{1}{\lvert a_n \rvert V_n},\\
+              \lvert U_n \cos{\gamma_n}\rvert &= \lvert U_n \sin{\beta_n}\rvert = \frac{1}{\lvert b_n \rvert V_{n+1}}.
             \end{align*}
           \end{proof}
         \noindent\textbf{Case 2.} Assume $\mu_n = (1 + |a_n|)/|c_n|$.
@@ -375,6 +384,6 @@
         The proof of Proposition~\ref{prop:2pd} is finished.
       \end{proof}
       Now due to Corollary~\ref{corol:2density} we get that the two point density of $\fsys$ implies the divergence of $\sum_{n=1}^\infty \mu_n$,
-        which in turn is equivalent to the rank one density property of $\fsys$ (see Proposition~\ref{prop:inf-dim}).
+        which in turn is equivalent to rank one density property of $\fsys$ (see Proposition~\ref{prop:inf-dim}).
       Since rank one density implies $k$ point density for any $k$, the theorem is proved.
     \end{proof}
