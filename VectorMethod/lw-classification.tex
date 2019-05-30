@@ -1,6 +1,6 @@
 \section{Classification for the Larson--Wogen $M$-basis}
   \label{section:lw-sys}
-  In this section we study Example~\ref{lw-sys} of Larson--Wogen vector system $\fsys_{LW}$.
+  In this section we study Larson--Wogen vector system $\fsys_{LW}$ (Example~\ref{lw-sys}).
   Namely, we prove a theorem similar to Theorem 2.2 of~\cite{katavolos}.
   Up until now there existed two different techniques in studying $k$ point density for $k=1$ (strong $M$-bases) and for $k\geq2$.
   Here we demonstrate a universal method for the analysis of the $k$ point density property.
@@ -8,66 +8,69 @@
     \label{thm:katavolos}
     The sequences $\fsys_{LW}$ and $\fsys_{LW}^*$ are biorthogonal and both are complete in $\cal{H}$.
     Moreover, the following is true.
-    \begin{itemize}
-      \item  The system $\fsys_{LW}$ is one point dense (a strong $M$-basis) if and only if the sequence
+    \begin{enumerate}
+      \item  the system $\fsys_{LW}$ is one point dense (a strong $M$-basis) if and only if the sequence
         \begin{equation}
           \mu_n = \frac{a_{n-1} a_{n-3} \dots}{a_{n} a_{n-2} \dots }
         \end{equation}
         does not belong to $\ell^2$.
-      \item The system $\fsys_{LW}$ is $k$ point dense ($k > 1$) if and only if the sequence $\{1/a_n\}_{n=1}^\infty$ does not belong to $\ell^1$.
-    \end{itemize}
+      \item the system $\fsys_{LW}$ is $k$ point dense ($k > 1$) if and only if the sequence $\{1/a_n\}_{n=1}^\infty$ does not belong to $\ell^1$.
+    \end{enumerate}
   \end{theorem}
   \begin{proof}
-    Consider a $k$-dimensional operator $T = \sum_{s=1}^k y^s \otimes x^s$ which annihilates $R_1(\cal{A})$.
-    We reproduce the logic from the previous section and define $\Xi_n$, $u_n$, $v_n$ exactly in the way it is described there.
-    For the given $M$-basis $\fsys = \fsys_{LW}$ we calculate $\Xi_n$ precisely:
+    Due to Proposition~\ref{prop:kreformulation} we know that $k$ point density of the system $\fsys$ is equivalent to the existence of $k$-dimensional
+      vectors $u_n$, $v_n$ such that~\eqref{eq:thm} holds for the corresponding operator $T$.
+    %We reproduce the logic from the previous section and define $\Xi_n$, $u_n$, $v_n$ exactly in the way it is described there.
+    For the given $M$-basis $\fsys = \fsys_{LW}$ we can calculate $\Xi_n$ precisely:
     \begin{align*}
       \Xi_{2n-1} &= a_{2n}T_{2n - 1, 2n},\\
       \Xi_{2n} &= a_{2n + 1}T_{2n + 1, 2n},
     \end{align*}
       where $T_{ij} = \inner{Te_j}{e_i}$.
 
-    Since $T_{ij} = \inner{u_j}{v_i}$, we can deduce the expressions for $\Xi_n$ via the vectors $u_n$ and $v_n$:
+    Since $T_{ij} = \inner{u_j}{v_i}$, we have
     \begin{align*}
-      \Xi_{2n-1} &= a_{2n} \sum_{s=1}^k y^s_{2n} x^s_{2n-1} = a_{2n} \inner{u_{2n}}{v_{2n-1}},\\
-      \Xi_{2n} &= a_{2n+1} \sum_{s=1}^k y^s_{2n} x^s_{2n+1} = a_{2n+1} \inner{u_{2n}}{v_{2n+1}},
+      \Xi_{2n-1} &= a_{2n}   \inner{u_{2n}}{v_{2n-1}},\\
+      \Xi_{2n}   &= a_{2n+1} \inner{u_{2n}}{v_{2n+1}},
     \end{align*}
       where $\langle\cdot, \cdot\rangle$ denotes the scalar product in $\mathbb{R}^k$.
 
-    For the convenience of the reader we introduce the sequences of vectors $w_n$ and $w^*_n$.
+    For the convenience of the reader we will introduce the sequences of vectors $w_n$ and $w^*_n$.
     \begin{align*}
-      w_{2n} &= u_{2n} \quad w^*_{2n} = v_{2n},\\
-      w_{2n+1} &= v_{2n+1} \quad w^*_{2n+1} = u_{2n+1}.
+      w_{2n} &= u_{2n}, \quad w^*_{2n} = v_{2n},\\
+      w_{2n+1} &= v_{2n+1}, \quad w^*_{2n+1} = u_{2n+1}.
     \end{align*}
-    In view of this notation $\Xi_n = a_{n+1} \inner{w_n}{w_{n+1}}$.
+    In view of this notation $\Xi_n = a_{n+1} \inner{w_n}{w_{n+1}}$ and due to Equation~\eqref{eq:propstar}
+      $Tr\, T = \sum_{m=0}^\infty \inner{w_m}{w^*_m}$.
 
-    It follows from Proposition~\ref{prop:kreformulation} that $k$ point density of $\fsys$ is equivalent to the existence of
-      such $k$-dimensional vectors $w_m$, $w^*_m$ lying in $\ell^2(\mathbb{R}^k)$ that
+    Thus, we get that $\fsys$ is not $k$ point dense if and only if there exist
+      $k$-dimensional vectors $\{w_n\}_{n=0}^\infty$, $\{w^*_n\}_{n=0}^\infty$ lying in $\ell^2(\mathbb{R}^k)$ such that
     \begin{equation}
       \label{eq:vector2}
       a_{n+1} \inner{w_n}{w_{n+1}} = -\sum_{m=0}^n \inner{w_m}{w^*_m},
     \end{equation}
-      for any $m \geq 0$, such that $\sum_{m=0}^\infty \inner{w_m}{w^*_m} \neq 0$.
+      for any $n \geq 0$, and $\sum_{m=0}^\infty \inner{w_m}{w^*_m} \neq 0$.
 
-    In what follows we show that the conditions in the previous proposition can be simplified.
+    \medskip
+    In what follows we show that the latter can be simplified even more.
     \begin{prop}
       \label{prop:reformulation-lw}
-      Such $k$-dimensional vectors $w_s$, $w^*_s$ do exist if and only if there exists such vectors $r_s$ in $\ell^2(\mathbb{R}^k)$
-        satisfying the following.
+      The system $\fsys$ is not $k$ point dense if and only if there exists a sequence of vectors
+        $\{r_n\}_{n=0}^\infty$ in $\ell^2(\mathbb{R}^k)$ such that
       \begin{equation}
         \label{eq:vector3}
         a_{n+1} \inner{r_n}{r_{n+1}} = 1,
       \end{equation}
-      for any $n \geq 0$.
+        for any $n \geq 0$.
     \end{prop}
     \begin{proof}
       Suppose we found such $r_n$.
-      Then we solve~\eqref{eq:vector2} by putting $w^*_s$ to zero for any $s > 0$, $w_s$ to $r_s$ and
-        choose the vector $w^*_0$ so that $\inner{w_0}{w^*_0} = -1$.
+      Then we solve~\eqref{eq:vector2} by putting $w^*_n$ to zero, $w_n$ to $r_n$ for any $n > 0$ and
+        choosing the vector $w^*_0$ so that $\inner{w_0}{w^*_0} = -1$.
 
       Now we prove the converse.
       Suppose we found such $w_n$ that~\eqref{eq:vector2} holds.
-      Given that the vectors $w_n$ lie in the $\mathbb{R}^k$, we rewrite the scalar product as
+      Given that the vectors $w_n$ lie in $\mathbb{R}^k$, we rewrite the scalar product as
         the product of the vector lengths and the cosine of the angle between the vectors.
       Namely, we define $W_n = \lvert w_n\rvert$ and real $\theta_n$ that
         $\inner{w_{n}}{w_{n+1}} = W_n W_{n+1} \cos{\theta_n}.$
@@ -89,13 +92,13 @@
         W_n = \frac{\Xi_{n-1}/a'_n}{\Xi_{n-2}/a'_{n-1}} \cdot \frac{\Xi_{n-3}/a'_{n-2}}{\Xi_{n-4}/a'_{n-3}} \cdots
       \]
         belongs to $\ell^2$.
-      Now since $\Xi_n = -\sum_0^n \inner{w_s}{w^*_s}$, we discover that
+      Now since $\Xi_n = -\sum_0^n \inner{w_m}{w^*_m}$, we discover that
       \[
         \frac{\Xi_n}{\Xi_{n-1}} = 1 + \eta_n,
       \]
         where $\{\eta_n\}_{n=1}^\infty \in \ell^1$.
-      Thus the product of such $(1 + \eta_s)$ fractions is bounded by some constant above.
-      It follows that
+      Thus the product of such $(1 + \eta_m)$ fractions is bounded by some constant above.
+      It follows that the sequence
       \[
         W^\#_n = \frac{1/a'_n}{1/a'_{n-1}} \cdot \frac{1/a'_{n-2}}{1/a'_{n-3}} \cdots
       \]
@@ -104,48 +107,42 @@
       \[
         a_{n+1} \inner{r_n}{r_{n+1}} = a_{n+1} \frac{1/a'_{n+1}}{\Xi_n/a'_{n+1}} \inner{w_n}{w_{n+1}} = 1.
       \]
-      Since $\lvert r_n \rvert = \lvert W^\#_n \rvert$ and $\{\lvert W^\#_n \rvert\}_{n=1}^\infty$ belongs to $\ell^2$,
-        then $r_n \in \ell^2(\mathbb{R}^k)$ as well.
+      Since $\lvert r_n \rvert = \lvert W^\#_n \rvert$ and the sequence $\left\{\lvert W^\#_n \rvert\right\}_{n=1}^\infty$ belongs to $\ell^2$,
+        the sequence $\{r_n\}_{n=1}^\infty$ belongs to $\ell^2(\mathbb{R}^k)$ as well.
     \end{proof}
 
-    Now we are ready to finish the proof.
-    First we prove the theorem for the case $k=1$.
+    Now we are ready to prove the theorem for the case $k=1$.
     \begin{prop}
-      The system $\fsys_{LW}$ is one point dense if and only if $\{\mu_n\}_{n=1}^\infty$ does not belong to $\ell^2$.
+      The system $\fsys_{LW}$ is one point dense if and only if $\seqone{\mu}$ does not belong to $\ell^2$.
     \end{prop}
     \begin{proof}
-      We apply Propositions~\ref{prop:kreformulation} and~\ref{prop:reformulation-lw}.
-      The case $k=1$ has all the vectors $r_k$, $r^*_k$ lying on the same line.
-      The formula for the multidimensional case reduces to the expression of $\mu_n$ whenever we set all the angles to zero $\theta_n = 0$,
-        namely the lengths of the vectors $r_k$ are precisely $\mu_n$.
+      It follows from Proposition~\ref{prop:reformulation-lw}.
+
+      The case $k=1$ has all the vectors $r_n$, $r^*_n$ lying on the same line ($\mathbb{R}^1$).
+      Since all $r_n$ are collinear, the lengths of the vectors $r_n$ are precisely $\mu_n$.
+      Hence, Equation~\eqref{eq:vector3} can be satisfied if and only if $\seqone{\mu}$ is square summable.
     \end{proof}
 
-    Now we consider the case $k > 1$.
+    After this we consider the case $k > 1$.
     \begin{prop}
       The system $\fsys_{LW}$ is $k$ point dense \textup($k > 1$\textup) if and only if the sequence $\{1/a_n\}_{n=1}^\infty$
         does not belong to $\ell^1$.
     \end{prop}
     \begin{proof}
-      According to Propositions~\ref{prop:kreformulation} and~\ref{prop:reformulation-lw}, the system $\fsys_{LW}$ is $k$ point dense
+      According to Proposition~\ref{prop:reformulation-lw}, the system $\fsys_{LW}$ is $k$ point dense
         if and only if there is no such sequence $\seq{r}$ in $\ell^2(\mathbb{R}^k)$ which satisfy $a_n \inner{r_n}{r_{n-1}} = 1$.
-
       Obviously, if there are such vectors $r_n$, then $\{1/a_n\}_{n=1}^\infty$ belongs to $\ell^1$.
 
       Conversely, suppose $\{1/a_n\}_{n=1}^\infty$ belongs to $\ell^1$.
-      Then consider $R_n$ defined as follows:
-      \[
-        R_n = \max(\lvert a_n \rvert^{-\frac{1}{2}}, \lvert a_{n+1} \rvert^{-\frac{1}{2}}).
-      \]
-      It is easy to see that $R_n$ belongs to $\ell^2$.
-
-      Notice that the product $R_nR_{n-1} \geq 1/\lvert a_n\rvert$, and so it is always possible to choose the angle $\theta_n$ so that
+      Then the sequence $R_n = \max(\lvert a_n \rvert^{-\frac{1}{2}}, \lvert a_{n+1} \rvert^{-\frac{1}{2}})$ is square summable.
+      Observe that $R_nR_{n-1} \geq 1/\lvert a_n\rvert$, and so it is always possible to choose the angle $\theta_n$ so that
       \[
         a_n \langle r_n, r_{n-1} \rangle = a_n R_n R_{n-1}\cos{\theta_n} = 1.
       \]
-      Now we have defined the lengths for $r_n$ and the angles between two consecutive vectors $r_{n-1}$, $r_n$.
-      Obviously, for any $k \geq 2$ we are able to choose the corresponding vectors $r_n$.
+      Now we have defined the lengths for $r_n$ and the angles between each two consecutive vectors $r_{n-1}$, $r_n$.
+      Obviously, for any $k \geq 2$ we will be able to find the corresponding vectors $r_n$.
     \end{proof}
-    Theorem~\ref{thm:katavolos} is now proved with the last proposition.
+    The last two propositions prove Theorem~\ref{thm:katavolos}.
   \end{proof}
   %\begin{remark}
     %The difference between two cases $k=1$ and $k\geq 2$ is in $\mathbb{R}^1$ any two vectors
