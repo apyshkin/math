@@ -165,7 +165,7 @@
 
         Assume that $\sum_{n \in N_3} \lvert a_n/c_n\rvert = \infty$.
 
-        We have $\big\lvert |b_n| G_n - \Xi_{2n}\lvert (c_n + d_n)/c_n \rvert\big\rvert \leq \lvert \Delta_n \rvert$.
+        We have $\big\lvert \lvert b_n \rvert G_n - \Xi_{2n}\lvert (c_n + d_n)/c_n \rvert\big\rvert \leq \lvert \Delta_n \rvert$.
         Since the sequences $\{b_n G_n\}_{n\in N_3}$ and $\{\Delta_n\}_{n \in N_3}$ are absolutely summable, the sequence
           $\{(c_n + d_n) / c_n\}_{n\in N_3} $ is absolutely summable as well.
         Consequently, $\lvert d_n/c_n \rvert \geq 0.5$ when $n$ is large enough.
@@ -250,17 +250,17 @@
         \begin{enumerate}
           \item if $\mu_n = 1/\lvert a_n \rvert+ 1/\lvert b_n \rvert$, we set 
               \[
-                M_{n+1} = \frac{1}{\sqrt{\smash[b]{\lvert b_n \rvert}}} \quad
+                M_{n+1} = \frac{1}{\sqrt{\smash[b]{\lvert b_n \rvert}}}, \quad
                 V_n = \max\left(M_n, \frac{1}{\sqrt{\smash[b]{\lvert a_n \rvert}}}\right),
               \]
           \item whenever $\mu_n = (1 + \lvert a_n \rvert)/\lvert c_n \rvert$, we set 
               \[
-                M_{n+1} = \max\biggl(\smash[b]{\frac{\sqrt{|a_n|}}{\sqrt{\lvert c_n \rvert}}}, \frac{1}{\sqrt{\smash[b]{\lvert c_n \rvert}}}\biggr)\quad
+                M_{n+1} = \max\biggl(\smash[b]{\frac{\sqrt{|a_n|}}{\sqrt{\lvert c_n \rvert}}}, \frac{1}{\sqrt{\smash[b]{\lvert c_n \rvert}}}\biggr), \quad
                 V_n = \max\left(M_n, \frac{2}{\sqrt{\smash[b]{|c_n|}}}\right),
               \]
           \item if $\mu_n = (1 + \lvert b_n \rvert)/\lvert d_n \rvert$, we set 
               \[
-                M_{n+1} = \max\biggl(\smash[t]{\frac{\sqrt{\lvert b_n \rvert}}{\sqrt{\lvert d_n \rvert}}}, \frac{1}{\sqrt{\smash[b]{\lvert d_n \rvert}}}\biggr)\quad
+                M_{n+1} = \max\biggl(\smash[t]{\frac{\sqrt{\lvert b_n \rvert}}{\sqrt{\lvert d_n \rvert}}}, \frac{1}{\sqrt{\smash[b]{\lvert d_n \rvert}}}\biggr), \quad
                 V_n = \max\left(M_n, \frac{2 + \sqrt{\lvert b_n\rvert}}{\sqrt{\smash[b]{\lvert d_n \rvert}}}\right).
               \]
         \end{enumerate}
