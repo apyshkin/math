@@ -6,7 +6,7 @@
 \newtheorem{case}{Case}
 
 \begin{document}
-\title{On $k$ point density problem for band-diagonal $M$-bases}
+\title{On the $k$ point density problem for band-diagonal $M$-bases}
 \author{Alexey Pyshkin}
 \begin{abstract}
   In the early 1990s the works of Larson, Wogen and Argyros, Lambrou, Longstaff
@@ -21,9 +21,9 @@
 
 \section{Introduction}
   \subsection{Density properties}
-    Consider the infinite-dimensional real Hilbert space $\cal{H}$.
+    Consider an infinite-dimensional real Hilbert space $\cal{H}$.
     Suppose that $\cal{H}$ has an orthonormal basis $\{e_j\}_{j=0}^\infty$.
-    The sequence $\fsys=\seq{f}$ is called \emph{minimal} if none of its elements can be approximated by the linear combinations of the others.
+    A sequence $\fsys=\seq{f}$ is called \emph{minimal} if none of its elements can be approximated by the linear combinations of the others.
     The system $\fsys$ is complete and minimal when and only when it possesses a unique biorthogonal system $\fstarsys$.
     We call the minimal system $\fsys$ \emph{band-diagonal} if there exists $L \in \mathbb{N}$ such that $\inner{f_t}{e_l} = \inner{f^*_t}{e_l} = 0$
       whenever $\lvert t - l \rvert > L$.
@@ -39,23 +39,21 @@
     %\end{definition}
     \begin{definition}[$k$ point density property]
       \label{kpd}
-      We say that the algebra $\cal{A}$ is \emph{$k$ point dense} if for any $x_1, x_2,\dots x_k \in \cal{H}$ and $\varepsilon > 0$
-        there exists such $T\in \cal{A}$ that $||Tx_s - x_s|| < \varepsilon$ for any $1 \leq s \leq k$.
+      We say that the algebra $\cal{A}$ has \emph{$k$ point density property} if for any $x_1, x_2,\dots x_k \in \cal{H}$ and $\varepsilon > 0$
+        there exists such $R\in R_1(\cal{A})$ that $||Rx_s - x_s|| < \varepsilon$ for any $1 \leq s \leq k$.
     \end{definition}
     The definition for $k=1$ is equivalent to $\fsys$ being a \emph{strong $M$-basis} (see~\cite{katavolos}):
       the system $\fsys$ is called a \emph{strong $M$-basis} if for any $x\in\cal{H}$ we have $x \in \overline{span}\big(\inner{x}{f^*_n}f_n\big)$, where
       $\overline{span}$ denotes the closed linear span.
     \begin{definition}[rank one density property]
       \label{r1d}
-      We say that the algebra $\cal{A}$ is \emph{rank one dense} if the unit ball of rank one subalgebra $R_1(\cal{A})$
+      We say that the algebra $\cal{A}$ has \emph{rank one density property} if the unit ball of rank one subalgebra $R_1(\cal{A})$
         is dense in the unit ball of $\cal{A}$ in the strong operator topology.
     \end{definition}
     By abuse of notation, we say that $\fsys$ is $k$ point dense (rank one dense)
-      when the corresponding algebra $\cal{A}$ is $k$ point dense (rank one dense).
+      when the corresponding algebra $R_1(\cal{A})$ is $k$ point dense (rank one dense).
 
     Notice that rank one density property implies $k$ point density property for any $k$.
-    %Conversely, there is an easy compactness argument which shows that $\fsys$ is rank one dense if it is
-    %  $k$ point dense for any $k > 0$.
 
   \subsection{Motivation}
     %It is well known that the last definition is equivalent to $R_1(\cal{A})$ being dense
@@ -101,11 +99,11 @@
 
     We are going to consider band-diagonal systems similar to the one regarded by Larson and Wogen and to determine the exact conditions
       for $k$ point density property of such vector systems.
-    In this paper we present a few new techniques for analysis of $k$ point density and rank one density of band-diagonal vector systems.
+    In this paper we present a few new techniques for the analysis of $k$ point density and rank one density of band-diagonal vector systems.
 
     In the next section we will gather some basic facts and outline the main idea of the paper.
-    In Section~\ref{section:lw-sys} we perform the analysis for Larson--Wogen example, providing the simpler proof of Theorems 2.1 and 2.2 in~\cite{katavolos}.
-    In Section~\ref{section:pentadiagonal} we prove a similar theorem for one pentadiagonal system.
+    In Section~\ref{section:lw-sys} we perform the analysis for the Larson--Wogen example, providing a simpler proof of Theorems 2.1 and 2.2 in~\cite{katavolos}.
+    In Section~\ref{section:pentadiagonal} we prove a similar theorem for a pentadiagonal system.
 \section{Preliminaries}
   \label{sec:preliminaries}
   Suppose that $\fsys=\{f_n\}_{n=0}^\infty$ is an arbitrary band-diagonal $M$-basis and $\fstarsys = \{f^*_n\}_{n=0}^\infty$ is its biorthogonal sequence.
@@ -118,6 +116,8 @@
   \begin{proof}
     It is well known that rank one density property is equivalent to $R_1(\cal{A})$ being dense
       in $\cal{A}$ in the ultraweak (or $\sigma$-weak) topology (see~\cite{katavolos}, Theorem 2.2).
+    But the annihilator of $R_1(\cal{A})$ consists precisely of the trace class operators satisfying
+      $\inner{Tf_n}{f_n^*} = 0$ for all $n \geq 0$.
   \end{proof}
   \begin{prop}
     The system $\fsys$ is $k$ point dense if and only if any $k$-dimensional operator $T$,
@@ -125,7 +125,7 @@
   \end{prop}
   \begin{proof}
     In the paper~\cite{katavolos} authors proved the proposition for $k = 2$.
-    For greater $k$-s the same reasoning works.
+    For larger $k$'s the same reasoning works.
   \end{proof}
   For an arbitrary linear operator $T$ we will be interested in the differences between
     the partial sums of the Fourier series using the system $\fsys$ and
@@ -150,8 +150,8 @@
     We will use this formulation in the following sections.
 
   \medskip
-  Now consider the operator $T$ which has a finite rank.
-  In that case we write $T$ as a finite sum $T = \sum_{s=1}^k y^s \otimes x^s$,
+  Now consider an operator $T$ which has a finite rank.
+  In this case we write $T$ as a finite sum $T = \sum_{s=1}^k y^s \otimes x^s$,
     where $x^s, y^s \in \cal{H}$.
 
   Let us define vectors $v_n$ and $u_n$ in $\mathbb{R}^k$ as follows:
@@ -165,12 +165,12 @@
   In turn it means that~\eqref{eq:prop:ref} can be rewritten in terms of the scalar products
     of $\{u_n\}_{n=0}^\infty$ and $\{v_n\}_{n=0}^\infty$.
 
-  Hence, the existence of $T$ might be reduced to the existence of
+  Hence, the existence of $T$ would be reduced to the existence of
     the vectors $u_n$, $v_n$ in $\mathbb{R}^k$ such that the sequences $\{\lvert u_n\rvert\}_{n=0}^\infty$,
     $\{\lvert v_n\rvert\}_{n=0}^\infty$ are both square summable and~\eqref{eq:prop:ref} is satisfied.
-  Thus, instead of looking for $k$ vectors $x^s$ and $y^s$ in $\cal{H}$, we might look for an infinite sequence
+  Thus, instead of looking for $k$ vectors $x^s$ and $y^s$ in $\cal{H}$, we would look for an infinite sequence
     of $k$-dimensional vectors $v_n$ and $u_n$ such that $\{v_n \}_{n=0}^\infty$, $\{u_n\}_{n=0}^\infty$ belong to $\ell^2(\mathbb{R}^k)$.
-  That is one of the key ideas in our method of analysing $k$ point density property for $\fsys$.
+  This is one of the key ideas in our method of analysing $k$ point density property for $\fsys$.
 
   Thus, we have just found the following reformulation for $k$ point density property.
   \begin{prop}
@@ -199,8 +199,8 @@
       %\end{align*}
     \end{equation}
   %\end{prop*}
-  Essentially, $k$ point density property can be viewed as a
-    possibility of laying out the sequence of vectors in $\mathbb{R}^k$ which are constrained with
+  Essentially, the $k$ point density property can be viewed as a
+    possibility of placing the sequence of vectors in $\mathbb{R}^k$ which are constrained with
     a series of relations~\eqref{eq:thm} and~\eqref{eq:propstar}.
 \input{lw-classification}
 \input{pentadiagonal-classification}
