@@ -1,0 +1,170 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% "ModernCV" CV and Cover Letter
+% LaTeX Template
+% Version 1.1 (9/12/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Xavier Danaux (xdanaux@gmail.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+% Important note:
+% This template requires the moderncv.cls and .sty files to be in the same 
+% directory as this .tex file. These files provide the resume style and themes 
+% used for structuring the document.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+% PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[12pt,a4paper, sans]{moderncv} % Font sizes: 10, 11, or 12; paper sizes: a4paper, letterpaper, a5paper, legalpaper, executivepaper or landscape; font families: sans or roman
+
+\moderncvstyle{banking} % CV theme - options include: 'casual' (default), 'classic', 'oldstyle' and 'banking'
+\moderncvcolor{grey} % CV color - options include: 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+
+\usepackage[scale=0.75]{geometry} % Reduce document margins
+%\setlength{\hintscolumnwidth}{3cm} % Uncomment to change the width of the dates column
+%\setlength{\makecvtitlenamewidth}{10cm} % For the 'classic' style, uncomment to adjust the width of the space allocated to your name
+
+%----------------------------------------------------------------------------------------
+% NAME AND CONTACT INFORMATION SECTION
+%----------------------------------------------------------------------------------------
+
+\firstname{Alexey} % Your first name
+\familyname{Pyshkin} % Your last name
+\title{Curriculum Vitae}
+
+% All information in this block is optional, comment out any lines you don't need
+%\address{Institutsky 3-3-152}{St.\,Petersburg, Russia 194021}
+%\mobile{+7 911 266 44 39}
+%\fax{(000) 111 1113}
+\email{aapyshkin@gmail.com}
+%\homepage{staff.org.edu/~jsmith}{staff.org.edu/$\sim$jsmith} % The first argument is the url for the clickable link, the second argument is the url displayed in the template - this allows special characters to be displayed such as the tilde in this example
+%\extrainfo{additional information}
+%\photo[88pt][0.1pt]{pictures/picture.jpg} % The first bracket is the picture height, the second is the thickness of the frame around the picture (0pt for no frame)
+%\quote{"A witty and playful quotation" - John Smith}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\makecvtitle % Print the CV title
+
+%----------------------------------------------------------------------------------------
+% EDUCATION SECTION
+%----------------------------------------------------------------------------------------
+\section{General}
+\cvitem{Name}{Alexey Pyshkin}
+\cvitem{Place of birth}{Saint Petersburg, Russia}
+\cvitem{Date of birth}{22 Dec 1991}
+
+\medskip
+\section{Education}
+\cventry{2013--2019}{PhD. in Mathematics}{Euler's Institute, Russian Academy of Sciences}{St.\,Petersburg}{}{\textit{expected}}
+\cventry{2008--2013}{Master of Science in Mathematics}{Saint Petersburg State University}{St.\,Petersburg}{\textit{GPA -- 4.7}}{}
+%\cventry{2004--2008}{Secondary Education Certificate}{Lyceum ``Physical-Technical High School''}{St.\,Petersburg}{\textit{GPA -- 4.8}}{}
+
+%\section{Masters Thesis}
+
+%\cvitem{Title}{\emph{Money Is The Root Of All Evil -- Or Is It?}}
+%\cvitem{Supervisors}{Professor James Smith \& Associate Professor Jane Smith}
+%\cvitem{Description}{This thesis explored the idea that money has been the cause of untold anguish and suffering in the world. I found that it has, in fact, not.}
+
+\medskip
+\section{Skills}
+  %\subsection{Languages}
+    \cventry{}{Java, Kotlin, C/C{}{\texttt{++}}, MDD, Language Engineering, JetBrains MPS, EMF, .NET, Python}{}{}{}{}
+  %\subsection{Databases}
+    %\cventry{}{MySQL}{}{}{}{}
+  %\subsection{Software and Tools}
+    %\cventry{}{gcc, cmake, gdb, git, svn, Intellij Idea, eclipse, YouTrack, Teamcity}{}{}{}{}
+
+\medskip
+\section{Experience}
+  \cventry{Dec 2013 -- present}{Java Developer, MPS Developer, DSL consultant}{\textsc{JetBrains}}{St.\,Petersburg (Prague)}{} {
+    Developing \url{https://www.jetbrains.com/mps}, IDE for creating DSLs.
+    Responsibilities include full-stack development, supervision of several developers, maintaining of several large subsystems,
+    prototyping and implementing core meta-languages.
+  }
+  \cventry{Jun 2011 -- Oct 2013}{Researcher, C{}{\texttt{++}} Developer}{\textsc{Algorithmic Biology Laboratory}}{St.\,Petersburg}{}{
+    Developing SPAdes genome assembler \url{http://bioinf.spbau.ru/en/spades}, which was one of the first
+    genome assemblers, specified for single-cell bacterial data.
+    Duties included preparing current release using C\texttt{++}, optimizing time and memory consumption.
+    In addition a set of tools for an assembly quality assessment was developed using Java and Python.
+  }
+  \cventry{Jul 2009 -- Feb 2010}{Java Developer}{SamPy}{St.\,Petersburg}{}{
+    Developing an order management system.
+    Responsibilities comprised designing and maintaining GUI, planning the database architecture.
+  }
+
+\medskip
+\section{Conferences}
+  \cvitem{Aug 27--29 2012}{First RECOMB Satellite Conference on Open Problems in Algorithmic Biology (RECOMB-AB), St.\,Petersburg, Russia,}
+  \cvitem{Jun 18--29 2012}{St.\,Petersburg School in Probability and Statistical Physics, St.\,Petersburg, Russia,}
+  \cvitem{Apr 21--24 2012}{16-th Annual International Conference on Research in Computational Molecular Biology (RECOMB), Barcelona, Spain}
+
+\medskip
+\section{Publications}
+  \cvitem{2012a}{Anton Bankevich, Sergey Nurk, Dmitry Antipov, Alexey Gurevich, Mikhail Dvorkin, Alexander Kulikov, Valery Lesin, Sergey Nikolenko, Son Pham, Andrey Prjibelski, Alexey Pyshkin, Alexander Sirotkin, Nikolay Vyahhi, Glenn Tesler, Max Alekseyev, and Pavel Pevzner. \textbf{SPAdes: A New Genome Assembly Algorithm and Its Applications to Single-Cell Sequencing.} Journal of Computational Biology 19(5) (2012), pp.\,455--477,}
+  \cvitem{2012b}{Nikolay Vyahhi, Alexey Pyshkin, Son K. Pham, Pavel Pevzner. \textbf{From de Bruijn Graphs to Rectangle Graphs for Genome Assembly.} Lecture Notes in Bioinformatics 7534 (2012), pp.\,249--261,}
+  \cvitem{2013}{Sergey Nurk, Anton Bankevich, Dmitry Antipov, Alexey Gurevich, Anton Korobeynikov, Alla Lapidus, Andrey Prjibelski, Alexey Pyshkin, Alexander Sirotkin, Yakov Sirotkin, Ramunas Stepanauskas, Scott Clingenpeel, Tanja Woyke, Jeffrey Mclean, Roger Lasken, Glenn Tesler, Max Alekseyev, and Pavel Pevzner. \textbf{Assembling Single-Cell Genomes and Mini-Metagenomes From Chimeric MDA Products.} Journal of Computational Biology 20(10) (2013), pp.\,1--24,}
+  \cvitem{2014}{A Pyshkin. \textbf{Summation Methods for Fourier Series with Respect to the Azoff--Shehada System,} J Math Sci (2016) 215: 617,}
+  \cvitem{2019}{A Pyshkin. \textbf{On $k$ point density problem for band-diagonal $M$-bases,} preprint \url{https://arxiv.org/abs/1906.00293},}
+  \cvitem{2019}{A Pyshkin. \textbf{Rank one density property for a class of $M$-bases.} preprint \url{https://arxiv.org/abs/1901.02422}.}
+
+%\medskip
+%\section{Languages}
+
+%\cvitemwithcomment{Russian, English, Italian, French}{}{}
+
+%----------------------------------------------------------------------------------------
+% COVER LETTER
+%----------------------------------------------------------------------------------------
+
+% To remove the cover letter, comment out this entire block
+%\clearpage
+
+%\recipient{}{} % Letter recipient
+%\date{\today} % Letter date
+%\opening{Dear Sir or Madam,} % Opening greeting
+%\closing{Faithfully yours,} % Closing phrase
+%\enclosure[Attached]{curriculum vit\ae{}} % List of enclosed documents
+
+%\makelettertitle % Print letter title
+
+%I would like to apply for Kupcinet-Getz International Science School, the announcement of which
+%I noticed at the information desk of my university. After researching the web-site
+%of Weizmann Institute, I was astonished by the list of scientists, which we are suggested 
+%to work with. This research program holds particular interest for me as I would like to pursue 
+%an academic career, when my Master of Science in Mathematics degree is complete.
+
+%\smallskip
+%I am a senior student at the Saint Petersburg State University with specialization
+%in mathematical analysis.
+%I also have some experience in a different field of research, I am a co-author 
+%of two papers on bioinformatics. But fundamental science appears to be far more amusing,
+%so I decided to participate in a pure research study.
+
+%\smallskip
+%For the last two years I was supervised by Dr.\,Chelkak and studied complex analysis on 
+%various lattice models. 
+%It was very exciting, so I would prefer to continue my study in a field closely related to 
+%probability theory or complex analysis. I am assured that Summer Undergraduate Program will provide 
+%me with valuable mathematics experience, team working skills and the network 
+%of contacts, which may help me in the future.
+
+%\smallskip
+%Thank you for your time and consideration. 
+%Please contact me if there is anything else I need to provide.
+
+%\makeletterclosing % Print letter signature
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
