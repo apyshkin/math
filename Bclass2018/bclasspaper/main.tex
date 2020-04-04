@@ -27,7 +27,7 @@
 \section{Introduction}
   Consider a complete minimal vector system $\fsys = \seq{f}$ in the infinite-dimensional Hilbert space $\cal{H}$.
   The sequence is called \emph{minimal} if none of its elements can be approximated by the linear combinations of the others.
-  The system $\fsys$ is minimal when and only when it possesses a unique biorthogonal system $\fstarsys$.
+  The system $\fsys$ is complete and minimal if and only if it possesses a unique biorthogonal system $\fstarsys$.
   We say that $\fsys$ is an $M$-basis if $\fstarsys$ is complete as well.
   Let ${\cal{A} = \{T\in B(\cal{H}): Tf_n \in \overline{span}(f_n), \text{ for any } n \in \mathbb{N}\}}$ be an operator algebra, where
     $\overline{span}$ denotes a closed linear span;
@@ -165,7 +165,7 @@
     We put an edge between two vertices $v_l$ and $v_r$ from the left and right parts respectively,
       whenever the scalar product $\inner{f_l}{e_r}$ is not zero.
     For such two vertices we have $\inner{f_l}{e_r}$ = $-\inner{f^*_r}{e_l}$.
-    We set the weight (length) on the edge $(lr)$,
+    We set the weight (length) on the edge $(v_l v_r)$,
     \[
       \wt_{lr} = \inner{f_l}{e_r}^{-1}.
     \]
@@ -1082,12 +1082,12 @@
         Then, if $\fsys$ is $4b - 2$ point dense then it is rank one dense.
       \end{theorem}
       \begin{proof}
-        First we use the idea from~\cite{me} to get a reformulation for $k$ point density property.
+        We use the idea from~\cite{me} to get a reformulation for $k$ point density property.
         \begin{prop}
           The system $\fsys$ is $k$ point dense if and only if there exist vector sequences $\{u_l\}_{l=0}^\infty$, $\{u^*_l\}_{l=0}^\infty$,
             $\{v_r\}_{r=0}^\infty$ and $\{v^*_r\}_{r=0}^\infty$ in $\ell^2 (\mathbb{R}^k)$, such that 
           \begin{align*}
-            \laber{prop-vec-eqn}
+            \label{prop-vec-eqn}
             \inner{u_l}{u^*_l + \sum_{r=0}^\infty v_r \inner{f_l}{e_r}} = 0, \\
             \inner{v_r}{v^*_r - \sum_{l=0}^\infty u_l \inner{f_l}{e_r}} = 0
           \end{align*}
