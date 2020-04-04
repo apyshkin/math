@@ -48,7 +48,7 @@
       $\overline{span}$ denotes a closed linear span.
   %\end{remark}
   \begin{definition}[two point density property]
-    \label{2pd}
+    \label{kpd}
     We say that $\fsys$ is \emph{$k$ point dense} if for any $x_1, x_2, \dots, x_k \in \cal{H}$ and $\varepsilon > 0$
       there exists such $T\in \cal{A}$ that $||Tx_s - x_s|| < \varepsilon$ for any $s \leq k$.
   \end{definition}
@@ -69,9 +69,9 @@
     \]
   Clearly, the existence of the linear summation method implies the rank one density property.
 
-  Notice that the rank one density property~\eqref{r1d} implies the $k$ point density property~\eqref{2pd}, and~\eqref{2pd}
+  Notice that the rank one density property~\eqref{r1d} implies the $k$ point density property~\eqref{kpd}, and~\eqref{kpd}
     in its turn implies the one point density property~\eqref{1pd}.
-  But is it true that $\eqref{1pd}$ implies $\eqref{r1d}$ or that~\eqref{2pd} implies~\eqref{r1d}?
+  But is it true that $\eqref{1pd}$ implies $\eqref{r1d}$ or that~\eqref{kpd} implies~\eqref{r1d}?
 
   Actually, the first question has been studied for some time already.
   Long\-staff in~\cite{longstaff} studied the abstract subspace lattices and the corresponding operator algebras.
@@ -102,7 +102,7 @@
     the reflexivity of $\lattice$.
   Finally, Katavolos, Lambrou and Papadakis in~\cite{katavolos} performed a deep analysis of the density properties
     of this vector system and deduced that for this system the property~\eqref{1pd} does not imply~\eqref{r1d},
-    however the system also admitted the property~\eqref{2pd}.
+    however the system also admitted the property~\eqref{kpd}.
   We refer to this particular example as to Larson--Wogen vector system in this paper.
 
   It is natural to try to understand whether the two point density always implies the rank one density property for an arbitrary $M$-basis $f_k$.
@@ -1072,7 +1072,7 @@
         %\end{figure}
 
     \section{$k$ point density property for B-class vector systems}
-      Now we are very much interested in the connection between $k$ point density property~\eqref{2pd} and
+      Now we are very much interested in the connection between $k$ point density property~\eqref{kpd} and
         the rank one density property~\eqref{r1d}.
       Though it is still unclear for us whether there is an $M$-basis which is $2$ point dense but not $3$ point dense,
         even for B-class systems, we are able to say something about $k$ point density property for B-class system.
@@ -1152,7 +1152,7 @@
       %\begin{remark}
         %Theorem~\ref{thm-katavolos-1} states that $\fsys_{LW}$ does not possess a rank one density property,
           %if and only if it is not two point dense.
-        %The definition~\ref{2pd} implies that the system $\fsys$ is not two point dense
+        %The definition~\ref{kpd} implies that the system $\fsys$ is not two point dense
           %if and only if there exists an operator $T$ of rank $2$
           %which has a nonzero trace and annihilates all the rank one operators $f^*_k \otimes f_k$.
           %(see the proof of Theorem 2.2 in the paper~\cite{katavolos}).
@@ -1230,6 +1230,6 @@
     The author wishes to express his gratitude to Dmitry Yakubovich for suggesting the construction of $M$-bases using the infinite bipartite graphs.
     %This is part of author's Ph.D. thesis, written under the supervision of Anton Baranov at the PDMI RAS.
     The author gratefully acknowledges the many helpful suggestions of Anton Baranov during the preparation of the paper.
-    %We are going to analyze the properties~\eqref{2pd} and~\eqref{r1d} for this class.
+    %We are going to analyze the properties~\eqref{kpd} and~\eqref{r1d} for this class.
 \include{bib}
 \end{document}
