@@ -98,12 +98,12 @@
     where $a_k$ are nonzero complex numbers for any positive $k$ and $a_0 = 0$.
   \end{example}
   The construction presented by Larson and Wogen was remarkably simple and elementary, and was mentioned in several papers afterwards.
-  For instance, this example was also studied in~\cite{argyroslambrou} (see Addendum) and by Azoff and Shehada in~\cite{azoff}, regarding
+  For instance, this example was also studied in~\cite{argyroslambrou} (see Addendum), in~\cite{me} and by Azoff and Shehada in~\cite{azoff}, regarding
     the reflexivity of $\lattice$.
-  Finally, Katavolos, Lambrou and Papadakis in~\cite{katavolos} performed a deep analysis of the density properties
+  In 1993 Katavolos, Lambrou and Papadakis in~\cite{katavolos} performed a deep analysis of the density properties
     of this vector system and deduced that for this system the property~\eqref{1pd} does not imply~\eqref{r1d},
     however the system also admitted the property~\eqref{kpd}.
-  We refer to this particular example as to Larson--Wogen vector system in this paper.
+  We refer to this particular example as to the Larson--Wogen vector system in this paper.
 
   It is natural to try to understand whether the two point density always implies the rank one density property for an arbitrary $M$-basis $f_k$.
   The aim of this paper is to study the rank one density property for a specific class of vector systems (which we call \emph{B-class})
@@ -118,14 +118,16 @@
       in a separable Hilbert space $\cal{H}$.
     Suppose that $\cal{H}$ has an orthonormal basis $\seq{e}$.
     Let $\fstarsys = \{f_n^{*}\}_{n=1}^\infty$ be a biorthogonal system to the original system $\seq{f}$.
+    We will use notation $f_{nk}$ for $\inner{f_n}{e_k}$ and similarly $f^*_{kn} = \inner{f^*_k}{e_n}$.
     \begin{definition}
       We say that the vector system $\fsys$ belongs to the \emph{B-class} whenever the following conditions are satisfied:
       \begin{enumerate}[label=\textbf{C\arabic*}]
         \item \label{c1} both $\fsys$ and $\fstarsys$ are complete (or $\fsys$ is an $M$-basis);
         \item \label{c2} either $f_n = e_n$ or $f^*_n = e_n$ for any $n > 0$;
-        \item \label{c3} $\inner{f_n}{e_n} = \inner{f^*_n}{e_n} = 1$ for any $n > 0$;
-        \item \label{c4} $\inner{f_n}{e_k} = -\inner{f^*_k}{e_n}$ for any $n, k > 0, n \neq k$;
-        \item \label{c5} the matrices $\{\inner{f_n}{e_k}\}$ and $\{\inner{f^*_n}{e_k}\}$ are both finite-band, meaning that $\inner{f_n}{e_k} = \inner{f^*_n}{e_k} = 0$, when $\lvert n - k \rvert \leq b$ for some $b \in \mathbb{N}$.
+        \item \label{c3} $f_{nn} = f^*_{nn} = 1$ for any $n > 0$;
+        \item \label{c4} $f_{nk} = -f^*_{kn}$ for any $n, k > 0, n \neq k$;
+        \item \label{c5} the matrices $\{f_{nk}\}$ and $\{f^*_{nk}\}$ are both finite-band,
+          meaning that $f_{nk} = f^*_{nk} = 0$, when $\lvert n - k \rvert \leq b$ for some $b \in \mathbb{N}$.
           We will call $b$ the \emph{band width} of the system $\fsys$.
       \end{enumerate}
     \end{definition}
@@ -134,20 +136,18 @@
     \end{prop}
     \begin{proof}
       Consider the set of indices $N = \left\{n \in \mathbb{N} \mid f_n = e_n \right\}$.
-      The property~\ref{c4} yields that $\inner{f_n}{e_k}$ is equal to zero whenever $k$ is not in
-        $N \cup {n}$.
+      The property~\ref{c4} yields that $f_{nk}$ is equal to zero whenever $k$ is not in $N \cup {n}$.
       Similarly, $f^*_m$ is orthogonal to $e_k$ for all $k$ in $N \setminus {m}$.
       We also have
       \[
-        \inner{f_n}{f^*_m} = \sum_{k} \inner{f_n}{e_k} \inner{e_k}{f^*_m}.
+        \inner{f_n}{f^*_m} = \sum_{k} f_{nk} f_{mk}^*.
       \]
       It follows from above that each summand on the right side is equal to zero whenever $k \neq n, m$.
-      Thus we get
+      If $n \neq m$, we get
       \[
-        \inner{f_n}{f^*_m} = \inner{f_n}{e_n} \inner{e_n}{f^*_m} + \inner{f_n}{e_m} \inner{e_m}{f^*_m}
-        = \inner{e_n}{f^*_m} + \inner{f_n}{e_m} = 0,
+        \inner{f_n}{f^*_m} = f_{nn} f^*_{mn} + f_{nm} f^*_{mm}
+        = f^*_{nm} + f_{nm} = 0.
       \]
-      if $n \neq m$.
       Otherwise, if $n = m$, we get $\inner{f_n}{f^*_m} = 1$ due to the conditions~\ref{c2} and~\ref{c3}.
     \end{proof}
     The B-class of vector systems is the main subject of this section.
@@ -163,16 +163,16 @@
     Evidently, for such indices $r > 0$ the condition $f_r = e_r$ holds due to the definition of the B-class vector systems.
     The second part of the graph will be referred as the \emph{right} part of the graph $B(\fsys)$.
     We put an edge between two vertices $v_l$ and $v_r$ from the left and right parts respectively,
-      whenever the scalar product $\inner{f_l}{e_r}$ is not zero.
-    For such two vertices we have $\inner{f_l}{e_r}$ = $-\inner{f^*_r}{e_l}$.
-    We set the weight (length) on the edge $(v_l v_r)$,
+      whenever the scalar product $f_{lr}$ is not zero.
+    Recall that for such two vertices we have $f_{lr}$ = $-f^*_{rl}$.
+    We set the weight function $\wt$ (length) on the edge $(v_l v_r)$,
     \[
-      \wt_{lr} = \inner{f_l}{e_r}^{-1}.
+      \wt_{lr} = f_{lr}^{-1}.
     \]
     Obviously, $\wt_{lr} = -\wt_{rl}$.
     Since the Hilbert space is infinite-dimensional, the graph is infinite as well.
-    However, due to the finite-band condition~\ref{c5}, the vertices of the graph are of a finite degree, hence the locally-finiteness of
-      the constructed graph.
+    However, due to the finite-band condition~\ref{c5}, the vertices of the graph are of a finite degree (the degree does not
+      exceed $2b - 1$, where $b$ is the band width of $\fsys$, 
     \begin{remark}
       Note that there might be several vector systems for a single weighted bipartite graph $B$.
     \end{remark}
@@ -251,18 +251,18 @@
       In the first case the condition $\inner{Tf_n}{f_n^*} = 0$ turns into
       \begin{equation}
           \label{left-eqn}
-          \sum_j T_{nj} \inner{f_n}{e_j} = 0,
+          \sum_j T_{nj} f_{nj} = 0,
       \end{equation}
       and in the second case it is equivalent to
       \begin{equation}
           \label{right-eqn}
-          \sum_j T_{jn} \inner{f^*_n}{e_j} = 0.
+          \sum_j T_{jn} f^*_{nj} = 0.
       \end{equation}
 
       Now consider an auxiliary function $\flowsgn: V \times V \to \mathbb{R}$ defined as follows
       \begin{align*}
-          &\flowsgn(v_l, v_r) = T_{lr} \inner{f_l}{e_r} = T_{lr} \wt_{lr}^{-1},\\
-          &\flowsgn(v_r, v_l) = T_{lr} \inner{f^*_r}{e_l} = T_{lr} \wt_{rl}^{-1}.
+        &\flowsgn(v_l, v_r) = T_{lr} f_{lr} = T_{lr} \wt_{lr}^{-1},\\
+        &\flowsgn(v_r, v_l) = T_{lr} f^*_{rl} = T_{lr} \wt_{rl}^{-1}.
       \end{align*}
       Observe that $\flowsgn$ is a skew-symmetric function.
       Moreover, two equalities~\eqref{left-eqn} and~\eqref{right-eqn} correspond to the \emph{left} and \emph{right}
@@ -403,9 +403,9 @@
       Firstly, we incorporate all the vertices and edges from the graph $B(\fsys)$ into the network $\net(\fsys)$.
       We set the flow and the length functions on the edge $e = (v_l v_r)$ as follows:
       \begin{align*}
-        &\flow(v_l, v_r) = T_{lr} \inner{f^*_r}{e_l},\\
-        &\flow(v_r, v_l) = T_{lr} \inner{f_l}{e_r} = -\flow(v_l, v_r),\\
-        &\len(e) = \lvert \wt(v_l, v_r) \rvert =  \lvert\inner{f_l}{e_r}\rvert^{-1}.
+        &\flow(v_l, v_r) = T_{lr} f^*_{rl},\\
+        &\flow(v_r, v_l) = T_{lr} f_{lr} = -\flow(v_l, v_r),\\
+        &\len(e) = \lvert \wt(v_l, v_r) \rvert =  \lvert f_{lr}\rvert^{-1}.
       \end{align*}
       \begin{remark}
         Evidently on this kind of edges the flow $\flow$ agrees with the function $\flowsgn$
@@ -1088,8 +1088,8 @@
             $\{v_r\}_{r=0}^\infty$ and $\{v^*_r\}_{r=0}^\infty$ in $\ell^2 (\mathbb{R}^k)$, such that 
           \begin{align*}
             \label{prop-vec-eqn}
-            \inner{u_l}{u^*_l + \sum_{r=0}^\infty v_r \inner{f_l}{e_r}} = 0, \\
-            \inner{v_r}{v^*_r - \sum_{l=0}^\infty u_l \inner{f_l}{e_r}} = 0
+            \inner{u_l}{u^*_l + \sum_{r=0}^\infty v_r f_{lr}} = 0, \\
+            \inner{v_r}{v^*_r - \sum_{l=0}^\infty u_l f_{lr}} = 0
           \end{align*}
         \end{prop}
         \begin{proof}
@@ -1103,9 +1103,9 @@
             where $x^s_r = \inner{x^s}{e_r}$ and $y^s_l = \inner{y^s}{e_l}$.
           Then $T_{lr} = \sum_{s=1}^k y^s_l x^s_r = \inner{v_r}{u_l}$.
           According to~\eqref{almost-flow-eqn} the condition $\inner{Tf_n}{f^*_n} = 0$ could be viewed as
-            $\inner{u_l}{u^*_l + \sum_r v_r\inner{f_l}{e_r}} = 0$
+            $\inner{u_l}{u^*_l + \sum_r v_r f_{lr}} = 0$
           when the index $n=l$ corresponds to the left part of $B(\fsys)$ and
-            $\inner{v_l}{v^*_l - \sum_l u_l\inner{f_l}{e_r}} = 0$
+            $\inner{v_l}{v^*_l - \sum_l u_l f_{lr}} = 0$
           when the index $n=r$ corresponds to the right part of $B(\fsys)$.
         \end{proof}
         \begin{remark}
