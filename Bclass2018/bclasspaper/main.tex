@@ -10,14 +10,14 @@
                  wnode/.style={sloped,above}}
 
 \begin{document}
-\title{Rank one density property for a class of~$M$-bases}
+\title{The rank one density and $k$ point density properties for a class of~$M$-bases}
 \author{Alexey Pyshkin}
 \begin{abstract}
   In the early 1990s the works of Larson, Wogen and Argyros, Lambrou, Longstaff
     disclosed an example of a strong $M$-basis that did not admit a linear summation method.
   We study a class of $M$-bases $\mathfrak{F}=\{f_n\}_{n=1}^\infty$ in the Hilbert space that
     generalizes the Larson--Wogen system.
-  We determine the conditions under which $\mathfrak{F}$ admits a linear summation method.
+  We determine the conditions under which $\mathfrak{F}$ has rank one density property.
   In order to do that we employ some of the graph theory techniques.
 \end{abstract}
 \keywords{biorthogonal system, hereditary completeness, $M$-basis, rank one density, linear summation method, two point density}
@@ -61,7 +61,7 @@
 
   It is well known that the last definition is equivalent to $R_1(\cal{A})$ being dense
     in $\cal{A}$ in the ultraweak (or $\sigma$-weak) topology.
-  Rank one density property can be considered as a generalization of the notion of \emph{linear summation method} for the system $\fsys$.
+  The rank one density property can be considered as a generalization of the notion of \emph{linear summation method} for the system $\fsys$.
   We say that the system $\fsys$ admits a linear summation method if there exist $\alpha_{kn} \in \mathbb{C}, n \in \mathbb{N}, 0 < k < k_n$
     such that for any $x \in \cal{H}$,
     \[
@@ -112,7 +112,7 @@
   In the next section we set up the notation and state the main theorem.
 
 \bigskip
-\section{B-class vector systems: rank one density problem}
+\section{B-class vector systems: the rank one density problem}
     \label{fsys2graphs}
     We are interested in the rank one density property of the vector system $\fsys = \seq{f}$
       in a separable Hilbert space $\cal{H}$.
@@ -192,7 +192,7 @@
     Therefore, we can apply Theorem~\ref{thm-main} to $\fsys_{LW}$, thus reestablishing
       the known fact from the papers~\cite{katavolos},~\cite{larson} and~\cite{argyroslambrou}.
     \begin{corol*}
-      The system $\fsys_{LW}$ admits a rank one density property if and only if
+      The system $\fsys_{LW}$ admits the rank one density property if and only if
         the sequence $\left\{1/a_n\right\}_{n=1}^\infty$ does not belong to $\ell^1$.
     \end{corol*}
     \begin{figure}
@@ -231,7 +231,7 @@
     \end{figure}
 
     \medskip
-    \subsection{Rank one density property for B-class}
+    \subsection{The rank one density property for B-class}
       Suppose we have a B-class vector system $\fsys=\seq{f}$.
       %Our purpose is to analyze the two point density property of $\fsys$.
       %Before we pursue that, we need to investigate the conditions under which the B-class system is rank one dense.
@@ -1148,13 +1148,13 @@
         Therefore, the sequence $\{z_n\}$ exists, and $\fsys$ is not $4B - 2$ point dense.
       \end{proof}
       \begin{remark}
-        Notice that if the graph $B(G)$ has maximal degree $d$, then the $2d - 3$ point density implies the rank one density of $\fsys$.
+        Notice that if the graph $B(\fsys)$ has maximal degree $d$, then the $2d - 3$ point density implies the rank one density of $\fsys$.
       \end{remark}
   \bigskip
   \section{Open problems}
     First, we are interested whether the estimate $4B - 2$ in Proposition~\ref{prop-vec-est} can be improved, for example to some constant.
     Secondly, we would like to know if Theorem~\ref{thm-main} holds for a larger class of $M$-bases, for instance, whether the condition of
-      local finiteness of the graph $BG(\fsys)$ or the condition~\ref{c5} could be dropped from the definition of B-class systems.
+      local finiteness of the graph $B(\fsys)$ or the condition~\ref{c5} could be dropped from the definition of B-class systems.
   \section{Acknowledgements}
     The author wishes to express his gratitude to Dmitry Yakubovich for suggesting the construction of $M$-bases using the infinite bipartite graphs.
     The author gratefully acknowledges the many helpful suggestions of Anton Baranov during the preparation of the paper.
