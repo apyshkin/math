@@ -54,10 +54,10 @@
   \end{definition}
   \begin{definition}[rank one density property]
     \label{r1d}
-    We say that the algebra $\cal{A}$ possesses \emph{rank one density property} if
+    We say that the algebra $\cal{A}$ has the \emph{rank one density property} if
       the unit ball of the rank one subalgebra $R_1(\cal{A})$ is dense in the unit ball of $\cal{A}$ in the strong operator topology.
   \end{definition}
-  By abuse of notation, we say that $\fsys$ is \emph{rank one dense}, meaning that the rank one density holds for the corresponding algebra $\cal{A}$.
+  By abuse of notation, we say that $\fsys$ is \emph{rank one dense} when the rank one density holds for the corresponding algebra $\cal{A}$.
 
   It is well known that the last definition is equivalent to $R_1(\cal{A})$ being dense
     in $\cal{A}$ in the ultraweak (or $\sigma$-weak) topology.
@@ -118,7 +118,7 @@
       in a separable Hilbert space $\cal{H}$.
     Suppose that $\cal{H}$ has an orthonormal basis $\seq{e}$.
     Let $\fstarsys = \{f_n^{*}\}_{n=1}^\infty$ be a biorthogonal system to the original system $\seq{f}$.
-    We will use notation $f_{nk}$ for $\inner{f_n}{e_k}$ and similarly $f^*_{kn} = \inner{f^*_k}{e_n}$.
+    We will use notation $f_{nk}$ for $\inner{f_n}{e_k}$ and similarly $f^*_{kn}$ for $\inner{f^*_k}{e_n}$.
     \begin{definition}
       We say that the vector system $\fsys$ belongs to the \emph{B-class} whenever the following conditions are satisfied:
       \begin{enumerate}[label=\textbf{C\arabic*}]
@@ -127,8 +127,8 @@
         \item \label{c3} $f_{nn} = f^*_{nn} = 1$ for any $n > 0$;
         \item \label{c4} $f_{nk} = -f^*_{kn}$ for any $n, k > 0, n \neq k$;
         \item \label{c5} the matrices $\{f_{nk}\}$ and $\{f^*_{nk}\}$ are both finite-band,
-          meaning that $f_{nk} = f^*_{nk} = 0$, when $\lvert n - k \rvert \leq b$ for some $b \in \mathbb{N}$.
-          We will call $b$ the \emph{band width} of the system $\fsys$.
+            meaning that $f_{nk} = f^*_{nk} = 0$, when $\lvert n - k \rvert \leq B$ for some $B \in \mathbb{N}$.
+          We will call such smallest $b$ the \emph{band width} of the system $\fsys$.
       \end{enumerate}
     \end{definition}
     \begin{prop}
@@ -153,7 +153,7 @@
     The B-class of vector systems is the main subject of this section.
     It is a natural extension of the Larson--Wogen system (see Example~\ref{lw-sys}).
 
-    Furthermore, a B-class vector system $\fsys$ could be associated with a
+    Furthermore, a B-class vector system $\fsys$ can be associated with a
       locally-finite weighted bipartite graph $B(\fsys) = (V, E, \wt)$, where $\wt$ is a
       nonzero real-valued function on $V\times V$ such that $\wt(v, u) = -\wt(u, v)$.
 
@@ -164,15 +164,12 @@
     The second part of the graph will be referred as the \emph{right} part of the graph $B(\fsys)$.
     We put an edge between two vertices $v_l$ and $v_r$ from the left and right parts respectively,
       whenever the scalar product $f_{lr}$ is not zero.
-    Recall that for such two vertices we have $f_{lr}$ = $-f^*_{rl}$.
-    We set the weight function $\wt$ (length) on the edge $(v_l v_r)$,
-    \[
-      \wt_{lr} = f_{lr}^{-1}.
-    \]
-    Obviously, $\wt_{lr} = -\wt_{rl}$.
+    We set the weight function $\wt$ on the edge $(v_l v_r)$ as $\wt_{lr} = f_{lr}$.
+    Next we set $\wt_{rl} = -\wt_{lr}$.
+    Recall that for such two vertices we have $f_{lr}$ = $-f^*_{rl}$, so $\wt_{rl} = f^*_{rl}$.
     Since the Hilbert space is infinite-dimensional, the graph is infinite as well.
     However, due to the finite-band condition~\ref{c5}, the vertices of the graph are of a finite degree (the degree does not
-      exceed $2b - 1$, where $b$ is the band width of $\fsys$, 
+      exceed $2b - 1$, where $b$ is the band width of $\fsys$).
     \begin{remark}
       Note that there might be several vector systems for a single weighted bipartite graph $B$.
     \end{remark}
@@ -188,7 +185,7 @@
       \label{thm-main}
       The B-class system $\fsys$ is rank one dense if and only if
         for any infinite path $\seq{r}$ in the bipartite graph $B(\fsys)$
-          the series $\sum_{k=1}^\infty\lvert\wt(r_k, r_{k+1})\rvert$ diverges.
+        the series $\sum_{k=1}^\infty\lvert\wt(r_k, r_{k+1})\rvert^{-1}$ diverges.
     \end{theorem}
     The bipartite graph $B(\fsys_{LW})$, associated with the Larson--Wogen system~\eqref{lw-sys},
       is a single ray itself.
@@ -261,8 +258,8 @@
 
       Now consider an auxiliary function $\flowsgn: V \times V \to \mathbb{R}$ defined as follows
       \begin{align*}
-        &\flowsgn(v_l, v_r) = T_{lr} f_{lr} = T_{lr} \wt_{lr}^{-1},\\
-        &\flowsgn(v_r, v_l) = T_{lr} f^*_{rl} = T_{lr} \wt_{rl}^{-1}.
+        &\flowsgn(v_l, v_r) = T_{lr} f_{lr} = T_{lr} \wt_{lr},\\
+        &\flowsgn(v_r, v_l) = T_{lr} f^*_{rl} = T_{lr} \wt_{rl}.
       \end{align*}
       Observe that $\flowsgn$ is a skew-symmetric function.
       Moreover, two equalities~\eqref{left-eqn} and~\eqref{right-eqn} correspond to the \emph{left} and \emph{right}
@@ -367,12 +364,12 @@
       Suppose $\net = (V, E, \len, \source, \sink)$ is a network and $\flow$ is a skew-symmetric function defined
         on $\net$.
       Naturally, we might instead consider an oriented network $\onet = (V, \vec{E}, \len, \source, \sink)$ and a
-        positive flow $\flowpos: \vec{E} \to \mathbb{R}^{+}$, where $V$, $\source$, $\sink$ and $\len$ are the same.
+        positive flow $\flowposplus: \vec{E} \to \mathbb{R}^{+}$, where $V$, $\source$, $\sink$ and $\len$ are the same.
       We assign a direction to the edge $(uv)$ as follows:
         $(uv) \in \vec{E}$ if $\flow(u, v) > 0$, and $(vu) \in \vec{E}$ otherwise.
       This way only one of the edges $(uv)$ and $(vu)$ is present in the graph $\vec{G} = (V, \vec{E})$.
-      Also we set the positive flow $\flowpos: E \to \mathbb{R}^{+}$ so that
-        for any edge $(uv) \in \vec{E}$ we have $\flowpos(u v) = \flow(u,v)$.
+      Also we set the positive flow $\flowposplus: E \to \mathbb{R}^{+}$ so that
+        for any edge $(uv) \in \vec{E}$ we have $\flowposplus(u v) = \flow(u,v)$.
       %\begin{definition}
         %The oriented network $\onet$ is called an \emph{orientation} of the network $\net$.
         %For the positive flow $\flowpos$ we will exploit the same term:
@@ -405,7 +402,7 @@
       \begin{align*}
         &\flow(v_l, v_r) = T_{lr} f^*_{rl},\\
         &\flow(v_r, v_l) = T_{lr} f_{lr} = -\flow(v_l, v_r),\\
-        &\len(e) = \lvert \wt(v_l, v_r) \rvert =  \lvert f_{lr}\rvert^{-1}.
+        &\len(e) = \lvert \wt(v_l, v_r) \rvert^{-1} =  \lvert f_{lr}\rvert^{-1}.
       \end{align*}
       \begin{remark}
         Evidently on this kind of edges the flow $\flow$ agrees with the function $\flowsgn$
@@ -651,7 +648,7 @@
         Then set the flow $\flowposn{n+1}$ equal to the final flow $\cal{E}_K$: $\flowposn{n+1} = \cal{E}_K.$
         We have $\flowposn{n+1}(e) \leq \flowposn{n}(e) \leq \flowpos(e)$ for each edge $e \in E$.
 
-        Now set $\preflow(e) = \lim_{n \to \infty} \flowposn{n}(e)$ for each $e \in E$.
+        Now set $\preflow(e) = \lim\limits_{n \to \infty} \flowposn{n}(e)$ for each $e \in E$.
         The described pointwise limit exists since for each edge $e$ the sequence $\flowposn{n}(e)$ is decreasing and bounded below.
         \begin{prop}
           The preflow $\preflow$ is a flow such that $d_{\preflow}(\root) = d_{\flowpos}(\root)$.
@@ -906,7 +903,7 @@
 
           The root vertex was not affected during the step $n > 1$, so~\ref{p3} holds.
 
-          The flow $\cal{G}$ was redesigned in such a fashion that each non-root vertex $v \in G_{n} \setminus 
+          The flow $\cal{G}$ was redesigned in such a fashion that each non-root vertex $v$ in $G_{n} \setminus 
             \left(L_n \cup \{\root\}\right)$ became $\cal{G}$-preserving.
           This checks the property~\ref{p4}.
 
@@ -963,7 +960,7 @@
             \]
             Since $\sum_{v \in L_n} d^{-}_n(v)$ is the total amount of the flow incoming to the deepest layer $L_n$, and the only
               active vertex in $G_n$ is the root, which produces the flow whose size is equal to $1$, we have $\sum_{v \in L_n} d^{-}_n(v) = d^{+}_n(\root) = 1.$
-            Consequently, $LS \geq \min_{L_n} \phi_n(v).$
+            Consequently, $LS \geq \min\limits_{v \in L_n} \phi_n(v).$
 
             Furthermore, combining the latter with~\eqref{main-ineq}, one gets
               \[
@@ -973,7 +970,7 @@
               $\phi_n(r_n) \leq \lvert\flowpos\rvert.$
           \end{proof}
           \begin{prop}
-            There exists a ray $r=(r_1 r_2\dots)$ such that $\sum\limits_{k=1}^\infty \len(r_kr_{k+1}) < \infty$.
+            There exists a ray $r=(r_1 r_2\dots)$ such that $\sum\limits_{k=1}^\infty \len(r_k r_{k+1}) < \infty$.
           \end{prop}
           \begin{proof}
             We will seek for the ray $r$ in the graph $\gstar = \bigcup G_n.$
@@ -1026,7 +1023,7 @@
           It is obvious that $r^*$ cannot include infinite number of the edges incident to the vertices
             $\source$ and $\sink$, since such edges have the length exactly one.
           Therefore, such $r^*$ exists in $\net(\fsys)$ if and only if there is a ray $r=\seq{r}$ in the original bipartite graph $B(\fsys)$ such that
-            the series $\sum_{k=1}^\infty\lvert\wt(r_k, r_{k+1})\rvert$ converges.
+            the series $\sum_{k=1}^\infty\lvert\len(r_k r_{k+1})\rvert$ converges.
           The theorem is proved.
         \end{proof}
         %\begin{figure}
@@ -1071,33 +1068,34 @@
           %\end{center}
         %\end{figure}
 
-    \section{$k$ point density property for B-class vector systems}
-      Now we are very much interested in the connection between $k$ point density property~\eqref{kpd} and
+    \section{The $k$ point density property for B-class vector systems}
+      In this section we investigate the connection between the $k$ point density property~\eqref{kpd} and
         the rank one density property~\eqref{r1d}.
-      Though it is still unclear for us whether there is an $M$-basis which is $2$ point dense but not $3$ point dense,
-        even for B-class systems, we are able to say something about $k$ point density property for B-class system.
+      Though it remains unclear whether there is an $M$-basis which is $2$ point dense but not $3$ point dense,
+        even for B-class systems, still we are able to say something about the $k$ point density property for B-class system.
 
       \begin{theorem}
-        Consider a B-class system $\fsys$ which has a band width equal to $b$.
-        Then, if $\fsys$ is $4b - 2$ point dense then it is rank one dense.
+        Consider a B-class system $\fsys$ which has a band width equal to $B$.
+        Then, if $\fsys$ is $4B - 2$ point dense then it is rank one dense.
       \end{theorem}
       \begin{proof}
-        We use the idea from~\cite{me} to get a reformulation for $k$ point density property.
+        We use the idea from~\cite{me} to get a reformulation for the $k$ point density property.
         \begin{prop}
+          \label{prop-vec-est}
           The system $\fsys$ is $k$ point dense if and only if there exist vector sequences $\{u_l\}_{l=0}^\infty$, $\{u^*_l\}_{l=0}^\infty$,
-            $\{v_r\}_{r=0}^\infty$ and $\{v^*_r\}_{r=0}^\infty$ in $\ell^2 (\mathbb{R}^k)$, such that 
-          \begin{align*}
+            $\{v_r\}_{r=0}^\infty$ and $\{v^*_r\}_{r=0}^\infty$ in $\ell^2 (\mathbb{R}^k)$, such that
+          \begin{equation}
             \label{prop-vec-eqn}
-            \inner{u_l}{u^*_l + \sum_{r=0}^\infty v_r f_{lr}} = 0, \\
-            \inner{v_r}{v^*_r - \sum_{l=0}^\infty u_l f_{lr}} = 0
-          \end{align*}
+            \inner{u_l}{u^*_l + \sum_{r=0}^\infty v_r f_{lr}} = 0, \quad \quad
+            \inner{v_r}{v^*_r + \sum_{l=0}^\infty u_l f_{rl}^*} = 0.
+          \end{equation}
         \end{prop}
         \begin{proof}
           The system $\fsys$ is not $k$ point dense if and only if there exists an operator $T = \sum_{s=1}^k y^s \otimes x^s$, where
             $x^s, y^s \in \cal{H}$, such that $\inner{Tf_n}{f_n^*} = 0$ for any $n$.
           Consider vectors $v_l$, $u_l$ in $\mathbb{R}^k$ as follows
           \begin{equation*}
-            v_r = (x^1_r, x^2_r, \dots, x^k_r)\qquad
+            v_r = (x^1_r, x^2_r, \dots, x^k_r),\qquad
             u_l = (y^1_l, y^2_l, \dots, y^k_l),
           \end{equation*}
             where $x^s_r = \inner{x^s}{e_r}$ and $y^s_l = \inner{y^s}{e_l}$.
@@ -1108,47 +1106,58 @@
             $\inner{v_l}{v^*_l - \sum_l u_l f_{lr}} = 0$
           when the index $n=r$ corresponds to the right part of $B(\fsys)$.
         \end{proof}
-        \begin{remark}
-          It is follows that $\fsys$ is not $k$ point dense if and only if each vertex $v$ in the graph $B(\fsys)$ is equipped with two vectors $z_v$, $z_v^*$ in $\mathbb{R}^k$
-            such that $\inner{z_v}{z_v^* + \sum_{(vx) \in B(\fsys)} z_x \wt(vx)} = 0$.
-        \end{remark}
+        \begin{corol*}
+          The system $\fsys$ is not $k$ point dense if and only if each vertex $v$ in the graph $B(\fsys)$ can be
+            equipped with two vectors $z_v$, $z_v^*$ in $\mathbb{R}^k$ such that $\inner{z_v}{z_v^* + \sum\limits_{v \sim x} z_x \wt_{vx}} = 0$,
+            where $v \sim x$ means that there is an edge between the vertices $v$ and $x$.
+        \end{corol*}
 
         Now suppose that $\fsys$ is not rank one dense.
         According to Theorem~\ref{thm-main} there is an infinite ray $\seq{r}$ in the bipartite
-          graph $B(\fsys)$ such that the series $\sum_{k=1}^\infty\lvert\wt(r_k, r_{k+1})\rvert$ converges.
-        We are going to present vector sequences $\{z_n\}_{n=0}^\infty$, $\{z^*_n\}_{n=0}^\infty$ in $\ell^2 (\mathbb{R}^k)$
-          such that~\eqref{prop-vec-eqn} hold.
-        For each vertex $v$ that does not belong to the ray $\seq{r}$ we set the corresponding pair of vectors $z_v$, $z^*_v$ to zero.
+          graph $B(\fsys)$ such that the series $\sum\lvert\wt(r_k, r_{k+1})\rvert$ converges.
+        We are going to present vector sequences $\{z_n\}_{n=1}^\infty$, $\{z^*_n\}_{n=1}^\infty$ in $\ell^2 (\mathbb{R}^k)$
+          such that~\ref{prop-vec-eqn} hold.
+
+        For each vertex $v$ that does not belong to the ray $\seq{r}$, we set the corresponding pair of vectors $z_v$, $z^*_v$ to zero.
         For the first vertex $r_1$ we set both vectors $z_1$, $z^*_1$ to the unit vector $(1, 0, 0, \dots)$;
           and for all other $r_k$ we set $z^*_k$ to zero.
 
-        For each $n > 0$ we are to choose $z_n$ that satisfies three following conditions.
-        First, $\wt(r_{n-1}, r_n)\inner{z_n}{z_{n - 1}} = 1$.
-        Second, $z_n$ is orthogonal to all $z_m$, $m < n - 1$ such that $r_m$ and $r_{n}$ are connected in $B(G)$.
-        Third, $z_n$ does not belong to the linear span of $z_m$, $m < n$ such that there is an edge between $r_m$ and $r_{n + 1}$ in $B(G)$.
+        For each $n > 0$ we are to choose $z_n$ that satisfies three following conditions:
+        \begin{itemize}
+          \item First, $\wt(r_{n-1}, r_n)\inner{z_n}{z_{n - 1}} = 1$.
+          \item Second, $z_n$ must be orthogonal to all $z_m$, $m < n - 1$ such that $r_m \sim r_{n}$.
+          \item Third, $z_n$ does not belong to the linear span of $z_m$, $m < n$ such that $r_m \sim r_{n + 1}$.
+        \end{itemize}
 
-        We argue by induction that such sequence exists.
+        We argue by induction that such sequence $\{z_n\}$ exists.
         Remember that $z_1$ is already set.
         Now suppose that we set $z_k$ for all $k < n$.
-        Due to the second condition $z_{n - 1}$ is not in the linear span of $z_m$, $m < n - 1$, such $r_m$ and $r_n$ are connected in $B(G)$.
-        Then we are able to choose such vector $z \in \mathbb{R}^{4b - 2}$ that $\wt(r_{n-1}, r_n) \inner{z}{z_{n-1}} = 1$ and
-          $z$ is orthogonal to all $z_m$, $m < n - 1$ such that $r_m$ and $r_n$ are connected in the graph.
+        Due to the second condition $z_{n - 1}$ is not in the linear span of $z_m$, $m < n - 1$, such $r_m\sim r_n$.
+        Then we are able to choose such vector $z \in \mathbb{R}^{4B - 2}$ that $\wt(r_{n-1}, r_n) \inner{z}{z_{n-1}} = 1$ and
+          $z$ is orthogonal to all $z_m$, $m < n - 1$ such that $r_m\sim r_n$.
         So the vector $z$ satisfies the first two conditions.
         Assume the third condition does not hold for $z$.
-        Then we find a vector $\zeta \in \mathbb{R}^{4b - 2}$ such that $\zeta$ is orthogonal to the linear subspace $V$, generated by
-          $z_{n-1}$, all $z_m$ $m < n - 1$ and there is an edge between $r_m$ and $r_n$ in $B(G)$ and
-          all $z_m$, $m < n$ and there is an edge between $r_m$ and $r_{n + 1}$ in $B(G)$.
-        Since each vertex in the graph has degree at most $2b$, the subspace $V$ has dimension at most $1 + (2b - 2) + (2b - 2) = 4b - 3$
-        Thus such vector $\zeta$ exists and the vector $z_n = z + \zeta$ satisfies all three conditions.
+        Then we find a vector $\zeta \in \mathbb{R}^{4B - 2}$ such that $\zeta$ is orthogonal to the linear subspace $V$, generated by
+        \begin{itemize}
+          \item $z_{n-1}$,
+          \item $z_m$, for all $m < n - 1$ and $r_m\sim r_n$,
+          \item $z_m$, for all $m < n$ and $r_m\sim r_{n + 1}$.
+        \end{itemize}
+        Since each vertex in the graph has degree at most $2b$, the subspace $V$ has dimension at most $1 + (2B - 2) + (2B - 2) = 4B - 3$.
+        In $\mathbb{R}^{4b-2}$ such vector $\zeta$ exists and the vector $z_n = z + \zeta$ satisfies all three conditions.
+        Therefore, the sequence $\{z_n\}$ exists, and $\fsys$ is not $4B - 2$ point dense.
       \end{proof}
       \begin{remark}
-        Notice that if the graph $B(G)$ has maximal degree $d$ then $2d - 3$ point density implies rank one density of $\fsys$.
+        Notice that if the graph $B(G)$ has maximal degree $d$, then the $2d - 3$ point density implies the rank one density of $\fsys$.
       \end{remark}
   \bigskip
+  \section{Open problems}
+    First, we are interested whether the estimate $4B - 2$ in Proposition~\ref{prop-vec-est} can be improved, for example to some constant.
+    Secondly, we would like to know if Theorem~\ref{thm-main} holds for a larger class of $M$-bases, for instance, whether the condition of
+      local finiteness of the graph $BG(\fsys)$ or the condition~\ref{c5} could be dropped from the definition of B-class systems.
   \section{Acknowledgements}
     The author wishes to express his gratitude to Dmitry Yakubovich for suggesting the construction of $M$-bases using the infinite bipartite graphs.
-    %This is part of author's Ph.D. thesis, written under the supervision of Anton Baranov at the PDMI RAS.
     The author gratefully acknowledges the many helpful suggestions of Anton Baranov during the preparation of the paper.
-    %We are going to analyze the properties~\eqref{kpd} and~\eqref{r1d} for this class.
+    %This is part of author's Ph.D. thesis, written under the supervision of Anton Baranov at the PDMI RAS.
 \include{bib}
 \end{document}
