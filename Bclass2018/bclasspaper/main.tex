@@ -44,7 +44,7 @@
   \end{definition}
   %\begin{remark}
     The definition is equivalent to $\fsys$ being a strong $M$-basis (see~\cite{katavolos}):
-    the system $\fsys$ is called a strong $M$-basis if for any $x\in\cal{H}$ we have $x \in \overline{span}\big(\inner{x}{f^*_k}f_k\big)$, where
+    the system $\fsys$ is called a strong $M$-basis if for any $x\in\cal{H}$ we have $x \in \overline{span}\big(\inner{x}{f^*_s}f_s\big)$, where
       $\overline{span}$ denotes a closed linear span.
   %\end{remark}
   \begin{definition}[two point density property]
@@ -62,10 +62,10 @@
   It is well known that the last definition is equivalent to $R_1(\cal{A})$ being dense
     in $\cal{A}$ in the ultraweak (or $\sigma$-weak) topology.
   The rank one density property can be considered as a generalization of the notion of \emph{linear summation method} for the system $\fsys$.
-  We say that the system $\fsys$ admits a linear summation method if there exist $\alpha_{kn} \in \mathbb{C}, n \in \mathbb{N}, 0 < k < k_n$
+  We say that the system $\fsys$ admits a linear summation method if there exist $\alpha_{sn} \in \mathbb{C}, n \in \mathbb{N}, 0 < s < s_n$
     such that for any $x \in \cal{H}$,
     \[
-      \lim_{n \to \infty} \sum_k \alpha_{kn} \inner{x}{f^*_k}f_k = x.
+      \lim_{n \to \infty} \sum_s \alpha_{sn} \inner{x}{f^*_s}f_s = x.
     \]
   Clearly, the existence of the linear summation method implies the rank one density property.
 
@@ -90,7 +90,7 @@
     did not possess the rank one density property.
   \begin{example}[Larson--Wogen system $\fsys_{LW}$]
     \label{lw-sys}
-    Fix an orthonormal basis $\{e_k\}_{k=1}^\infty$ in $\cal{H}$. For any $j > 0$ we define
+    Fix an orthonormal basis $\{e_n\}_{n=1}^\infty$ in $\cal{H}$. For any $j > 0$ we define
     \begin{align*}
       &f_{2j-1}=-a_{2j-2}e_{2j-2} + e_{2j-1} + a_{2j-1}e_{2j}, \qquad &f_{2j}=e_{2j},\\
       &f^*_{2j}=-a_{2j-1}e_{2j-1}+e_{2j}+a_{2j}e_{2j+1}, \qquad &f^*_{2j-1}=e_{2j-1},
@@ -105,7 +105,7 @@
     however the system also admitted the property~\eqref{kpd}.
   We refer to this particular example as to the Larson--Wogen vector system in this paper.
 
-  It is natural to try to understand whether the two point density always implies the rank one density property for an arbitrary $M$-basis $f_k$.
+  It is natural to try to understand whether the two point density always implies the rank one density property for an arbitrary $M$-basis $\{f_n\}$.
   The aim of this paper is to study the rank one density property for a specific class of vector systems (which we call \emph{B-class})
     that represents a natural generalization of the Larson--Wogen vector system.
 
@@ -118,16 +118,16 @@
       in a separable Hilbert space $\cal{H}$.
     Suppose that $\cal{H}$ has an orthonormal basis $\seq{e}$.
     Let $\fstarsys = \{f_n^{*}\}_{n=1}^\infty$ be a biorthogonal system to the original system $\seq{f}$.
-    We will use notation $f_{nk}$ for $\inner{f_n}{e_k}$ and similarly $f^*_{kn}$ for $\inner{f^*_k}{e_n}$.
+    We will use notation $f_{ns}$ for $\inner{f_n}{e_s}$ and similarly $f^*_{sn}$ for $\inner{f^*_s}{e_n}$.
     \begin{definition}
       We say that the vector system $\fsys$ belongs to the \emph{B-class} whenever the following conditions are satisfied:
       \begin{enumerate}[label=\textbf{C\arabic*}]
         \item \label{c1} both $\fsys$ and $\fstarsys$ are complete (or $\fsys$ is an $M$-basis);
         \item \label{c2} either $f_n = e_n$ or $f^*_n = e_n$ for any $n > 0$;
         \item \label{c3} $f_{nn} = f^*_{nn} = 1$ for any $n > 0$;
-        \item \label{c4} $f_{nk} = -f^*_{kn}$ for any $n, k > 0, n \neq k$;
-        \item \label{c5} the matrices $\{f_{nk}\}$ and $\{f^*_{nk}\}$ are both finite-band,
-            meaning that $f_{nk} = f^*_{nk} = 0$, when $\lvert n - k \rvert \leq B$ for some $B \in \mathbb{N}$.
+        \item \label{c4} $f_{ns} = -f^*_{sn}$ for any $n, s > 0, n \neq s$;
+        \item \label{c5} the matrices $\{f_{ns}\}$ and $\{f^*_{ns}\}$ are both finite-band,
+            meaning that $f_{ns} = f^*_{ns} = 0$, when $\lvert n - s \rvert \leq B$ for some $B \in \mathbb{N}$.
           We will call such smallest $b$ the \emph{band width} of the system $\fsys$.
       \end{enumerate}
     \end{definition}
@@ -136,13 +136,13 @@
     \end{prop}
     \begin{proof}
       Consider the set of indices $N = \left\{n \in \mathbb{N} \mid f_n = e_n \right\}$.
-      The property~\ref{c4} yields that $f_{nk}$ is equal to zero whenever $k$ is not in $N \cup {n}$.
-      Similarly, $f^*_m$ is orthogonal to $e_k$ for all $k$ in $N \setminus {m}$.
+      The property~\ref{c4} yields that $f_{ns}$ is equal to zero whenever $s$ is not in $N \cup {n}$.
+      Similarly, $f^*_m$ is orthogonal to $e_s$ for all $s$ in $N \setminus {m}$.
       We also have
       \[
-        \inner{f_n}{f^*_m} = \sum_{k} f_{nk} f_{mk}^*.
+        \inner{f_n}{f^*_m} = \sum_{s} f_{ns} f_{ms}^*.
       \]
-      It follows from above that each summand on the right side is equal to zero whenever $k \neq n, m$.
+      It follows from above that each summand on the right side is equal to zero whenever $s \neq n, m$.
       If $n \neq m$, we get
       \[
         \inner{f_n}{f^*_m} = f_{nn} f^*_{mn} + f_{nm} f^*_{mm}
@@ -169,7 +169,7 @@
     Recall that for such two vertices we have $f_{lr}$ = $-f^*_{rl}$, so $\wt_{rl} = f^*_{rl}$.
     Since the Hilbert space is infinite-dimensional, the graph is infinite as well.
     However, due to the finite-band condition~\ref{c5}, the vertices of the graph are of a finite degree (the degree does not
-      exceed $2b - 1$, where $b$ is the band width of $\fsys$).
+      exceed $2B - 1$, where $B$ is the band width of $\fsys$).
     \begin{remark}
       Note that there might be several vector systems for a single weighted bipartite graph $B$.
     \end{remark}
@@ -185,7 +185,7 @@
       \label{thm-main}
       The B-class system $\fsys$ is rank one dense if and only if
         for any infinite path $\seq{r}$ in the bipartite graph $B(\fsys)$
-        the series $\sum_{k=1}^\infty\lvert\wt(r_k, r_{k+1})\rvert^{-1}$ diverges.
+        the series $\sum_{n=1}^\infty\lvert\wt(r_n, r_{n+1})\rvert^{-1}$ diverges.
     \end{theorem}
     The bipartite graph $B(\fsys_{LW})$, associated with the Larson--Wogen system~\eqref{lw-sys},
       is a single ray itself.
@@ -525,13 +525,13 @@
     Next we introduce a few more notions from the graph theory.
     \begin{definition}
       Let $G = (V, E)$ be an oriented graph.
-      A sequence of vertices $\{v_k\}_{k=1}^N$ is called a \emph{path} if each pair of consecutive vertices
-        $v_k$ and $v_{k+1}$ are connected by an edge $(v_k v_{k+1})$ and no edges or vertices are repeated twice in the sequence.
+      A sequence of vertices $\{v_n\}_{n=1}^N$ is called a \emph{path} if each pair of consecutive vertices
+        $v_n$ and $v_{n+1}$ are connected by an edge $(v_n v_{n+1})$ and no edges or vertices are repeated twice in the sequence.
       The path is called a \emph{ray} when $N$ is equal to infinity.
     \end{definition}
     \begin{definition}
       Let $G$ be an oriented graph.
-      A finite sequence of vertices $\{v_k\}_{k=1}^N$ is called a \emph{cycle} (or a simple cycle) if it is
+      A finite sequence of vertices $\{v_n\}_{n=1}^N$ is called a \emph{cycle} (or a simple cycle) if it is
         a path and there is an edge $e = (v_N v_1)$ connecting the last vertex to the first vertex of the sequence.
     \end{definition}
 
@@ -547,7 +547,7 @@
       exists if and only if there exists a ray $r = \seq{r}$ in the network $\net$, taking its start in the vertex $\source$,
         with a finite total length:
       \[
-        \sum_{k=1}^\infty \len(r_k r_{k+1}) < \infty.
+        \sum_{n=1}^\infty \len(r_n r_{n+1}) < \infty.
       \]
     \end{theorem}
     %\begin{remark}
@@ -586,7 +586,7 @@
       \end{theorem*}
       First we prove the necessity.
       Suppose that there is a ray of a finite total length $r=(r_1 r_2 \dots)$.
-      In that case we set the resulting flow $\flowpos(r_k r_{k+1})$ to one, creating a flow which escapes
+      In that case we set the resulting flow $\flowpos(r_n r_{n+1})$ to one, creating a flow which escapes
         from $\source$ to infinity.
       All the other edges will not carry any flow, hence the flow is preserved
         at each vertex but not preserved by the whole network $\net$.
@@ -614,8 +614,8 @@
           %\flowposn{1}(e) = \flowposn{0}(e), \quad e \in E.
         %\]
 
-        In order to proceed we enumerate all vertices in the network $V = \left\{v_k\right\}_{k=1}^\infty$.
-        At the step $n$ we consider the subgraph $G_n = (V_n, E_n) \subset G$, where $V_n$ is defined as $\left\{v_k\right\}_{k=1}^n$
+        In order to proceed we enumerate all vertices in the network $V = \left\{v_s\right\}_{s=1}^\infty$.
+        At the step $n$ we consider the subgraph $G_n = (V_n, E_n) \subset G$, where $V_n$ is defined as $\left\{v_s\right\}_{s=1}^n$
           and the edge set $E_n$ consists of the edges from $E$ incident to $V_n$.
 
         Suppose we have already established the flow $\flowposn{n}: \net \to \mathbb{R}^{+}$ for which
@@ -679,7 +679,7 @@
           To obtain a contradiction, suppose that there is a cycle $C$ such that $\preflow(e) > 0$ for
             each edge $e \in C$.
           Clearly, there exists such $n$ that the cycle $C$ lies within the graph $G_n$.
-          Since at each step we reduced the flow $\flowposn{k}$, at the step $n$
+          Since at each step we reduced the flow, at the step $n$
             the cycle $C$ was a positive flow cycle as well: $\flowposn{n}(e) > 0$ for each edge $e \in C$.
           That is a contradiction.
         \end{proof}
@@ -866,7 +866,7 @@
           \end{lemma}
           \begin{proof}
             Due to the absence of the positive flow cycles, we have $\root \not \in U$.
-            Since for each non-root vertex in $G_{k-1}$ we included every outgoing edge into $G_k$,
+            Since for each non-root vertex in $G_{n-1}$ we included every outgoing edge into $G_n$,
               the edge $e$ belongs to $G_n$.
             If $e$ is not saturated, then its ending vertex $\ter(e)$ lies in $S$.
             Therefore, the edge $e$ belongs to $U$.
@@ -970,7 +970,7 @@
               $\phi_n(r_n) \leq \lvert\flowpos\rvert.$
           \end{proof}
           \begin{prop}
-            There exists a ray $r=(r_1 r_2\dots)$ such that $\sum\limits_{k=1}^\infty \len(r_k r_{k+1}) < \infty$.
+            There exists a ray $r=(r_1 r_2\dots)$ such that $\sum\limits_{n=1}^\infty \len(r_n r_{n+1}) < \infty$.
           \end{prop}
           \begin{proof}
             We will seek for the ray $r$ in the graph $\gstar = \bigcup G_n.$
@@ -978,8 +978,8 @@
             Consider the paths $p$, starting on the root, such that $\phistar(p) \leq \lvert\flowpos\rvert$.
             Denote this set of paths by $\cal{P}^*$.
 
-            For each $k > 0$ we are going to present a vertex $r_k$ such that there are an infinite number of paths
-              in $\cal{P}^*$ starting on $(r_1 r_2 \dots r_k)$.
+            For each $n > 0$ we are going to present a vertex $r_n$ such that there are an infinite number of paths
+              in $\cal{P}^*$ starting on $(r_1 r_2 \dots r_n)$.
 
             At the first step we set $r_1 = \root$.
             By proposition~\ref{prop36}, for each layer $L_n$ there is a vertex $v_n \in L_n$ such that
@@ -987,15 +987,15 @@
             Since $\phistar(v_n) \leq \phi_n(v_n)$, and there are an infinite number of layers,
               $\cal{P}^*$ contains an infinite number of paths.
 
-            Now assume we have already constructed the path $p_k = (r_1 r_2\dots r_k)$ such that
-              there are an infinite number of paths in $\cal{P}^*$ starting with the path $p_k$.
-            The graph $\gstar$ is locally finite and in particular the degree of $r_k$ is finite.
-            Since the number of the paths from $\cal{P}^*$ starting with $p_k$ is infinite by the assumption,
-              we are able to choose $r_{k+1} \in \eout_{G^*}(r_k)$ such that the number of paths in $\cal{P}^*$ starting from
-              the path $p_{k+1}= (p_k r_k)$ is infinite as well.
+            Now assume we have already constructed the path $p_n = (r_1 r_2\dots r_n)$ such that
+              there are an infinite number of paths in $\cal{P}^*$ starting with the path $p_n$.
+            The graph $\gstar$ is locally finite and in particular the degree of $r_n$ is finite.
+            Since the number of the paths from $\cal{P}^*$ starting with $p_n$ is infinite by the assumption,
+              we are able to choose $r_{n+1} \in \eout_{G^*}(r_n)$ such that the number of paths in $\cal{P}^*$ starting from
+              the path $p_{n+1}= (p_n r_n)$ is infinite as well.
 
             We constructed the ray $r = (r_1 r_2 \dots) \subseteq \gstar$.
-            The total length of the ray $\sum \len(r_k r_{k+1})$ is finite
+            The total length of the ray $\sum \len(r_n r_{n+1})$ is finite
               since the partial sums are bounded by $\lvert \flowpos \rvert$.
           \end{proof}
           We found a finite-length ray in the network $\net$.
@@ -1017,13 +1017,13 @@
           After that we utilize Theorem~\ref{ray-thm}, which states that there exists such
             flow $\flowpos: E \to \mathbb{R}^{+}$ with a finite mass that is not preserved in
             the network $\net(\fsys)$, if and only if there exists a ray $r^{*} \subseteq \net$, originating in the vertex $\source$,
-            whose total length is finite $\sum_{k=1}^\infty \len(r^{*}_k r^{*}_{k+1}) < \infty$.
+            whose total length is finite $\sum_{n=1}^\infty \len(r^{*}_n r^{*}_{n+1}) < \infty$.
           Combining these two statements we get that $\fsys$ is \emph{not} rank one dense if and only if
             there is a finite-length ray $r^*$ in the network $\net(\fsys)$.
           It is obvious that $r^*$ cannot include infinite number of the edges incident to the vertices
             $\source$ and $\sink$, since such edges have the length exactly one.
           Therefore, such $r^*$ exists in $\net(\fsys)$ if and only if there is a ray $r=\seq{r}$ in the original bipartite graph $B(\fsys)$ such that
-            the series $\sum_{k=1}^\infty\lvert\len(r_k r_{k+1})\rvert$ converges.
+            the series $\sum_{n=1}^\infty\lvert\len(r_n r_{n+1})\rvert$ converges.
           The theorem is proved.
         \end{proof}
         %\begin{figure}
@@ -1116,13 +1116,13 @@
         According to Theorem~\ref{thm-main} there is an infinite ray $\seq{r}$ in the bipartite
           graph $B(\fsys)$ such that the series $\sum\lvert\wt_n\rvert$ converges.
         Here and below we write $\wt_n$ for $\wt(r_n, r_{n + 1})$, the weight of the $n$-th edge in the ray $r$.
-        We are going to present vector sequences $\{z_n\}_{n=1}^\infty$, $\{z^*_n\}_{n=1}^\infty$ in $\ell^2 (\mathbb{R}^k)$
+        We are going to present vector sequences $\{z_n\}_{n=1}^\infty$, $\{z^*_n\}_{n=1}^\infty$ in $\ell^2 (\mathbb{R}^{4B-2})$
           such that~\ref{prop-vec-eqn} hold.
 
         For each vertex $v$ that does not belong to the ray $\seq{r}$, we set the corresponding pair of vectors $z_v$, $z^*_v$ to zero.
         For the first vertex $r_1$ we set the vector $z_1$ to the vector $(2\wt^{-1/2}_1, 0, 0, \dots)$ and
           the vector $z^*_1$ to the unit vector $(0.5\wt^{1/2}_1, 0, 0, \dots)$;
-          for all other $r_k$ we set $z^*_k$ to zero.
+          for all other $r_n$ we set $z^*_n$ to zero.
 
         We define the value $M_n = \max(\wt_{n-1}^{-1/2}, \wt_n^{-1/2})$; notice that $M_{n - 1} M_n \geq \wt_{n - 1}$ (let $M_0 = \wt_0 = 0$).
 
@@ -1163,7 +1163,7 @@
         Then the vector $z_n = z + \lvert z \rvert \zeta$ satisfies all four conditions.
 
         Therefore, the sequence $\{z_n\}$ exists and the second and third conditions guarantee that~\eqref{prop-vec-eqn} holds.
-        The constructed $z_n$ is square summable since $\lvert z_n \rvert \leq 3M_n$ and the sequence $\{M_n\}$ is square summable.
+        The constructed $\{z_n\}$ is square summable since $\lvert z_n \rvert \leq 3M_n$ and the sequence $\{M_n\}$ is square summable.
         Due to~\ref{prop-vec-est} the system $\fsys$ is not $4B - 2$ point dense.
       \end{proof}
       \begin{remark*}
