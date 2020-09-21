@@ -1,0 +1,87 @@
+\usepackage{cmap}
+%\usepackage[cp866]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman, english]{babel}
+\usepackage[pdftex,unicode]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{verbatim}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage[normalem]{ulem}
+\usepackage{extsizes}
+\usepackage{float}
+\usepackage{bbold}
+\usepackage{dsfont}
+\usepackage{calc}
+\usepackage{bm}
+\newlength{\widecommentlength}
+\setlength{\widecommentlength}{5in}
+% \newcommand{\widecommentbox}[2]{\def#1##1{\strut\newline\noindent\colorbox{#2}{\linespread{1}\parbox{.95\textwidth}{\small ##1}}\newline}}
+% \usepackage{pgfplots}
+\newcommand{\widecommentbox}[3]{\def#1##1{\strut\newline\noindent\colorbox{#3}{\linespread{1}\parbox{.95\textwidth}{\small {\bf [#2]} ##1}}\newline}}
+\def\commentsep{\noindent\dotfill}
+
+% To temporarily omit all comments, enable these two lines:
+% \renewcommand{\widecommentbox}[3]{\def#1##1{}}
+% \let\commentsep\relax
+
+\widecommentbox{\alex}{Alex}{green!20!white}
+\widecommentbox{\ad}{AD}{red!20!white}
+
+\usepackage{enumitem}
+
+\makeatletter
+%\@addtoreset{theorem}{section}
+%\@addtoreset{lemma}{section}
+%\@addtoreset{prop}{section}
+\makeatother
+
+%\newcommand{\sectionbreak}{\clearpage}
+\usepackage[square,numbers,sort&compress]{natbib}
+\usepackage{mathtools}
+\renewcommand{\bibnumfmt}[1]{#1.\hfill} % нумерация источников в самом списке - через точку
+% \renewcommand{\bibsection}{\section*{Список литературы}} % заголовок специального раздела
+\setlength{\bibsep}{0pt}
+\newcommand*{\Scale}[2][4]{\scalebox{#1}{\ensuremath{#2}}}%
+
+%\titleformat{\section}[block]{\Large\bfseries\centering}{}{1em}{}
+%\titleformat{\subsection}[block]{\large\bfseries\centering}{}{1em}{}
+\newcommand{\cal}[1]{\mathcal{#1}}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\phi}{\varphi}
+\newtheorem{theorem}{Theorem}
+\newtheorem{prop}{Proposition}
+\newtheorem*{prop*}{Proposition}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{definition}
+\newtheorem{corol}{Corollary}
+\newtheorem*{corol*}{Corollary}
+\newtheorem{remark}{Remark}
+\newtheorem*{remark*}{Remark}
+\newtheorem*{note}{Note}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+\newcommand\bigmatrixzero{\raisebox{-0.25\height}{\textnormal{\Huge 0}}}
+\newcommand\bigzero{\makebox(10, 10){\text{\Huge 0}}}
+\newcommand{\system}[1]{\{{#1}_k\}_{k=1}^\infty}
+\newcommand\inner[2]{\langle #1, #2 \rangle}
+\newcommand{\seq}[1]{\{{#1}_n\}_{n=0}^\infty}
+\newcommand{\seqone}[1]{\{{#1}_n\}_{n=1}^\infty}
+\newcommand{\fsys}{\mathfrak{F}}
+\newcommand{\fstarsys}{\mathfrak{F^{*}}}
+\newcommand{\lattice}{\operatorname{Lat}\cal{A}}
+\newcommand{\len}{\cal{L}}
+\newcommand{\scal}[2]{\langle {#1}, {#2} \rangle}
+\newcommand{\vspan}[1]{span\left(#1\right)}
+\newcommand{\cspan}[1]{\overline{span}\left(#1\right)}
+
+\numberwithin{remark}{section}
+\numberwithin{theorem}{section}
+\numberwithin{prop}{section}
+\numberwithin{corol}{section}
+\numberwithin{equation}{section}
+\numberwithin{lemma}{section}
