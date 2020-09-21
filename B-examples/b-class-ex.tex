@@ -6,17 +6,17 @@
 \newtheorem{case}{Case}
 
 \begin{document}
-\title{Rank one density and $k$ point density problems for some band-diagonal $M$-bases}
+\title{Band-diagonal $M$-bases and the $k$ point density}
 \author{Alexey Pyshkin}
 \begin{abstract}
-  In the early 1990s the works of Larson, Wogen and Argyros, Lambrou, Longstaff
-    disclosed an example of a strong tridiagonal $M$-basis that was not rank one dense.
-  Later Katavolos, Lambrou and Papadakis studied $k$ point density property of this example.
-  In this paper we present new methods for the analysis of $k$ point density
-    and rank one density properties for band-diagonal $M$-bases.
+  %In the early 1990s the works of Larson, Wogen and Argyros, Lambrou, Longstaff
+    %disclosed an example of a strong tridiagonal $M$-basis that was not rank one dense.
+  %Later Katavolos, Lambrou and Papadakis studied $k$ point density property of this example.
+  %In this paper we present new methods for the analysis of $k$ point density
+    %and rank one density properties for band-diagonal $M$-bases.
 \end{abstract}
 \keywords{biorthogonal system, $M$-basis, rank one density, two point density}
-\thanks{The author was supported by RFBR (the project~16-01-00674) and by «Native towns», a social investment program of PJSC «Gazprom Neft».}
+%\thanks{The author was supported by RFBR (the project~16-01-00674) and by «Native towns», a social investment program of PJSC «Gazprom Neft».}
 \maketitle
 
 \section{Introduction}
@@ -52,112 +52,164 @@
 
     Notice that rank one density property implies $k$ point density property for any $k$.
 
-  \subsection{Motivation}
-    Long\-staff in~\cite{longstaff} studied abstract subspace lattices and corresponding operator algebras.
-    In that paper Longstaff raised an important question: does one point density property always imply rank one density property?
+  %\subsection{Motivation}
+    %Long\-staff in~\cite{longstaff} studied abstract subspace lattices and corresponding operator algebras.
+    %In that paper Longstaff raised an important question: does one point density property always imply rank one density property?
 
-    The solution remained unknown until Larson and Wogen showed~\cite{larson} that the answer is negative.
-    They constructed an example of a vector system $\fsys$ such that it is one point dense but does not possess rank one density property.
-    \begin{example}[Larson--Wogen system $\fsys_{LW}$ parameterized with real $a_n$]
-      \label{lw-sys}
-      For any $j \geq 0$ we define
-      \begin{align*}
-        &f_{2j+1}=-a_{2j+1}e_{2j} + e_{2j+1} + a_{2j+2}e_{2j+2} \qquad &f_{2j}=e_{2j},\\
-        &f^*_{2j}=-a_{2j}e_{2j-1} + e_{2j} + a_{2j+1}e_{2j+1} \qquad &f^*_{2j+1}=e_{2j+1},
-      \end{align*}
-      where $a_n$ are nonzero real numbers for any $n > 0$ and $a_0 = 0$.
-    \end{example}
-    The construction presented by Larson and Wogen was remarkably simple and elementary,~--- notice that the matrices corresponding to
-      the vectors $\{f_j\}_{j=0}^\infty$ and $\{f^*_j\}_{j=0}^\infty$ are both tridiagonal.
-    Afterwards this example was also studied in~\cite{argyroslambrou} (see Addendum), by Azoff and Shehada in~\cite{azoff}, in~\cite{me1}.
-    In 1993 Katavolos, Lambrou and Papadakis in~\cite{katavolos} performed a deep analysis of the density properties
-      of this vector system and deduced that for $\fsys_{LW}$ one point density does not imply rank one density.
-    Moreover, they showed that for such system rank one density is equivalent to two point density.
+    %The solution remained unknown until Larson and Wogen showed~\cite{larson} that the answer is negative.
+    %They constructed an example of a vector system $\fsys$ such that it is one point dense but does not possess rank one density property.
+    %\begin{example}[Larson--Wogen system $\fsys_{LW}$ parameterized with real $a_n$]
+      %\label{lw-sys}
+      %For any $j \geq 0$ we define
+      %\begin{align*}
+        %&f_{2j+1}=-a_{2j+1}e_{2j} + e_{2j+1} + a_{2j+2}e_{2j+2} \qquad &f_{2j}=e_{2j},\\
+        %&f^*_{2j}=-a_{2j}e_{2j-1} + e_{2j} + a_{2j+1}e_{2j+1} \qquad &f^*_{2j+1}=e_{2j+1},
+      %\end{align*}
+      %where $a_n$ are nonzero real numbers for any $n > 0$ and $a_0 = 0$.
+    %\end{example}
+    %The construction presented by Larson and Wogen was remarkably simple and elementary,~--- notice that the matrices corresponding to
+      %the vectors $\{f_j\}_{j=0}^\infty$ and $\{f^*_j\}_{j=0}^\infty$ are both tridiagonal.
+    %Afterwards this example was also studied in~\cite{argyroslambrou} (see Addendum), by Azoff and Shehada in~\cite{azoff}, in~\cite{me1}.
+    %In 1993 Katavolos, Lambrou and Papadakis in~\cite{katavolos} performed a deep analysis of the density properties
+      %of this vector system and deduced that for $\fsys_{LW}$ one point density does not imply rank one density.
+    %Moreover, they showed that for such system rank one density is equivalent to two point density.
 
-    We are going to consider band-diagonal systems similar to the one regarded by Larson and Wogen and to determine the exact conditions
-      for $k$ point density property of such vector systems.
-    In this paper we present a few new techniques for the analysis of $k$ point density and rank one density of band-diagonal vector systems.
+    %We are going to consider band-diagonal systems similar to the one regarded by Larson and Wogen and to determine the exact conditions
+      %for $k$ point density property of such vector systems.
+    %In this paper we present a few new techniques for the analysis of $k$ point density and rank one density of band-diagonal vector systems.
 
 \section{Preliminaries}
   \label{sec:preliminaries}
+  \begin{definition}
+    Let $U$ be a linear subspace of operators.
+    Then $ref_k(U) = (F_k \cap R_\perp)^{\perp}$ is called \emph{$k$-reflexive closure} of $U$.
+    Here $F_k$ is a linear subspace of all rank $k$ operators.
+  \end{definition}
+  It is well-known that $ref_{k + 1}(U) \in ref_k(U)$ for any linear subspace $U$.
+
+  We will denote the weak star closure of $R$ with $w_0(R)$ and the weak star closure of $R$ and the identity operator with $w(R)$.
+  Moreover for any linear subspace $U$ there is a chain of inclusions
+  \[
+    ref_1(U) \supset ref_2(U) \supset \dots \supset ref_k(U) \supset \dots \supset w_0(U),
+  \]
+  In their paper of 1993 Azoff and Shehada (TODO cite) suggested such algebra $U$, generated by
+    mutually orthogonal idempotents that only one of inclusions was strict:
+  \[
+    ref_1(U) = ref_2(U) = \dots = ref_k(U) \supset ref_{k + 1}(U) = ref_{k+2}(U) = \dots = w_0(U),
+  \]
+    for any given $k > 0$.
+  Also they provided an example where all the inclusions were strict.
+  This way it was shown that this chain of inclusions can be very different for various $U$.
+  The main idea of that paper is tightly connected to the technique in the famous paper of Wogen (TODO cite, "Some counterexamples..."),
+    exploiting the infinite matrix and the shift operator.
+
+  For us the first important thing is that the idempotents in their construction were not necessarily rank one operators.
+  The second thing is that in their construction the identity operator did not belong even to $ref_1(U)$;
+    that is the most intriguing question for us.
+  Indeed, the rank one density property is the same as $I \in w_0(R)$,
+    while the $k$ point density property is equivalent to having $I$ in $ref_k(R)$.
+
   Suppose that $\fsys=\{f_n\}_{n=0}^\infty$ is an arbitrary B-class $M$-basis and
     $\fstarsys = \{f^*_n\}_{n=0}^\infty$ is its biorthogonal sequence.
-
-  \begin{definition}
-    Let $U$ be a linear subspace of operators. Then $ref_k(U) = \{ \}$ is a \emph{$k$-reflexive closure} of $U$.
-  \end{definition}
-  It is well-known that $ref_{k + 1}(U) \in ref_k(U)$ for any $U$.
-  We will denote the weak star closure of $R$ with $w_0(R)$ and the weak star closure of $R$ and the identity operator with $w(R)$.
+  Again, we consider the operator algebra $\cal{A} = \{T\in B(\cal{H}): Tf_n = \lambda_n f_n,
+    \text{ for some } \lambda_n \in \mathbb{R}, n \geq 0\}$
+    and the algebra $R(\cal{A})$ generated by rank one operators of $\cal{A}$.
 
 
+  The next proposition shows that for B-class the chain of inclusion always contains one strong inclusion.
   \begin{prop}
-    Suppose $R = R_1(\cal{A})$ is a subalgebra containing all the rank one operators.
+    \label{prop:chain}
     Then $I \in ref_k(R)$ but $I \not\in ref_{k+1}(R)$ if and only if $R$ is $k + 1$-reflexive but not $k$-reflexive, moreover the
       following holds:
     \[
       \cal{A} = ref_1(R) = ref_2(R) = \dots = ref_k(R) \supset ref_{k + 1}(R) = ref_{k + 2}(R) = \dots = w_0(R).
     \]
   \end{prop}
-  Now consider an operator $T$ which has a finite rank.
-  In this case we write $T$ as a finite sum $T = \sum_{s=1}^k y^s \otimes x^s$,
-    where $x^s, y^s \in \cal{H}$ and $y \otimes x$ denotes the rank one operator sending a vector $v \in \cal{H}$
-    to $\inner{v}{y}x$.
-
-  Let us define vectors $v_n$ and $u_n$ in $\mathbb{R}^k$ as follows:
-  \begin{equation*}
-    v_n = (x^1_n, x^2_n, \dots, x^k_n)\qquad
-    u_n = (y^1_n, y^2_n, \dots, y^k_n),
-  \end{equation*}
-  where $x^s_n = \inner{x^s}{e_n}$ and $y^s_n = \inner{y^s}{e_n}$.
-  Since $\inner{Te_m}{e_l} = \inner{u_m}{v_l}$ for any $m$ and $l$, we can rewrite $\Xi_n$ in terms of
-    the scalar products of $\{u_n\}_{n=0}^\infty$ and $\{v_n\}_{n=0}^\infty$.
-  In turn it means that~\eqref{eq:prop:ref} can be rewritten in terms of the scalar products
-    of $\{u_n\}_{n=0}^\infty$ and $\{v_n\}_{n=0}^\infty$.
-
-  Hence, the existence of $T$ would be reduced to the existence of
-    the vectors $u_n$, $v_n$ in $\mathbb{R}^k$ such that the sequences $\{\lvert u_n\rvert\}_{n=0}^\infty$,
-    $\{\lvert v_n\rvert\}_{n=0}^\infty$ are both square summable and~\eqref{eq:prop:ref} is satisfied.
-  Thus, instead of looking for $k$ vectors $x^s$ and $y^s$ in $\cal{H}$, we would look for an infinite sequence
-    of $k$-dimensional vectors $v_n$ and $u_n$ such that $\{v_n \}_{n=0}^\infty$, $\{u_n\}_{n=0}^\infty$ belong to $\ell^2(\mathbb{R}^k)$.
-  This is one of the key ideas in our method of analysing $k$ point density property for $\fsys$.
-
-  Thus, we have just found the following reformulation for $k$ point density property.
+  This proposition follows from the next one which we prove first.
+  It can be seen as a generalization of the proposition
   \begin{prop}
-    \label{prop:kreformulation}
-    The following two statements are equivalent:
-    \begin{enumerate}
-      \item there exists a $k$-dimensional operator $T$ which annihilates $R_1(\cal{A})$
-        such that $Tr\, T \neq 0$,
-      \item there exist vectors $\{u_n\}_{n=0}^\infty$, $\{v_n\}_{n=0}^\infty$ in $\ell^2(\mathbb{R}^k)$ such that
-        for the operator $\widehat{T} = \displaystyle\sum_{t,l=0}^\infty \inner{u_t}{v_l} e_t \otimes e_l$ we have
-        \begin{equation}
-          \label{eq:thm}
-          \Xi_n + \sum_{m=0}^n \inner{\widehat{T}e_m}{e_m} = 0
-        \end{equation}
-          for any $n \geq 0$.
-    \end{enumerate}
+    In the setting of B-class $w(R)$ is always reflexive.
   \end{prop}
-  As we already mentioned, the equation~\eqref{eq:thm} can be expressed via $u_n$ and $v_n$.
-  Moreover, we can also write the trace of $T$ in terms of $u_n$, $v_n$:
-  %\begin{prop*}
-    \begin{equation}
-      \label{eq:propstar}
-      %\begin{align*}
-        Tr\,T = \sum_{s=1}^k \langle y^s, x^s \rangle = \sum_{s=1}^k \sum_{n=0}^\infty y^s_n x^s_n
-              = \sum_{n=0}^\infty \sum_{s=1}^k y^s_n x^s_n = \sum_{n=0}^\infty \langle u_n, v_n \rangle.
-      %\end{align*}
-    \end{equation}
-  %\end{prop*}
-  Essentially, the $k$ point density property can be viewed as a
-    possibility of placing the sequence of vectors in $\mathbb{R}^k$ which are constrained with
-    a series of relations~\eqref{eq:thm} and~\eqref{eq:propstar}.
-\input{lw-classification}
-\input{pentadiagonal-classification}
-\bigskip
+  \begin{proof}
+    Let $s_n = \sum_{k=1}^n f^*_k \otimes f_k$ and $p_n = \sum_{k=1}^n e_k \otimes e_k$.
+    \begin{lemma}
+      We have 
+      \begin{align*}
+        &s_m p_n = p_n s_m = s_m \qquad & n > m + D,
+        &s_m p_n = p_n s_m = p_n \qquad & n < m - D,
+      \end{align*}
+      where $D$ -- is the width of the B-class $\fsys$.
+    \end{lemma}
+    \begin{proof}
+      TODO
+    \end{proof}
+    \begin{lemma}
+    \end{lemma}
+  \end{proof}
 
-\section{Acknowledgements}
+  \begin{proof}[Proof of~\ref{prop:chain}]
+  \end{proof}
+
+  %Now consider an operator $T$ which has a finite rank.
+  %In this case we write $T$ as a finite sum $T = \sum_{s=1}^k y^s \otimes x^s$,
+    %where $x^s, y^s \in \cal{H}$ and $y \otimes x$ denotes the rank one operator sending a vector $v \in \cal{H}$
+    %to $\inner{v}{y}x$.
+
+  %Let us define vectors $v_n$ and $u_n$ in $\mathbb{R}^k$ as follows:
+  %\begin{equation*}
+    %v_n = (x^1_n, x^2_n, \dots, x^k_n)\qquad
+    %u_n = (y^1_n, y^2_n, \dots, y^k_n),
+  %\end{equation*}
+  %where $x^s_n = \inner{x^s}{e_n}$ and $y^s_n = \inner{y^s}{e_n}$.
+  %Since $\inner{Te_m}{e_l} = \inner{u_m}{v_l}$ for any $m$ and $l$, we can rewrite $\Xi_n$ in terms of
+    %the scalar products of $\{u_n\}_{n=0}^\infty$ and $\{v_n\}_{n=0}^\infty$.
+  %In turn it means that~\eqref{eq:prop:ref} can be rewritten in terms of the scalar products
+    %of $\{u_n\}_{n=0}^\infty$ and $\{v_n\}_{n=0}^\infty$.
+
+  %Hence, the existence of $T$ would be reduced to the existence of
+    %the vectors $u_n$, $v_n$ in $\mathbb{R}^k$ such that the sequences $\{\lvert u_n\rvert\}_{n=0}^\infty$,
+    %$\{\lvert v_n\rvert\}_{n=0}^\infty$ are both square summable and~\eqref{eq:prop:ref} is satisfied.
+  %Thus, instead of looking for $k$ vectors $x^s$ and $y^s$ in $\cal{H}$, we would look for an infinite sequence
+    %of $k$-dimensional vectors $v_n$ and $u_n$ such that $\{v_n \}_{n=0}^\infty$, $\{u_n\}_{n=0}^\infty$ belong to $\ell^2(\mathbb{R}^k)$.
+  %This is one of the key ideas in our method of analysing $k$ point density property for $\fsys$.
+
+  %Thus, we have just found the following reformulation for $k$ point density property.
+  %\begin{prop}
+    %\label{prop:kreformulation}
+    %The following two statements are equivalent:
+    %\begin{enumerate}
+      %\item there exists a $k$-dimensional operator $T$ which annihilates $R_1(\cal{A})$
+        %such that $Tr\, T \neq 0$,
+      %\item there exist vectors $\{u_n\}_{n=0}^\infty$, $\{v_n\}_{n=0}^\infty$ in $\ell^2(\mathbb{R}^k)$ such that
+        %for the operator $\widehat{T} = \displaystyle\sum_{t,l=0}^\infty \inner{u_t}{v_l} e_t \otimes e_l$ we have
+        %\begin{equation}
+          %\label{eq:thm}
+          %\Xi_n + \sum_{m=0}^n \inner{\widehat{T}e_m}{e_m} = 0
+        %\end{equation}
+          %for any $n \geq 0$.
+    %\end{enumerate}
+  %\end{prop}
+  %As we already mentioned, the equation~\eqref{eq:thm} can be expressed via $u_n$ and $v_n$.
+  %Moreover, we can also write the trace of $T$ in terms of $u_n$, $v_n$:
+  %%\begin{prop*}
+    %\begin{equation}
+      %\label{eq:propstar}
+      %%\begin{align*}
+        %Tr\,T = \sum_{s=1}^k \langle y^s, x^s \rangle = \sum_{s=1}^k \sum_{n=0}^\infty y^s_n x^s_n
+              %= \sum_{n=0}^\infty \sum_{s=1}^k y^s_n x^s_n = \sum_{n=0}^\infty \langle u_n, v_n \rangle.
+      %%\end{align*}
+    %\end{equation}
+  %%\end{prop*}
+  %Essentially, the $k$ point density property can be viewed as a
+    %possibility of placing the sequence of vectors in $\mathbb{R}^k$ which are constrained with
+    %a series of relations~\eqref{eq:thm} and~\eqref{eq:propstar}.
+%\input{lw-classification}
+%\input{pentadiagonal-classification}
+%\bigskip
+
+%\section{Acknowledgements}
   %This is part of author's Ph.D. thesis, written under the supervision of Anton Baranov at the PDMI RAS.
-  The author gratefully acknowledges the many helpful suggestions of Anton Baranov during the preparation of the paper.
+  %The author gratefully acknowledges the many helpful suggestions of Anton Baranov during the preparation of the paper.
 
-\input{bib}
+%\input{bib}
 \end{document}
