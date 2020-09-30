@@ -1,6 +1,7 @@
-\documentclass[12pt,oneside,a4paper]{amsart}
+%\documentclass[12pt,oneside,a4paper]{amsart}
+\documentclass{birkjour}
 \input{preamble}
-\usepackage{caption}
+%\usepackage{caption}
 \usepackage{tikz}
 \usepackage{tkz-berge}
 \usetikzlibrary{positioning, chains, fit, shapes, calc}
@@ -9,31 +10,30 @@
                  mnode/.style={auto, circle, draw, fill=gray!25},
                  wnode/.style={sloped,above}}
 
+
 \begin{document}
 \title{The rank one density for a class of $M$-bases}
 \author{Alexey Pyshkin}
-
-\address{%
-  199178, 14th Line V.O., 29\\
-  St.\,Petersburg State University\\
-  Saint Petersburg\\
-  Russia}
+\address{Chebyshev Laboratory, Saint Petersburg State University, 14th Line V.O. 29, Saint Petersburg 199178, Russia}
+\address{Saint Petersburg Department of RAS, Steklov Math. Institute, Fontanka 27, Saint Petersburg 191023, Russia}
+\address{Euler International Mathematical Institute, nab.\,Pesochnaya 10, Saint Petersburg 197022, Russia}
 
 \subjclass{Primary 46A35}
 
 \begin{abstract}
   Larson and Wogen in their 1990 paper relied on the construction of a strong $M$-basis
     that did not possess the rank one density property.
-  We study a class of $M$-bases $\mathfrak{F}=\{f_n\}_{n=1}^\infty$ in the real Hilbert space
+  We study a class of $M$-bases $\mathfrak{F}=\{f_n\}_{n=1}^\infty$ in a real Hilbert space
     that generalizes their example.
   We determine the conditions under which $\mathfrak{F}$ has the rank one density property.
 \end{abstract}
 \keywords{$M$-basis, rank one density, $k$ point density, hereditary completeness}
 \email{aapyshkin@gmail.com}
-\thanks{The author was supported by RFBR (the project~16-01-00674).}
+\thanks{The author was supported by «Native towns», a social investment program of PJSC «Gazprom Neft» and
+          by the grant from the Government of the Russian Federation, agreement 08.11.2019 no.\,075-15-2019-1620.}
 \maketitle
 \section{Introduction}
-  Consider a complete minimal vector system $\fsys = \seq{f}$ in the infinite-dimensional Hilbert space $\cal{H}$.
+  Consider a complete minimal vector system $\fsys = \seq{f}$ in an infinite-dimensional Hilbert space $\cal{H}$.
   The sequence is called \emph{minimal} if none of its elements can be approximated by the linear combinations of the others.
   The system $\fsys$ is complete and minimal if and only if it possesses a unique biorthogonal system $\fstarsys$.
   We say that $\fsys$ is an $M$-basis if $\fstarsys$ is complete as well.
@@ -207,7 +207,11 @@
       \label{thm-main}
       The B-class system $\fsys$ is rank one dense if and only if
         for any infinite path $\seq{r}$ in the bipartite graph $B(\fsys)$
-        the series $\sum_{n=1}^\infty\lvert\wt(r_n, r_{n+1})\rvert^{-1}$ diverges.
+        the series
+        \[
+          \sum_{n=1}^\infty\lvert\wt(r_n, r_{n+1})\rvert^{-1}
+        \]
+        diverges.
     \end{theorem}
     The bipartite graph $B(\fsys_{LW})$, associated with the Larson--Wogen system~\eqref{lw-sys},
       is a single ray itself.
@@ -880,7 +884,7 @@
             or we saturate at least one edge lying on the chosen path $p$.
           Since the number of the edges is finite, the procedure halts after a finite number of steps.
 
-          Consequently, it happened that there are no augmenting paths in $\gnpaths(s, L_n)$.
+          Thus, it happened that there are no augmenting paths in $\gnpaths(s, L_n)$.
           Examine the set of vertices $S \subseteq G_n$ that are reachable by non-saturated paths from the vertex $s$.
           We have $S \cap L_n = \emptyset$, hence $S \subseteq G_{n-1}$.
           Now consider the subgraph
@@ -1204,8 +1208,10 @@
     Secondly, we would like to know if Theorem~\ref{thm-main} holds for a larger class of $M$-bases, for instance, whether the condition of
       local finiteness of the graph $B(\fsys)$ or the condition~\ref{c5} could be dropped from the definition of B-class systems.
   \section{Acknowledgements}
-    The author wishes to express his gratitude to Dmitry Yakubovich for suggesting the construction of $M$-bases using the infinite bipartite graphs.
-    The author gratefully acknowledges the many helpful suggestions of Anton Baranov during the preparation of the paper.
+    The author wishes to express his gratitude to Professor Dmitry Yakubovich for suggesting
+      the construction of $M$-bases using the infinite bipartite graphs.
+    The author gratefully acknowledges the many helpful suggestions of
+      Professor Anton Baranov during the preparation of the paper.
     %This is part of author's Ph.D. thesis, written under the supervision of Anton Baranov at the PDMI RAS.
 \include{bib}
 \end{document}

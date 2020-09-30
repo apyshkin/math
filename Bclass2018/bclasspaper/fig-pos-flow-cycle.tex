@@ -1,0 +1,42 @@
+\begin{figure}
+  \begin{center}
+    \begin{tikzpicture}[auto,
+                        thick,
+                        edge/.style={>=stealth',shorten >=1pt, ->, semithick},
+                        edge-label/.style={auto,draw=none, color=black},
+                        edge-cycle/.style={edge, very thick, color=blue!40!gray, bend left = 10}
+                        %every node/.style={circle, draw, lnode},
+                        %every fit/.style={ellipse,draw,inner sep=-1pt,text width=1cm},
+                        ]
+      \node[lnode](source) at (180:6) {$\source$};
+      \node[rnode](sink) at (180:-6) {$\sink$};
+      \begin{scope}[mnode]
+        \def\NN{8}
+        \foreach \i in {0,...,\NN}
+        \node[mnode] (v\i) at ({180 - \i*(360/\NN)}:3) {$v_{\i}$};
+      \end{scope}
+      \begin{scope} 
+        \draw[edge-cycle] (v1) to node[edge-label] {\scriptsize $4$} (v2);
+        \draw[edge-cycle] (v2) to node[edge-label] {\scriptsize $4$} (v3);
+        \draw[edge-cycle] (v3) to node[edge-label] {\scriptsize $0.5$} (v4);
+        \draw[edge-cycle] (v4) to node[edge-label] {\scriptsize $0.5$} (v5);
+        \draw[edge-cycle] (v5) to node[edge-label] {\scriptsize $2$} (v6);
+        \draw[edge-cycle] (v6) to node[edge-label] {\scriptsize $2$} (v7);
+        \draw[edge-cycle] (v7) to node[edge-label] {\scriptsize $3$} (v8);
+        \draw[edge-cycle] (v8) to node[edge-label] {\scriptsize $2$} (v1);
+
+        \draw[edge, bend right = 25] (v1) to node[edge-label] {\scriptsize $1$} (v3);
+        \draw[edge, bend left = 25] (v8) to node[edge-label] {\scriptsize $2.5$} (v5);
+        \draw[edge, bend left = 15] (source) to node[edge-label] {\scriptsize $3$} (v1);
+        \draw[edge, bend right = 15] (source) to node[edge-label] {\scriptsize $1$} (v7);
+        \draw[edge] (source) to node[edge-label] {\scriptsize $1.5$} (v8);
+
+        \draw[edge, bend left = 15] (v3) to node[edge-label] {\scriptsize $4.5$} (sink);
+        \draw[edge, bend right = 15] (v5) to node[edge-label] {\scriptsize $1$} (sink);
+      \end{scope}
+    \end{tikzpicture}
+  \caption{A network containing a positive flow cycle (blue).\\ Here the flow is shown for each edge.} 
+  \label{positive-flow}
+  \end{center}
+\end{figure}
+
