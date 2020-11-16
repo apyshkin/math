@@ -201,6 +201,51 @@ the $k$ point density property}
     \]
   \end{proof}
 
+\section{Rank one density and two point density}
+  The setup is the same as in the previous section.
+  \begin{theorem}
+    The system $\fsys$ is rank one dense if and only if it is two point dense.
+  \end{theorem}
+  \begin{proof}
+    We start with the key proposition.
+    \begin{prop}
+      The operator algebra $\cal{A}$ has a separation vector.
+    \end{prop}
+    \begin{proof}
+      The algebra $\cal{A}$ contains bounded operators with $f_n$ as eigenvectors.
+      Consider $x = \sum \gamma_n f_n$, where $\gamma_n = n^{-1}\|f_n\|^{-1}$.
+      The vector $x$ belongs to $\cal{H}$ since the series converges absolutely.
+
+      Suppose there is an operator $a \in \cal{A}$ such that $ax = 0$.
+      Since $a$ belongs to $\cal{A}$ there are some $\beta_n$ such that
+      $a f_n = \beta_n f_n$.
+      Obviously $\beta_n$ are bounded by the norm of the operator $a$.
+
+      Now, $ax = \sum \gamma_n a f_n$, since the series converges absolutely.
+      We also can see that $a f_n = \beta_n f_n$ and so $ax = \sum \gamma_n \beta_n f_n$,
+        and the series converges absolutely again.
+      Since $ax = 0$, we conclude that $\inner{ax}{f^*_n} = \gamma_n \beta_n = 0$ for any $n$.
+      It follows that $\beta_n = 0$ for $n$, and so $a = 0$.
+    \end{proof}
+
+    It follows that the weak star closure of rank one operators $w_0(R) \subseteq \cal{A}$ also has a separation vector.
+    The following proposition is a known fact, but we provide a proof for the sake of completeness.
+    \begin{prop}
+      $S$ is a norm closed linear subset of $B(H)$ and there is a separation vector $x$ for $S$.
+      Then $S$ is 2-reflexive.
+    \end{prop}
+    \begin{proof}
+      Suppose $t \in ref_2(S)$.
+      It implies that for any vector $y \in \cal{H}$, there is an operator $s_y \in S$ such that
+        $tx = s_y(x)$ and $ty = s_y(y)$.
+      The vector $x$ is a separation vector for $S$, so there can be only one such $s_y \in S$.
+      Thus $s_y$ does not really depend on $y$ and $t$ is equal to $s_y$, which means that $t$ belongs
+        to $S$.
+    \end{proof}
+    Combining these two propositions we get that $w_0(R)$ is two reflexive.
+    It means that $ref_2(R) = w_0(R)$ and rank one density is equivalent to two point density for $\fsys$.
+  \end{proof}
+
 \section{B-class: reordered basis view}
   \subsection{General points and Larson-Wogen system}
     [In this section the notation of ONB $\{e_n\}$ is being a little abused, but is easy to deduce from the context.]
