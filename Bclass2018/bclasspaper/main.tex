@@ -9,6 +9,7 @@
                  %rnode/.style={auto, circle, draw},
                  %mnode/.style={auto, circle, draw, fill=gray!25},
                  %wnode/.style={sloped,above}}
+\raggedbottom
 
 
 \begin{document}
@@ -141,7 +142,7 @@
   This is important for our procedure and though the complex case can be approached in
     a similar manner, it is not trivial and we will not discuss the complex case below.
 \bigskip
-\section{B-class vector systems: the rank one density problem}
+\section{From B-class vector systems to B-networks}
     \label{fsys2graphs}
     We are interested in the rank one density property of the vector system $\fsys = \seq{f}$
       in a separable real Hilbert space $\cal{H}$.
@@ -211,7 +212,7 @@
     \end{remark}
     %You can see the bipartite graph built from the Larson--Wogen system in the Figure~\ref{lw-bgraph}.
 
-    \bigskip
+    \medskip
     Below we pose the main theorem.
     \begin{theorem}
       \label{thm-main}
@@ -223,7 +224,7 @@
         \]
         diverges.
     \end{theorem}
-    The bipartite graph $B(\fsys_{LW})$, associated with the Larson--Wogen system~\eqref{lw-sys},
+    Notice that the bipartite graph $B(\fsys_{LW})$, associated with the Larson--Wogen system~\eqref{lw-sys},
       is a single ray itself.
     Therefore, we can apply Theorem~\ref{thm-main} to $\fsys_{LW}$, thus reestablishing
       the known fact from the papers~\cite{katavolos},~\cite{larson} and~\cite{argyroslambrou}.
@@ -266,16 +267,16 @@
       %\end{center}
     %\end{figure}
 
-    %\medskip
+    \medskip
     \subsection{The rank one density property for B-class}
       Suppose we have a B-class vector system $\fsys=\seq{f}$.
       %Our purpose is to analyze the two point density property of $\fsys$.
       %Before we pursue that, we need to investigate the conditions under which the B-class system is rank one dense.
-      First of all, we intend to demonstrate a reformulation of the rank one density problem for
+      We intend to demonstrate a reformulation of the rank one density problem for
         the B-class vector systems in terms of infinite networks.
 
       Recall that the system $\seq{f}$ is rank one dense
-        if and only if there is no trace class operator $T: \cal{H} \to \cal{H}$ with the trace equal to $1$
+        if and only if there is no trace class operator $T: \cal{H} \to \cal{H}$ with the trace equal to one
         that belongs to the annihilator of the rank one subalgebra $R_1(\cal{A})$: one has $\inner{Tf_n}{f_n^*} = 0$ for any $n$
         (see Theorem 2.2 of~\cite{katavolos} for details).
 
@@ -627,8 +628,7 @@
       All the other edges will not carry any flow, hence the flow is preserved
         at each vertex but not preserved by the whole network $\net$.
       The necessity is proved, now we turn to the sufficiency.
-
-      \medskip
+      \smallskip
       \subsection{Eliminating the positive flow cycles}
         For a start we get rid of all the positive flow cycles in the oriented graph $G$.
         \emph{A positive flow cycle} is a cycle $C$ in $G$ such that positive flow circulates along $C$,
@@ -659,7 +659,7 @@
         We are aiming to construct the flow $\flowposn{n+1}$.
 
         Define the flow function $\cal{E}_0(e): \net \to \mathbb{R}^{+}$ as $\cal{E}_0(e) = \flowposn{n}(e).$
-        Let there be a simple cycle $C_1$ in the graph $G_n$ such that each edge $e \in C_1$ carries
+        Let $C_1$ be a simple cycle in the graph $G_n$ such that each edge $e \in C_1$ carries
           a positive flow: $\cal{E}_0(e) > 0$.
         At this point we can decrease the flow $\cal{E}_0$ on the edges of $C_1$ so that the cycle $C_1$
           ceases being a positive flow cycle, total mass of the flow does not increase, and all the other properties stay intact.
@@ -685,7 +685,7 @@
         We have $\flowposn{n+1}(e) \leq \flowposn{n}(e) \leq \flowpos(e)$ for each edge $e \in E$.
 
         Now set $\preflow(e) = \lim\limits_{n \to \infty} \flowposn{n}(e)$ for each $e \in E$.
-        The described pointwise limit exists since for each edge $e$ the sequence $\flowposn{n}(e)$ is decreasing and bounded below.
+        The described pointwise limit exists since for each edge $e$ the sequence $\{\flowposn{n}(e)\}_{n=1}^\infty$ is decreasing and bounded below.
         \begin{prop}
           The preflow $\preflow$ is a flow such that $d_{\preflow}(\root) = d_{\flowpos}(\root)$.
           The graph $G$ contains no positive flow cycles of $\preflow$.
@@ -706,7 +706,7 @@
           \[
             d_{\flowposn{n}}(\root) \overset{\mathit{def}}{=} \sum_{\eout(\root)} \flowposn{n}(e) - \sum_{\ein(\root)} \flowposn{n}(e).
           \]
-          Since the sequence $\{\flowposn{n}(e)\}$ is decreasing and bounded from below,
+          Since the sequence $\{\flowposn{n}(e)\}_{n=1}^\infty$ is decreasing and bounded from below,
             the quantity $d_{\preflow}(\root)=\sum_{\eout(\root)} \preflow(e) - \sum_{\ein(\root)} \preflow(e)$ is defined correctly.
           Because $d_{\flowposn{n}}(\root)$ is equal to $d_\flowpos(\root)$ for any $n$ due to the given algorithm, we have
           \[
@@ -845,7 +845,7 @@
           Since the preflow $\cal{G}$ is bounded above by the flow $\flowpos$, which is preserved at each vertex of the graph $G$,
             particularly, at the vertex $u$, it is trivial that such an expansion exists.
         \end{remark}
-        So, if we had no back edges, the function $\cal{G}$ would be the next preflow function $\flowposn{n}$, and this step would be accomplished,
+        If we had no back edges, the function $\cal{G}$ would be the next preflow function $\flowposn{n}$, and this step would be accomplished,
           since all the properties~\ref{p1}--\ref{p5} would be complied by $\cal{G}$.
         However, the flow pushed from the $(n-1)$-th layer across the back edges made some of the vertices in $G_{n-1}$ \emph{not} flow-preserving.
         Namely, the end vertices of such edges $\eback_{n}$ now became $\cal{G}$-active, since for such vertices
@@ -874,12 +874,12 @@
         We call the described procedure \emph{relaxation} of the vertex $s$.
         Strictly speaking, the {relaxation}
           of the vertex $s$ is a reduction of the excess of the flow $\cal{G}$ in the vertex $s$.
-        Our purpose from now on is to relax the vertex $s$, transforming it into a $\cal{G}$-preserving vertex.
+        Our purpose is to relax the vertex $s$, transforming it into a $\cal{G}$-preserving vertex.
 
         On one hand, if $\delta_{max} \geq -d_{\cal{G}}(s)$, then \emph{pushing} the flow precisely $-d_{\cal{G}}(s)$ along the path $p$
-          is enough to make the vertex $s$ preserving $\cal{G}$
-          (\emph{pushing} the flow $C \in \mathbb{R}$ along the path $p$ means raising the flow $\cal{G}$ at each edge $e \in p$:
-          $\cal{G}(e) \to \cal{G}(e) + C$).
+          is enough to make the vertex $s$ preserving $\cal{G}$, where 
+          \emph{pushing} the flow $C \in \mathbb{R}$ along the path $p$ means raising the flow $\cal{G}$ at each edge $e \in p$:
+          $\cal{G}(e) \to \cal{G}(e) + C$.
 
         On the other hand, if $\delta_{max} < -d_{\cal{G}}(s)$, then pushing the flow $\delta_{max}$ along the path $p$ is not enough
           in order to make the vertex $\cal{G}$-preserving.
@@ -906,7 +906,7 @@
             Any edge $e \in \eout_G(U)$ is saturated.
           \end{lemma}
           \begin{proof}
-            Due to the absence of the positive flow cycles, we have $\root \not \in U$.
+            Due to the absence of the positive flow cycles, the root vertex is not in $U$.
             Since for each non-root vertex in $G_{n-1}$ we included every outgoing edge into $G_n$,
               the edge $e$ belongs to $G_n$.
             If $e$ is not saturated, then its ending vertex $\ter(e)$ lies in $S$.
@@ -1014,7 +1014,7 @@
             There exists a ray $r=(r_1 r_2\dots)$ in the network $\net$ such that $\sum\limits_{n=1}^\infty \len(r_n r_{n+1}) < \infty$.
           \end{prop}
           \begin{proof}
-            We will seek for the ray $r$ in the graph $\gstar = \bigcup G_n.$
+            We will look for the ray $r$ in the graph $\gstar = \bigcup G_n.$
             We abbreviate $\phi_{\gstar}(v)$ to $\phistar$.
             Consider the paths $p$, starting on the root, such that $\phistar(p) \leq \lvert\flowpos\rvert$.
             Denote this set of paths by $\cal{P}^*$.
@@ -1218,12 +1218,13 @@
     First, we are interested whether the estimate $4B - 2$ in Proposition~\eqref{prop-vec-est} can be improved, for example to some constant.
     Secondly, we would like to know if Theorem~\ref{thm-main} holds for a larger class of $M$-bases, for instance, whether the condition of
       local finiteness of the graph $B(\fsys)$ or the condition~\ref{c5} could be dropped from the definition of B-class systems.
+    Finally, it is of interest whether there is an elementary generalization of our approach to the case of a complex Hilbert space.
+
   \section{Acknowledgements}
     The author wishes to express his gratitude to Professor Dmitry Yakubovich for suggesting
-      the construction of $M$-bases using the infinite bipartite graphs.
+      the construction of $M$-bases using the bipartite graphs.
     The author gratefully acknowledges the many helpful suggestions of
       Professor Anton Baranov during the preparation of the paper.
-    %This is part of author's Ph.D. thesis, written under the supervision of Anton Baranov at the PDMI RAS.
 \begin {thebibliography}{20}
   \bibitem{argyroslambrou}
     S.~\!Argyros, M.~\!Lambrou and W.E.~\!Longstaff,
