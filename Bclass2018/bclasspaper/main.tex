@@ -21,11 +21,12 @@
 \subjclass{Primary 46A35}
 
 \begin{abstract}
-  Larson and Wogen in their 1990 paper relied on the construction of a strong $M$-basis
+  Larson and Wogen in their 1990 paper relied on the construction of a strong tridiagonal $M$-basis
     that did not possess the rank one density property.
-  We study a class of $M$-bases $\mathfrak{F}=\{f_n\}_{n=1}^\infty$ in a real Hilbert space
-    that generalizes their example.
-  We determine the conditions under which $\mathfrak{F}$ has the rank one density property.
+  We offer new means for the study of more generic finite-band $M$-bases,
+    employing the graph theory framework.
+  We determine the necessary and sufficient conditions for the rank one density property
+    in this class of $M$-bases.
 \end{abstract}
 \keywords{$M$-basis, rank one density, $k$ point density, hereditary completeness}
 \email{aapyshkin@gmail.com}
@@ -124,14 +125,21 @@
   In 1993 Katavolos, Lambrou and Papadakis in~\cite{katavolos} performed a deeper analysis of the density properties
     of this vector system and deduced that this system is two point dense if and only if it is rank one dense.
 
-  This example showed that one point density does not imply rank one density.
-  It is natural to try to understand whether the two point density always implies the rank one density property
+  The example~\ref{lw-sys} showed that the one point density does not imply the rank one density and
+    in the end of their paper~\cite{larson} Larson and Wogen asked for some generic conditions on the $M$-basis
+    when this happens.
+  It seems that not much progress has been made in this direction since then.
+  The aim of this paper is to suggest a more generic approach to the rank one density property
     for an arbitrary $M$-basis $\{f_n\}$.
-  The aim of this paper is to study these density properties for a specific class of vector systems
-    (which we call \emph{B-class}) that represents a natural generalization of the Larson--Wogen vector system.
+  We are going to study the aforementioned density properties for a class of vector systems that represents a natural generalization of the Larson--Wogen vector system.
+  Our construction allows us to use some graph theory methods in order to analyze the rank one density property.
 
-  In the next section we set up the notation and state the main theorem.
-  In Section~\ref{sec:kpd} we analyze the $k$ point density property for B-class.
+  In the next section we establish the notation and state the main theorem.
+  In Section~\ref{sec:kpd} we also analyze the $k$ point density property in the same framework.
+
+  Notice that we will proceed under the assumption that the underlying Hilbert space is real.
+  This is important for our procedure and though the complex case can be approached in
+    a similar manner, it is not trivial and so we will not discuss the complex case in this paper.
 
 \bigskip
 \section{B-class vector systems: the rank one density problem}
