@@ -1,5 +1,4 @@
 \documentclass[12pt,oneside,a4paper]{amsart}
-%\documentclass{birkjour}
 \input{preamble}
 %\usepackage{caption}
 %\usepackage{tikz}
@@ -93,7 +92,7 @@
   But is it true that $\eqref{1pd}$ implies $\eqref{r1d}$?
   Is it true that~\eqref{kpd} for some $k > 1$ implies~\eqref{r1d}?
 
-  It happens that the first question had been investigated for quite a long time, before it was settled in negative.
+  It happens that the first question had been investigated for quite a long time, before it was settled.
   Long\-staff in~\cite{longstaff} studied the abstract subspace lattices and the corresponding operator algebras.
   Particularly, Longstaff proved that the rank one density property implies
     the complete distributivity of its lattice (see Raney~\cite{raney} for a definition).
@@ -109,7 +108,7 @@
   They constructed an example of a vector system $\fsys$ such that the lattice $\lattice$ generated from $\fsys$
     was completely distributive, but the corresponding algebra $\cal{A}$
     did not possess the rank one density property.
-  This system was also discussed by Argyros, Lambrou and Longstaff in the Addendum to the paper~\cite{argyroslambrou}.
+  This system was also discussed by Argyros, Lambrou and Longstaff in the Addendum to~\cite{argyroslambrou}.
   We will refer to this particular example as to the Larson--Wogen vector system in this paper.
   \begin{example}[Larson--Wogen system $\fsys_{LW}$]
     \label{lw-sys}
@@ -119,30 +118,32 @@
       &f^*_{2j}=-a_{2j-1}e_{2j-1}+e_{2j}+a_{2j}e_{2j+1}, \qquad &f^*_{2j-1}=e_{2j-1},
     \end{align*}
     where $a_0 = 0$ and for $k > 0$ the parameters $a_k$ are real and nonzero.\\
-    For $a_k = 2^k$ the system $\fsys_{LW}$ is a one point dense and not two point dense.
+    For $a_{2k-1}= a_{2k} = 2^k$ the system $\fsys_{LW}$ is a one point dense and not two point dense.
   \end{example}
   The given construction was remarkably simple and elementary, and appeared in several papers afterwards.
   This example was studied by Azoff and Shehada in~\cite{azoff}, regarding the reflexivity of $\lattice$, and also in~\cite{me}.
   In 1993 Katavolos, Lambrou and Papadakis in~\cite{katavolos} performed a deeper analysis of the density properties
     of this vector system and deduced that this system is two point dense if and only if it is rank one dense.
 
-  The example~\ref{lw-sys} showed that the one point density does not imply the rank one density and
-    in the end of their paper~\cite{larson} Larson and Wogen asked for some generic conditions on the $M$-basis
+  Example~\ref{lw-sys} showed that the one point density does not imply the rank one density and
+    in~\cite{larson} Larson and Wogen asked for some generic conditions on the $M$-basis
     for this to hold.
   It seems that not much progress has been made in this direction since then.
   The aim of this paper is to suggest a more generic approach to the rank one density property
-    for an arbitrary $M$-basis $\{f_n\}$.
+    for an arbitrary $M$-basis.
   We are going to study the aforementioned density properties for a class of vector systems that represents a natural generalization of the Larson--Wogen vector system.
   Our construction allows us to reformulate the rank one density problem in terms of flows in infinite networks.
 
   In the next section we establish the notation and state the main theorem.
+  In Section~\ref{sec:char} we work with the infinite networks and prove the main theorem.
   In Section~\ref{sec:kpd} we also analyze the $k$ point density property in the same framework.
 
   Notice that we will proceed under the assumption that the underlying Hilbert space is real.
   This is important for our procedure and though the complex case can be approached in
-    a similar manner, it is not trivial and we will not discuss the complex case below.
+    a similar manner, it is not trivial and we will not discuss the complex case further.
 \bigskip
 \section{From B-class vector systems to B-networks}
+    \label{sec:refor}
     \label{fsys2graphs}
     We are interested in the rank one density property of the vector system $\fsys = \seq{f}$
       in a separable real Hilbert space $\cal{H}$.
@@ -206,10 +207,10 @@
     %\begin{remark}
       %Note that there might be several vector systems for a single weighted bipartite graph $B$.
     %\end{remark}
-    \begin{remark}
-      Observe that both parts of the constructed bipartite graph contain an infinite number of vertices, because
-        the system $\fsys$ is an $M$-basis.
-    \end{remark}
+    %\begin{remark}
+      %Observe that both parts of the constructed bipartite graph contain an infinite number of vertices, because
+        %the system $\fsys$ is an $M$-basis.
+    %\end{remark}
     %You can see the bipartite graph built from the Larson--Wogen system in the Figure~\ref{lw-bgraph}.
 
     \medskip
@@ -225,7 +226,7 @@
         diverges.
     \end{theorem}
     Notice that the bipartite graph $B(\fsys_{LW})$, associated with the Larson--Wogen system~\eqref{lw-sys},
-      is a single ray itself.
+      consists only of a single ray.
     Therefore, we can apply Theorem~\ref{thm-main} to $\fsys_{LW}$, thus reestablishing
       the known fact from the papers~\cite{katavolos},~\cite{larson} and~\cite{argyroslambrou}.
     \begin{corol*}
@@ -551,9 +552,10 @@
 
   \bigskip
   \section{B-networks characterisation}
+    \label{sec:char}
     Due to Theorem~\ref{thm-graph-eq}, we are able to analyze the flows on the B-network
       $\net(\fsys)$ in order to understand the conditions under which $\fsys$ is rank one dense.
-    In this section we are not going to address the Hilbert space setup at all,
+    In this section we are not going to address the Hilbert space framework at all,
       instead we will use only the graph theory objects we introduced in the previous section.
     It will be more convenient for us to study the \emph{oriented} networks in this section unlike we
       did in the previous one.
@@ -1109,53 +1111,52 @@
           %\end{center}
         %\end{figure}
 
-    \section{The \texorpdfstring{$k$}{k} point density property for B-class vector systems}
+    \section{The \texorpdfstring{$k$}{k} point density property for B-class}
       \label{sec:kpd}
       In this section we investigate the connection between the $k$ point density property~\eqref{kpd} and
         the rank one density property~\eqref{r1d} in the context of B-class systems.
-      Though it remains unclear whether there is an $M$-basis which is $2$ point dense but not $3$ point dense,
-        even for B-class systems, still we are able to say something about the $k$ point density property for B-class system.
+      Though it remains unclear for us whether there is an $M$-basis which is two point dense but not three point dense,
+        even for B-class systems, we are able to prove the following theorem.
 
       \begin{theorem}
         \label{thm-kpd}
         Consider a B-class system $\fsys$ which has a band width equal to $B$.
         If $\fsys$ is $4B - 2$ point dense then it is rank one dense.
       \end{theorem}
+      We are going to use the idea from~\cite{me} to get a reformulation for the $k$ point density property.
+      \begin{prop}
+        \label{prop-vec-est}
+        The system $\fsys$ is $k$ point dense if and only if there exist vector sequences $\{u_l\}_{l=0}^\infty$, $\{u^*_l\}_{l=0}^\infty$,
+          $\{v_r\}_{r=0}^\infty$ and $\{v^*_r\}_{r=0}^\infty$ in $\ell^2 (\mathbb{R}^k)$, such that
+        \begin{equation}
+          \label{prop-vec-eqn}
+          \inner{u_l}{u^*_l + \sum_{r=0}^\infty v_r f_{lr}} = 0, \quad \quad
+          \inner{v_r}{v^*_r + \sum_{l=0}^\infty u_l f_{rl}^*} = 0.
+        \end{equation}
+      \end{prop}
       \begin{proof}
-        We use the idea from~\cite{me} to get a reformulation for the $k$ point density property.
-        \begin{prop}
-          \label{prop-vec-est}
-          The system $\fsys$ is $k$ point dense if and only if there exist vector sequences $\{u_l\}_{l=0}^\infty$, $\{u^*_l\}_{l=0}^\infty$,
-            $\{v_r\}_{r=0}^\infty$ and $\{v^*_r\}_{r=0}^\infty$ in $\ell^2 (\mathbb{R}^k)$, such that
-          \begin{equation}
-            \label{prop-vec-eqn}
-            \inner{u_l}{u^*_l + \sum_{r=0}^\infty v_r f_{lr}} = 0, \quad \quad
-            \inner{v_r}{v^*_r + \sum_{l=0}^\infty u_l f_{rl}^*} = 0.
-          \end{equation}
-        \end{prop}
-        \begin{proof}
-          The system $\fsys$ is not $k$ point dense if and only if there exists an operator $T = \sum_{s=1}^k y^s \otimes x^s$, where
-            $x^s, y^s \in \cal{H}$, such that $\inner{Tf_n}{f_n^*} = 0$ for any $n$.
-          Consider vectors $v_l$, $u_l$ in $\mathbb{R}^k$ as follows
-          \begin{equation*}
-            v_r = (x^1_r, x^2_r, \dots, x^k_r),\qquad
-            u_l = (y^1_l, y^2_l, \dots, y^k_l),
-          \end{equation*}
-            where $x^s_r = \inner{x^s}{e_r}$ and $y^s_l = \inner{y^s}{e_l}$.
-          Then $T_{lr} = \sum_{s=1}^k y^s_l x^s_r = \inner{v_r}{u_l}$.
-          According to~\eqref{almost-flow-eqn} the condition $\inner{Tf_n}{f^*_n} = 0$ could be viewed as
-            $\inner{u_l}{u^*_l + \sum_r v_r f_{lr}} = 0$
-          when the index $n=l$ corresponds to the left part of $B(\fsys)$ and
-            $\inner{v_l}{v^*_l - \sum_l u_l f_{lr}} = 0$
-          when the index $n=r$ corresponds to the right part of $B(\fsys)$.
-        \end{proof}
-        \begin{corol*}
-          The system $\fsys$ is not $k$ point dense if and only if each vertex $v$ in the graph $B(\fsys)$ can be
-            equipped with two vectors $z_v$, $z_v^*$ in $\mathbb{R}^k$ such that $\inner{z_v}{z_v^* + \sum\limits_{v \sim x} z_x \wt_{vx}} = 0$,
-            where $v \sim x$ means that there is an edge between the vertices $v$ and $x$.
-        \end{corol*}
-
-        Now suppose that $\fsys$ is not rank one dense.
+        The system $\fsys$ is not $k$ point dense if and only if there exists an operator $T = \sum_{s=1}^k y^s \otimes x^s$, where
+          $x^s, y^s \in \cal{H}$, such that $\inner{Tf_n}{f_n^*} = 0$ for any $n$.
+        Consider vectors $v_l$, $u_l$ in $\mathbb{R}^k$ as follows
+        \begin{equation*}
+          v_r = (x^1_r, x^2_r, \dots, x^k_r),\qquad
+          u_l = (y^1_l, y^2_l, \dots, y^k_l),
+        \end{equation*}
+          where $x^s_r = \inner{x^s}{e_r}$ and $y^s_l = \inner{y^s}{e_l}$.
+        Then $T_{lr} = \sum_{s=1}^k y^s_l x^s_r = \inner{v_r}{u_l}$.
+        According to~\eqref{almost-flow-eqn} the condition $\inner{Tf_n}{f^*_n} = 0$ could be viewed as
+          $\inner{u_l}{u^*_l + \sum_r v_r f_{lr}} = 0$
+        when the index $n=l$ corresponds to the left part of $B(\fsys)$ and
+          $\inner{v_l}{v^*_l - \sum_l u_l f_{lr}} = 0$
+        when the index $n=r$ corresponds to the right part of $B(\fsys)$.
+      \end{proof}
+      \begin{corol*}
+        The system $\fsys$ is not $k$ point dense if and only if each vertex $v$ in the graph $B(\fsys)$ can be
+          equipped with two vectors $z_v$, $z_v^*$ in $\mathbb{R}^k$ such that $\inner{z_v}{z_v^* + \sum\limits_{v \sim x} z_x \wt_{vx}} = 0$,
+          where $v \sim x$ means that there is an edge between the vertices $v$ and $x$.
+      \end{corol*}
+      \begin{proof}[Proof of Theorem~\ref{thm-kpd}]
+        Suppose that $\fsys$ is not rank one dense.
         According to Theorem~\ref{thm-main} there is an infinite ray $\seq{r}$ in the bipartite
           graph $B(\fsys)$ such that the series $\sum\lvert\wt_n\rvert$ converges.
         Here and below we write $\wt_n$ for $\wt(r_n, r_{n + 1})$, the weight of the $n$-th edge in the ray $r$.
@@ -1179,7 +1180,7 @@
           \item Finally, the angle between $z_n$ and $V_{n + 1}$ is at least $\pi/4$.
         \end{itemize}
 
-        We argue by induction that such sequence $\{z_n\}$ exists.
+        We argue by induction that such sequence $\seq{z}$ exists.
         Remember that $z_1$ is already set, and it satisfies all the conditions.
         Now suppose that we have set $z_{n - 1}$.
         We are going to find a vector $z$ which satisfies the first three conditions.
