@@ -60,11 +60,11 @@
   \begin{definition}[one point density property]
     \label{1pd}
     We say that the algebra $R_1(\cal{A})$ is \emph{one point dense} in the algebra $\cal{A}$ if for any $x \in \cal{H}$ and $\varepsilon > 0$
-      there exists such $T\in \cal{A}$ that $||Tx - x|| < \varepsilon$.
+      there exists such $T\in R_1(\cal{A})$ that $||Tx - x|| < \varepsilon$.
   \end{definition}
 
   %\begin{remark}
-    The definition is equivalent to $\fsys$ being a strong $M$-basis (see~\cite{katavolos}):
+    The definition is equivalent to $\fsys$ being a strong $M$-basis (see~\cite{katavolos}, Proposition 1.2, Remark 2):
     the system $\fsys$ is called a strong $M$-basis if for any $x\in\cal{H}$ we have $x \in \overline{span}\big\{\inner{x}{f^*_s}f_s\big\}$, where $\overline{span}$ denotes the closed linear span.
   %\end{remark}
 
@@ -73,7 +73,7 @@
     \label{kpd}
     We say that the algebra $R_1(\cal{A})$ is \emph{$k$ point dense} in $\cal{A}$ (or that the algebra $\cal{A}$ has
       \emph{$k$ point density property}) if for any $x_1, x_2, \dots, x_k \in \cal{H}$ and $\varepsilon > 0$
-      there exists such $T\in \cal{A}$ that $||Tx_s - x_s|| < \varepsilon$ for any $1 \leq s \leq k$.
+      there exists such $T\in R_1(\cal{A})$ that $||Tx_s - x_s|| < \varepsilon$ for any $1 \leq s \leq k$.
   \end{definition}
 
   \begin{definition}[rank one density property]
@@ -169,7 +169,7 @@
         \item \label{c3} $f_{nn} = f^*_{nn} = 1$ for any $n > 0$;
         \item \label{c4} $f_{ns} = -f^*_{sn}$ for any $n, s > 0, n \neq s$;
         \item \label{c5} the matrices $\{f_{ns}\}$ and $\{f^*_{ns}\}$ are both finite-band,
-            meaning that $f_{ns} = f^*_{ns} = 0$, when $\lvert n - s \rvert > B$ for some $B \in \mathbb{N}$.
+            meaning that there exists $B \in \mathbb{N}$ such that $f_{ns} = f^*_{ns} = 0$, when $\lvert n - s \rvert > B$.
           We will call such smallest $B$ the \emph{band width} of the system $\fsys$.
       \end{enumerate}
     \end{definition}
@@ -1190,10 +1190,10 @@
           $\{u_n\}_{n=1}^\infty$ and $\{v_n\}_{n=1}^\infty$ in $\ell^2 (\mathbb{R}^k)$ such that
         \begin{align*}
           &\sum_{n=1}^\infty \inner{u_n}{v_n}_{\mathbb{R}^k} \neq 0,\\
-          &\inner{u_l}{v_l + \sum_{r \in B_R} v_r f_{lr}}_{\mathbb{R}^k} = 0 \quad \text{for any $l \in B_L$},\\
-          &\inner{v_r}{u_r + \sum_{l \in B_L} u_l f_{rl}^*}_{\mathbb{R}^k} = 0 \quad \text{for any $r \in B_R$},
+          &\inner{u_l}{v_l + \sum_{r \in B_R} f_{lr} v_r}_{\mathbb{R}^k} = 0 \quad \text{for any $l \in B_L$},\\
+          &\inner{v_r}{u_r + \sum_{l \in B_L} f_{rl}^* u_l}_{\mathbb{R}^k} = 0 \quad \text{for any $r \in B_R$},
         \end{align*}
-        where $B_L$ and $B_R$ denote the left and right parts of the graph $B(\fsys)$ respectively.
+        where $B_L$ and $B_R$ denote the set of indices corresponding to the left and right parts of the graph $B(\fsys)$ respectively.
       \end{prop}
       \begin{proof}
         The system $\fsys$ is not $k$ point dense if and only if there exists a $k$-rank operator $T = \sum_{s=1}^k y^s \otimes x^s$, where $x^s, y^s \in \cal{H}$, such that $\inner{Tf_n}{f_n^*} = 0$ for any $n$ and $Tr(T) \neq 0$.
@@ -1206,13 +1206,14 @@
           where $x^s_n = \inner{x^s}{e_n}$ and $y^s_n = \inner{y^s}{e_n}$.
         Then $T_{nm} = \sum_{s=1}^k  x^s_n y^s_m = \inner{v_n}{u_m}_{\mathbb{R}^k}$ for any $n, m$.
         According to~\eqref{almost-flow-eqn}, the condition $\inner{Tf_n}{f^*_n} = 0$ can be rewritten as
-          $\inner{u_l}{v_l + \sum_r v_r f_{lr}} = 0$
+          $\inner{u_l}{v_l + \sum_r f_{lr} v_r} = 0$
         when the index $n=l$ belongs to $B_L$, and
-          $\inner{v_r}{u_r - \sum_l u_l f_{lr}} = 0$
+          $\inner{v_r}{u_r - \sum_l f_{lr} u_l} = 0$
         when the index $n=r$ belongs to $B_R$.
         It is also clear that
           $Tr(T) = \sum_{n=1}^\infty \inner{u_n}{v_n}_{\mathbb{R}^k}$. 
       \end{proof}
+      If we put $z_r = v_r$, $z_r^*=u_r$, $r \in B_R$, and $z_l = u_l$, $z^*_l=v_l$, and $l \in B_L$, we have the following corollary.
       \begin{corol}
         \label{corol:kpd}
         The system $\fsys$ is not $k$ point dense if and only if each vertex $v$ in the graph $B(\fsys)$ can be
@@ -1257,7 +1258,7 @@
         For each $n > 1$ we will choose $z_n$ such that all of $z_n$ satisfy the following conditions:
         \begin{enumerate}[label=\textup{(\alph*)}]
           \item \label{kpd:c1} $M_n \leq \lvert z_n \rvert \leq 4 M_n$,
-          \item \label{kpd:c2} for $n > 1$ we have $\lvert\wt_{n-1}\rvert\inner{z_n}{z_{n - 1}} = 1$,
+          \item \label{kpd:c2} for $n > 1$ we have $\lvert\wt_{n-1}\rvert\inner{z_n}{z_{n - 1}} = (-1)^{n}$,
           \item \label{kpd:c3} $z_n$ is orthogonal to $V_n$,
           \item \label{kpd:c4} for any non-trivial $V_{n + 1}$ the angle between $z_n$ and $V_{n + 1}$
               is at least $\pi/6$.
@@ -1268,7 +1269,7 @@
         Now suppose that $z_{n - 1}$ is already chosen.
         We are going to find a vector $z$ which satisfies the conditions~\ref{kpd:c2} and~\ref{kpd:c3}.
 
-        Consider $U_1 = \{z \in \mathbb{R}^{4B-2}\, \big| \, \inner{z}{z_{n-1}}\lvert\wt_{n-1}\rvert  = 1\}$.
+        Consider $U_1 = \{z \in \mathbb{R}^{4B-2}\, \big| \, \inner{z}{z_{n-1}}\lvert\wt_{n-1}\rvert  = (-1)^{n}\}$.
         The dimension of the affine subspace $U_1$ is equal to $4B - 3$.
         First consider the case when $V_n$ is trivial. We will choose $z$ as any vector from $U_1$
           and set the length of $z$ to $2 M_n$.
@@ -1283,8 +1284,8 @@
 
         Consider a vector $z \in U_1 \cap U_2$.
         We know that the angle between $z$ and $z_{n-1}$ is at most $\pi / 3$,
-          so $\inner{z}{z_{n-1}} \geq \lvert z \rvert \lvert z_{n-1}\rvert  \cos(\pi / 3)$.
-        On the other hand, $\lvert\wt_{n-1}\rvert \inner{z}{z_{n-1}} = 1$, which implies
+          so $\lvert \inner{z}{z_{n-1}} \rvert \geq \lvert z \rvert \lvert z_{n-1}\rvert  \cos(\pi / 3)$.
+        On the other hand, $\lvert\wt_{n-1}\rvert \lvert \inner{z}{z_{n-1}} \rvert = 1$, which implies
           that $\lvert z\rvert \leq 2 \lvert z_{n-1} \wt_{n-1}\rvert^{-1}$.
         It follows that $\lvert z\rvert \leq 2 \lvert  M_{n-1} \wt_{n-1}\rvert^{-1}
           \leq 2 M_n$, since $M_n M_{n-1} \geq \lvert \wt_{n-1} \rvert^{-1}$.
@@ -1312,10 +1313,10 @@
         The angle between $\lvert z_n\rvert$ and $V_{n+1}$ will be at least $\pi / 4 > \pi / 6$.
         \smallskip
 
-        The constructed sequence $\seq{z} \in \ell^2({\mathbb{R}^k})$
+        The constructed sequence $\seq{z}$ belongs to $\ell^2({\mathbb{R}^k})$
           since $\lvert z_n \rvert \leq 4M_n$ and the sequence $\seq{M}$ is square summable.
         Hence, the sequences $\seq{z}$ and $\{z_n^*\}_{n=1}^\infty$ satisfy the first condition of Corollary~\ref{corol:kpd}.
-        Combining~\ref{kpd:c2} and~\ref{kpd:c3} results in the third condition of~\ref{corol:kpd}.
+        Combining~\ref{kpd:c2} and~\ref{kpd:c3} results in the third condition of Corollary~\ref{corol:kpd}.
         The second condition of the corollary holds as well, since $\sum \inner{z_n}{z^*_n}_{\mathbb{R}^k} = 1$.
 
         Finally, Corollary~\ref{corol:kpd} applied to the graph $B(\fsys)$ and the sequences $\seq{z}$ and $\{z_n^*\}_{n=1}^\infty$ implies that the system $\fsys$ is not $4B - 2$ point dense.
