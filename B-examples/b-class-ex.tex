@@ -362,6 +362,27 @@ the $k$ point density property}
 
     In the example of~\cite{me2} the matrices $A$ and $B$ are 2-diagonal and $C$ is 1-diagonal.
 
+  \subsection{A reformulation for $k$-point density}
+  Suppose that the matrix $A$ is real-valued.
+  Denote with $A_*$ the formal conjugate matrix to $A$.
+  \begin{prop}
+    The system $\fsys$ is one point dense if and only if $\operatorname{Ker}(id - A_* A) = \varnothing$.
+  \end{prop}
+  \begin{prop}
+    The system $\fsys$ is two point dense if and only if for any $x, u, v, y \in \ell^2(\mathrm{C})$
+    and some real-valued sequences $\seq{\lambda}, \seq{\mu}$ such that
+    \begin{align*}
+      Au=-v + \lambda \odot x,\\
+      A_*x = y + \mu \odot u,
+    \end{align*}
+    it is true that $\operatorname{Im}(v \bar{x} + u \bar{y}) = 0$.
+  \end{prop}
+  %\begin{corol}
+    %If $\fsys$ is not two point dense, then there exist $x, u, v, y \in \ell^2(\mathrm{C})$
+    %and real-valued sequences $\seq{\lambda}, \seq{\mu}$ such that
+
+  %\end{corol}
+
 \section{Ladder vector system investigation: the rank one density is equivalent to the two point density}
   TODO
 
